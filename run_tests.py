@@ -1,29 +1,15 @@
-"""This is the test running script set up to run *all* tests
-
+"""This is the test running script set up to run all tests
+Peeves should be embedded in a project as a submodule at the top level
+This will mean there is a "..Tests" package to load the tests from
 
 """
 
 import os, sys
 
-try:
-    base_dir = sys.argv[1] # you can pass the directory to run the tests as the first sys.argv arg
-except:
-    base_dir = os.path.join(os.path.dirname(os.path.dirname(__file__))) # or we'll it's two dirs up from here
-sys.path.insert(0, base_dir)
+from .TestUtils import TestManager, TestRunner, DebugTests, ValidationTests, TimingTests, LoadTests
+from ..Tests import load_tests # should load all tests here
 
-# the Tests package _must_ be in the parent repository
-tests_dir = os.path.join(base_dir, "Tests")
-if not os.path.isdir(tests_dir):
-    raise Exception("Peeves expects a Tests package to hold all tests because I wrote it bad")
-
-test_data_dir = os.path.join(os.path.dirname(__file__), "TestData")
-def test_data(filename):
-    return os.path.join(test_data_dir, filename)
-
-# we'll expose all our tests utils and stuff here...
-from Tests import TestRunner, DebugTests, ValidationTests, TimingTests, LoadTests
-
-LoadTests(base_dir)
+LoadTests(TestManager.base_dir)
 
 quiet = False
 quiet = quiet or ("-q" in sys.argv)
@@ -39,7 +25,7 @@ validate = validate or ("-V" in sys.argv)
 
 v_level = 1 if quiet else 2
 log_file_name = "test_results.txt" # could change if it's worth it
-log_file = os.path.join(tests_dir, log_file_name)
+log_file = os.path.join(TestManager.test_dir, log_file_name)
 log_stream = open(log_file, "w") if ("-l" in sys.argv) else sys.stderr
 stderr1 = sys.stderr
 sys.stderr = log_stream

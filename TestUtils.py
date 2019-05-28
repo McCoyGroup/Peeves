@@ -2,10 +2,50 @@
 
 """
 
-import unittest, timeit, numpy as np, functools, os
+import unittest, timeit, numpy as np, functools, os, sys
+
+class TestManagerClass:
+    def __init__(self, test_root = None, test_dir = None, test_data = None, base_dir = None):
+        self._base_dir = base_dir
+        self._test_root = test_root
+        self._test_dir = test_dir
+        self._test_data = test_data
+    @property
+    def test_root(self):
+        if self._test_root is None:
+            try:
+                test_root = [ a for a in sys.argv if os.path.isdir(a) ][0] # you can pass the directory to run the tests as the first sys.argv arg
+            except IndexError:
+                test_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # or we'll assume it's two dirs up from here
+            sys.path.insert(0, test_root)
+            self._test_root = test_root
+        return self._test_root
+    @property
+    def base_dir(self):
+        if self._base_dir is None:
+            self._base_dir = os.path.dirname(self.test_root)
+        return self._base_dir
+    @property
+    def test_dir(self):
+        # the Tests package _must_ be in the parent repository
+        if self._test_dir is None:
+            self._test_dir = os.path.join(self.test_root, "Tests")
+            if not os.path.isdir(self._test_dir):
+                raise Exception(
+                    "Peeves expects a 'Tests' package at {} to hold all the tests because I wrote it bad",
+                    self._test_dir
+                    )
+        return self._test_dir
+    @property
+    def test_data_dir(self):
+        if self._test_data is None:
+            self._test_data = os.path.join(self.test_dir, "TestData")
+        return self._test_data
+    def test_data(self, filename):
+        return os.path.join(self.test_data_dir, filename)
+TestManager = TestManagerClass()
 
 TestCase = unittest.TestCase #just in case I want to change this up later
-
 class DataGenerator:
     """Provides methods to generate relevant data for testing methods
     """
@@ -139,7 +179,6 @@ def TestRunner(**kw):
     if not "verbosity" in kw:
         kw["verbosity"] = 2
     return unittest.TextTestRunner(**kw)
-
 
 _test_loader_map = {
     "Debug" : DebugTests,
