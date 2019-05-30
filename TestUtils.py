@@ -5,11 +5,22 @@
 import unittest, timeit, numpy as np, functools, os, sys
 
 class TestManagerClass:
-    def __init__(self, test_root = None, test_dir = None, test_data = None, base_dir = None):
+    """Just manages where things load from
+    """
+    def __init__(self,
+                 test_root = None, test_dir = None, test_data = None,
+                 base_dir = None, test_pkg = "Tests", test_data_ext = "TestData"
+                 ):
         self._base_dir = base_dir
         self._test_root = test_root
+        self._base_dir_use_default = base_dir is None
         self._test_dir = test_dir
+        self._test_dir_use_default = test_dir is None
         self._test_data = test_data
+        self._test_data_use_default = test_data is None
+        self._test_pkg = test_pkg
+        self._test_pkg_validated = False
+        self.data_ext = test_data_ext
     @property
     def test_root(self):
         if self._test_root is None:
@@ -17,32 +28,77 @@ class TestManagerClass:
                 test_root = [ a for a in sys.argv if os.path.isdir(a) ][0] # you can pass the directory to run the tests as the first sys.argv arg
             except IndexError:
                 test_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # or we'll assume it's two dirs up from here
-            sys.path.insert(0, test_root)
+            sys.path.insert(0, test_root) # not sure exactly what this does... might want to be more targeted with it
             self._test_root = test_root
         return self._test_root
+    @test_root.setter
+    def test_root(self, root):
+        self._test_root = root
+        if self._base_dir_use_default:
+            self._base_dir = None
+        if self._test_dir_use_default:
+            self._test_dir = None
+        if self._test_data_use_default:
+            self._test_data = None
     @property
     def base_dir(self):
         if self._base_dir is None:
             self._base_dir = os.path.dirname(self.test_root)
         return self._base_dir
+    @base_dir.setter
+    def base_dir(self, d):
+        self._base_dir = d
+        if d is not None:
+            self._base_dir_use_default = False
+    @property
+    def test_pkg(self):
+        if not self._test_pkg_validated:
+            root = self.test_root
+            # TODO: find some way to check it to figure out how many . we need to go up...
+            # for now we'll just leave it, though
+            if "." not in self._test_pkg:
+                self._test_pkg = "."*(len(__package__.split(".")) - 1) + self._test_pkg
+                # a basic guess as to what'll get us to the right spot...
+            self._test_pkg_validated = True
+        return self._test_pkg
+    @test_pkg.setter
+    def test_pkg(self, pkg):
+        self._test_pkg = pkg
+        self._test_pkg_validated = False
     @property
     def test_dir(self):
         # the Tests package _must_ be in the parent repository
         if self._test_dir is None:
-            self._test_dir = os.path.join(self.test_root, "Tests")
-            if not os.path.isdir(self._test_dir):
+            self._test_dir = os.path.join(self.test_root, self.test_pkg.split(".")[-1])
+            if not os.path.isdir(self._test_dir) and self.test_pkg[0] == ".":
                 raise Exception(
-                    "Peeves expects a 'Tests' package at {} to hold all the tests because I wrote it bad",
-                    self._test_dir
+                    "Peeves expects a '{}' package at {} to hold all the tests because I wrote it bad",
+                    self.test_pkg,
+                    self.test_root
                     )
         return self._test_dir
+    @test_dir.setter
+    def test_dir(self, d):
+        self._test_dir = d
+        if d is not None:
+            self._test_dir_use_default = False
     @property
     def test_data_dir(self):
         if self._test_data is None:
-            self._test_data = os.path.join(self.test_dir, "TestData")
+            self._test_data = os.path.join(self.test_dir, self.data_ext)
         return self._test_data
+    @test_data_dir.setter
+    def test_data_dir(self, d):
+        self._test_data = d
+        if d is not None:
+            self._test_data_use_default = False
     def test_data(self, filename):
         return os.path.join(self.test_data_dir, filename)
+    def run(self, exit = True):
+        from .run_tests import test_status
+        if exit:
+            sys.exit(test_status) #should kill everything...?
+        return test_status
 TestManager = TestManagerClass()
 
 TestCase = unittest.TestCase #just in case I want to change this up later

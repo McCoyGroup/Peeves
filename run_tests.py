@@ -7,7 +7,7 @@ This will mean there is a "..Tests" package to load the tests from
 import os, sys
 
 from .TestUtils import TestManager, TestRunner, DebugTests, ValidationTests, TimingTests, LoadTests
-from ..Tests import load_tests # should load all tests here
+exec("import {}".format(TestManager.test_pkg)) # will load all tests
 
 LoadTests(TestManager.base_dir)
 
@@ -55,11 +55,9 @@ if timing:
 debug_status = (debug_results is None) or debug_results.wasSuccessful()
 timing_status = (timing_results is None) or timing_results.wasSuccessful()
 validate_status = (validate_results is None) or validate_results.wasSuccessful()
-overall_status = not (debug_status & timing_status & validate_status)
+test_status = not (debug_status & timing_status & validate_status)
 
 sys.stderr = stderr1
-
-sys.exit(overall_status)
 
 
 
