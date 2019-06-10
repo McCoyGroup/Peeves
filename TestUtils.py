@@ -7,6 +7,13 @@ import unittest, timeit, numpy as np, functools, os, sys
 class TestManagerClass:
     """Just manages where things load from
     """
+    log_file = "test_results.txt"
+    log_results = False
+    quiet_mode = False
+    debug_tests = True
+    validation_tests = False
+    timing_tests = False
+    test_files = "All"
     def __init__(self,
                  test_root = None, test_dir = None, test_data = None,
                  base_dir = None, test_pkg = "Tests", test_data_ext = "TestData"
@@ -241,18 +248,38 @@ _test_loader_map = {
     "Validation": ValidationTests,
     "Timing" : TimingTests
 }
-def load_tests(loader, tests, pattern):
-    from itertools import chain
-    tests = list(chain(*((t for t in suite) for suite in tests)))
-    for test in tests:
-        method = getattr(test, test._testMethodName)
-        ttt = method.__name__
-        if ttt not in _test_loader_map:
-            ttt = "Debug"
-        suite = _test_loader_map[ttt]
-        suite.addTest(test)
-    #
-    # return _test_loader_map.values()
 
-def LoadTests(start_dir):
+class ManagedTestLoader:
+    manager = TestManager
+    @classmethod
+    def load_tests(cls, loader, tests, pattern):
+        from itertools import chain
+
+        pkgs = cls.manager.test_files
+        test_packages = None if pkgs == "All" else set(pkgs)
+        if test_packages is None:
+            tests = list(chain(*((t for t in suite) for suite in tests)))
+        else:
+            def _get_suite_name(suite):
+                for test in suite:
+                    return type(test).__module__.split(".")[-1]
+            tests_named = {_get_suite_name(suite):suite for suite in tests}
+            tests = []
+            for k in tests_named:
+                if k in test_packages:
+                    tests.extend(tests_named[k])
+        for test in tests:
+            method = getattr(test, test._testMethodName)
+            ttt = method.__name__
+            if ttt not in _test_loader_map:
+                ttt = "Debug"
+            suite = _test_loader_map[ttt]
+            suite.addTest(test)
+        #
+        # return _test_loader_map.values()
+
+load_tests = ManagedTestLoader.load_tests
+
+def LoadTests(start_dir, manager = TestManager):
+    ManagedTestLoader.manager = TestManager
     unittest.defaultTestLoader.discover(start_dir)
