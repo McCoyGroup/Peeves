@@ -14,20 +14,26 @@ from .TestUtils import TestManager, TestRunner, DebugTests, ValidationTests, Tim
 
 # Create ArgParser to take command line data and make it visible
 parser = argparse.ArgumentParser(description='Process test configurations')
+
+def parse_bool(s):
+    if s in {"False", '0'}:
+        return False
+    else:
+        return True
 parser.add_argument('-q', dest='quiet', metavar='-q',
                        type=bool, nargs='?', default=TestManager.quiet_mode,
                        help='whether to run the tests in quiet mode')
 parser.add_argument('-d', dest='debug', metavar='-d',
-                       type=bool, nargs='?', default=TestManager.debug_tests,
+                       type=parse_bool, nargs='?', default=TestManager.debug_tests,
                        help='whether to run the debug tests')
 parser.add_argument('-v', dest='validate', metavar='-v',
-                       type=bool, nargs='?', default=TestManager.validation_tests,
+                       type=parse_bool, nargs='?', default=TestManager.validation_tests,
                        help='whether to run the validation tests')
 parser.add_argument('-t', dest='timing', metavar='-t',
-                       type=bool, nargs='?', default=TestManager.timing_tests,
+                       type=parse_bool, nargs='?', default=TestManager.timing_tests,
                        help='whether to run the timing tests')
 parser.add_argument('-l', dest='log', metavar='-l',
-                       type=bool, nargs='?', default=TestManager.log_results,
+                       type=parse_bool, nargs='?', default=TestManager.log_results,
                        help='whether to log results')
 parser.add_argument('-L', dest='logfile', metavar='-L',
                        type=str, nargs='?', default=TestManager.log_file,
@@ -36,11 +42,11 @@ parser.add_argument('-f', dest='testfile', metavar='-f',
                        type=str, nargs='?', default=TestManager.test_files,
                        help='which tests to run')
 args = parser.parse_args()
-quiet = args.quiet
-debug = args.debug
-validate = args.validate
-timing = args.timing
-log_results = args.log
+quiet = True if args.quiet is None else args.quiet
+debug = True if args.debug is None else args.debug
+validate = True if args.validate is None else args.validate
+timing = True if args.timing is None else args.timing
+log_results = True if args.log is None else args.log
 log_file = args.logfile
 
 #####################################################################################################################
