@@ -1,9 +1,24 @@
-"""All of the utilities that are used in testing the package. Presumably can be reused in other packages.
-
+"""
+All of the utilities that are used in writing tests for Peeves
 """
 
-from .Timer import timed
+from .Timer import Timer
 import unittest, numpy as np, os, sys
+
+__all__ = [
+    "TestRunner",
+    "DebugTests",
+    "ValidationTests",
+    "TimingTests",
+    "LoadTests",
+    "TestManager",
+    "DataGenerator",
+    "load_tests",
+    "validationTest",
+    "debugTest",
+    "timeitTest",
+    "timingTest"
+]
 
 class TestManagerClass:
     """Just manages where things load from
@@ -183,12 +198,12 @@ class TimingTestClass(unittest.TestSuite):
 TimingTests = TimingTestClass()
 
 def timingTest(fn):
-    timer = timed()(fn)
+    timer = Timer()(fn)
     def Timing(*args, **kwargs):
         return timer(*args, **kwargs)
     return Timing
 def timeitTest(**kwargs):
-    timer = timed(**kwargs)
+    timer = Timer(**kwargs)
     def wrap(fn):
         inner_fn = timer(fn)
         def Timing(*args, **kwargs):
