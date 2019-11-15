@@ -1,6 +1,8 @@
 ## <a id="{id}">{name}</a>
-{description}
+{description}{parameters}
 
+### Properties and Methods
 {props}{methods}
 
+### Examples
 {examples}

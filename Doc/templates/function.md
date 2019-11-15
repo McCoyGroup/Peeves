@@ -2,7 +2,6 @@
 ```python
 {name}{signature}: 
 ```
-{description}
-{parameters}
+{description}{parameters}
 
 {examples}

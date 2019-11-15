@@ -17,7 +17,8 @@ __all__ = [
     "validationTest",
     "debugTest",
     "timeitTest",
-    "timingTest"
+    "timingTest",
+    "inactiveTest"
 ]
 
 class TestManagerClass:
@@ -193,9 +194,13 @@ class ValidationTestClass(unittest.TestSuite):
     pass
 ValidationTests = ValidationTestClass()
 class TimingTestClass(unittest.TestSuite):
-    """The set of fast tests in the test suite"""
+    """The set of timing tests in the test suite"""
     pass
 TimingTests = TimingTestClass()
+class InactiveTestClass(unittest.TestSuite):
+    """The set of inactive tests in the test suite"""
+    pass
+InactiveTests = InactiveTestClass()
 
 def timingTest(fn):
     timer = Timer()(fn)
@@ -210,6 +215,11 @@ def timeitTest(**kwargs):
             return inner_fn(*args, **kwargs)
         return Timing
     return wrap
+
+def inactiveTest(fn):
+    def Inactive(*args, **kwargs):
+        return fn(*args, **kwargs)
+    return Inactive
 
 def debugTest(fn):
     def Debug(*args, **kwargs):
@@ -231,7 +241,8 @@ def TestRunner(**kw):
 _test_loader_map = {
     "Debug" : DebugTests,
     "Validation": ValidationTests,
-    "Timing" : TimingTests
+    "Timing" : TimingTests,
+    "Inactive" : InactiveTests
 }
 
 class ManagedTestLoader:

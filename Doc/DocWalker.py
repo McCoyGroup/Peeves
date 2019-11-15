@@ -27,7 +27,7 @@ class DocWalker:
         self.object_writer = object_writer
 
         if out is None:
-            out = os.path.join(os.getcwd(), "docs")
+            out = os.path.join(os.getcwd(), "Documentation")
         self.out_dir = out
         try:
             os.makedirs(self.out_dir)

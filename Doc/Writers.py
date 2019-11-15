@@ -34,7 +34,7 @@ class DocWriter(metaclass=abc.ABCMeta):
         self.root = root
 
     class outStream:
-        def __init__(self, file, mode = 'a', **kw):
+        def __init__(self, file, mode = 'w+', **kw):
             self.file = file
             self.file_handle = None
             self.mode = mode
@@ -46,7 +46,7 @@ class DocWriter(metaclass=abc.ABCMeta):
                         os.makedirs(os.path.dirname(self.file))
                     except OSError:
                         pass
-                    self.file_handle = open(self.file, 'a', **self.kw)
+                    self.file_handle = open(self.file, self.mode, **self.kw)
                 else:
                     self.file_handle = self.file
             return self.file_handle
@@ -153,6 +153,74 @@ class DocWriter(metaclass=abc.ABCMeta):
 
         return ">" + arg.replace("\n", "\n>")
 
+    param_template = """  - `{name}`: `{type}`\n    >{description}"""
+    def parse_doc(self, doc):
+        """
+
+        :param doc:
+        :type doc: str
+        :return:
+        :rtype:
+        """
+        from collections import deque
+
+        # parses a docstring based on reStructured text type specs but Markdown description
+        splits = doc.strip().splitlines()
+
+        params = deque()
+        param_map = {}
+        i = len(splits)-1
+        for i in range(len(splits)-1, -1, -1):
+            line = splits[i].strip()
+            if line.startswith(":"):
+                if line.startswith(":param"):
+                    bits = line.split(":", 2)[1:]
+                    name = bits[0][5:].strip()
+                    if name not in param_map:
+                        params.appendleft(name)
+                        param_map[name] = {"name":name, "type":"Any", "description":"No description..."}
+                    desc = bits[1].strip() if len(bits) == 2 else ""
+                    if len(desc) > 0:
+                        param_map[name]["description"] = desc
+                elif line.startswith(":type"):
+                    bits = line.split(":", 2)[1:]
+                    name = bits[0][4:].strip()
+                    if name not in param_map:
+                        params.appendleft(name)
+                        param_map[name] = {"name":name, "type":"Any", "description":"No description..."}
+                    t = bits[1].strip() if len(bits) == 2 else ""
+                    if len(t) > 0:
+                        param_map[name]["type"] = t
+                elif line.startswith(":return"):
+                    bits = line.split(":", 2)[1:]
+                    name = ":returns"
+                    if name not in param_map:
+                        params.appendleft(name)
+                        param_map[name] = {"name":name, "type":"_", "description":"No description..."}
+                    t = bits[1].strip() if len(bits) == 2 else ""
+                    if len(t) > 0:
+                        param_map[name]["description"] = t
+                elif line.startswith(":rtype"):
+                    bits = line.split(":", 2)[1:]
+                    name = ":returns"
+                    if name not in param_map:
+                        params.appendleft(name)
+                        param_map[name] = {"name":name, "type":"_", "description":"No description..."}
+                    t = bits[1].strip() if len(bits) == 2 else ""
+                    if len(t) > 0:
+                        param_map[name]["type"] = t
+            else:
+                i = i+1
+                break
+
+        param = []
+        for p in params:
+            param.append(self.param_template.format(**param_map[p]).strip())
+
+        desc = splits[:i]
+
+        return "\n".join(param), "\n".join(desc)
+
 
 class ModuleWriter(DocWriter):
     """A writer targeted to a module object. Just needs to write the Module metadata."""
@@ -223,7 +291,11 @@ class ClassWriter(DocWriter):
         name = cls.__name__
         ident = self.identifier
         props, methods = self.load_methods(function_writer = function_writer)
-        descr = cls.__doc__ if cls.__doc__ is not None else ''
+        param, descr = self.parse_doc(cls.__doc__ if cls.__doc__ is not None else '')
+        descr = descr.strip()
+        param = param.strip()
+        if len(param) > 0:
+            param = "\n" + param
         props = "\n".join(props)
         if len(props) > 0:
             props = self.format_code_block(props)+"\n"
@@ -231,7 +303,8 @@ class ClassWriter(DocWriter):
         return {
             'id' : ident,
             'name': name,
-            'description' : descr.strip(),
+            'description' : descr,
+            'parameters' : param,
             'props' : props,
             'methods' : "\n\n".join(methods),
             'examples' : ex if ex is not None else ""
@@ -239,74 +312,6 @@ class ClassWriter(DocWriter):
 
 class FunctionWriter(DocWriter):
     template = DocWriter.load_template(os.path.join(os.path.dirname(__file__), 'templates', 'function.md'))
-
-    param_template = """  - `{name}`: `{type}`\n    >{description}"""
-    def parse_doc(self, doc):
-        """
-
-        :param doc:
-        :type doc: str
-        :return:
-        :rtype:
-        """
-        from collections import deque
-
-        # parses a docstring based on reStructured text type specs but Markdown description
-        splits = doc.strip().splitlines()
-
-        params = deque()
-        param_map = {}
-        i = len(splits)-1
-        for i in range(len(splits)-1, -1, -1):
-            line = splits[i].strip()
-            if line.startswith(":"):
-                if line.startswith(":param"):
-                    bits = line.split(":", 2)[1:]
-                    name = bits[0][5:].strip()
-                    if name not in param_map:
-                        params.appendleft(name)
-                        param_map[name] = {"name":name, "type":"Any", "description":"No description..."}
-                    desc = bits[1].strip() if len(bits) == 2 else ""
-                    if len(desc) > 0:
-                        param_map[name]["description"] = desc
-                elif line.startswith(":type"):
-                    bits = line.split(":", 2)[1:]
-                    name = bits[0][4:].strip()
-                    if name not in param_map:
-                        params.appendleft(name)
-                        param_map[name] = {"name":name, "type":"Any", "description":"No description..."}
-                    t = bits[1].strip() if len(bits) == 2 else ""
-                    if len(t) > 0:
-                        param_map[name]["type"] = t
-                elif line.startswith(":return"):
-                    bits = line.split(":", 2)[1:]
-                    name = ":returns"
-                    if name not in param_map:
-                        params.appendleft(name)
-                        param_map[name] = {"name":name, "type":"_", "description":"No description..."}
-                    t = bits[1].strip() if len(bits) == 2 else ""
-                    if len(t) > 0:
-                        param_map[name]["description"] = t
-                elif line.startswith(":rtype"):
-                    bits = line.split(":", 2)[1:]
-                    name = ":returns"
-                    if name not in param_map:
-                        params.appendleft(name)
-                        param_map[name] = {"name":name, "type":"_", "description":"No description..."}
-                    t = bits[1].strip() if len(bits) == 2 else ""
-                    if len(t) > 0:
-                        param_map[name]["type"] = t
-            else:
-                i = i+1
-                break
-
-        param = []
-        for p in params:
-            param.append(self.param_template.format(**param_map[p]).strip())
-
-        desc = splits[:i]
-
-        return "\n".join(param), "\n".join(desc)
 
     def template_params(self):
         import inspect
@@ -316,13 +321,17 @@ class FunctionWriter(DocWriter):
         signature = str(inspect.signature(f))
         name = f.__name__
         param, descr = self.parse_doc(f.__doc__ if f.__doc__ is not None else '')
+        descr = descr.strip()
+        param = param.strip()
+        if len(param) > 0:
+            param = "\n" + param
         ex = self.load_examples()
         return {
             'id': ident,
             'name' : name,
             'signature' : signature,
             'parameters' : param,
-            'description' : descr.strip(),
+            'description' : descr,
             'examples' : ex if ex is not None else ""
         }
 

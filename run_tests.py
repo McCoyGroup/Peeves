@@ -49,6 +49,7 @@ timing = True if args.timing is None else args.timing
 log_results = True if args.log is None else args.log
 log_file = args.logfile
 
+
 #####################################################################################################################
 #
 #                                          LOAD TESTS
