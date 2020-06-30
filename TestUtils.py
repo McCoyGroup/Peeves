@@ -16,6 +16,7 @@ __all__ = [
     "load_tests",
     "validationTest",
     "debugTest",
+    "dataGenTest",
     "timeitTest",
     "timingTest",
     "inactiveTest"
@@ -30,11 +31,28 @@ class TestManagerClass:
     debug_tests = True
     validation_tests = False
     timing_tests = False
+    data_gen_tests = False
     test_files = "All"
+    test_name = ""
     def __init__(self,
                  test_root = None, test_dir = None, test_data = None,
-                 base_dir = None, test_pkg = "Tests", test_data_ext = "TestData"
+                 base_dir = None, test_pkg = None, test_data_ext = "TestData"
                  ):
+        """
+
+        :param test_root: the root package
+        :type test_root:
+        :param test_dir: the directory to load tests from (usually test_root/test_pkg)
+        :type test_dir:
+        :param test_data: the directory to load test data from (usually test_dir/test_data_ext)
+        :type test_data:
+        :param base_dir: the overall base directory to start test discovery from
+        :type base_dir:
+        :param test_pkg: the name of the python package that holds all the tests
+        :type test_pkg:
+        :param test_data_ext: the extension from test_dir to look for data in (usually TestData)
+        :type test_data_ext:
+        """
         self._base_dir = base_dir
         self._test_root = test_root
         self._base_dir_use_default = base_dir is None
@@ -67,7 +85,7 @@ class TestManagerClass:
     @property
     def base_dir(self):
         if self._base_dir is None:
-            self._base_dir = os.path.dirname(self.test_root)
+            self._base_dir = self.test_root
         return self._base_dir
     @base_dir.setter
     def base_dir(self, d):
@@ -80,6 +98,8 @@ class TestManagerClass:
             root = self.test_root
             # TODO: find some way to check it to figure out how many . we need to go up...
             # for now we'll just leave it, though
+            if self._test_pkg is None:
+                self._test_pkg = "Tests"
             if "." not in self._test_pkg:
                 self._test_pkg = "."*(len(__package__.split(".")) - 1) + self._test_pkg
                 # a basic guess as to what'll get us to the right spot...
@@ -96,9 +116,10 @@ class TestManagerClass:
             self._test_dir = os.path.join(self.test_root, self.test_pkg.split(".")[-1])
             if not os.path.isdir(self._test_dir) and self.test_pkg[0] == ".":
                 raise Exception(
-                    "Peeves expects a '{}' package at {} to hold all the tests because I wrote it bad",
-                    self.test_pkg,
-                    self.test_root
+                    "Peeves expects a '{}' package at {} to hold all the tests because I wrote it bad".format(
+                        self.test_pkg,
+                        self.test_root
+                        )
                     )
         return self._test_dir
     @test_dir.setter
@@ -201,6 +222,10 @@ class InactiveTestClass(unittest.TestSuite):
     """The set of inactive tests in the test suite"""
     pass
 InactiveTests = InactiveTestClass()
+class DataGenTestClass(unittest.TestSuite):
+    """The set of tests in the test suite that exist to generate data"""
+    pass
+DataGenTests = DataGenTestClass()
 
 def timingTest(fn):
     timer = Timer()(fn)
@@ -219,16 +244,25 @@ def timeitTest(**kwargs):
 def inactiveTest(fn):
     def Inactive(*args, **kwargs):
         return fn(*args, **kwargs)
+    Inactive.__og_name__ = fn.__name__
     return Inactive
 
 def debugTest(fn):
     def Debug(*args, **kwargs):
         return fn(*args, **kwargs)
+    Debug.__og_name__ = fn.__name__
     return Debug
+
+def dataGenTest(fn):
+    def DataGen(*args, **kwargs):
+        return fn(*args, **kwargs)
+    DataGen.__og_name__ = fn.__name__
+    return DataGen
 
 def validationTest(fn):
     def Validation(*args, **kwargs):
         return fn(*args, **kwargs)
+    Validation.__og_name__ = fn.__name__
     return Validation
 
 def TestRunner(**kw):
@@ -242,7 +276,8 @@ _test_loader_map = {
     "Debug" : DebugTests,
     "Validation": ValidationTests,
     "Timing" : TimingTests,
-    "Inactive" : InactiveTests
+    "Inactive" : InactiveTests,
+    "DataGen": DataGenTests
 }
 
 class ManagedTestLoader:
@@ -252,6 +287,9 @@ class ManagedTestLoader:
         from itertools import chain
 
         pkgs = cls.manager.test_files
+        names = cls.manager.test_name
+        if isinstance(names, str):
+            names = names.split(",")
         test_packages = None if pkgs == "All" else set(pkgs)
         if test_packages is None:
             tests = list(chain(*((t for t in suite) for suite in tests)))
@@ -264,13 +302,26 @@ class ManagedTestLoader:
             for k in tests_named:
                 if k in test_packages:
                     tests.extend(tests_named[k])
+
         for test in tests:
             method = getattr(test, test._testMethodName)
             ttt = method.__name__
-            if ttt not in _test_loader_map:
-                ttt = "Debug"
-            suite = _test_loader_map[ttt]
-            suite.addTest(test)
+            try:
+                og = method.__og_name__
+            except AttributeError:
+                og = ttt
+            og = og.split("test_")[-1]
+
+            if names is not None:
+                if og not in names:
+                    continue
+                for suite in _test_loader_map.values():
+                    suite.addTest(test)
+            else:
+                if ttt not in _test_loader_map:
+                    ttt = "Debug"
+                suite = _test_loader_map[ttt]
+                suite.addTest(test)
         #
         # return _test_loader_map.values()
 

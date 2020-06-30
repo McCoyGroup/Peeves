@@ -5,7 +5,7 @@ This will mean there is a "..Tests" package to load the tests from
 """
 
 import os, sys, argparse
-from .TestUtils import TestManager, TestRunner, DebugTests, ValidationTests, TimingTests, LoadTests
+from .TestUtils import TestManager, TestRunner, DebugTests, ValidationTests, TimingTests, DataGenTests, LoadTests
 
 #####################################################################################################################
 #
@@ -32,6 +32,9 @@ parser.add_argument('-v', dest='validate', metavar='-v',
 parser.add_argument('-t', dest='timing', metavar='-t',
                        type=parse_bool, nargs='?', default=TestManager.timing_tests,
                        help='whether to run the timing tests')
+parser.add_argument('-g', dest='data_gen', metavar='-g',
+                       type=parse_bool, nargs='?', default=TestManager.data_gen_tests,
+                       help='whether to run the data generating tests')
 parser.add_argument('-l', dest='log', metavar='-l',
                        type=parse_bool, nargs='?', default=TestManager.log_results,
                        help='whether to log results')
@@ -41,11 +44,15 @@ parser.add_argument('-L', dest='logfile', metavar='-L',
 parser.add_argument('-f', dest='testfile', metavar='-f',
                        type=str, nargs='?', default=TestManager.test_files,
                        help='which tests to run')
+parser.add_argument('-n', dest='testname', metavar='-n',
+                       type=str, nargs='?', default="",
+                       help='name of specific test to run')
 args = parser.parse_args()
-quiet = True if args.quiet is None else args.quiet
-debug = True if args.debug is None else args.debug
-validate = True if args.validate is None else args.validate
-timing = True if args.timing is None else args.timing
+quiet = TestManager.quiet_mode = True if args.quiet is None else args.quiet
+debug = TestManager.debug_tests = True if args.debug is None else args.debug
+validate = TestManager.validation_tests = True if args.validate is None else args.validate
+timing = TestManager.timing_tests = True if args.timing is None else args.timing
+data_gen = TestManager.data_gen_tests = True if args.data_gen is None else args.data_gen
 log_results = True if args.log is None else args.log
 log_file = args.logfile
 
@@ -54,6 +61,11 @@ log_file = args.logfile
 #
 #                                          LOAD TESTS
 #
+
+if args.testname.lower() == "":
+    TestManager.test_name = None
+else:
+    TestManager.test_name = args.testname
 
 if args.testfile.lower() == "all":
     TestManager.test_files = "All"
@@ -102,9 +114,14 @@ try:
     if timing:
         timing_results  = run_tests("Timing", TimingTests, runner, log_stream)
 
+    data_gen_results = None
+    if data_gen:
+        data_gen_results = run_tests("DataGen", DataGenTests, runner, log_stream)
+
     debug_status = (debug_results is None) or debug_results.wasSuccessful()
     timing_status = (timing_results is None) or timing_results.wasSuccessful()
     validate_status = (validate_results is None) or validate_results.wasSuccessful()
+    data_gen_status = (data_gen_results is None) or data_gen_results.wasSuccessful()
     test_status = not (debug_status & timing_status & validate_status)
 
 finally:

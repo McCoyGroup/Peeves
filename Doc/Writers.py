@@ -16,7 +16,9 @@ class DocWriter(metaclass=abc.ABCMeta):
     "A general writer class that writes a file based off a template and filling in object template specs"
 
     template = ""
-    def __init__(self, obj, out_file, root = None):
+    template_root = "templates"
+    example_root = "examples"
+    def __init__(self, obj, out_file, template = None, root = None):
         """
         :param obj:
         :type obj:
@@ -29,7 +31,17 @@ class DocWriter(metaclass=abc.ABCMeta):
         elif isinstance(out_file, str) and os.path.isdir(out_file):
             if root is None:
                 root = out_file
-            out_file = os.path.join(out_file, *self.identifier.split("."))+".md"
+            out_file = os.path.join(root, *self.identifier.split("."))+".md"
+        if template is None:
+            if root is None:
+                root = os.path.dirname(out_file)
+            template = os.path.join(root, self.template_root, *self.identifier.split("."))+".md"
+            if not os.path.exists(template):
+                template = self.template
+            else:
+                with open(template) as tf:
+                    template = tf.read()
+        self.template = template
         self.target = out_file
         self.root = root
 
@@ -106,7 +118,7 @@ class DocWriter(metaclass=abc.ABCMeta):
 
     def load_examples(self):
         if self.root is not None:
-            examples = os.path.join(self.root, "examples", self.identifier + ".md")
+            examples = os.path.join(self.root, self.example_root, *self.identifier.split("."))+".md"
             if os.path.isfile(examples):
                 with open(examples) as f:
                     return f.read()
@@ -234,12 +246,10 @@ class ModuleWriter(DocWriter):
         name = mod.__name__
         ident = self.identifier
         ident_depth = len(ident.split("."))
+        idents = [ DocWriter.get_identifier(getattr(mod, a)) for a in self.get_members(mod) ]
+        idents = [ i for i in idents if ident in i ]
         mems = [
-            self.format_item(self.format_obj_link(
-                ".".join(
-                    DocWriter.get_identifier(getattr(mod, a)).split(".")[ident_depth-1:]
-                )
-            )) for a in self.get_members(mod)
+            self.format_item(self.format_obj_link(".".join(a.split(".")[ident_depth-1:]))) for a in idents
         ]
         descr = mod.__doc__ if mod.__doc__ is not None else ''
         return {
@@ -380,7 +390,11 @@ class IndexWriter(DocWriter):
         return fs
 
     def template_params(self):
-        files = [ self.format_item(self.format_link(os.path.splitext(f.split("/")[-1])[0], f)) for f in self.get_file_paths()]
+        files = [
+            self.format_item(
+                self.format_link(os.path.splitext(f.split("/")[-1])[0], f)
+            ) for f in self.get_file_paths()
+        ]
         return {
             'index_files' : "\n".join(files)
         }
