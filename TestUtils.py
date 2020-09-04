@@ -151,30 +151,38 @@ class DataGenerator:
     """Provides methods to generate relevant data for testing methods
     """
 
-    @staticmethod
-    def coords(n=50):
+    seed = 15
+    @classmethod
+    def coords(cls, n=50):
+        np.random.seed(cls.seed)
         return np.random.rand(n, 3)
-    @staticmethod
-    def multicoords(n=10, m=50):
+    @classmethod
+    def multicoords(cls, n=10, m=50):
+        np.random.seed(cls.seed)
         return np.random.rand(n, m, 3)
-    @staticmethod
-    def mats(n=1):
+    @classmethod
+    def mats(cls, n=1):
+        np.random.seed(cls.seed)
         return np.random.rand(n, 3, 3)
-    @staticmethod
-    def vecs(n=1):
+    @classmethod
+    def vecs(cls, n=1):
+        np.random.seed(cls.seed)
         return np.random.rand(n, 3)
 
-    @staticmethod
-    def angles(n=50, r=(0, 360), use_rad=False):
+    @classmethod
+    def angles(cls, n=50, r=(0, 360), use_rad=False):
+        np.random.seed(cls.seed)
         angles = np.random.uniform(*r, size=(n,))
         if use_rad:
             angles = np.rad2deg(angles)
         return angles
-    @staticmethod
-    def dists(n=50, minmax=(.5, 1.5)):
+    @classmethod
+    def dists(cls, n=50, minmax=(.5, 1.5)):
+        np.random.seed(cls.seed)
         return np.random.uniform(*minmax, size=(n,))
-    @staticmethod
-    def zmat(ncoords=15, use_rad=False):
+    @classmethod
+    def zmat(cls, ncoords=15, use_rad=False):
+        np.random.seed(cls.seed)
         refs1 = np.sort(np.random.randint(0, ncoords, ncoords))
         refs2 = np.sort(np.random.randint(0, ncoords, ncoords))
         refs3 = np.sort(np.random.randint(0, ncoords, ncoords))
@@ -202,30 +210,36 @@ class DataGenerator:
         dihedrals = DataGenerator.angles(ncoords, (0, 360), use_rad=use_rad)
 
         return np.array([refs1+1, dists, refs2+1, angles, refs3+1, dihedrals ]).T
-    @staticmethod
-    def zmats(m=10, ncoords=15, use_rad=False):
+    @classmethod
+    def zmats(cls, m=10, ncoords=15, use_rad=False):
+        np.random.seed(cls.seed)
         return np.array([DataGenerator.zmat(ncoords, use_rad) for i in range(m)])
 
 class DebugTestClass(unittest.TestSuite):
     """The set of fast tests in the test suite"""
     pass
 DebugTests = DebugTestClass()
+DebugTests.__name__ = "DebugTests"
 class ValidationTestClass(unittest.TestSuite):
     """The set of slow tests in the test suite"""
     pass
 ValidationTests = ValidationTestClass()
+ValidationTests.__name__ = "ValidationTests"
 class TimingTestClass(unittest.TestSuite):
     """The set of timing tests in the test suite"""
     pass
 TimingTests = TimingTestClass()
+TimingTests.__name__ = "TimingTests"
 class InactiveTestClass(unittest.TestSuite):
     """The set of inactive tests in the test suite"""
     pass
 InactiveTests = InactiveTestClass()
+InactiveTests.__name__ = "InactiveTests"
 class DataGenTestClass(unittest.TestSuite):
     """The set of tests in the test suite that exist to generate data"""
     pass
 DataGenTests = DataGenTestClass()
+DataGenTests.__name__ = "DataGenTests"
 
 def timingTest(fn):
     timer = Timer()(fn)

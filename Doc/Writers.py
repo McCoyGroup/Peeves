@@ -15,10 +15,13 @@ __all__ = [
 class DocWriter(metaclass=abc.ABCMeta):
     "A general writer class that writes a file based off a template and filling in object template specs"
 
-    template = ""
+    template = "No template :|"
     template_root = "templates"
+    template_name = ""
+    default_template_dir = os.path.join(os.path.dirname(__file__), 'templates')
     example_root = "examples"
-    def __init__(self, obj, out_file, template = None, root = None):
+    _template_cache = {}
+    def __init__(self, obj, out_file, template = None, root = None, ignore_paths=None):
         """
         :param obj:
         :type obj:
@@ -32,15 +35,28 @@ class DocWriter(metaclass=abc.ABCMeta):
             if root is None:
                 root = out_file
             out_file = os.path.join(root, *self.identifier.split("."))+".md"
+        self.ignore_paths = ignore_paths if ignore_paths is not None else set()
+
+        # we try to build a template...
         if template is None:
             if root is None:
                 root = os.path.dirname(out_file)
             template = os.path.join(root, self.template_root, *self.identifier.split("."))+".md"
             if not os.path.exists(template):
-                template = self.template
+                template = os.path.join(root, self.template_root, self.template_name)
+                if not os.path.exists(template):
+                    template = os.path.join(root, self.default_template_dir, self.template_name)
+            if os.path.exists(template):
+                if template in self._template_cache:
+                    template = self._template_cache[template]
+                else:
+                    tkey = template
+                    with open(template) as tf:
+                        template = tf.read()
+                    self._template_cache[tkey] = template
             else:
-                with open(template) as tf:
-                    template = tf.read()
+                template = self.template
+
         self.template = template
         self.target = out_file
         self.root = root
@@ -80,13 +96,56 @@ class DocWriter(metaclass=abc.ABCMeta):
     def template_params(self):
         ...
 
+    def _clean_doc(self, doc):
+        """
+        :param doc: a docstring
+        :type doc: str
+        :return: a cleaned docstring
+        :rtype: str
+        """
+        # strip off leading whitespace in a uniform manner
+        doc = doc.rstrip()
+        if len(doc) == 0:
+            return doc
+        doc_lines = doc.rstrip().splitlines()
+        leading_spaces = len(doc_lines[0]) - len(doc_lines[0].lstrip())
+        if leading_spaces == 0 and len(doc_lines) > 1: # sometimes there's no leading whitespace depending on how things were written
+            leading_spaces = len(doc_lines[1]) - len(doc_lines[1].lstrip())
+            for i,d in enumerate(doc_lines[1:]):
+                doc_lines[i+1] = doc_lines[i+1][leading_spaces:]
+        else:
+            for i,d in enumerate(doc_lines):
+                doc_lines[i] = doc_lines[i][leading_spaces:]
+        return "\n".join(doc_lines)
     def format(self, template = None):
         if template is None:
             template = self.template
-
-        return template.format(**self.template_params())
+        params = self.template_params()
+        out_file = self.target
+        if isinstance(out_file, str):
+            if self.root is not None:
+                root_split = []
+                root = self.root
+                while root:
+                    root, base = os.path.split(root)
+                    root_split.append(base)
+                out_split = []
+                out = out_file
+                while out:
+                    out, base = os.path.split(out)
+                    out_split.append(base)
+                out_split = list(reversed(out_split))
+                root_depth = len(os.path.split(self.root))
+                out_url = "/".join(out_split[root_depth:])
+                # print(os.path.split(out_file), root_depth)
+            else:
+                out_url = "/".join(os.path.split(out_file))
+            params['file'] = out_file
+            params['url'] = out_url
+        return template.format(**params)
     def write(self, template = None):
-        return self.write_string(self.format(template = template))
+        if self.target not in self.ignore_paths:
+            return self.write_string(self.format(template = template))
 
     @classmethod
     def load_template(cls, file):
@@ -237,7 +296,7 @@ class DocWriter(metaclass=abc.ABCMeta):
 class ModuleWriter(DocWriter):
     """A writer targeted to a module object. Just needs to write the Module metadata."""
 
-    template = DocWriter.load_template(os.path.join(os.path.dirname(__file__), 'templates', 'module.md'))
+    template_name = 'module.md'
     def template_params(self):
         import types
 
@@ -246,11 +305,15 @@ class ModuleWriter(DocWriter):
         name = mod.__name__
         ident = self.identifier
         ident_depth = len(ident.split("."))
+        # get identifiers
         idents = [ DocWriter.get_identifier(getattr(mod, a)) for a in self.get_members(mod) ]
+        # flattend them
         idents = [ i for i in idents if ident in i ]
-        mems = [
-            self.format_item(self.format_obj_link(".".join(a.split(".")[ident_depth-1:]))) for a in idents
-        ]
+        # split by qualified names
+        idents = [".".join(a.split(".")[ident_depth-1:]) for a in idents]
+        # format links
+        mems = [ self.format_item(self.format_obj_link(l)) for l in idents ]
+        # print([idents, mems])
         descr = mod.__doc__ if mod.__doc__ is not None else ''
         return {
             'id' : ident,
@@ -266,8 +329,8 @@ class ModuleWriter(DocWriter):
 
 class ClassWriter(DocWriter):
     """A writer targeted to a class"""
-    template = DocWriter.load_template(os.path.join(os.path.dirname(__file__), 'templates', 'class.md'))
 
+    template_name = 'class.md'
     def load_methods(self, function_writer = None):
         import types
 
@@ -302,8 +365,8 @@ class ClassWriter(DocWriter):
         ident = self.identifier
         props, methods = self.load_methods(function_writer = function_writer)
         param, descr = self.parse_doc(cls.__doc__ if cls.__doc__ is not None else '')
-        descr = descr.strip()
-        param = param.strip()
+        descr = self._clean_doc(descr)
+        param = self._clean_doc(param)
         if len(param) > 0:
             param = "\n" + param
         props = "\n".join(props)
@@ -321,8 +384,8 @@ class ClassWriter(DocWriter):
         }
 
 class FunctionWriter(DocWriter):
-    template = DocWriter.load_template(os.path.join(os.path.dirname(__file__), 'templates', 'function.md'))
 
+    template_name = 'function.md'
     def template_params(self):
         import inspect
 
@@ -346,20 +409,23 @@ class FunctionWriter(DocWriter):
         }
 
 class ObjectWriter(DocWriter):
-    template = DocWriter.load_template(os.path.join(os.path.dirname(__file__), 'templates', 'object.md'))
 
+    template_name = 'object.md'
     @property
     def identifier(self):
         try:
             qualname = self.obj.__qualname__
         except AttributeError:
             qualname = self.get_identifier(type(self.obj)) + "." + self.get_name()
+        qn = qualname.split(".")
+        qualname = ".".join(qn[:-2] + qn[-1:]) # want to drop the class name
+        # print(qualname)
         return qualname
     def get_name(self):
         try:
             name = self.obj.__name__
         except AttributeError:
-            name = "<Instance>"
+            name = "<{} Instance>".format(type(self.obj).__name__)
 
         return name
 
@@ -382,7 +448,10 @@ class ObjectWriter(DocWriter):
         }
 
 class IndexWriter(DocWriter):
-    template = DocWriter.load_template(os.path.join(os.path.dirname(__file__), 'templates', 'index.md'))
+
+    template_name = 'index.md'
+    def get_identifier(cls, o):
+        return 'index'
 
     def get_file_paths(self):
         rl = len(os.path.split(self.root))

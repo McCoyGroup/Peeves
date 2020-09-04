@@ -15,7 +15,8 @@ class DocWalker:
                  module_writer = None,
                  class_writer = None,
                  function_writer = None,
-                 object_writer = None
+                 object_writer = None,
+                 ignore_paths = None
                  ):
         self.objects = objects
         if module_writer is None:
@@ -31,6 +32,7 @@ class DocWalker:
         self.class_writer = class_writer
         self.function_writer = function_writer
         self.object_writer = object_writer
+        self.ignore_paths = None
 
         if out is None:
             out = os.path.join(os.getcwd(), "Documentation")
@@ -49,14 +51,14 @@ class DocWalker:
         if isinstance(o, type):
             oid = self.class_writer.get_identifier(o)
             if not oid in written:
-                writer = self.class_writer(o, self.out_dir)
+                writer = self.class_writer(o, self.out_dir, ignore_paths=self.ignore_paths)
                 res = writer.write()
                 written.add(oid)
                 return res
         elif isinstance(o, types.FunctionType):
             oid = self.function_writer.get_identifier(o)
             if not oid in written:
-                writer = self.function_writer(o, self.out_dir)
+                writer = self.function_writer(o, self.out_dir, ignore_paths=self.ignore_paths)
                 res = writer.write()
                 written.add(oid)
                 return res
@@ -87,12 +89,13 @@ class DocWalker:
                         except ModuleNotFoundError:
                             pass
                         else:
-                            return self.write_object(v, written)
+                            o = v
+                            #return self.write_object(v, written)
 
             if isinstance(o, types.ModuleType):
                 oid = self.module_writer.get_identifier(o)
                 if not oid in written:
-                    writer = self.module_writer(o, self.out_dir)
+                    writer = self.module_writer(o, self.out_dir, ignore_paths=self.ignore_paths)
                     res = writer.write()
                     written.add(oid)
 
@@ -107,17 +110,17 @@ class DocWalker:
                         self.write_object(v, written = written)
 
                     return res
-        # else:
-        #     t = type(o)
-        #     if t.__module__ in written or ".".join(t.__module__.split(".")[:-1]) in written:
-        #         self.write_object(t, written)
-        #         if hasattr(o, "__doc__"):
-        #             w = self.object_writer(o, self.out_dir)
-        #             oid = w.identifier
-        #             if not oid in written:
-        #                 res = w.write()
-        #                 written.add(oid)
-        #                 return res
+        else:
+            t = type(o)
+            if t.__module__ in written or ".".join(t.__module__.split(".")[:-1]) in written:
+                self.write_object(t, written)
+                if hasattr(o, "__doc__"):
+                    w = self.object_writer(o, self.out_dir)
+                    oid = w.identifier
+                    if not oid in written:
+                        res = w.write()
+                        written.add(oid)
+                        return res
 
     def write_docs(self):
         files = [ self.write_object(o) for o in self.objects ]

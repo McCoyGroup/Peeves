@@ -1,4 +1,4 @@
-### <a id="{id}">Name</a>
+### <a id="{id}">{name}</a>
 {description}
 
 {examples}
