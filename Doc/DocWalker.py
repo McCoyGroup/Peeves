@@ -136,7 +136,7 @@ class DocWalker:
             t = type(o)
             if t.__module__ in written or ".".join(t.__module__.split(".")[:-1]) in written:
                 self.write_object(t, written)
-                if hasattr(o, "__doc__"):
+                if hasattr(o, "__doc__") and hasattr(o, "__name__"):
                     w = self.object_writer(o, self.out_dir)
                     oid = w.identifier
                     if not oid in written:
