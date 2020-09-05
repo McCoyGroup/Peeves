@@ -15,7 +15,9 @@ __all__ = [
 #TODO: it turns out a lot of this gymnastics can be replaced with the `inspect` module...womp
 
 class DocWriter(metaclass=abc.ABCMeta):
-    "A general writer class that writes a file based off a template and filling in object template specs"
+    """
+    A general writer class that writes a file based off a template and filling in object template specs
+    """
 
     template = "No template :|"
     template_root = "templates"

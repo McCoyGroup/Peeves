@@ -1,6 +1,6 @@
 """
 Simple Documentation framework that takes all of the python docstrings and unwraps them into proper docs while supporting
-example files and the rest of it
+example and template files
 """
 
 from .DocWalker import *

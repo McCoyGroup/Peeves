@@ -1,6 +1,6 @@
 """
-A class that walks a module structure, generating .md files for every class inside it as well as for global functions, \
-and a Markdown index file
+Provides a class that will walk through a set of objects & their children, as loaded into memory, and will generate Markdown for each.
+The actual object Markdown is written by the things in the `Writers` module.
 """
 
 from .Writers import *
@@ -9,6 +9,12 @@ import os
 __all__ = [ "DocWalker" ]
 
 class DocWalker:
+    """
+    A class that walks a module structure, generating .md files for every class inside it as well as for global functions,
+    and a Markdown index file.
+
+    Takes a set of objects & writers and walks through the objects, generating files on the way
+    """
     def __init__(self,
                  objects,
                  out = None,
@@ -18,6 +24,22 @@ class DocWalker:
                  object_writer = None,
                  ignore_paths = None
                  ):
+        """
+        :param objects: the objects to write out
+        :type objects: Iterable[Any]
+        :param out: the directory in which to write the files (`None` means `sys.stdout`)
+        :type out: None | str
+        :param module_writer: the class to used to write module Markdown (`None` means `ModuleWriter`)
+        :type module_writer: type
+        :param class_writer: the class to used to write class Markdown(`None` means `ClassWriter`)
+        :type class_writer: type
+        :param function_writer: the class to used to write function Markdown (`None` means `FunctionWriter`)
+        :type function_writer: type
+        :param object_writer: the class to used to write object Markdown (`None` means `ObjectWriter`)
+        :type object_writer: type
+        :param ignore_paths: a set of paths not to write (passed to the objects)
+        :type ignore_paths: None | Iterable[str]
+        """
         self.objects = objects
         if module_writer is None:
             module_writer = ModuleWriter
@@ -32,7 +54,7 @@ class DocWalker:
         self.class_writer = class_writer
         self.function_writer = function_writer
         self.object_writer = object_writer
-        self.ignore_paths = None
+        self.ignore_paths = ignore_paths
 
         if out is None:
             out = os.path.join(os.getcwd(), "Documentation")
