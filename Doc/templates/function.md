@@ -1,7 +1,11 @@
-<a id="{id}">&nbsp;</a>
+# <a id="{id}">{name}</a>
+
+{description}
+
 ```python
 {name}{signature}: 
 ```
-{description}{parameters}
+{parameters}
 
+###Examples:
 {examples}

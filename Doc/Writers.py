@@ -23,7 +23,11 @@ class DocWriter(metaclass=abc.ABCMeta):
     default_template_dir = os.path.join(os.path.dirname(__file__), 'templates')
     example_root = "examples"
     _template_cache = {}
-    def __init__(self, obj, out_file, template = None, root = None, ignore_paths=None):
+    def __init__(self,
+                 obj, out_file,
+                 obj_name = None,
+                 parent_obj = None,
+                 template = None, root = None, ignore_paths=None):
         """
         :param obj:
         :type obj:
@@ -31,6 +35,8 @@ class DocWriter(metaclass=abc.ABCMeta):
         :type out_file:
         """
         self.obj = obj
+        self.obj_name = obj_name
+        self.parent_obj = parent_obj
         if out_file is None:
             out_file = sys.stdout
         elif isinstance(out_file, str) and os.path.isdir(out_file):
@@ -62,6 +68,17 @@ class DocWriter(metaclass=abc.ABCMeta):
         self.template = template
         self.target = out_file
         self.root = root
+
+    def get_name(self):
+        try:
+            name = self.obj.__name__
+        except AttributeError:
+            if self.obj_name is None:
+                name = "<{} Instance>".format(type(self.obj).__name__)
+            else:
+                name = self.obj_name
+
+        return name
 
     class outStream:
         def __init__(self, file, mode = 'w+', **kw):
@@ -360,7 +377,7 @@ class ClassWriter(DocWriter):
         import types
 
         if function_writer is None:
-            function_writer = FunctionWriter
+            function_writer = MethodWriter
 
         cls = self.obj
         keys = cls.__all__ if hasattr(cls, '__all__') else list(cls.__dict__.keys())
@@ -370,9 +387,10 @@ class ClassWriter(DocWriter):
 
         for k in keys:
             o = getattr(cls, k)
-            if isinstance(o, types.FunctionType):
+            if isinstance(o, (types.FunctionType, classmethod, staticmethod, property)):
                 if not k.startswith("_") or (k.startswith("__") and k.endswith("__")):
-                    methods.append(function_writer(o, out_file=None, root=self.root).format().strip())
+                    methods.append(
+                        function_writer(o, parent_obj = cls, obj_name = k, out_file=None, root=self.root).format().strip())
             else:
                 if not k.startswith("_"):
                     props.append(self.format_prop(k, o).strip())
@@ -385,9 +403,6 @@ class ClassWriter(DocWriter):
         file_url = rest.replace(".", "/") + ".py"
         # lineno = inspect.findsource(self.obj)[1]
         return pkg, file_url #+ "#L" + str(lineno) # for GitHub links
-    @property
-    def package_path(self):
-        return self.get_package_and_url()
 
     def format_prop(self, k, o):
         return '{}: {}'.format(k, type(o).__name__)
@@ -421,14 +436,17 @@ class ClassWriter(DocWriter):
 class FunctionWriter(DocWriter):
 
     template_name = 'function.md'
+
+    def get_signature(self):
+        return str(inspect.signature(self.obj))
     def template_params(self):
 
         f = self.obj # type: types.FunctionType
         ident = self.identifier
-        signature = str(inspect.signature(f))
+        signature = self.get_signature()
         mem_obj_pat = re.compile(" object at \w+>")
         signature = re.sub(mem_obj_pat, " instance>", signature)
-        name = f.__name__
+        name = self.get_name()
         param, descr = self.parse_doc(f.__doc__ if f.__doc__ is not None else '')
         descr = descr.strip()
         param = param.strip()
@@ -444,6 +462,43 @@ class FunctionWriter(DocWriter):
             'examples' : ex if ex is not None else ""
         }
 
+    def get_package_and_url(self):
+        pkg, rest = self.identifier.split(".", 1)
+        rest, bleh = rest.rsplit(".", 1)
+        file_url = rest.replace(".", "/") + ".py"
+        # lineno = inspect.findsource(self.obj)[1]
+        return pkg, file_url #+ "#L" + str(lineno) # for GitHub links
+
+class MethodWriter(FunctionWriter):
+
+    template_name = 'method.md'
+    def template_params(self):
+        params = super().template_params()
+        meth = self.obj # type: types.MethodType
+        decorator = ""
+        if isinstance(meth, classmethod):
+            decorator = 'classmethod'
+        elif isinstance(meth, property):
+            decorator = 'property'
+        elif isinstance(meth, staticmethod):
+            decorator = 'staticmethod'
+        if len(decorator) > 0:
+            decorator = "@" + decorator + "\n"
+        params['decorator'] = decorator
+        return params
+    def get_signature(self):
+        try:
+            signature = str(inspect.signature(self.obj))
+        except TypeError:  # dies on properties
+            signature = "(self)"
+        return signature
+    @property
+    def identifier(self):
+        if isinstance(self.obj, property):
+            return self.get_identifier(self.parent_obj) + "." + self.get_name()
+        else:
+            return self.get_identifier(self.obj)
+
 class ObjectWriter(DocWriter):
 
     template_name = 'object.md'
@@ -457,13 +512,6 @@ class ObjectWriter(DocWriter):
         qualname = ".".join(qn[:-2] + qn[-1:]) # want to drop the class name
         # print(qualname)
         return qualname
-    def get_name(self):
-        try:
-            name = self.obj.__name__
-        except AttributeError:
-            name = "<{} Instance>".format(type(self.obj).__name__)
-
-        return name
 
     def template_params(self):
 
