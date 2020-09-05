@@ -3,8 +3,8 @@ Provides a class that will walk through a set of objects & their children, as lo
 The actual object Markdown is written by the things in the `Writers` module.
 """
 
+import os, types
 from .Writers import *
-import os
 
 __all__ = [ "DocWalker" ]
 
@@ -65,7 +65,16 @@ class DocWalker:
             pass
 
     def write_object(self, o, written = None):
-        import types
+        """
+        Writes a single object to file
+
+        :param o: the object we want to write
+        :type o:
+        :param written: a caching dict of objects to break cyclic reference loops
+        :type written: None | dict
+        :return: the written file
+        :rtype: None | str
+        """
 
         if written is None:
             written = set()
@@ -145,6 +154,11 @@ class DocWalker:
                         return res
 
     def write_docs(self):
+        """
+        Walks through the objects supplied and writes them & their children to file
+        :return: written files
+        :rtype: list[str]
+        """
         files = [ self.write_object(o) for o in self.objects ]
         files = [ f for f in files if f is not None ]
         w = IndexWriter(files, os.path.join(self.out_dir, 'index.md'), root = self.out_dir)
