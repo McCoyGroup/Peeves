@@ -145,6 +145,12 @@ class TestManagerClass:
             sys.exit(test_status) #should kill everything...?
         return test_status
 TestManager = TestManagerClass()
+TestManager.__name__ = "TestManager"
+TestManager.__doc__ = """
+    The main interface for managing what tests we might want to run.
+    Instance of `TestManagerClass`
+    """
+
 
 TestCase = unittest.TestCase #just in case I want to change this up later
 class DataGenerator:

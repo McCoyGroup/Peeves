@@ -1,7 +1,7 @@
 """
 Implements a set of writer classes that document python objects
 """
-import abc, os, sys, types
+import abc, os, sys, types, inspect, re
 
 __all__ = [
     "DocWriter",
@@ -11,6 +11,8 @@ __all__ = [
     "ObjectWriter",
     "IndexWriter"
 ]
+
+#TODO: it turns out a lot of this gymnastics can be replaced with the `inspect` module...womp
 
 class DocWriter(metaclass=abc.ABCMeta):
     "A general writer class that writes a file based off a template and filling in object template specs"
@@ -142,10 +144,33 @@ class DocWriter(metaclass=abc.ABCMeta):
                 out_url = "/".join(os.path.split(out_file))
             params['file'] = out_file
             params['url'] = out_url
+
+            pkg, file_url = self.package_path
+            params['package_name'] = pkg
+            params['file_url'] = file_url
         return template.format(**params)
     def write(self, template = None):
         if self.target not in self.ignore_paths:
             return self.write_string(self.format(template = template))
+
+    def get_package_and_url(self):
+        pkg_split = self.identifier.split(".", 1)
+        if len(pkg_split) == 1:
+            pkg = pkg_split[0]
+            rest = ""
+        elif len(pkg_split) == 0:
+            pkg = ""
+            rest = "Not.A.Real.Package"
+        else:
+            pkg, rest = pkg_split
+        if len(rest) == 0:
+            file_url = "__init__.py"
+        else:
+            file_url = rest.replace(".", "/") + "/__init__.py"
+        return pkg, file_url
+    @property
+    def package_path(self):
+        return self.get_package_and_url()
 
     @classmethod
     def load_template(cls, file):
@@ -354,6 +379,16 @@ class ClassWriter(DocWriter):
 
         return props, methods
 
+    def get_package_and_url(self):
+        pkg, rest = self.identifier.split(".", 1)
+        rest, bleh = rest.rsplit(".", 1)
+        file_url = rest.replace(".", "/") + ".py"
+        # lineno = inspect.findsource(self.obj)[1]
+        return pkg, file_url #+ "#L" + str(lineno) # for GitHub links
+    @property
+    def package_path(self):
+        return self.get_package_and_url()
+
     def format_prop(self, k, o):
         return '{}: {}'.format(k, type(o).__name__)
 
@@ -387,11 +422,12 @@ class FunctionWriter(DocWriter):
 
     template_name = 'function.md'
     def template_params(self):
-        import inspect
 
         f = self.obj # type: types.FunctionType
         ident = self.identifier
         signature = str(inspect.signature(f))
+        mem_obj_pat = re.compile(" object at \w+>")
+        signature = re.sub(mem_obj_pat, " instance>", signature)
         name = f.__name__
         param, descr = self.parse_doc(f.__doc__ if f.__doc__ is not None else '')
         descr = descr.strip()
