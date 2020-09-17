@@ -36,7 +36,8 @@ class TestManagerClass:
     test_name = ""
     def __init__(self,
                  test_root = None, test_dir = None, test_data = None,
-                 base_dir = None, test_pkg = None, test_data_ext = "TestData"
+                 base_dir = None, start_dir = None,
+                 test_pkg = None, test_data_ext = "TestData"
                  ):
         """
 
@@ -46,14 +47,17 @@ class TestManagerClass:
         :type test_dir:
         :param test_data: the directory to load test data from (usually test_dir/test_data_ext)
         :type test_data:
-        :param base_dir: the overall base directory to start test discovery from
+        :param base_dir: the overall base directory to do imports from
         :type base_dir:
+        :param start_dir: the directory to start test discovery from
+        :type start_dir:
         :param test_pkg: the name of the python package that holds all the tests
         :type test_pkg:
         :param test_data_ext: the extension from test_dir to look for data in (usually TestData)
         :type test_data_ext:
         """
         self._base_dir = base_dir
+        self._start_dir = start_dir
         self._test_root = test_root
         self._base_dir_use_default = base_dir is None
         self._test_dir = test_dir
@@ -92,6 +96,16 @@ class TestManagerClass:
         self._base_dir = d
         if d is not None:
             self._base_dir_use_default = False
+    @property
+    def start_dir(self):
+        if self._start_dir is None:
+            return self.test_dir
+        return self._start_dir
+    @start_dir.setter
+    def start_dir(self, d):
+        self._start_dir = d
+        if d is not None:
+            self._start_dir_use_default = False
     @property
     def test_pkg(self):
         if not self._test_pkg_validated:
@@ -346,7 +360,9 @@ class ManagedTestLoader:
         # return _test_loader_map.values()
 
 load_tests = ManagedTestLoader.load_tests
-
-def LoadTests(start_dir, manager = TestManager):
-    ManagedTestLoader.manager = TestManager
-    unittest.defaultTestLoader.discover(start_dir)
+def LoadTests(start_dir, manager=TestManager):
+    ManagedTestLoader.manager = manager
+    unittest.defaultTestLoader.discover(
+        start_dir,
+        top_level_dir=manager.base_dir
+    )

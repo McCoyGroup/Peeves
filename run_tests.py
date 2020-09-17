@@ -71,8 +71,7 @@ if args.testfile.lower() == "all":
     TestManager.test_files = "All"
 else:
     TestManager.test_files = args.testfile.split(",")
-
-LoadTests(TestManager.base_dir)
+LoadTests(TestManager.start_dir)
 
 
 #####################################################################################################################
