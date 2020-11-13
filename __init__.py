@@ -2,7 +2,14 @@
 
 from .TestUtils import *
 from .Timer import *
+from .Profiler import *
 
-from .TestUtils import __all__ as TU_all
-from .Timer import __all__ as TI_all
-__all__ = TU_all + TI_all + [ "Doc" ]
+__all__ = []
+from .TestUtils import __all__ as exposed
+__all__ += exposed
+from .Timer import __all__ as exposed
+__all__ += exposed
+from .Profiler import __all__ as exposed
+__all__ += exposed
+exposed = [ "Doc" ]
+__all__ += exposed
