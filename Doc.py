@@ -3,5 +3,5 @@ A file that only exists to make this directory useable as a way to import Peeves
 Mostly useful during development
 """
 
-from .Peeves.Profiler import *
-from .Peeves.Profiler import __all__
+from .Peeves.Doc import *
+from .Peeves.Doc import __all__

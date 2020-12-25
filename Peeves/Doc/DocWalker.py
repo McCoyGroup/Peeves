@@ -22,7 +22,8 @@ class DocWalker:
                  class_writer = None,
                  function_writer = None,
                  object_writer = None,
-                 ignore_paths = None
+                 ignore_paths = None,
+                 verbose = True
                  ):
         """
         :param objects: the objects to write out
@@ -63,6 +64,8 @@ class DocWalker:
             os.makedirs(self.out_dir)
         except OSError:
             pass
+
+        self.verbose = verbose
 
     def write_object(self, o, written = None):
         """
@@ -127,6 +130,8 @@ class DocWalker:
                 oid = self.module_writer.get_identifier(o)
                 if not oid in written:
                     writer = self.module_writer(o, self.out_dir, ignore_paths=self.ignore_paths)
+                    if self.verbose:
+                        print("  writing {}".format(oid))
                     res = writer.write()
                     written.add(oid)
 
@@ -149,6 +154,8 @@ class DocWalker:
                     w = self.object_writer(o, self.out_dir)
                     oid = w.identifier
                     if not oid in written:
+                        if self.verbose:
+                            print("  writing {}".format(oid))
                         res = w.write()
                         written.add(oid)
                         return res
@@ -159,6 +166,9 @@ class DocWalker:
         :return: written files
         :rtype: list[str]
         """
+
+        if self.verbose:
+            print("Generating documentation to {}".format(self.out_dir))
         files = [ self.write_object(o) for o in self.objects ]
         files = [ f for f in files if f is not None ]
         w = IndexWriter(files, os.path.join(self.out_dir, 'index.md'), root = self.out_dir)

@@ -1,0 +1,41 @@
+# Documentation theme
+title: {docs_pkg}
+baseurl: "{docs_path}" # the subpath of your site, e.g. /blog
+url: "{docs_url}" # the base hostname & protocol for your site, e.g. http://example.com
+github_username: {gh_username}
+footer_text: >-
+  Built using the Finx theme
+sitemap_depth: 1
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-include-cache
+  - jekyll-optional-front-matter
+  - jekyll-seo-tag
+
+collections:
+  docs:
+    output: true
+
+defaults:
+  - scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      layout: "post"
+  - scope:
+      path: "index.html|about.html|404.html|search.html"
+    values:
+      layout: "page"
+  - scope:
+      path: "docs"
+      type: "pages"
+    values:
+      optional_scripts: true
+      annotations_type: "docs"
+      custom_styles: "docs"
+      layout: "docs"
+
+relative_links:
+  enabled: true

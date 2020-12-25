@@ -29,7 +29,9 @@ class DocWriter(metaclass=abc.ABCMeta):
                  obj, out_file,
                  obj_name = None,
                  parent_obj = None,
-                 template = None, root = None, ignore_paths=None):
+                 template = None,
+                 root = None,
+                 ignore_paths=None):
         """
         :param obj:
         :type obj:
@@ -125,19 +127,8 @@ class DocWriter(metaclass=abc.ABCMeta):
         :rtype: str
         """
         # strip off leading whitespace in a uniform manner
-        doc = doc.rstrip()
-        if len(doc) == 0:
-            return doc
-        doc_lines = doc.rstrip().splitlines()
-        leading_spaces = len(doc_lines[0]) - len(doc_lines[0].lstrip())
-        if leading_spaces == 0 and len(doc_lines) > 1: # sometimes there's no leading whitespace depending on how things were written
-            leading_spaces = len(doc_lines[1]) - len(doc_lines[1].lstrip())
-            for i,d in enumerate(doc_lines[1:]):
-                doc_lines[i+1] = doc_lines[i+1][leading_spaces:]
-        else:
-            for i,d in enumerate(doc_lines):
-                doc_lines[i] = doc_lines[i][leading_spaces:]
-        return "\n".join(doc_lines)
+        return inspect.cleandoc(doc)
+
     def format(self, template = None):
         if template is None:
             template = self.template
@@ -219,11 +210,80 @@ class DocWriter(metaclass=abc.ABCMeta):
     def identifier(self):
         return self.get_identifier(self.obj)
 
+    @property
+    def examples_dir(self):
+        """
+        Returns the directory in which to look for examples
+        :return:
+        :rtype:
+        """
+        if os.path.isdir(os.path.abspath(self.example_root)):
+            return self.example_root
+        else:
+            return os.path.join(self.root, self.example_root)
+    @property
+    def examples_path(self):
+        """
+        Provides the default examples path for the object
+        :return:
+        :rtype:
+        """
+        return os.path.join(*self.identifier.split(".")[1:])+".md"
     def load_examples(self):
-        if self.root is not None:
-            examples = os.path.join(self.root, self.example_root, *self.identifier.split("."))+".md"
+        """
+        Loads examples for the stored object if provided
+        :return:
+        :rtype:
+        """
+        if hasattr(self.obj, '__examples__'):
+            examples = os.path.join(self.examples_dir, self.obj.__examples__)
             if os.path.isfile(examples):
                 with open(examples) as f:
+                    return f.read()
+            else:
+                return self.obj.__examples__
+        elif self.root is not None:
+            examples = os.path.join(self.examples_dir, self.examples_path)
+            if os.path.isfile(examples):
+                with open(examples) as f:
+                    return f.read()
+
+    @property
+    def tests_dir(self):
+        """
+        Returns the directory in which to look for tests
+        :return:
+        :rtype:
+        """
+        if os.path.isdir(os.path.abspath(self.tests_root)):
+            return self.tests_root
+        else:
+            return os.path.join(self.root, self.tests_root)
+    @property
+    def tests_path(self):
+        """
+        Provides the default tests path for the object
+        :return:
+        :rtype:
+        """
+        return os.path.join(*self.identifier.split(".")[1:]) + "Tests.md"
+    def load_tests(self):
+        """
+        Loads examples for the stored object if provided
+        :return:
+        :rtype:
+        """
+        if hasattr(self.obj, '__tests__'):
+            tests = os.path.join(self.tests_dir, self.obj.__tests__)
+            if os.path.isfile(tests):
+                with open(tests) as f:
+                    return f.read()
+            else:
+                return self.obj.__tests__
+        elif self.root is not None:
+            tests = os.path.join(self.tests_dir, self.tests_path)
+            if os.path.isfile(tests):
+                with open(tests) as f:
                     return f.read()
 
     ## Markdown utilities
