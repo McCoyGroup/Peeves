@@ -1,7 +1,6 @@
 # Documentation theme
 title: Peeves
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://mccoygrp.github.io/Peeves/" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://mccoygroup.github.io/Peeves/" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: b3m2a1
 footer_text: >-
   Built using the Finx theme
