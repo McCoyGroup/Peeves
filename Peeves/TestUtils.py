@@ -3,7 +3,7 @@ All of the utilities that are used in writing tests for Peeves
 """
 
 from .Timer import Timer
-import unittest, numpy as np, os, sys
+import unittest, os, sys
 
 __all__ = [
     "TestRunner",
@@ -174,23 +174,28 @@ class DataGenerator:
     seed = 15
     @classmethod
     def coords(cls, n=50):
+        import numpy as np
         np.random.seed(cls.seed)
         return np.random.rand(n, 3)
     @classmethod
     def multicoords(cls, n=10, m=50):
+        import numpy as np
         np.random.seed(cls.seed)
         return np.random.rand(n, m, 3)
     @classmethod
     def mats(cls, n=1):
+        import numpy as np
         np.random.seed(cls.seed)
         return np.random.rand(n, 3, 3)
     @classmethod
     def vecs(cls, n=1):
+        import numpy as np
         np.random.seed(cls.seed)
         return np.random.rand(n, 3)
 
     @classmethod
     def angles(cls, n=50, r=(0, 360), use_rad=False):
+        import numpy as np
         np.random.seed(cls.seed)
         angles = np.random.uniform(*r, size=(n,))
         if use_rad:
@@ -198,10 +203,12 @@ class DataGenerator:
         return angles
     @classmethod
     def dists(cls, n=50, minmax=(.5, 1.5)):
+        import numpy as np
         np.random.seed(cls.seed)
         return np.random.uniform(*minmax, size=(n,))
     @classmethod
     def zmat(cls, ncoords=15, use_rad=False):
+        import numpy as np
         np.random.seed(cls.seed)
         refs1 = np.sort(np.random.randint(0, ncoords, ncoords))
         refs2 = np.sort(np.random.randint(0, ncoords, ncoords))
@@ -232,6 +239,7 @@ class DataGenerator:
         return np.array([refs1+1, dists, refs2+1, angles, refs3+1, dihedrals ]).T
     @classmethod
     def zmats(cls, m=10, ncoords=15, use_rad=False):
+        import numpy as np
         np.random.seed(cls.seed)
         return np.array([DataGenerator.zmat(ncoords, use_rad) for i in range(m)])
 
