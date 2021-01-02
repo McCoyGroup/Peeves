@@ -11,12 +11,12 @@ jobs:
     steps:
       # To use this repository's private action,
       # you must check out the repository
-      - env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
           ref: gh-pages
       - name: Test & Document
         uses: ./ci # Uses an action in the root directory
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
