@@ -11,7 +11,7 @@ default_docs_ext: str
 ```
 <a id="Peeves.Peeves.Doc.DocWalker.DocWalker.__init__" class="docs-object-method">&nbsp;</a>
 ```python
-__init__(self, objects, tree=None, out=None, docs_ext=None, writers=None, ignore_paths=None, verbose=True): 
+__init__(self, objects, tree=None, out=None, docs_ext=None, writers=None, ignore_paths=None, description=None, verbose=True): 
 ```
 
 - `objects`: `Iterable[Any]`
@@ -57,4 +57,3 @@ Walks through the objects supplied and writes them & their children to file
 ### Examples
 
 
-### Unit Tests

@@ -7,6 +7,11 @@ Needs some work to provide more useful info by default.
 ```python
 template_name: str
 ```
+<a id="Peeves.Peeves.Doc.Writers.IndexWriter.__init__" class="docs-object-method">&nbsp;</a>
+```python
+__init__(self, *args, description=None, **kwargs): 
+```
+
 <a id="Peeves.Peeves.Doc.Writers.IndexWriter.get_identifier" class="docs-object-method">&nbsp;</a>
 ```python
 get_identifier(cls, o): 
@@ -25,4 +30,3 @@ template_params(self):
 ### Examples
 
 
-### Unit Tests

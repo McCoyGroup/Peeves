@@ -1,10 +1,10 @@
 # Documentation theme
 title: Peeves
 url: "https://mccoygroup.github.io/Peeves/" # the base hostname & protocol for your site, e.g. http://example.com
-github_username: b3m2a1
+github_username: McCoyGroup
 footer_text: >-
-  Built using the Finx theme
-sitemap_depth: 1
+  Brought to you by the McCoy Group
+sitemap_depth: 2
 
 # Build settings
 markdown: kramdown
