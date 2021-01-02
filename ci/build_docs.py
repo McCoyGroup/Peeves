@@ -5,11 +5,11 @@ root = os.path.dirname(os.path.dirname(__file__))
 target = os.path.join(root, "docs")
 doc_config = {
     "config": {
-        "theme": "McCoyGroup/finx",
         "title": "Peeves",
         "path": "Peeves",
         "url": "https://mccoygroup.github.io/Peeves/",
-        "gh_username": "b3m2a1"
+        "gh_username": "McCoyGroup",
+        "footer": "Brought to you by the McCoy Group"
     },
     "packages": [
         {

@@ -3,12 +3,12 @@ title: {title}
 url: "{url}" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: {gh_username}
 footer_text: >-
-  Built using the Finx theme
-sitemap_depth: 1
+  {footer}
+sitemap_depth: 2
 
 # Build settings
 markdown: kramdown
-remote_theme: {theme}
+remote_theme: McCoyGroup/finx
 plugins:
   - jekyll-feed
   - jekyll-include-cache
