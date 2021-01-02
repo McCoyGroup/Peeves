@@ -7,11 +7,11 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # installs python packages we'd want for unit testing
-RUN pip install \
-              numpy \
-              matplotlib \
-              scipy \
-              h5py
+#RUN pip install \
+#              numpy \
+#              matplotlib \
+#              scipy \
+#              h5py
 
 LABEL "name"="McCoyGroup/PeevesCI"
 LABEL "maintainer"="Mark Boyer <b3m2a1uw.edu>"

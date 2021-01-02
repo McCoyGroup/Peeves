@@ -11,7 +11,7 @@ cd /home
 git config --global user.name ${GITHUB_ACTOR}
 git config --global user.email ${GITHUB_ACTOR}@users.noreply.github.com
 # clone in Peeves for Unit testing
-git clone https://github.com/McCoyGroup/Peeves.git
+#git clone https://github.com/McCoyGroup/Peeves.git
 ## run the testing script
 cd /home
 PYTHONPATH=/home python3 Peeves/ci/tests/run_tests.py -v -d
