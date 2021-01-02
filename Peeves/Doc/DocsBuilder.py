@@ -27,7 +27,8 @@ class DocBuilder:
                  config_file=None,
                  templates_directory=None,
                  examples_directory=None,
-                 tests_directory=None
+                 tests_directory=None,
+                 readme=None
                  ):
         """
         :param packages: list of package configs to write
@@ -54,9 +55,16 @@ class DocBuilder:
         self.tests_directory=tests_directory
         self.config_file=self.default_config_file if config_file is None else config_file
 
+        if isinstance(readme, str):
+            if os.path.isfile(readme):
+                with open(readme) as r:
+                    readme = r.read()
+        self.readme=readme
+
     config_defaults = {
         "theme":"McCoyGroup/finx",
-        "gh_username":"McCoyGroup-bot"
+        "gh_username":"McCoyGroup-bot",
+        "footer": ""
     }
     def load_config(self):
         """
@@ -111,7 +119,8 @@ class DocBuilder:
         """
         return DocWalker(
             self.packages,
-            out=self.target
+            out=self.target,
+            description=self.readme
         )
 
     def build(self):

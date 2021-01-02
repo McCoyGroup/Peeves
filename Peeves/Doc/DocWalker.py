@@ -143,6 +143,7 @@ class DocWalker:
                  docs_ext=None,
                  writers=None,
                  ignore_paths=None,
+                 description=None,
                  verbose=True
                  ):
         """
@@ -189,6 +190,7 @@ class DocWalker:
         except OSError:
             pass
 
+        self.description = description
         self.verbose = verbose
 
     @property
@@ -273,7 +275,9 @@ class DocWalker:
             print("Generating documentation to {}".format(self.out_dir))
         files = [ self.write_object(o) for o in self.objects ]
         files = [ f for f in files if f is not None ]
-        w = IndexWriter(files, os.path.join(self.out_dir, 'index.md'), root = self.out_dir)
+        w = IndexWriter(files, os.path.join(self.out_dir, 'index.md'),
+                        description=self.description,
+                        root = self.out_dir)
         return w.write()
 
 
