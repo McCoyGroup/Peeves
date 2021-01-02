@@ -1,3 +1,3 @@
-# Documentation
+{description}
 
 {index_files}

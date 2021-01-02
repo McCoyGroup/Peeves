@@ -946,6 +946,10 @@ class IndexWriter(DocWriter):
     """
 
     template_name = 'index.md'
+    def __init__(self, *args, description=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.description = description if description is None else "# Documentation"
+
     def get_identifier(cls, o):
         return 'index'
 
@@ -961,5 +965,6 @@ class IndexWriter(DocWriter):
             ) for f in self.get_file_paths()
         ]
         return {
-            'index_files' : "\n".join(files)
+            'index_files' : "\n".join(files),
+            'description' : self.description
         }
