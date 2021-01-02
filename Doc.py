@@ -5,3 +5,4 @@ Mostly useful during development
 
 from .Peeves.Doc import *
 from .Peeves.Doc import __all__
+from .Peeves.Doc import __doc__

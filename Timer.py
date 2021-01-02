@@ -5,3 +5,4 @@ Mostly useful during development
 
 from .Peeves.Timer import *
 from .Peeves.Timer import __all__
+from .Peeves.Timer import __doc__
