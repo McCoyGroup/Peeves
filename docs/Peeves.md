@@ -1,6 +1,6 @@
 # <a id="Peeves">Peeves</a>
     
-Allows better app structure
+Peeves is a minor extension to the unittest framework that makes my life better
 
 ### Members:
 

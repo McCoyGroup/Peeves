@@ -1,7 +1,7 @@
 # <a id="Peeves.Doc">Peeves.Doc</a>
     
-A file that only exists to make this directory useable as a way to import Peeves too.
-Mostly useful during development
+Simple Documentation framework that takes all of the python docstrings and unwraps them into proper docs while supporting
+example and template files
 
 ### Members:
 
