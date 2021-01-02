@@ -16,14 +16,16 @@ git config --global user.email ${GITHUB_ACTOR}@users.noreply.github.com
 cd /home
 PYTHONPATH=/home python3 Peeves/ci/tests/run_tests.py -v -d
 
+# switch to the gh-pages branch and merge in changes from master
 cd Peeves
 git checkout gh-pages
 git merge master
 cd ..
-## write some artifacts, maybe, in the future (e.g. generated data from data_gen tests or images from matplotlib)
+
+# build docs and push
 PYTHONPATH=/home python3 Peeves/ci/build_docs.py
 cd Peeves
 git config --global user.name ${GITHUB_ACTOR}
 git config --global user.email ${GITHUB_ACTOR}@users.noreply.github.com
-git add -A && git commit -m "Built out site"
-git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/McCoyGroup/Peeves.git" gh-pages
+git add -A && git commit -m "Built out docs"
+git push "https://github.com/McCoyGroup/Peeves.git" gh-pages
