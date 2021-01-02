@@ -1,6 +1,10 @@
-name: McUtilsCI
+name: PeevesCI
 on:
   push:
+    branches:
+      - master
+      - edit
+
 jobs:
   ci:
     runs-on: ubuntu-latest
