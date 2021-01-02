@@ -35,6 +35,7 @@ class DocsTests(TestCase):
                 }
             ],
             "root": root,
-            "target": target
+            "target": target,
+            'readme': os.path.join(root, "README.md")
         }
         DocBuilder(**doc_config).build()
