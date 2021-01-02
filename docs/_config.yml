@@ -5,6 +5,7 @@ github_username: McCoyGroup
 footer_text: >-
   Brought to you by the McCoy Group
 sitemap_depth: 2
+icon: assets/favicon.png
 
 # Build settings
 markdown: kramdown
