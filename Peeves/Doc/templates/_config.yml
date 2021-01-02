@@ -5,6 +5,7 @@ github_username: {gh_username}
 footer_text: >-
   {footer}
 sitemap_depth: 2
+icon: assets/favicon.png
 
 # Build settings
 markdown: kramdown
