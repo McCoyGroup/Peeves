@@ -7,7 +7,7 @@ doc_config = {
     "config": {
         "theme": "McCoyGroup/finx",
         "title": "Peeves",
-        "path": "",
+        "path": "Peeves",
         "url": "https://mccoygrp.github.io/Peeves/",
         "gh_username": "b3m2a1"
     },
