@@ -20,4 +20,4 @@ git config user.name ${GITHUB_ACTOR}
 git config user.email ${GITHUB_ACTOR}@users.noreply.github.com
 git add -A && git commit -m "Built out docs"
 echo "${GITHUB_ACTOR} ${#GITHUB_TOKEN}"
-git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/Peeves.git"
+git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/McCoyGroup/Peeves.git"
