@@ -7,5 +7,6 @@
 ```
 {parameters}
 
-### Examples:
 {examples}
+
+{tests}

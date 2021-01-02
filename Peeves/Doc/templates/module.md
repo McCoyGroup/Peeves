@@ -9,3 +9,5 @@
 ### Examples:
 
 {examples}
+
+{tests}

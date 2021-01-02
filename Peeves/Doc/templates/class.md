@@ -6,3 +6,6 @@
 
 ### Examples
 {examples}
+
+### Unit Tests
+{tests}

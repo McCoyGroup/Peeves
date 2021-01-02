@@ -3,10 +3,124 @@ Provides a class that will walk through a set of objects & their children, as lo
 The actual object Markdown is written by the things in the `Writers` module.
 """
 
-import os, types
+import os, types, collections
 from .Writers import *
 
 __all__ = [ "DocWalker" ]
+
+class DocTree(dict):
+    """
+    Simple tree that stores the structure of the documentation
+    """
+
+class MethodDispatch(collections.OrderedDict):
+    """
+    Provides simple utility to dispatch methods based on types
+    """
+
+    def __init__(self, *args, default=None, **kwargs):
+        self.default = default
+        super().__init__(*args, **kwargs)
+    class DispatchTests:
+        def __init__(self, *tests):
+            self.tests = tests
+        def __hash__(self):
+            return self.tests.__hash__()
+        def __call__(self, obj):
+            return all(self.test(t, obj) for t in self.tests)
+        @classmethod
+        def test(cls, k, obj):
+            """
+            Does the actual dispatch testing
+
+            :param k:
+            :type k:
+            :param obj:
+            :type obj:
+            :return:
+            :rtype:
+            """
+            if (
+                    isinstance(k, type) or
+                    isinstance(k, tuple) and all(isinstance(kk, type) for kk in k)
+            ):
+                return isinstance(obj, k)
+            elif isinstance(k, str):
+                return hasattr(obj, k)
+            elif isinstance(k, tuple) and all(isinstance(kk, str) for kk in k):
+                return any(hasattr(obj, kk) for kk in k)
+            elif isinstance(k, tuple):
+                return any(kk(obj) for kk in k)
+            else:
+                return k(obj)
+    def method_dispatch(self, obj, *args, **kwargs):
+        """
+        A general-ish purpose type or duck-type method dispatcher.
+
+        :param obj:
+        :type obj:
+        :param table:
+        :type table:
+        :return:
+        :rtype:
+        """
+
+        for k, v in self.items():
+            if isinstance(k, self.DispatchTests):
+                matches = k(obj)
+            else:
+                matches = self.DispatchTests.test(k, obj)
+            if matches:
+                return v(obj, *args, **kwargs)
+
+        if self.default is None:
+            raise TypeError("object {} can't dispatch from table {}".format(
+                obj, self
+            ))
+        else:
+            return self.default(obj, *args, **kwargs)
+    def __call__(self, obj, *args, **kwargs):
+        return self.method_dispatch(obj, *args, **kwargs)
+    def __setitem__(self, key, value):
+        """
+        :param key:
+        :type key:
+        :param value:
+        :type value:
+        :return:
+        :rtype:
+        """
+        #TODO: make dispatch keys automatically feed into
+        if isinstance(key, tuple):
+            # make sure we're not just doing alternatives
+            if not (
+                    all(isinstance(k, str) for k in key) or
+                    all(isinstance(k, type) for k in key) or
+                    all(callable(k) for k in key)
+            ):
+                # then we do, basically, an 'and' operand
+                key = self.DispatchTests(*key)
+
+        super().__setitem__(key, value)
+
+class DocSpec(dict):
+    """
+    A specification for an object to document.
+    Supports the fields given by `spec_fields`.
+    """
+    spec_fields = (
+        'id', # name for resolving the object
+        'parent', # parent object name for writing,
+        'children',
+        'examples_root',
+        'tests_root'
+    )
+
+    def __repr__(self):
+        return '{}({})'.format(
+            type(self).__name__,
+            super().__repr__()
+        )
 
 class DocWalker:
     """
@@ -15,50 +129,60 @@ class DocWalker:
 
     Takes a set of objects & writers and walks through the objects, generating files on the way
     """
+
+    default_writers = collections.OrderedDict((
+        ((str, types.ModuleType), ModuleWriter),
+        ((type,), ClassWriter),
+        ((types.FunctionType,), FunctionWriter)
+    ))
+    default_docs_ext='Documentation'
     def __init__(self,
                  objects,
-                 out = None,
-                 module_writer = None,
-                 class_writer = None,
-                 function_writer = None,
-                 object_writer = None,
-                 ignore_paths = None,
-                 verbose = True
+                 tree=None,
+                 out=None,
+                 docs_ext=None,
+                 writers=None,
+                 ignore_paths=None,
+                 verbose=True
                  ):
         """
         :param objects: the objects to write out
         :type objects: Iterable[Any]
         :param out: the directory in which to write the files (`None` means `sys.stdout`)
         :type out: None | str
-        :param module_writer: the class to used to write module Markdown (`None` means `ModuleWriter`)
-        :type module_writer: type
-        :param class_writer: the class to used to write class Markdown(`None` means `ClassWriter`)
-        :type class_writer: type
-        :param function_writer: the class to used to write function Markdown (`None` means `FunctionWriter`)
-        :type function_writer: type
-        :param object_writer: the class to used to write object Markdown (`None` means `ObjectWriter`)
-        :type object_writer: type
+        :param out: the directory in which to write the files (`None` means `sys.stdout`)
+        :type out: None | str
+        :param: writers
+        :type: DispatchTable
         :param ignore_paths: a set of paths not to write (passed to the objects)
         :type ignore_paths: None | Iterable[str]
         """
         self.objects = objects
-        if module_writer is None:
-            module_writer = ModuleWriter
-        if class_writer is None:
-            class_writer = ClassWriter
-        if function_writer is None:
-            function_writer = FunctionWriter
-        if object_writer is None:
-            object_writer = ObjectWriter
 
-        self.module_writer = module_writer
-        self.class_writer = class_writer
-        self.function_writer = function_writer
-        self.object_writer = object_writer
+        # obtain default writer set
+        if writers is None:
+            writers = {}
+        if not isinstance(writers, MethodDispatch):
+            if hasattr(writers, 'items'):
+                writers = MethodDispatch(writers.items(), default=ObjectWriter)
+            else:
+                writers = MethodDispatch(writers, default=ObjectWriter)
+        for k, v in self._initial_writers.items():
+            if k not in writers:
+                writers[k] = v
+        self.writers = writers
+
+        # obtain default tree
+        if tree is None:
+            tree = DocTree()
+        self.tree = tree
+
         self.ignore_paths = ignore_paths
 
         if out is None:
-            out = os.path.join(os.getcwd(), "Documentation")
+            if docs_ext is None:
+                docs_ext = self.default_docs_ext
+            out = os.path.join(os.getcwd(), docs_ext)
         self.out_dir = out
         try:
             os.makedirs(self.out_dir)
@@ -67,98 +191,76 @@ class DocWalker:
 
         self.verbose = verbose
 
-    def write_object(self, o, written = None):
+    @property
+    def _initial_writers(self):
         """
-        Writes a single object to file
+        Adds a minor hook onto the default_writes dict and returns it
+        :return:
+        :rtype:
+        """
+
+        writers = self.default_writers.copy()
+        writers[DocSpec] = self.resolve_spec
+        return writers
+
+    def resolve_spec(self, spec, *args, **kwargs):
+        """
+        Resolves an object spec.
+
+        :param spec: object spec
+        :type spec: DocSpec
+        :return:
+        :rtype:
+        """
+
+        # for the moment we only reolve using the `id` parameter
+        oid = spec['id']
+        o = DocWriter.resolve_object(oid)
+        # but we attach all of the other info
+        return self.writers(o, *args, spec=spec, **kwargs)
+
+    def write_object(self, o, parent=None):
+        """
+        Writes a single object to file.
+        Provides type dispatching to a writer, basically.
 
         :param o: the object we want to write
         :type o:
-        :param written: a caching dict of objects to break cyclic reference loops
-        :type written: None | dict
+        :param parent: the writer that was called right before this
+        :type parent: DocWriter
         :return: the written file
         :rtype: None | str
         """
 
-        if written is None:
-            written = set()
+        if (
+                isinstance(o, (dict, collections.OrderedDict))
+                and all(k in o for k in ['id'])
+        ):
+            o = DocSpec(o.items())
 
-        if isinstance(o, type):
-            oid = self.class_writer.get_identifier(o)
-            if not oid in written:
-                writer = self.class_writer(o, self.out_dir, ignore_paths=self.ignore_paths)
-                res = writer.write()
-                written.add(oid)
-                return res
-        elif isinstance(o, types.FunctionType):
-            oid = self.function_writer.get_identifier(o)
-            if not oid in written:
-                writer = self.function_writer(o, self.out_dir, ignore_paths=self.ignore_paths)
-                res = writer.write()
-                written.add(oid)
-                return res
-        elif isinstance(o, types.ModuleType) or isinstance(o, str):
-            import sys
-
-            if isinstance(o, str):
-                if o in sys.modules:
-                    # first we try to do a direct look up
-                    o = sys.modules[o]
-                elif ".".join(o.split(".")[:-1]) in sys.modules:
-                    # if direct lookup failed, but the parent module has been loaded, direct lookup that
-                    o_split = o.split(".")
-                    o_end = o_split[-1]
-                    o = getattr(sys.modules[".".join(o_split[:-1])], o_end)
-                else:
-                    # otherwise fall back on standard import machinery
-                    try:
-                        o = __import__(o)
-                    except ModuleNotFoundError: # tried to load a member but couldn't...
-                        # first we see we resolve this by doing an iterated getattr
-                        p_split = o.split(".")
-                        mod_spec = ".".join(p_split[:-1])
-                        try:
-                            mood = __import__(mod_spec)
-                            from functools import reduce
-                            v = reduce(lambda m,a: getattr(m, a), p_split[1:], mood)
-                        except ModuleNotFoundError:
-                            pass
-                        else:
-                            o = v
-                            #return self.write_object(v, written)
-
-            if isinstance(o, types.ModuleType):
-                oid = self.module_writer.get_identifier(o)
-                if not oid in written:
-                    writer = self.module_writer(o, self.out_dir, ignore_paths=self.ignore_paths)
-                    if self.verbose:
-                        print("  writing {}".format(oid))
-                    res = writer.write()
-                    written.add(oid)
-
-                    mod_split = oid.split(".")
-                    for k in self.module_writer.get_members(o):
-                        v = getattr(o, k)
-                        v_id = self.module_writer.get_identifier(v)
-                        # make sure parent dependencies get added
-                        v_split = v_id.split(".")
-                        for extra in range(len(mod_split), len(v_split)):
-                            self.write_object(".".join(v_split[:extra]), written = written)
-                        self.write_object(v, written = written)
-
-                    return res
+        if parent is not None:
+            pid = parent.identifier
         else:
-            t = type(o)
-            if t.__module__ in written or ".".join(t.__module__.split(".")[:-1]) in written:
-                self.write_object(t, written)
-                if hasattr(o, "__doc__") and hasattr(o, "__name__"):
-                    w = self.object_writer(o, self.out_dir)
-                    oid = w.identifier
-                    if not oid in written:
-                        if self.verbose:
-                            print("  writing {}".format(oid))
-                        res = w.write()
-                        written.add(oid)
-                        return res
+            pid = None
+
+        writer = self.writers(o,
+                              self.out_dir,
+                              parent=pid,
+                              tree=self.tree,
+                              ignore_paths=self.ignore_paths
+                              )
+
+        oid = writer.identifier
+        if oid not in self.tree:
+            res = writer.write()
+            if res is not None: # basically means stop writing
+                spec = writer.doc_spec
+                spec.update(file=res)
+                self.tree[oid] = spec
+
+                for child in writer.children:
+                    self.write_object(child, parent=writer)
+            return res
 
     def write_docs(self):
         """
