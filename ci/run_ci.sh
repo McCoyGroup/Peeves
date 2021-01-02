@@ -19,4 +19,5 @@ cd Peeves
 git config user.name ${GITHUB_ACTOR}
 git config user.email ${GITHUB_ACTOR}@users.noreply.github.com
 git add -A && git commit -m "Built out docs"
+git branch --show-current
 git push -u "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/McCoyGroup/Peeves.git" gh-pages
