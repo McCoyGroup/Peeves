@@ -19,6 +19,6 @@ doc_config = {
     ],
     "root": root,
     "target": target,
-    'readme': os.path.join(root, "README.md")
+    "readme": os.path.join(root, "README.md")
 }
 DocBuilder(**doc_config).build()

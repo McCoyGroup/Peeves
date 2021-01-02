@@ -277,7 +277,7 @@ class DocWalker:
         files = [ f for f in files if f is not None ]
         w = IndexWriter(files, os.path.join(self.out_dir, 'index.md'),
                         description=self.description,
-                        root = self.out_dir)
+                        root=self.out_dir)
         return w.write()
 
 

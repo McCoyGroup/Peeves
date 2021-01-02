@@ -948,7 +948,7 @@ class IndexWriter(DocWriter):
     template_name = 'index.md'
     def __init__(self, *args, description=None, **kwargs):
         super().__init__(*args, **kwargs)
-        self.description = description if description is None else "# Documentation"
+        self.description = description if description is not None else "# Documentation"
 
     def get_identifier(cls, o):
         return 'index'
