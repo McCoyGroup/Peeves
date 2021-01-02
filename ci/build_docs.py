@@ -8,7 +8,7 @@ doc_config = {
         "theme": "McCoyGroup/finx",
         "title": "Peeves",
         "path": "Peeves",
-        "url": "https://mccoygrp.github.io/Peeves/",
+        "url": "https://mccoygroup.github.io/Peeves/",
         "gh_username": "b3m2a1"
     },
     "packages": [
