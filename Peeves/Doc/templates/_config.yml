@@ -9,6 +9,7 @@ sitemap_depth: 1
 
 # Build settings
 markdown: kramdown
+remote_theme: {theme}
 plugins:
   - jekyll-feed
   - jekyll-include-cache
