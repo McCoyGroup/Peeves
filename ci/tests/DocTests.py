@@ -8,6 +8,7 @@ class DocsTests(TestCase):
     Sample documentation generator tests
     """
 
+    @debugTest
     def test_PeevesDoc(self):
         """
         Builds sample documentation for the Peeves package
