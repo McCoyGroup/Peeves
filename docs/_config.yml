@@ -2,13 +2,14 @@
 title: Peeves
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://mccoygrp.github.io/Peeves/" # the base hostname & protocol for your site, e.g. http://example.com
-github_username: McCoyGroup-bot
+github_username: b3m2a1
 footer_text: >-
   Built using the Finx theme
 sitemap_depth: 1
 
 # Build settings
 markdown: kramdown
+remote_theme: McCoyGroup/finx
 plugins:
   - jekyll-feed
   - jekyll-include-cache
