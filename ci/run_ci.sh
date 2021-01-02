@@ -16,7 +16,8 @@ git clone https://github.com/McCoyGroup/Peeves.git
 cd /home
 PYTHONPATH=/home python3 McUtils/ci/tests/run_tests.py -v -d
 
+git checkout -B gh-pages
 ## write some artifacts, maybe, in the future (e.g. generated data from data_gen tests or images from matplotlib)
-PYTHONPATH=/home python3 McUtils/ci/build_docs.py
+PYTHONPATH=/home python3 Peeves/ci/build_docs.py
 git add -A && git commit -m "Built out site"
 git push -u origin HEAD
