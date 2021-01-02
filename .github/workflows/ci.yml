@@ -13,9 +13,9 @@ jobs:
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Test & Document
-        uses: ./ci # Uses an action in the root directory
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GITHUB_API_TOKEN }}
+      - name: Test & Document
+        uses: ./ci # Uses an action in the root directory
 
