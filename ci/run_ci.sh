@@ -14,7 +14,7 @@ git config --global user.email ${GITHUB_ACTOR}@users.noreply.github.com
 git clone https://github.com/McCoyGroup/Peeves.git
 ## run the testing script
 cd /home
-PYTHONPATH=/home python3 McUtils/ci/tests/run_tests.py -v -d
+PYTHONPATH=/home python3 Peeves/ci/tests/run_tests.py -v -d
 
 git checkout -B gh-pages
 ## write some artifacts, maybe, in the future (e.g. generated data from data_gen tests or images from matplotlib)

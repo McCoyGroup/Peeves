@@ -13,17 +13,17 @@ RUN pip install \
               scipy \
               h5py
 
-LABEL "name"="McCoyGroup/McUtilsCI"
+LABEL "name"="McCoyGroup/PeevesCI"
 LABEL "maintainer"="Mark Boyer <b3m2a1uw.edu>"
 LABEL "version"="0.0.1"
 
-LABEL "com.github.actions.name"="McUtils Continuous Integration"
-LABEL "com.github.actions.description"="Runs CI for the McUtils package"
+LABEL "com.github.actions.name"="Peeves Continuous Integration"
+LABEL "com.github.actions.description"="Runs CI for the Peeves package"
 LABEL "com.github.actions.icon"="git"
 LABEL "com.github.actions.color"="orange"
 
 RUN \
     cd /home && \
-    git clone https://github.com/McCoyGroup/McUtils.git
+    git clone https://github.com/McCoyGroup/Peeves.git
 
-ENTRYPOINT ["sh", "/home/McUtils/_ci/run_ci.sh"]
+ENTRYPOINT ["sh", "/home/Peeves/ci/run_ci.sh"]
