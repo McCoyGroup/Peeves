@@ -26,4 +26,4 @@ cd Peeves
 git config --global user.name ${GITHUB_ACTOR}
 git config --global user.email ${GITHUB_ACTOR}@users.noreply.github.com
 git add -A && git commit -m "Built out site"
-git push "https://github.com/McCoyGroup/Peeves.git" gh-pages
+git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/McCoyGroup/Peeves.git" gh-pages
