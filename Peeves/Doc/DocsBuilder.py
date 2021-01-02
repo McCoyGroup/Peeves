@@ -63,7 +63,8 @@ class DocBuilder:
 
     config_defaults = {
         "theme":"McCoyGroup/finx",
-        "gh_username":"McCoyGroup-bot"
+        "gh_username":"McCoyGroup-bot",
+        "footer": ""
     }
     def load_config(self):
         """
