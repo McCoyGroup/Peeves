@@ -13,6 +13,8 @@ jobs:
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: my-branch
       - name: Test & Document
         uses: ./ci # Uses an action in the root directory
 
