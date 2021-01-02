@@ -6,8 +6,8 @@ set -e
 ##
 
 # get into the parent folder and merge in changes from the master branch
-# since we're running on the gh-pages branch
 cd /home/Peeves
+git checkout gh-pages
 git merge master
 ## run the test script
 cd /home
@@ -19,5 +19,4 @@ cd Peeves
 git config user.name ${GITHUB_ACTOR}
 git config user.email ${GITHUB_ACTOR}@users.noreply.github.com
 git add -A && git commit -m "Built out docs"
-git rev-parse --abbrev-ref HEAD # fack
 git push -u "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/McCoyGroup/Peeves.git" gh-pages
