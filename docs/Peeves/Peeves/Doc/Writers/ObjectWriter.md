@@ -13,6 +13,15 @@ template_name: str
 identifier(self): 
 ```
 
+<a id="Peeves.Peeves.Doc.Writers.ObjectWriter.check_should_write" class="docs-object-method">&nbsp;</a>
+```python
+check_should_write(self): 
+```
+Determines whether the object really actually should be
+        documented (quite permissive)
+- `:returns`: `_`
+    >No description...
+
 <a id="Peeves.Peeves.Doc.Writers.ObjectWriter.template_params" class="docs-object-method">&nbsp;</a>
 ```python
 template_params(self): 

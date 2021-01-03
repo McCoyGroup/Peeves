@@ -10,6 +10,7 @@ default_template_dir: str
 default_examples_root: str
 default_tests_root: str
 outStream: type
+blacklist_packages: set
 load_template: method
 get_identifier: method
 param_template: str
@@ -88,6 +89,15 @@ format(self, template=None):
 Formats the documentation Markdown from the supplied template
 - `template`: `Any`
     >No description...
+- `:returns`: `_`
+    >No description...
+
+<a id="Peeves.Peeves.Doc.Writers.DocWriter.check_should_write" class="docs-object-method">&nbsp;</a>
+```python
+check_should_write(self): 
+```
+Determines whether the object really actually should be
+        documented (quite permissive)
 - `:returns`: `_`
     >No description...
 
