@@ -153,10 +153,10 @@ class TestManagerClass:
             self._test_data_use_default = False
     def test_data(self, filename):
         return os.path.join(self.test_data_dir, filename)
-    def run(self, exit = True):
+    def run(self, exit=True, exit_code=None):
         from .run_tests import test_status
         if exit:
-            sys.exit(test_status) #should kill everything...?
+            sys.exit(test_status if exit_code is None else exit_code) #should kill everything...?
         return test_status
 TestManager = TestManagerClass()
 TestManager.__name__ = "TestManager"
