@@ -255,6 +255,15 @@ class DocWriter(metaclass=abc.ABCMeta):
             params['file_url'] = file_url
         return template.format(**params)
 
+    blacklist_packages= {"builtins", 'numpy', 'scipy', 'matplotlib'}
+    def check_should_write(self):
+        """
+        Determines whether the object really actually should be
+        documented (quite permissive)
+        :return:
+        :rtype:
+        """
+        return self.identifier.split(".", 1)[0] not in self.blacklist_packages
     def write(self, template=None):
         """
         Writes the actual docs file
@@ -264,7 +273,7 @@ class DocWriter(metaclass=abc.ABCMeta):
         :return:
         :rtype:
         """
-        if self.identifier.split(".", 1)[0] != "builtins":
+        if self.check_should_write():
             if self.target not in self.ignore_paths:
                 return self.write_string(self.format(template=template))
 
@@ -919,6 +928,19 @@ class ObjectWriter(DocWriter):
         qualname = ".".join(qn[:-2] + qn[-1:]) # want to drop the class name
         # print(qualname)
         return qualname
+
+    def check_should_write(self):
+        """
+        Determines whether the object really actually should be
+        documented (quite permissive)
+        :return:
+        :rtype:
+        """
+        return (
+                hasattr(self.obj, "__doc__")
+                and hasattr(self.obj, "__name__")
+                and super().check_should_write()
+        )
 
     def template_params(self):
 
