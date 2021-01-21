@@ -713,6 +713,11 @@ class ModuleWriter(DocWriter):
     """A writer targeted to a module object. Just needs to write the Module metadata."""
 
     template_name = 'module.md'
+    def __init__(self, obj, out_file, **kwargs):
+        if isinstance(obj, str):
+            obj = importlib.import_module(obj)
+        super().__init__(obj, out_file, **kwargs)
+
     def template_params(self):
         """
         Provides module specific parameters
