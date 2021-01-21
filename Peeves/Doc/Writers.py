@@ -361,6 +361,7 @@ class DocWriter(metaclass=abc.ABCMeta):
             # try to inherit from the parent
             if (
                     self.tree is not None
+                    and self._parent is not None
                     and self._parent in self.tree
             ):
                 spec = self.tree[self._parent]
