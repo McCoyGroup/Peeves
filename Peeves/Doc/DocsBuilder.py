@@ -97,15 +97,16 @@ class DocBuilder:
         :rtype:
         """
 
-        conf = self.load_config()
-        if isinstance(conf, str):
-            config_file = os.path.join(self.target, '_config.yml') # hard coded for now, can change later
-            try:
-                os.makedirs(os.path.dirname(config_file))
-            except OSError:
-                pass
-            with open(config_file, 'w') as out:
-                out.write(conf)
+        if self.config is not None:
+            conf = self.load_config()
+            if isinstance(conf, str):
+                config_file = os.path.join(self.target, '_config.yml') # hard coded for now, can change later
+                try:
+                    os.makedirs(os.path.dirname(config_file))
+                except OSError:
+                    pass
+                with open(config_file, 'w') as out:
+                    out.write(conf)
 
         # do other layout stuff maybe in the future?
 
