@@ -123,7 +123,7 @@ class DocBuilder:
             self.packages,
             out=self.target,
             description=self.readme,
-            config=self.config
+            extra_fields=self.config
         )
 
     def build(self):
