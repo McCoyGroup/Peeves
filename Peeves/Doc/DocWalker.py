@@ -267,7 +267,7 @@ class DocWalker:
                               ignore_paths=self.ignore_paths,
                               template_directory=self.template_directory,
                               examples_directory=self.examples_directory,
-                              extra_fields=self.extra_fields,
+                              extra_fields=self.extra_fields
                               )
 
         oid = writer.identifier

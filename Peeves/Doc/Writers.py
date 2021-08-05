@@ -816,7 +816,9 @@ class ClassWriter(DocWriter):
                     methods.append(
                         function_writer(o,
                                         tree=self.tree, parent=self.identifier, name=k,
-                                        out_file=None, root=self.root
+                                        out_file=None, root=self.root,
+                                        template_directory=self.template_dir,
+                                        examples_directory=self.examples_dir
                                         ).format().strip()
                     )
             else:
@@ -849,7 +851,7 @@ class ClassWriter(DocWriter):
         tests = self.load_tests()
         name = cls.__name__
         ident = self.identifier
-        props, methods = self.load_methods(function_writer = function_writer)
+        props, methods = self.load_methods(function_writer=function_writer)
         param, descr = self.parse_doc(cls.__doc__ if cls.__doc__ is not None else '')
         descr = self._clean_doc(descr)
         param = self._clean_doc(param)

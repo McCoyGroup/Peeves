@@ -129,8 +129,7 @@ class DocBuilder:
             description=self.readme,
             extra_fields=self.config,
             template_directory=self.template_dir,
-            examples_directory=self.examples_dir,
-
+            examples_directory=self.examples_dir
         )
 
     def build(self):
