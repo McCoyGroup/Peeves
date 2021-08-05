@@ -84,6 +84,7 @@ class DocBuilder:
         )
 
         if os.path.isfile(cfg_file):
+            print('writing config file to {}'.format(cfg_file))
             with open(cfg_file) as config_dump:
                 cfg_string = config_dump.read().format(**cfg)
 
@@ -133,6 +134,8 @@ class DocBuilder:
         :return:
         :rtype:
         """
+        print("using templates from {}".format(self.template_dir))
+        print("using examples from {}".format(self.examples_dir))
         self.create_layout()
         walker = self.load_walker()
         return walker.write_docs()
