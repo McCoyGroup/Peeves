@@ -147,7 +147,7 @@ class DocWalker:
                  verbose=True,
                  extra_fields=None,
                  template_directory=None,
-                 examples_directory=None,
+                 examples_directory=None
                  ):
         """
         :param objects: the objects to write out
@@ -165,6 +165,9 @@ class DocWalker:
         if extra_fields is None:
             extra_fields = {}
         self.extra_fields = extra_fields
+
+        self.template_directory = template_directory
+        self.examples_directory = examples_directory
 
         self.objects = objects
 
@@ -227,7 +230,11 @@ class DocWalker:
         oid = spec['id']
         o = DocWriter.resolve_object(oid)
         # but we attach all of the other info
-        return self.writers(o, *args, spec=spec, **kwargs)
+        return self.writers(o, *args, spec=spec,
+                            template_directory=self.template_directory,
+                            examples_directory=self.examples_directory,
+                            extra_fields=self.extra_fields,
+                            **kwargs)
 
     def write_object(self, o, parent=None):
         """
@@ -258,7 +265,9 @@ class DocWalker:
                               parent=pid,
                               tree=self.tree,
                               ignore_paths=self.ignore_paths,
-                              extra_fields=self.extra_fields
+                              template_directory=self.template_directory,
+                              examples_directory=self.examples_directory,
+                              extra_fields=self.extra_fields,
                               )
 
         oid = writer.identifier
@@ -287,7 +296,9 @@ class DocWalker:
         w = IndexWriter(files, os.path.join(self.out_dir, 'index.md'),
                         description=self.description,
                         root=self.out_dir,
-                        extra_fields=self.extra_fields
+                        template_directory=self.template_directory,
+                        examples_directory=self.examples_directory,
+                        extra_fields=self.extra_fields,
                         )
         return w.write()
 

@@ -86,7 +86,7 @@ class DocBuilder:
         )
 
         if os.path.isfile(cfg_file):
-            print('writing config file to {}'.format(cfg_file))
+            print('reading config template from {}'.format(cfg_file))
             with open(cfg_file) as config_dump:
                 cfg_string = config_dump.read().format(**cfg)
 
@@ -105,6 +105,7 @@ class DocBuilder:
             conf = self.load_config()
             if isinstance(conf, str):
                 config_file = os.path.join(self.target, '_config.yml') # hard coded for now, can change later
+                print('writing config file to {}'.format(config_file))
                 try:
                     os.makedirs(os.path.dirname(config_file))
                 except OSError:
@@ -127,6 +128,8 @@ class DocBuilder:
             out=self.target,
             description=self.readme,
             extra_fields=self.config,
+            template_directory=self.template_dir,
+            examples_directory=self.examples_dir,
 
         )
 
