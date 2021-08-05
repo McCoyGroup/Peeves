@@ -11,7 +11,7 @@ default_docs_ext: str
 ```
 <a id="Peeves.Peeves.Doc.DocWalker.DocWalker.__init__" class="docs-object-method">&nbsp;</a>
 ```python
-__init__(self, objects, tree=None, out=None, docs_ext=None, writers=None, ignore_paths=None, description=None, verbose=True, extra_fields=None): 
+__init__(self, objects, tree=None, out=None, docs_ext=None, writers=None, ignore_paths=None, description=None, verbose=True, extra_fields=None, template_directory=None, examples_directory=None): 
 ```
 
 - `objects`: `Iterable[Any]`

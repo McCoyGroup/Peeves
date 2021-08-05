@@ -17,7 +17,7 @@ param_template: str
 ```
 <a id="Peeves.Peeves.Doc.Writers.DocWriter.__init__" class="docs-object-method">&nbsp;</a>
 ```python
-__init__(self, obj, out_file, tree=None, name=None, parent=None, spec=None, template=None, root=None, ignore_paths=None, examples=None, tests=None, formatter=None, extra_fields=None): 
+__init__(self, obj, out_file, tree=None, name=None, parent=None, spec=None, template_directory=None, examples_directory=None, template=None, root=None, ignore_paths=None, examples=None, tests=None, formatter=None, extra_fields=None): 
 ```
 
 - `obj`: `Any`
@@ -160,6 +160,12 @@ Finds the appropriate template for the object by looking
     >No description...
 - `:returns`: `_`
     >No description...
+
+<a id="Peeves.Peeves.Doc.Writers.DocWriter.template_dir" class="docs-object-method">&nbsp;</a>
+```python
+@property
+template_dir(self): 
+```
 
 <a id="Peeves.Peeves.Doc.Writers.DocWriter.examples_dir" class="docs-object-method">&nbsp;</a>
 ```python
