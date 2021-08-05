@@ -129,7 +129,7 @@ class TestManagerClass:
         if self._test_dir is None:
             self._test_dir = os.path.join(self.test_root, self.test_pkg.split(".")[-1])
             if not os.path.isdir(self._test_dir) and self.test_pkg[0] == ".":
-                raise Exception(
+                raise IOError(
                     "Peeves expects a '{}' package at {} to hold all the tests because I wrote it bad".format(
                         self.test_pkg,
                         self.test_root

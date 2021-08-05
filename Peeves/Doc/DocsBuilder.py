@@ -76,6 +76,7 @@ class DocBuilder:
         cfg = self.config_defaults.copy()
         if self.config is not None:
             cfg.update(**self.config)
+        self.config = cfg
 
         test_cfg = os.path.join(self.template_dir, self.config_file)
         cfg_file = self.config_file if os.path.isfile(self.config_file) else (
@@ -121,7 +122,8 @@ class DocBuilder:
         return DocWalker(
             self.packages,
             out=self.target,
-            description=self.readme
+            description=self.readme,
+            config=self.config
         )
 
     def build(self):

@@ -80,7 +80,9 @@ class DocWriter(metaclass=abc.ABCMeta):
                  ignore_paths=None,
                  examples=None,
                  tests=None,
-                 formatter=None
+                 formatter=None,
+
+                 extra_fields=None
                  ):
         """
         :param obj: object to write
@@ -114,6 +116,9 @@ class DocWriter(metaclass=abc.ABCMeta):
         self._parent = parent
         self._pobj = None
         self._chobj = None
+        if extra_fields is None:
+            extra_fields = {}
+        self.extra_fields = extra_fields
 
         self.tree = tree
 
@@ -195,8 +200,13 @@ class DocWriter(metaclass=abc.ABCMeta):
     def write_string(self, txt):
         return self.out.write(txt)
 
+    def template_params(self, **kwargs):
+        base_parms = self.extra_fields.copy()
+        base_parms.update(self.get_template_params(**kwargs))
+        return base_parms
+
     @abc.abstractmethod
-    def template_params(self):
+    def get_template_params(self, **kwargs):
         """
         Returns the parameters that should be inserted into the template
 
@@ -719,7 +729,7 @@ class ModuleWriter(DocWriter):
             obj = importlib.import_module(obj)
         super().__init__(obj, out_file, **kwargs)
 
-    def template_params(self):
+    def get_template_params(self):
         """
         Provides module specific parameters
         :return:
@@ -807,7 +817,7 @@ class ClassWriter(DocWriter):
     def format_prop(self, k, o):
         return '{}: {}'.format(k, type(o).__name__)
 
-    def template_params(self, function_writer = None):
+    def get_template_params(self, function_writer = None):
         """
 
         :param function_writer:
@@ -851,7 +861,7 @@ class FunctionWriter(DocWriter):
 
     def get_signature(self):
         return str(inspect.signature(self.obj))
-    def template_params(self):
+    def get_template_params(self, **kwargs):
 
         f = self.obj # type: types.FunctionType
         ident = self.identifier
@@ -889,8 +899,8 @@ class MethodWriter(FunctionWriter):
     (distinct from functions since not expected to exist solo)
     """
     template_name = 'method.md'
-    def template_params(self):
-        params = super().template_params()
+    def get_template_params(self, **kwargs):
+        params = super().template_params(**kwargs)
         meth = self.obj # type: types.MethodType
         decorator = ""
         if isinstance(meth, classmethod):
@@ -948,7 +958,7 @@ class ObjectWriter(DocWriter):
                 and super().check_should_write()
         )
 
-    def template_params(self):
+    def get_template_params(self):
 
         try:
             descr = self.obj.__doc__
@@ -986,7 +996,7 @@ class IndexWriter(DocWriter):
         fs = [ "/".join(os.path.split(f)[rl-1:]) for f in self.obj ]
         return fs
 
-    def template_params(self):
+    def get_template_params(self):
         files = [
             self.formatter.format_item(
                 self.formatter.format_link(os.path.splitext(f.split("/")[-1])[0], f)

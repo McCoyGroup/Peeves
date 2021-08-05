@@ -144,7 +144,8 @@ class DocWalker:
                  writers=None,
                  ignore_paths=None,
                  description=None,
-                 verbose=True
+                 verbose=True,
+                 extra_fields=None
                  ):
         """
         :param objects: the objects to write out
@@ -158,6 +159,11 @@ class DocWalker:
         :param ignore_paths: a set of paths not to write (passed to the objects)
         :type ignore_paths: None | Iterable[str]
         """
+
+        if extra_fields is None:
+            extra_fields = {}
+        self.extra_fields = extra_fields
+
         self.objects = objects
 
         # obtain default writer set
@@ -249,7 +255,8 @@ class DocWalker:
                               self.out_dir,
                               parent=pid,
                               tree=self.tree,
-                              ignore_paths=self.ignore_paths
+                              ignore_paths=self.ignore_paths,
+                              extra_fields=self.extra_fields
                               )
 
         oid = writer.identifier
@@ -277,7 +284,9 @@ class DocWalker:
         files = [ f for f in files if f is not None ]
         w = IndexWriter(files, os.path.join(self.out_dir, 'index.md'),
                         description=self.description,
-                        root=self.out_dir)
+                        root=self.out_dir,
+                        extra_fields=self.extra_fields
+                        )
         return w.write()
 
 
