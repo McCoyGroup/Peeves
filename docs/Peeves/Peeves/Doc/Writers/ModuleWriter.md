@@ -11,9 +11,9 @@ get_members: method
 __init__(self, obj, out_file, **kwargs): 
 ```
 
-<a id="Peeves.Peeves.Doc.Writers.ModuleWriter.template_params" class="docs-object-method">&nbsp;</a>
+<a id="Peeves.Peeves.Doc.Writers.ModuleWriter.get_template_params" class="docs-object-method">&nbsp;</a>
 ```python
-template_params(self): 
+get_template_params(self): 
 ```
 Provides module specific parameters
 - `:returns`: `_`

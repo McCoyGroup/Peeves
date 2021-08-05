@@ -22,9 +22,9 @@ get_identifier(cls, o):
 get_file_paths(self): 
 ```
 
-<a id="Peeves.Peeves.Doc.Writers.IndexWriter.template_params" class="docs-object-method">&nbsp;</a>
+<a id="Peeves.Peeves.Doc.Writers.IndexWriter.get_template_params" class="docs-object-method">&nbsp;</a>
 ```python
-template_params(self): 
+get_template_params(self): 
 ```
 
 ### Examples

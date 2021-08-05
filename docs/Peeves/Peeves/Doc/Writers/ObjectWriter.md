@@ -22,9 +22,9 @@ Determines whether the object really actually should be
 - `:returns`: `_`
     >No description...
 
-<a id="Peeves.Peeves.Doc.Writers.ObjectWriter.template_params" class="docs-object-method">&nbsp;</a>
+<a id="Peeves.Peeves.Doc.Writers.ObjectWriter.get_template_params" class="docs-object-method">&nbsp;</a>
 ```python
-template_params(self): 
+get_template_params(self): 
 ```
 
 ### Examples

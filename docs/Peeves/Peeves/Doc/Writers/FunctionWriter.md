@@ -10,9 +10,9 @@ template_name: str
 get_signature(self): 
 ```
 
-<a id="Peeves.Peeves.Doc.Writers.FunctionWriter.template_params" class="docs-object-method">&nbsp;</a>
+<a id="Peeves.Peeves.Doc.Writers.FunctionWriter.get_template_params" class="docs-object-method">&nbsp;</a>
 ```python
-template_params(self): 
+get_template_params(self, **kwargs): 
 ```
 
 <a id="Peeves.Peeves.Doc.Writers.FunctionWriter.get_package_and_url" class="docs-object-method">&nbsp;</a>

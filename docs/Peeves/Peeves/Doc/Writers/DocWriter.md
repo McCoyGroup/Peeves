@@ -17,7 +17,7 @@ param_template: str
 ```
 <a id="Peeves.Peeves.Doc.Writers.DocWriter.__init__" class="docs-object-method">&nbsp;</a>
 ```python
-__init__(self, obj, out_file, tree=None, name=None, parent=None, spec=None, template=None, root=None, ignore_paths=None, examples=None, tests=None, formatter=None): 
+__init__(self, obj, out_file, tree=None, name=None, parent=None, spec=None, template=None, root=None, ignore_paths=None, examples=None, tests=None, formatter=None, extra_fields=None): 
 ```
 
 - `obj`: `Any`
@@ -76,7 +76,12 @@ write_string(self, txt):
 
 <a id="Peeves.Peeves.Doc.Writers.DocWriter.template_params" class="docs-object-method">&nbsp;</a>
 ```python
-template_params(self): 
+template_params(self, **kwargs): 
+```
+
+<a id="Peeves.Peeves.Doc.Writers.DocWriter.get_template_params" class="docs-object-method">&nbsp;</a>
+```python
+get_template_params(self, **kwargs): 
 ```
 Returns the parameters that should be inserted into the template
 - `:returns`: `_`

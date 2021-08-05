@@ -25,9 +25,9 @@ get_package_and_url(self):
 format_prop(self, k, o): 
 ```
 
-<a id="Peeves.Peeves.Doc.Writers.ClassWriter.template_params" class="docs-object-method">&nbsp;</a>
+<a id="Peeves.Peeves.Doc.Writers.ClassWriter.get_template_params" class="docs-object-method">&nbsp;</a>
 ```python
-template_params(self, function_writer=None): 
+get_template_params(self, function_writer=None): 
 ```
 
 - `function_writer`: `Any`
