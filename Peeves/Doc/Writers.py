@@ -900,7 +900,7 @@ class MethodWriter(FunctionWriter):
     """
     template_name = 'method.md'
     def get_template_params(self, **kwargs):
-        params = super().template_params(**kwargs)
+        params = super().get_template_params(**kwargs)
         meth = self.obj # type: types.MethodType
         decorator = ""
         if isinstance(meth, classmethod):
