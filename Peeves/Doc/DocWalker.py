@@ -145,7 +145,9 @@ class DocWalker:
                  ignore_paths=None,
                  description=None,
                  verbose=True,
-                 extra_fields=None
+                 extra_fields=None,
+                 template_directory=None,
+                 examples_directory=None,
                  ):
         """
         :param objects: the objects to write out

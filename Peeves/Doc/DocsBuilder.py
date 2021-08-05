@@ -48,7 +48,9 @@ class DocBuilder:
         self.root = root
         self.template_dir = (
             os.path.join(self.defaults_root, self.default_templates_extension) if templates_directory is None else (
-                templates_directory if os.path.isdir(templates_directory) else os.path.join(self.defaults_root, templates_directory)
+                templates_directory
+                if os.path.isdir(templates_directory) else
+                os.path.join(self.defaults_root, templates_directory)
             )
         )
         self.examples_dir=examples_directory
@@ -124,7 +126,8 @@ class DocBuilder:
             self.packages,
             out=self.target,
             description=self.readme,
-            extra_fields=self.config
+            extra_fields=self.config,
+
         )
 
     def build(self):
