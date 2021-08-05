@@ -75,6 +75,9 @@ class DocWriter(metaclass=abc.ABCMeta):
                  parent=None,
                  spec=None, # extra parameters that can be used to get special behavior
 
+                 template_directory=None,
+                 examples_directory=None,
+
                  template=None,
                  root=None,
                  ignore_paths=None,
@@ -136,6 +139,10 @@ class DocWriter(metaclass=abc.ABCMeta):
         if root is None:
             root = os.path.dirname(self.target)
         self.root = root
+
+        self._templ_directory = template_directory if isinstance(template_directory, str) and os.path.isdir(template_directory) else None
+        self._exmpl_directory = examples_directory if isinstance(examples_directory, str) and os.path.isdir(examples_directory) else None
+
         self.template = self.find_template(template)
         self.examples_root = self.default_examples_root if examples is None else examples
         self.tests_root = self.default_tests_root if tests is None else tests
@@ -392,13 +399,11 @@ class DocWriter(metaclass=abc.ABCMeta):
         :return:
         :rtype:
         """
-        root = self.root
         if template is None:
-            template = os.path.join(root, self.template_root, *self.identifier.split(".")) + ".md"
+            tdir = self.template_dir
+            template = os.path.join(tdir, *self.identifier.split(".")) + ".md"
             if not os.path.exists(template):
-                template = os.path.join(root, self.template_root, self.template_name)
-                if not os.path.exists(template):
-                    template = os.path.join(root, self.default_template_dir, self.template_name)
+                template = os.path.join(tdir, self.template_name)
             if os.path.exists(template):
                 if template in self._template_cache:
                     template = self._template_cache[template]
@@ -412,6 +417,15 @@ class DocWriter(metaclass=abc.ABCMeta):
         return template
 
     @property
+    def template_dir(self):
+        if self._templ_directory is not None:
+            return self._templ_directory
+        elif os.path.isdir(os.path.join(self.root, self.template_root)):
+            return os.path.join(self.root, self.template_root)
+        else:
+            return self.default_template_dir
+
+    @property
     def examples_dir(self):
         """
         Returns the directory in which to look for examples
@@ -419,7 +433,10 @@ class DocWriter(metaclass=abc.ABCMeta):
         :rtype:
         """
         spec_key='examples_root'
-        return self.resource_dir(spec_key, self.examples_root)
+        if self._exmpl_directory is None:
+            return self.resource_dir(spec_key, self.examples_root)
+        else:
+            return self._exmpl_directory
 
     @property
     def examples_path(self):

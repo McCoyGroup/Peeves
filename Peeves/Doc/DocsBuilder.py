@@ -48,7 +48,9 @@ class DocBuilder:
         self.root = root
         self.template_dir = (
             os.path.join(self.defaults_root, self.default_templates_extension) if templates_directory is None else (
-                templates_directory if os.path.isdir(templates_directory) else os.path.join(self.defaults_root, templates_directory)
+                templates_directory
+                if os.path.isdir(templates_directory) else
+                os.path.join(self.defaults_root, templates_directory)
             )
         )
         self.examples_dir=examples_directory
@@ -84,6 +86,7 @@ class DocBuilder:
         )
 
         if os.path.isfile(cfg_file):
+            print('writing config file to {}'.format(cfg_file))
             with open(cfg_file) as config_dump:
                 cfg_string = config_dump.read().format(**cfg)
 
@@ -123,7 +126,8 @@ class DocBuilder:
             self.packages,
             out=self.target,
             description=self.readme,
-            extra_fields=self.config
+            extra_fields=self.config,
+
         )
 
     def build(self):
@@ -133,6 +137,8 @@ class DocBuilder:
         :return:
         :rtype:
         """
+        print("using templates from {}".format(self.template_dir))
+        print("using examples from {}".format(self.examples_dir))
         self.create_layout()
         walker = self.load_walker()
         return walker.write_docs()
