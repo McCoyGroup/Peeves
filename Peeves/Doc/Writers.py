@@ -821,7 +821,7 @@ class ClassWriter(DocWriter):
 
         for k in keys:
             o = getattr(cls, k)
-            if isinstance(o, (types.FunctionType, classmethod, staticmethod, property)):
+            if isinstance(o, (types.FunctionType, types.MethodType, classmethod, staticmethod, property)):
                 if not k.startswith("_") or (k.startswith("__") and k.endswith("__")):
                     methods.append(
                         function_writer(o,
