@@ -404,6 +404,15 @@ class DocWriter(metaclass=abc.ABCMeta):
             template = os.path.join(tdir, *self.identifier.split(".")) + ".md"
             if not os.path.exists(template):
                 template = os.path.join(tdir, self.template_name)
+            if not os.path.exists(template):
+                def_dir = os.path.join(self.root, self.template_root)
+                if not os.path.isdir(def_dir):
+                    def_dir = self.default_template_dir
+                template = os.path.join(def_dir, self.template_name)
+                if not os.path.isfile(template):
+                    template = os.path.join(self.default_template_dir, self.template_name)
+                if os.path.isfile(template):
+                    print("no template found in {} for {}, using default".format(tdir, self.template_name))
             if os.path.exists(template):
                 if template in self._template_cache:
                     template = self._template_cache[template]
@@ -415,6 +424,7 @@ class DocWriter(metaclass=abc.ABCMeta):
             else:
                 print("no template found in {} for {}".format(tdir, self.template_name))
                 template = self.template
+
         return template
 
     @property
@@ -811,7 +821,7 @@ class ClassWriter(DocWriter):
 
         for k in keys:
             o = getattr(cls, k)
-            if isinstance(o, (types.FunctionType, classmethod, staticmethod, property)):
+            if isinstance(o, (types.FunctionType, types.MethodType, classmethod, staticmethod, property)):
                 if not k.startswith("_") or (k.startswith("__") and k.endswith("__")):
                     methods.append(
                         function_writer(o,
