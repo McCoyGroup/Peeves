@@ -216,7 +216,12 @@ class DocWalker:
         writers[DocSpec] = self.resolve_spec
         return writers
 
-    def resolve_spec(self, spec, *args, **kwargs):
+    def resolve_spec(self, spec, *args,
+                     template_directory=None,
+                     examples_directory=None,
+                     extra_fields=None,
+                     **kwargs
+                     ):
         """
         Resolves an object spec.
 
@@ -230,11 +235,18 @@ class DocWalker:
         oid = spec['id']
         o = DocWriter.resolve_object(oid)
         # but we attach all of the other info
-        return self.writers(o, *args, spec=spec,
-                            template_directory=self.template_directory,
-                            examples_directory=self.examples_directory,
-                            extra_fields=self.extra_fields,
-                            **kwargs)
+
+        template_directory = self.template_directory if template_directory is None else template_directory
+        examples_directory = self.examples_directory if examples_directory is None else examples_directory
+        extra_fields = self.extra_fields if extra_fields is None else extra_fields
+
+        return self.writers(o, *args,
+                            spec=spec,
+                            template_directory=examples_directory,
+                            examples_directory=examples_directory,
+                            extra_fields=extra_fields,
+                            **kwargs
+                            )
 
     def write_object(self, o, parent=None):
         """
