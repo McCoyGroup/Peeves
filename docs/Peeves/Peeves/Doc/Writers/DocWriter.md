@@ -11,8 +11,6 @@ default_examples_root: str
 default_tests_root: str
 outStream: type
 blacklist_packages: set
-load_template: method
-get_identifier: method
 param_template: str
 ```
 <a id="Peeves.Peeves.Doc.Writers.DocWriter.__init__" class="docs-object-method">&nbsp;</a>
@@ -129,6 +127,22 @@ Returns package name and corresponding URL for the object
 ```python
 @property
 package_path(self): 
+```
+
+<a id="Peeves.Peeves.Doc.Writers.DocWriter.load_template" class="docs-object-method">&nbsp;</a>
+```python
+load_template(file): 
+```
+Loads the documentation template
+        for the object being documented
+- `file`: `Any`
+    >No description...
+- `:returns`: `_`
+    >No description...
+
+<a id="Peeves.Peeves.Doc.Writers.DocWriter.get_identifier" class="docs-object-method">&nbsp;</a>
+```python
+get_identifier(o): 
 ```
 
 <a id="Peeves.Peeves.Doc.Writers.DocWriter.identifier" class="docs-object-method">&nbsp;</a>
