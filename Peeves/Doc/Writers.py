@@ -59,7 +59,7 @@ class DocWriter(metaclass=abc.ABCMeta):
     A general writer class that writes a file based off a template and filling in object template specs
     """
 
-    template = "No template :|"
+    template = "No template ;_;"
     template_root = "templates"
     template_name = ""
     default_template_dir = os.path.join(os.path.dirname(__file__), 'templates')
@@ -413,6 +413,7 @@ class DocWriter(metaclass=abc.ABCMeta):
                         template = tf.read()
                     self._template_cache[tkey] = template
             else:
+                print("no template found in {} for {}".format(tdir, self.template_name))
                 template = self.template
         return template
 
@@ -815,7 +816,9 @@ class ClassWriter(DocWriter):
                     methods.append(
                         function_writer(o,
                                         tree=self.tree, parent=self.identifier, name=k,
-                                        out_file=None, root=self.root
+                                        out_file=None, root=self.root,
+                                        template_directory=self.template_dir,
+                                        examples_directory=self.examples_dir
                                         ).format().strip()
                     )
             else:
@@ -848,7 +851,7 @@ class ClassWriter(DocWriter):
         tests = self.load_tests()
         name = cls.__name__
         ident = self.identifier
-        props, methods = self.load_methods(function_writer = function_writer)
+        props, methods = self.load_methods(function_writer=function_writer)
         param, descr = self.parse_doc(cls.__doc__ if cls.__doc__ is not None else '')
         descr = self._clean_doc(descr)
         param = self._clean_doc(param)
