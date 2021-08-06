@@ -25,7 +25,7 @@ __init__(self, objects, tree=None, out=None, docs_ext=None, writers=None, ignore
 
 <a id="Peeves.Peeves.Doc.DocWalker.DocWalker.resolve_spec" class="docs-object-method">&nbsp;</a>
 ```python
-resolve_spec(self, spec, *args, **kwargs): 
+resolve_spec(self, spec, *args, template_directory=None, examples_directory=None, extra_fields=None, **kwargs): 
 ```
 Resolves an object spec.
 - `spec`: `DocSpec`
