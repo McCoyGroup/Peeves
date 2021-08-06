@@ -413,8 +413,18 @@ class DocWriter(metaclass=abc.ABCMeta):
                         template = tf.read()
                     self._template_cache[tkey] = template
             else:
-                print("no template found in {} for {}".format(tdir, self.template_name))
-                template = self.template
+                def_dir = os.path.join(self.root, self.template_root)
+                if not os.path.isdir(def_dir):
+                    def_dir = self.default_template_dir
+                template = os.path.join(def_dir, self.template_name)
+                if not os.path.isfile(template):
+                    template = os.path.join(self.default_template_dir, self.template_name)
+                if os.path.isfile(template):
+                    print("no template found in {} for {}, using default".format(tdir, self.template_name))
+                else:
+                    print("no template found in {} for {}".format(tdir, self.template_name))
+                    template = self.template
+
         return template
 
     @property
