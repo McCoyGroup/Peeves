@@ -210,6 +210,8 @@ class DocWriter(metaclass=abc.ABCMeta):
     def template_params(self, **kwargs):
         base_parms = self.extra_fields.copy()
         base_parms.update(self.get_template_params(**kwargs))
+        if hasattr(self.obj, "__doc_fields__"):
+            base_parms.update(self.obj.__doc_fields__)
         return base_parms
 
     @abc.abstractmethod
@@ -270,7 +272,14 @@ class DocWriter(metaclass=abc.ABCMeta):
             pkg, file_url = self.package_path
             params['package_name'] = pkg
             params['file_url'] = file_url
-        return template.format(**params)
+
+        try:
+            form_text = template.format(**params)
+        except KeyError:
+            raise ValueError("{}: template missing key".format(
+                out_file
+            ))
+        return form_text
 
     blacklist_packages= {"builtins", 'numpy', 'scipy', 'matplotlib'}
     def check_should_write(self):
