@@ -276,7 +276,8 @@ class DocWriter(metaclass=abc.ABCMeta):
         try:
             form_text = template.format(**params)
         except KeyError:
-            raise ValueError("{}: template missing key".format(
+            raise ValueError("{} ({}): template missing key".format(
+                type(self).__name__,
                 out_file
             ))
         return form_text
@@ -937,6 +938,7 @@ class MethodWriter(FunctionWriter):
     Writes class methods to file
     (distinct from functions since not expected to exist solo)
     """
+
     template_name = 'method.md'
     def get_template_params(self, **kwargs):
         params = super().get_template_params(**kwargs)
