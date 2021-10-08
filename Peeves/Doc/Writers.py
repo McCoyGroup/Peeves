@@ -421,8 +421,8 @@ class DocWriter(metaclass=abc.ABCMeta):
                 template = os.path.join(def_dir, self.template_name)
                 if not os.path.isfile(template):
                     template = os.path.join(self.default_template_dir, self.template_name)
-                if os.path.isfile(template):
-                    print("no template found in {} for {}, using default".format(tdir, self.template_name))
+                # if os.path.isfile(template):
+                #     print("no template found in {} for {}, using default".format(tdir, self.template_name))
             if os.path.exists(template):
                 if template in self._template_cache:
                     template = self._template_cache[template]
