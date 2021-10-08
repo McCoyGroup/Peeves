@@ -229,7 +229,7 @@ Provides the default tests path for the object
 ```python
 load_tests(self): 
 ```
-Loads examples for the stored object if provided
+Loads tests for the stored object if provided
 - `:returns`: `_`
     >No description...
 
