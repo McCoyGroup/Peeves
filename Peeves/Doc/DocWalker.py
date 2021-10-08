@@ -242,7 +242,7 @@ class DocWalker:
 
         return self.writers(o, *args,
                             spec=spec,
-                            template_directory=examples_directory,
+                            template_directory=template_directory,
                             examples_directory=examples_directory,
                             extra_fields=extra_fields,
                             **kwargs
@@ -310,7 +310,7 @@ class DocWalker:
                         root=self.out_dir,
                         template_directory=self.template_directory,
                         examples_directory=self.examples_directory,
-                        extra_fields=self.extra_fields,
+                        extra_fields=self.extra_fields
                         )
         return w.write()
 
