@@ -276,9 +276,10 @@ class DocWriter(metaclass=abc.ABCMeta):
         try:
             form_text = template.format(**params)
         except KeyError:
-            raise ValueError("{} ({}): template missing key".format(
+            raise ValueError("{} ({}): template {} missing key".format(
                 type(self).__name__,
-                out_file
+                out_file,
+                template
             ))
         return form_text
 
@@ -506,7 +507,7 @@ class DocWriter(metaclass=abc.ABCMeta):
         return os.path.join(*self.identifier.split(".")) + "Tests.py"
     def load_tests(self):
         """
-        Loads examples for the stored object if provided
+        Loads tests for the stored object if provided
         :return:
         :rtype:
         """
