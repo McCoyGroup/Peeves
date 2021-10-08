@@ -210,6 +210,8 @@ class DocWriter(metaclass=abc.ABCMeta):
     def template_params(self, **kwargs):
         base_parms = self.extra_fields.copy()
         base_parms.update(self.get_template_params(**kwargs))
+        if hasattr(self.obj, "__doc_fields__"):
+            base_parms.update(self.obj.__doc_fields__)
         return base_parms
 
     @abc.abstractmethod
@@ -270,7 +272,16 @@ class DocWriter(metaclass=abc.ABCMeta):
             pkg, file_url = self.package_path
             params['package_name'] = pkg
             params['file_url'] = file_url
-        return template.format(**params)
+
+        try:
+            form_text = template.format(**params)
+        except KeyError:
+            raise ValueError("{} ({}): template {} missing key".format(
+                type(self).__name__,
+                out_file,
+                template
+            ))
+        return form_text
 
     blacklist_packages= {"builtins", 'numpy', 'scipy', 'matplotlib'}
     def check_should_write(self):
@@ -411,8 +422,8 @@ class DocWriter(metaclass=abc.ABCMeta):
                 template = os.path.join(def_dir, self.template_name)
                 if not os.path.isfile(template):
                     template = os.path.join(self.default_template_dir, self.template_name)
-                if os.path.isfile(template):
-                    print("no template found in {} for {}, using default".format(tdir, self.template_name))
+                # if os.path.isfile(template):
+                #     print("no template found in {} for {}, using default".format(tdir, self.template_name))
             if os.path.exists(template):
                 if template in self._template_cache:
                     template = self._template_cache[template]
@@ -496,7 +507,7 @@ class DocWriter(metaclass=abc.ABCMeta):
         return os.path.join(*self.identifier.split(".")) + "Tests.py"
     def load_tests(self):
         """
-        Loads examples for the stored object if provided
+        Loads tests for the stored object if provided
         :return:
         :rtype:
         """
@@ -928,6 +939,7 @@ class MethodWriter(FunctionWriter):
     Writes class methods to file
     (distinct from functions since not expected to exist solo)
     """
+
     template_name = 'method.md'
     def get_template_params(self, **kwargs):
         params = super().get_template_params(**kwargs)
