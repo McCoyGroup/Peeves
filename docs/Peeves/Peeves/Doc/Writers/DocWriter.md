@@ -16,7 +16,7 @@ param_template: str
 ```
 <a id="Peeves.Peeves.Doc.Writers.DocWriter.__init__" class="docs-object-method">&nbsp;</a>
 ```python
-__init__(self, obj, out_file, tree=None, name=None, parent=None, spec=None, template_directory=None, examples_directory=None, template=None, root=None, ignore_paths=None, examples=None, tests=None, formatter=None, include_line_numbers=True, extra_fields=None): 
+__init__(self, obj, out_file, tree=None, name=None, parent=None, spec=None, template_directory=None, examples_directory=None, parent_tests=None, template=None, root=None, ignore_paths=None, examples=None, tests=None, formatter=None, include_line_numbers=True, include_link_bars=True, extra_fields=None): 
 ```
 
 - `obj`: `Any`
@@ -238,6 +238,17 @@ load_tests(self):
 Loads tests for the stored object if provided
 - `:returns`: `_`
     >No description...
+
+<a id="Peeves.Peeves.Doc.Writers.DocWriter.tests" class="docs-object-method">&nbsp;</a>
+```python
+@property
+tests(self): 
+```
+
+<a id="Peeves.Peeves.Doc.Writers.DocWriter.get_test_markdown" class="docs-object-method">&nbsp;</a>
+```python
+get_test_markdown(self): 
+```
 
 <a id="Peeves.Peeves.Doc.Writers.DocWriter.parent" class="docs-object-method">&nbsp;</a>
 ```python

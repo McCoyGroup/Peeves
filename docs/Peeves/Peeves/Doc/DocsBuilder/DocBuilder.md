@@ -61,3 +61,57 @@ Writes documentation layout to `self.target`
 
 
 
+### Tests
+- [PeevesDoc](#PeevesDoc)
+
+#### Setup
+Before we can run our examples we should get a bit of setup out of the way.
+Since these examples were harvested from the unit tests not all pieces
+will be necessary for all situations.
+```python
+from Peeves.TestUtils import *
+from unittest import TestCase
+from Peeves.Doc import *
+import os
+```
+
+All tests are wrapped in a test class
+```python
+class DocsTests(TestCase):
+    """
+    Sample documentation generator tests
+    """
+```
+#### <a name="PeevesDoc">PeevesDoc</a>
+```python
+    def test_PeevesDoc(self):
+        """
+        Builds sample documentation for the Peeves package
+
+        :return:
+        :rtype:
+        """
+
+        import os
+
+        root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+        target = os.path.expanduser("~/Desktop/docs")
+        doc_config = {
+            "config": {
+                "theme": "McCoyGroup/finx",
+                "title": "Peeves",
+                "path": "",
+                "url": "https://mccoygrp.github.io/Peeves/"
+            },
+            "packages": [
+                {
+                    "id": "Peeves",
+                    'tests_root': os.path.join(root, "ci", "tests")
+                }
+            ],
+            "root": root,
+            "target": target,
+            'readme': os.path.join(root, "README.md")
+        }
+        DocBuilder(**doc_config).build()
+```

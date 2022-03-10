@@ -55,5 +55,55 @@ setup(self):
 functions(self): 
 ```
 
+<a id="Peeves.Peeves.Doc.ExamplesParser.ExamplesParser.functions_map" class="docs-object-method">&nbsp;</a>
+```python
+@property
+functions_map(self): 
+```
+
+<a id="Peeves.Peeves.Doc.ExamplesParser.ExamplesParser.load_function_map" class="docs-object-method">&nbsp;</a>
+```python
+load_function_map(self): 
+```
+
+<a id="Peeves.Peeves.Doc.ExamplesParser.ExamplesParser.get_examples_functions" class="docs-object-method">&nbsp;</a>
+```python
+get_examples_functions(self, node): 
+```
+
+<a id="Peeves.Peeves.Doc.ExamplesParser.ExamplesParser.filter_by_name" class="docs-object-method">&nbsp;</a>
+```python
+filter_by_name(self, name): 
+```
 
 
+
+### Tests
+- [ParseExamples](#ParseExamples)
+
+#### Setup
+Before we can run our examples we should get a bit of setup out of the way.
+Since these examples were harvested from the unit tests not all pieces
+will be necessary for all situations.
+```python
+from Peeves.TestUtils import *
+from unittest import TestCase
+from Peeves.Doc import *
+import os
+```
+
+All tests are wrapped in a test class
+```python
+class DocsTests(TestCase):
+    """
+    Sample documentation generator tests
+    """
+```
+#### <a name="ParseExamples">ParseExamples</a>
+```python
+    def test_ParseExamples(self):
+        parser = ExamplesParser.from_file(os.path.abspath(__file__))
+        self.assertTrue(hasattr(parser.functions, 'items'))
+        tests = TestExamplesFormatter.from_file(os.path.abspath(__file__))
+        print(tests.format())
+```
