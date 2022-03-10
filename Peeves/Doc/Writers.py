@@ -264,6 +264,11 @@ class DocWriter(metaclass=abc.ABCMeta):
         params = self.template_params()
         out_file = self.target
         if isinstance(out_file, str):
+            pkg, file_url = self.package_path
+            params['package_name'] = pkg
+            params['file_url'] = file_url
+            params['package_url'] = os.path.dirname(file_url)
+
             if self.root is not None:
                 root_split = []
                 root = self.root
@@ -272,22 +277,17 @@ class DocWriter(metaclass=abc.ABCMeta):
                     root_split.append(base)
                 out_split = []
                 out = out_file
-                while out  and (out != "/" and out != os.path.pathsep):
+                while out and (out != "/" and out != os.path.pathsep):
                     out, base = os.path.split(out)
                     out_split.append(base)
                 out_split = list(reversed(out_split))
-                root_depth = len(os.path.split(self.root))
+                root_depth = len(root_split)
                 out_url = "/".join(out_split[root_depth:])
                 # print(os.path.split(out_file), root_depth)
             else:
-                out_url = "/".join(os.path.split(out_file))
+                out_url = "/".join(os.path.split(out_file)[-len(os.path.split(file_url))])
             params['file'] = out_file
             params['url'] = out_url
-
-            pkg, file_url = self.package_path
-            params['package_name'] = pkg
-            params['file_url'] = file_url
-            params['package_url'] = os.path.dirname(file_url)
 
         try:
             form_text = template.format(**params)
