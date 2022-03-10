@@ -2,7 +2,7 @@
 Implements a set of writer classes that document python objects
 """
 import abc, os, sys, types, inspect, re, importlib
-from .ExamplesParser import TestExamplesFormatter
+from .ExamplesParser import TestExamplesFormatter, ExamplesParser
 
 __all__ = [
     "DocWriter",
@@ -55,6 +55,17 @@ class MarkdownFormatter:
 
         return ">" + arg.replace("\n", "\n>")
 
+    link_bar_template='<div class="container alert alert-secondary bg-light">\n{links}\n</div>'
+    link_row_template='  <div class="row">\n{cols}\n</div>'
+    link_item_template='   <div class="col" markdown="1">\n{item}   \n</div>'
+    def format_grid_box(self, link_grid):
+        return self.link_bar_template.format(links="\n".join(
+            self.link_row_template.format(
+                cols="\n".join(self.link_item_template.format(item=item) for item in row)
+            )
+            for row in link_grid if len(row) > 0
+        ))
+
 class DocWriter(metaclass=abc.ABCMeta):
     """
     A general writer class that writes a file based off a template and filling in object template specs
@@ -79,6 +90,7 @@ class DocWriter(metaclass=abc.ABCMeta):
 
                  template_directory=None,
                  examples_directory=None,
+                 parent_tests=None,
 
                  template=None,
                  root=None,
@@ -87,6 +99,7 @@ class DocWriter(metaclass=abc.ABCMeta):
                  tests=None,
                  formatter=None,
                  include_line_numbers=True,
+                 include_link_bars=True,
 
                  extra_fields=None
                  ):
@@ -160,8 +173,11 @@ class DocWriter(metaclass=abc.ABCMeta):
         self.template = self.find_template(template)
         self.examples_root = self.default_examples_root if examples is None else examples
         self.tests_root = self.default_tests_root if tests is None else tests
+        self._tests = None
         self.include_line_numbers = include_line_numbers
+        self.parent_tests = parent_tests
 
+        self.include_link_bars = include_link_bars
         self.formatter = MarkdownFormatter() if formatter is None else formatter
 
     @property
@@ -297,6 +313,12 @@ class DocWriter(metaclass=abc.ABCMeta):
                 self.obj,
                 e.args[0]
             ))
+        except IndexError as e:
+            raise ValueError("{} ({}): template index {} out of range...".format(
+                type(self).__name__,
+                self.obj,
+                e.args[0]
+            ))
         return form_text
 
     blacklist_packages= {"builtins", 'numpy', 'scipy', 'matplotlib'}
@@ -424,6 +446,37 @@ class DocWriter(metaclass=abc.ABCMeta):
             else:
                 return os.path.join(self.root, base_root)
 
+    def _find_template_by_name(self, name):
+        test_dirs = []
+        tdir = self.template_dir
+        template = os.path.join(tdir, *self.identifier.split(".")) + ".md"
+        if not os.path.exists(template):
+            test_dirs.append(os.path.join(tdir, *self.identifier.split(".")))
+            template = os.path.join(tdir, name)
+        if not os.path.exists(template):
+            test_dirs.append(tdir)
+            def_dir = os.path.join(self.root, self.template_root)
+            if not os.path.isdir(def_dir):
+                def_dir = self.default_template_dir
+            template = os.path.join(def_dir, name)
+            if not os.path.isfile(template):
+                test_dirs.append(def_dir)
+                template = os.path.join(self.default_template_dir, name)
+            # if os.path.isfile(template):
+            #     print("no template found in {} for {}, using default".format(tdir, self.template_name))
+        if os.path.exists(template):
+            if template in self._template_cache:
+                template = self._template_cache[template]
+            else:
+                tkey = template
+                with open(template) as tf:
+                    template = tf.read()
+                self._template_cache[tkey] = template
+        else:
+            test_dirs.append(self.default_template_dir)
+            print("no template found in {} for {}".format(test_dirs, name))
+            template = self.template
+        return template
     def find_template(self, template):
         """
         Finds the appropriate template for the object by looking
@@ -435,30 +488,12 @@ class DocWriter(metaclass=abc.ABCMeta):
         :rtype:
         """
         if template is None:
-            tdir = self.template_dir
-            template = os.path.join(tdir, *self.identifier.split(".")) + ".md"
-            if not os.path.exists(template):
-                template = os.path.join(tdir, self.template_name)
-            if not os.path.exists(template):
-                def_dir = os.path.join(self.root, self.template_root)
-                if not os.path.isdir(def_dir):
-                    def_dir = self.default_template_dir
-                template = os.path.join(def_dir, self.template_name)
-                if not os.path.isfile(template):
-                    template = os.path.join(self.default_template_dir, self.template_name)
-                # if os.path.isfile(template):
-                #     print("no template found in {} for {}, using default".format(tdir, self.template_name))
-            if os.path.exists(template):
-                if template in self._template_cache:
-                    template = self._template_cache[template]
-                else:
-                    tkey = template
-                    with open(template) as tf:
-                        template = tf.read()
-                    self._template_cache[tkey] = template
-            else:
-                print("no template found in {} for {}".format(tdir, self.template_name))
-                template = self.template
+            template = self._find_template_by_name(self.template_name)
+        elif (
+            len(template.splitlines()) == 1 and
+            len(os.path.split(template)) == 2
+        ):
+            template = self._find_template_by_name(template)
 
         return template
 
@@ -537,25 +572,43 @@ class DocWriter(metaclass=abc.ABCMeta):
         """
 
         # print(">>>>", self.tests_dir, self.tests_path)
+        test_str = None
         if hasattr(self.obj, '__tests__'):
             tests = os.path.join(self.tests_dir, self.obj.__tests__)
             if os.path.isfile(tests):
                 with open(tests) as f:
-                    return f.read()
+                    test_str = f.read()
             else:
-                return self.obj.__tests__
+                test_str = self.obj.__tests__
         elif self.root is not None:
             tests = os.path.join(self.tests_dir, self.tests_path)
             if os.path.isfile(tests):
                 with open(tests) as f:
-                    return f.read()
-            # implicit failure
-            tests = os.path.join(self.tests_dir, os.path.basename(self.tests_path))
-            # print("....", tests)
-            if os.path.isfile(tests):
-                with open(tests) as f:
-                    return f.read()
+                    test_str = f.read()
+            else:
+                tests = os.path.join(self.tests_dir, os.path.basename(self.tests_path))
+                # print("....", tests)
+                if os.path.isfile(tests):
+                    with open(tests) as f:
+                        test_str = f.read()
 
+        return ExamplesParser(test_str) if test_str is not None else test_str
+    @property
+    def tests(self):
+        if self._tests is None:
+            self._tests = self.load_tests()
+        return self._tests
+    def get_test_markdown(self):
+        tests = self.tests
+        if tests is None and self.parent_tests is not None:
+            tests = self.parent_tests.filter_by_name(self.name.split(".")[-1])
+
+        formatted = TestExamplesFormatter(tests,
+                                          template=self.find_template('tests.md'),
+                                          example_template=self.find_template('test_example.md'),
+                                          ).format() if tests is not None else ""
+        # print(self.name, len(formatted))
+        return formatted
 
     @property
     def parent(self):
@@ -811,18 +864,30 @@ class ModuleWriter(DocWriter):
         # split by qualified names
         idents = [".".join(a.split(".")[ident_depth-1:]) for a in idents]
         # format links
-        mems = [ self.formatter.format_item(self.formatter.format_obj_link(l)) for l in idents ]
+        links = [ self.formatter.format_obj_link(l) for l in idents ]
+        if self.include_link_bars:
+            num_cols = 3
+            splits = []
+            sub = []
+            for x in links:
+                sub.append(x)
+                if len(sub) == num_cols:
+                    splits.append(sub)
+                    sub = []
+            splits.append(sub)
+            mems = self.formatter.format_grid_box(splits)
+        else:
+            mems = "\n".join([ self.formatter.format_item(l) for l in links ])
         # print([idents, mems])
         descr = mod.__doc__ if mod.__doc__ is not None else ''
 
         ex = self.load_examples()
-        tests = self.load_tests()
-        tests = TestExamplesFormatter(tests).format() if tests is not None else ""
+        tests = self.get_test_markdown()
         return {
             'id' : ident,
             'description' : descr.strip(),
             'name': name,
-            'members' : "\n".join(mems),
+            'members' : mems,
             'examples' : self.examples_header+"\n"+ex if ex is not None else "",
             'tests': tests
         }
@@ -902,8 +967,7 @@ class ClassWriter(DocWriter):
 
         cls = self.obj # type: type
         ex = self.load_examples()
-        tests = self.load_tests()
-        tests = TestExamplesFormatter(tests).format() if tests is not None else ""
+        tests = self.get_test_markdown()
         name = cls.__name__
         ident = self.identifier
         props, methods = self.load_methods(function_writer=function_writer)
@@ -950,8 +1014,7 @@ class FunctionWriter(DocWriter):
         if len(param) > 0:
             param = "\n" + param
         ex = self.load_examples()
-        tests = self.load_tests()
-        tests = TestExamplesFormatter(tests).format() if tests is not None else ""
+        tests = self.get_test_markdown()
         lineno = self.get_lineno()
         return {
             'id': ident,
