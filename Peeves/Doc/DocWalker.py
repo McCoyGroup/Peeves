@@ -147,7 +147,8 @@ class DocWalker:
                  verbose=True,
                  extra_fields=None,
                  template_directory=None,
-                 examples_directory=None
+                 examples_directory=None,
+                 strip_undocumented=False
                  ):
         """
         :param objects: the objects to write out
@@ -203,6 +204,7 @@ class DocWalker:
 
         self.description = description
         self.verbose = verbose
+        self.strip_undocumented = strip_undocumented
 
     @property
     def _initial_writers(self):

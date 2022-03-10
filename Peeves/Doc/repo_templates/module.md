@@ -1,14 +1,15 @@
-# <a id="{id}">{name}</a>
+# <a id="{id}">{name}</a> 
+<div class="docs-source-link" markdown="1">
+[[source](https://github.com/{gh_username}/{gh_repo}/blob/{gh_branch}/{package_url})]
+</div>
     
 {description}
 
-### Members:
-
 {members}
 
-### Examples:
-
 {examples}
+
+{tests}
 
 ___
 
