@@ -2,6 +2,7 @@
 Implements a set of writer classes that document python objects
 """
 import abc, os, sys, types, inspect, re, importlib
+from .ExamplesParser import TestExamplesFormatter
 
 __all__ = [
     "DocWriter",
@@ -62,7 +63,8 @@ class DocWriter(metaclass=abc.ABCMeta):
     template = "No template ;_;"
     template_root = "templates"
     template_name = ""
-    default_template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+    default_template_base = os.path.dirname(__file__)
+    examples_header = "## Examples"
     default_examples_root = "examples"
     default_tests_root = "tests"
     _template_cache = {}
@@ -84,6 +86,7 @@ class DocWriter(metaclass=abc.ABCMeta):
                  examples=None,
                  tests=None,
                  formatter=None,
+                 include_line_numbers=True,
 
                  extra_fields=None
                  ):
@@ -134,18 +137,30 @@ class DocWriter(metaclass=abc.ABCMeta):
         self.ignore_paths = ignore_paths if ignore_paths is not None else set()
 
         self.spec = {} if spec is None else spec
+        self.extra_fields = dict(self.extra_fields, **self.spec)
+        for k in ['id']:#, 'tests_root', 'examples_root']:
+            try:
+                del self.extra_fields[k]
+            except KeyError:
+                pass
 
         self.target = out_file
         if root is None:
             root = os.path.dirname(self.target)
         self.root = root
 
-        self._templ_directory = template_directory if isinstance(template_directory, str) and os.path.isdir(template_directory) else None
+        self.fallback_template_root = 'repo_templates' if 'gh_repo' in self.extra_fields else 'templates'
+        self.default_template_dir = os.path.join(self.default_template_base, self.fallback_template_root)
+        self._templ_directory = (
+                                    template_directory if isinstance(template_directory, str)
+                                                          and os.path.isdir(template_directory) else None
+        )
         self._exmpl_directory = examples_directory if isinstance(examples_directory, str) and os.path.isdir(examples_directory) else None
 
         self.template = self.find_template(template)
         self.examples_root = self.default_examples_root if examples is None else examples
         self.tests_root = self.default_tests_root if tests is None else tests
+        self.include_line_numbers = include_line_numbers
 
         self.formatter = MarkdownFormatter() if formatter is None else formatter
 
@@ -272,14 +287,15 @@ class DocWriter(metaclass=abc.ABCMeta):
             pkg, file_url = self.package_path
             params['package_name'] = pkg
             params['file_url'] = file_url
+            params['package_url'] = os.path.dirname(file_url)
 
         try:
             form_text = template.format(**params)
-        except KeyError:
-            raise ValueError("{} ({}): template {} missing key".format(
+        except KeyError as e:
+            raise ValueError("{} ({}): template needs key {}".format(
                 type(self).__name__,
-                out_file,
-                template
+                self.obj,
+                e.args[0]
             ))
         return form_text
 
@@ -326,6 +342,8 @@ class DocWriter(metaclass=abc.ABCMeta):
             file_url = "__init__.py"
         else:
             file_url = rest.replace(".", "/") + "/__init__.py"
+        if 'url_base' in self.extra_fields:
+            file_url = self.extra_fields['url_base'] + "/" + file_url
         return pkg, file_url
     @property
     def package_path(self):
@@ -368,6 +386,12 @@ class DocWriter(metaclass=abc.ABCMeta):
         if self._id is None:
             self._id = self.get_identifier(self.obj)
         return self._id
+    def get_lineno(self):
+        try:
+            lineno = 1+inspect.findsource(self.obj)[1] if self.include_line_numbers else ""
+        except:
+            lineno = ""
+        return lineno
 
     def resource_dir(self, spec_key, base_root):
         """
@@ -793,13 +817,14 @@ class ModuleWriter(DocWriter):
 
         ex = self.load_examples()
         tests = self.load_tests()
+        tests = TestExamplesFormatter(tests).format() if tests is not None else ""
         return {
             'id' : ident,
             'description' : descr.strip(),
             'name': name,
             'members' : "\n".join(mems),
-            'examples' : ex if ex is not None else "",
-            'tests': self.formatter.format_code_block(tests) if tests is not None else ""
+            'examples' : self.examples_header+"\n"+ex if ex is not None else "",
+            'tests': tests
         }
 
     @classmethod
@@ -830,6 +855,11 @@ class ClassWriter(DocWriter):
         props = []
         methods = []
 
+        extra_fields = self.extra_fields.copy()
+        pkg, file_url = self.package_path
+        extra_fields['package_name'] = pkg
+        extra_fields['file_url'] = file_url
+        extra_fields['package_url'] = os.path.dirname(file_url)
         for k in keys:
             o = getattr(cls, k)
             if isinstance(o, (types.FunctionType, types.MethodType, classmethod, staticmethod, property)):
@@ -839,7 +869,8 @@ class ClassWriter(DocWriter):
                                         tree=self.tree, parent=self.identifier, name=k,
                                         out_file=None, root=self.root,
                                         template_directory=self.template_dir,
-                                        examples_directory=self.examples_dir
+                                        examples_directory=self.examples_dir,
+                                        extra_fields=extra_fields
                                         ).format().strip()
                     )
             else:
@@ -852,6 +883,8 @@ class ClassWriter(DocWriter):
         pkg, rest = self.identifier.split(".", 1)
         rest, bleh = rest.rsplit(".", 1)
         file_url = rest.replace(".", "/") + ".py"
+        if 'url_base' in self.extra_fields:
+            file_url = self.extra_fields['url_base'] + "/" + file_url
         # lineno = inspect.findsource(self.obj)[1]
         return pkg, file_url #+ "#L" + str(lineno) # for GitHub links
 
@@ -870,6 +903,7 @@ class ClassWriter(DocWriter):
         cls = self.obj # type: type
         ex = self.load_examples()
         tests = self.load_tests()
+        tests = TestExamplesFormatter(tests).format() if tests is not None else ""
         name = cls.__name__
         ident = self.identifier
         props, methods = self.load_methods(function_writer=function_writer)
@@ -881,16 +915,18 @@ class ClassWriter(DocWriter):
         props = "\n".join(props)
         if len(props) > 0:
             props = self.formatter.format_code_block(props)+"\n"
+        lineno = self.get_lineno()
 
         return {
-            'id' : ident,
+            'id': ident,
             'name': name,
+            'lineno': lineno,
             'description' : descr,
             'parameters' : param,
             'props' : props,
             'methods' : "\n\n".join(methods),
             'examples' : ex if ex is not None else "",
-            'tests': self.formatter.format_code_block(tests) if tests is not None else ""
+            'tests': tests
         }
 
 class FunctionWriter(DocWriter):
@@ -899,11 +935,9 @@ class FunctionWriter(DocWriter):
     """
 
     template_name = 'function.md'
-
     def get_signature(self):
         return str(inspect.signature(self.obj))
     def get_template_params(self, **kwargs):
-
         f = self.obj # type: types.FunctionType
         ident = self.identifier
         signature = self.get_signature()
@@ -917,20 +951,25 @@ class FunctionWriter(DocWriter):
             param = "\n" + param
         ex = self.load_examples()
         tests = self.load_tests()
+        tests = TestExamplesFormatter(tests).format() if tests is not None else ""
+        lineno = self.get_lineno()
         return {
             'id': ident,
             'name' : name,
+            'lineno' : lineno,
             'signature' : signature,
             'parameters' : param,
             'description' : descr,
             'examples' : ex if ex is not None else "",
-            'tests': self.formatter.format_code_block(tests) if tests is not None else ""
+            'tests': tests
         }
 
     def get_package_and_url(self):
         pkg, rest = self.identifier.split(".", 1)
         rest, bleh = rest.rsplit(".", 1)
         file_url = rest.replace(".", "/") + ".py"
+        if 'url_base' in self.extra_fields:
+            file_url = self.extra_fields['url_base'] + "/" + file_url
         # lineno = inspect.findsource(self.obj)[1]
         return pkg, file_url #+ "#L" + str(lineno) # for GitHub links
 
@@ -1011,9 +1050,11 @@ class ObjectWriter(DocWriter):
             descr = ''
 
         ex = self.load_examples()
+        lineno = self.get_lineno()
         return {
             'id': self.identifier,
-            'name' : self.get_name(),
+            'lineno': lineno,
+            'name': self.get_name(),
             'description' : descr.strip(),
             'examples' : ex if ex is not None else ""
         }

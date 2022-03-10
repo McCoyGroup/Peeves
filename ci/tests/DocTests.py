@@ -2,13 +2,14 @@
 from Peeves.TestUtils import *
 from unittest import TestCase
 from Peeves.Doc import *
+import os
 
 class DocsTests(TestCase):
     """
     Sample documentation generator tests
     """
 
-    @debugTest
+    @validationTest
     def test_PeevesDoc(self):
         """
         Builds sample documentation for the Peeves package
@@ -39,3 +40,10 @@ class DocsTests(TestCase):
             'readme': os.path.join(root, "README.md")
         }
         DocBuilder(**doc_config).build()
+
+    @debugTest
+    def test_ParseExamples(self):
+        parser = ExamplesParser.from_file(os.path.abspath(__file__))
+        self.assertTrue(hasattr(parser.functions, 'items'))
+        tests = TestExamplesFormatter.from_file(os.path.abspath(__file__))
+        print(tests.format())

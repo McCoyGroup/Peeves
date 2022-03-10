@@ -1,5 +1,5 @@
 
-import os
+import os, shutil
 
 from .DocWalker import DocWalker
 
@@ -28,6 +28,7 @@ class DocBuilder:
                  templates_directory=None,
                  examples_directory=None,
                  tests_directory=None,
+                 strip_undocumented=False,
                  readme=None
                  ):
         """
@@ -56,6 +57,7 @@ class DocBuilder:
         self.examples_dir=examples_directory
         self.tests_directory=tests_directory
         self.config_file=self.default_config_file if config_file is None else config_file
+        self.strip_undocumented=strip_undocumented
 
         if isinstance(readme, str):
             if os.path.isfile(readme):
@@ -113,6 +115,19 @@ class DocBuilder:
                 with open(config_file, 'w') as out:
                     out.write(conf)
 
+        for fname in ['404.html', 'Contributing.md', 'Gemfile']:
+            conf_file = os.path.join(self.target, fname)  # hard coded for now, can change later
+            base_file = os.path.join(self.template_dir, fname)
+            if not os.path.isfile(base_file):
+                base_file = os.path.join(os.path.join(self.defaults_root, self.default_templates_extension), fname)
+            if not os.path.isfile(conf_file):
+                print('writing {} file to {}'.format(fname, fname))
+                try:
+                    os.makedirs(os.path.dirname(conf_file))
+                except OSError:
+                    pass
+                shutil.copy(base_file, conf_file)
+
         # do other layout stuff maybe in the future?
 
     def load_walker(self):
@@ -129,7 +144,8 @@ class DocBuilder:
             description=self.readme,
             extra_fields=self.config,
             template_directory=self.template_dir,
-            examples_directory=self.examples_dir
+            examples_directory=self.examples_dir,
+            strip_undocumented=self.strip_undocumented
         )
 
     def build(self):

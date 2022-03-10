@@ -7,10 +7,11 @@ __all__ = [
 ]
 
 class AbstractBlockProfiler:
-    def __init__(self, name="Profiled Block", inactive=False, print_res=True):
+    def __init__(self, name="Profiled Block", inactive=False, print_res=True, logger=None):
         self.name = name
         self.print_res = print_res
         self.inactive = inactive
+        self.logger = logger
 
     @abc.abstractmethod
     def start_profiler(self):
@@ -34,16 +35,20 @@ class AbstractBlockProfiler:
         msg = "In block {}:\n\n{}".format(self.name, self.format_profile())
         if isinstance(self.print_res, str) and self.print_res == 'raise':
             raise ValueError(msg)
-        elif hasattr(self.print_res, 'write'):
-            print(msg, file=self.print_res)
+        elif self.logger is None:
+            if hasattr(self.print_res, 'write'):
+                print(msg, file=self.print_res)
+            else:
+                print(msg)
         else:
-            print(msg)
+            self.logger.log_print(msg)
+
 
 class PyinstrumentBlockProfiler(AbstractBlockProfiler):
 
-    def __init__(self, name="Profiled Block", inactive=False, print_res=True):
+    def __init__(self, name="Profiled Block", inactive=False, print_res=True, logger=None):
         from pyinstrument import Profiler
-        super().__init__(name=name, print_res=print_res, inactive=inactive)
+        super().__init__(name=name, print_res=print_res, inactive=inactive, logger=logger)
         self.profiler = Profiler()
 
     def start_profiler(self):
@@ -67,7 +72,8 @@ class CProfileBlockProfiler(AbstractBlockProfiler):
                  strip_dirs=None,
                  sort_by='cumulative',
                  num_lines=50,
-                 filter=None
+                 filter=None,
+                 logger=None
                  ):
         """
         :param name: name of profiled block
@@ -76,7 +82,7 @@ class CProfileBlockProfiler(AbstractBlockProfiler):
         :type strip_dirs: None | Iterable[str]
         """
 
-        super().__init__(name=name, print_res=print_res, inactive=inactive)
+        super().__init__(name=name, print_res=print_res, inactive=inactive, logger=logger)
         self.strip_dirs = strip_dirs
         self.sort_by = sort_by
         self.num_lines = num_lines

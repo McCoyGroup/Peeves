@@ -6,8 +6,6 @@
 
 {members}
 
-### Examples:
-
 {examples}
 
 {tests}
