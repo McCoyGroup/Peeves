@@ -271,12 +271,15 @@ class DocWalker:
 
         if parent is not None:
             pid = parent.identifier
+            ptests = parent.tests
         else:
             pid = None
+            ptests = None
 
         writer = self.writers(o,
                               self.out_dir,
                               parent=pid,
+                              parent_tests=ptests,
                               tree=self.tree,
                               ignore_paths=self.ignore_paths,
                               template_directory=self.template_directory,
