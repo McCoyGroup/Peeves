@@ -13,7 +13,7 @@ config_defaults: dict
 ```
 <a id="Peeves.Peeves.Doc.DocsBuilder.DocBuilder.__init__" class="docs-object-method">&nbsp;</a>
 ```python
-__init__(self, packages=None, config=None, target=None, root=None, config_file=None, templates_directory=None, examples_directory=None, tests_directory=None, readme=None): 
+__init__(self, packages=None, config=None, target=None, root=None, config_file=None, templates_directory=None, examples_directory=None, tests_directory=None, strip_undocumented=False, readme=None): 
 ```
 
 - `packages`: `Iterable[str|dict]`
@@ -59,6 +59,5 @@ Writes documentation layout to `self.target`
 - `:returns`: `_`
     >No description...
 
-### Examples
 
 

@@ -35,6 +35,5 @@ get_template_params(self, function_writer=None):
 - `:returns`: `_`
     >No description...
 
-### Examples
 
 

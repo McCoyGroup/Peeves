@@ -27,6 +27,5 @@ Determines whether the object really actually should be
 get_template_params(self): 
 ```
 
-### Examples
 
 

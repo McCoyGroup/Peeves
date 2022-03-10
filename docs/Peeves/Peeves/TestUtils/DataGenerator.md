@@ -45,6 +45,5 @@ zmat(ncoords=15, use_rad=False):
 zmats(m=10, ncoords=15, use_rad=False): 
 ```
 
-### Examples
 
 

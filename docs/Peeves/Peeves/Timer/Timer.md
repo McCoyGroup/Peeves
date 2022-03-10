@@ -55,6 +55,5 @@ print_timing(self, time_elapsed, tag=None, steps=None):
 __call__(self, fn): 
 ```
 
-### Examples
 
 

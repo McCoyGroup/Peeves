@@ -27,6 +27,5 @@ get_file_paths(self):
 get_template_params(self): 
 ```
 
-### Examples
 
 

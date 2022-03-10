@@ -13,23 +13,35 @@ example and template files
   - [FunctionWriter](Peeves/Doc/Writers/FunctionWriter.md)
   - [ObjectWriter](Peeves/Doc/Writers/ObjectWriter.md)
   - [IndexWriter](Peeves/Doc/Writers/IndexWriter.md)
+  - [ExamplesParser](Peeves/Doc/ExamplesParser/ExamplesParser.md)
+  - [TestExamplesFormatter](Peeves/Doc/ExamplesParser/TestExamplesFormatter.md)
 
-### Examples:
 
 
+### Tests
+- [PeevesDoc](#PeevesDoc)
+- [ParseExamples](#ParseExamples)
 
+#### Setup
+Before we can run our examples we should get a bit of setup out of the way.
+Since these examples were harvested from the unit tests not all pieces
+will be necessary for all situations.
 ```python
-
 from Peeves.TestUtils import *
 from unittest import TestCase
 from Peeves.Doc import *
+import os
+```
 
+All tests are wrapped in a test class
+```python
 class DocsTests(TestCase):
     """
     Sample documentation generator tests
     """
-
-    @debugTest
+```
+#### <a name="PeevesDoc">PeevesDoc</a>
+```python
     def test_PeevesDoc(self):
         """
         Builds sample documentation for the Peeves package
@@ -60,4 +72,12 @@ class DocsTests(TestCase):
             'readme': os.path.join(root, "README.md")
         }
         DocBuilder(**doc_config).build()
+```
+#### <a name="ParseExamples">ParseExamples</a>
+```python
+    def test_ParseExamples(self):
+        parser = ExamplesParser.from_file(os.path.abspath(__file__))
+        self.assertTrue(hasattr(parser.functions, 'items'))
+        tests = TestExamplesFormatter.from_file(os.path.abspath(__file__))
+        print(tests.format())
 ```

@@ -20,6 +20,5 @@ get_template_params(self, **kwargs):
 get_package_and_url(self): 
 ```
 
-### Examples
 
 

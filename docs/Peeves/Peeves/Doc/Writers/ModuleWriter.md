@@ -23,6 +23,5 @@ Provides module specific parameters
 get_members(mod): 
 ```
 
-### Examples
 
 

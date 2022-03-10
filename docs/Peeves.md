@@ -22,7 +22,5 @@ Peeves is a minor extension to the unittest framework that makes my life better
   - [BlockProfiler](Peeves/Peeves/Profiler/BlockProfiler.md)
   - [Doc](Peeves/Doc.md)
 
-### Examples:
-
 
 
