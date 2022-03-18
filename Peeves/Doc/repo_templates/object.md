@@ -1,6 +1,6 @@
 ### <a id="{id}">{name}</a> 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/{gh_username}/{gh_repo}/edit/{gh_branch}/{file_url}#L{lineno})/]
+[[source](https://github.com/{gh_username}/{gh_repo}/blob/{gh_branch}/{file_url}#L{lineno})/]
 </div>
 {description}
 
