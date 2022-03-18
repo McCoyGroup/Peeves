@@ -13,7 +13,7 @@ RUN apt-get update \
 #              scipy \
 #              h5py
 
-LABEL "name"="McCoyGroup/PeevesCI"
+LABEL "name"="Peeves/PeevesCI"
 LABEL "maintainer"="Mark Boyer <b3m2a1uw.edu>"
 LABEL "version"="0.0.1"
 
@@ -26,4 +26,7 @@ RUN \
     cd /home && \
     git clone https://github.com/McCoyGroup/Peeves.git
 
-ENTRYPOINT ["sh", "/home/Peeves/ci/run_ci.sh"]
+RUN \
+    cd /home/Peeves
+
+ENTRYPOINT ["/bin/bash", "/home/Peeves/ci/run_ci.sh"]
