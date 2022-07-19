@@ -874,7 +874,7 @@ class ModuleWriter(DocWriter):
                 if len(sub) == num_cols:
                     splits.append(sub)
                     sub = []
-            splits.append(sub)
+            splits.append(sub + [""] * (3 - len(sub)))
             mems = self.formatter.format_grid_box(splits)
         else:
             mems = "\n".join([ self.formatter.format_item(l) for l in links ])
