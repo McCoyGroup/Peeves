@@ -7,6 +7,8 @@
 
 {members}
 
+{long_description}
+
 {examples}
 
 {tests}
