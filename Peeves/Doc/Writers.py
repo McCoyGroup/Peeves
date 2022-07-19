@@ -878,14 +878,15 @@ class ModuleWriter(DocWriter):
             mems = self.formatter.format_grid_box(splits)
         else:
             mems = "\n".join([ self.formatter.format_item(l) for l in links ])
-        # print([idents, mems])
         descr = mod.__doc__ if mod.__doc__ is not None else ''
+        long_descr = mod.__long_doc__ if hasattr(mod, '__long_doc__') and mod.__long_doc__ is not None else ''
 
         ex = self.load_examples()
         tests = self.get_test_markdown()
         return {
             'id' : ident,
             'description' : descr.strip(),
+            'long_description' : long_descr.strip(),
             'name': name,
             'members' : mems,
             'examples' : self.examples_header+"\n"+ex if ex is not None else "",

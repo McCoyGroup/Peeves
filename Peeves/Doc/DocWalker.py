@@ -100,7 +100,6 @@ class MethodDispatch(collections.OrderedDict):
             ):
                 # then we do, basically, an 'and' operand
                 key = self.DispatchTests(*key)
-
         super().__setitem__(key, value)
 
 class DocSpec(dict):
