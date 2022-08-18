@@ -895,6 +895,8 @@ class DocWriter(metaclass=abc.ABCMeta):
                         t = bits[1].strip() if len(bits) == 2 else ""
                         if len(t) > 0:
                             extra_fields[name] = [t]
+                        else:
+                            extra_fields[name] = []
             else:
                 if active_tag is None:
                     description.append(line.strip())
