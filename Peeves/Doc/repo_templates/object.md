@@ -4,6 +4,8 @@
 </div>
 {description}
 
+{details}
+
 {examples}
 
 ___

@@ -8,7 +8,9 @@
 ```
 {description}{parameters} 
 
-{examples}
+{details}
+
+{examples}{tests}
 
 ___
 

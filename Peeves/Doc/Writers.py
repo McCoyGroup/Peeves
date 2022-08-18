@@ -1,7 +1,8 @@
 """
 Implements a set of writer classes that document python objects
 """
-import abc, os, sys, types, inspect, re, importlib
+import abc, os, sys, types, inspect, re, importlib, types
+from collections import deque, defaultdict
 from .ExamplesParser import TestExamplesFormatter, ExamplesParser
 
 __all__ = [
@@ -79,6 +80,11 @@ class DocWriter(metaclass=abc.ABCMeta):
     default_examples_root = "examples"
     default_tests_root = "tests"
     _template_cache = {}
+    details_header = "## Details"
+    preformat_field_handlers = {
+        'examples': lambda ex,self=None:self.examples_header+"\n" if (ex is not None and len(ex) > 0) else "",
+        'details': lambda ex,self=None:self.details_header+"\n" if (ex is not None and len(ex) > 0) else "",
+    }
     def __init__(self,
                  obj,
                  out_file,
@@ -101,7 +107,10 @@ class DocWriter(metaclass=abc.ABCMeta):
                  include_line_numbers=True,
                  include_link_bars=True,
 
-                 extra_fields=None
+                 extra_fields=None,
+                 preformat_field_handlers=None,
+                 ignore_missing=False,
+                 strip_undocumented=False
                  ):
         """
         :param obj: object to write
@@ -135,9 +144,6 @@ class DocWriter(metaclass=abc.ABCMeta):
         self._parent = parent
         self._pobj = None
         self._chobj = None
-        if extra_fields is None:
-            extra_fields = {}
-        self.extra_fields = extra_fields
 
         self.tree = tree
 
@@ -177,7 +183,17 @@ class DocWriter(metaclass=abc.ABCMeta):
         self.include_line_numbers = include_line_numbers
         self.parent_tests = parent_tests
 
+        if extra_fields is None:
+            extra_fields = {}
+        self.extra_fields = extra_fields
+
         self.include_link_bars = include_link_bars
+        if preformat_field_handlers is not None:
+            self.preformat_field_handlers = dict(self.preformat_field_handlers, **preformat_field_handlers)
+        self.ignore_missing = ignore_missing
+        self.strip_undocumented = strip_undocumented
+        if strip_undocumented:
+            raise NotImplementedError("currently no support for ignoring undocumented objects")
         self.formatter = MarkdownFormatter() if formatter is None else formatter
 
     @property
@@ -305,8 +321,10 @@ class DocWriter(metaclass=abc.ABCMeta):
             params['file'] = out_file
             params['url'] = out_url
 
+        for k in self.preformat_field_handlers.keys() & params.keys():
+            params[k] = self.preformat_field_handlers[k](params[k], self=self)
         try:
-            form_text = template.format(**params)
+            form_text = template.format_map(params if not self.ignore_missing else defaultdict(str, params))
         except KeyError as e:
             raise ValueError("{} ({}): template needs key {}".format(
                 type(self).__name__,
@@ -321,7 +339,7 @@ class DocWriter(metaclass=abc.ABCMeta):
             ))
         return form_text
 
-    blacklist_packages= {"builtins", 'numpy', 'scipy', 'matplotlib'}
+    blacklist_packages = {"builtins", 'numpy', 'scipy', 'matplotlib'}
     def check_should_write(self):
         """
         Determines whether the object really actually should be
@@ -777,13 +795,13 @@ class DocWriter(metaclass=abc.ABCMeta):
         :return:
         :rtype:
         """
-        from collections import deque
 
         # parses a docstring based on reStructured text type specs but Markdown description
         splits = doc.strip().splitlines()
 
         params = deque()
         param_map = {}
+        extra_fields = {}
         i = len(splits)-1
         for i in range(len(splits)-1, -1, -1):
             line = splits[i].strip()
@@ -824,6 +842,14 @@ class DocWriter(metaclass=abc.ABCMeta):
                     t = bits[1].strip() if len(bits) == 2 else ""
                     if len(t) > 0:
                         param_map[name]["type"] = t
+                else:
+                    split = line.split()[0]
+                    if len(split) > 2 and split.endswith(":"):
+                        bits = line.split(":", 2)[1:]
+                        name = bits[0]
+                        t = bits[1].strip() if len(bits) == 2 else ""
+                        if len(t) > 0:
+                            extra_fields[name] = t
             else:
                 i = i+1
                 break
@@ -834,7 +860,7 @@ class DocWriter(metaclass=abc.ABCMeta):
 
         desc = splits[:i]
 
-        return "\n".join(param), "\n".join(desc)
+        return "\n".join(param), "\n".join(desc), extra_fields
 
 class ModuleWriter(DocWriter):
     """A writer targeted to a module object. Just needs to write the Module metadata."""
@@ -851,7 +877,6 @@ class ModuleWriter(DocWriter):
         :return:
         :rtype:
         """
-        import types
 
         mod = self.obj # type: types.ModuleType
         name = mod.__name__
@@ -889,7 +914,7 @@ class ModuleWriter(DocWriter):
             'long_description' : long_descr.strip(),
             'name': name,
             'members' : mems,
-            'examples' : self.examples_header+"\n"+ex if ex is not None else "",
+            'examples' : ex,
             'tests': tests
         }
 
@@ -910,7 +935,6 @@ class ClassWriter(DocWriter):
         :return:
         :rtype:
         """
-        import types
 
         if function_writer is None:
             function_writer = MethodWriter
@@ -972,7 +996,7 @@ class ClassWriter(DocWriter):
         name = cls.__name__
         ident = self.identifier
         props, methods = self.load_methods(function_writer=function_writer)
-        param, descr = self.parse_doc(cls.__doc__ if cls.__doc__ is not None else '')
+        param, descr, fields = self.parse_doc(cls.__doc__ if cls.__doc__ is not None else '')
         descr = self._clean_doc(descr)
         param = self._clean_doc(param)
         if len(param) > 0:
@@ -982,7 +1006,7 @@ class ClassWriter(DocWriter):
             props = self.formatter.format_code_block(props)+"\n"
         lineno = self.get_lineno()
 
-        return {
+        return dict({
             'id': ident,
             'name': name,
             'lineno': lineno,
@@ -992,7 +1016,7 @@ class ClassWriter(DocWriter):
             'methods' : "\n\n".join(methods),
             'examples' : ex if ex is not None else "",
             'tests': tests
-        }
+        }, **fields)
 
 class FunctionWriter(DocWriter):
     """
