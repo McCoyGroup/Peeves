@@ -5,8 +5,6 @@
 
 Provides a parser for unit tests to turn them into examples
 
-
-
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
  
@@ -131,6 +129,8 @@ filter_by_name(self, name):
 
  </div>
 </div>
+
+
 
 
 

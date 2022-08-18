@@ -8,8 +8,6 @@ to build documentation, but which also has support for more
 involved use cases, like setting up a `_config.yml` or other
 documentation template things.
 
-
-
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
  
@@ -96,6 +94,8 @@ Writes documentation layout to `self.target`
 
  </div>
 </div>
+
+
 
 
 

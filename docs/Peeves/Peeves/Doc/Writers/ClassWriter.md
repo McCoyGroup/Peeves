@@ -5,8 +5,6 @@
 
 A writer targeted to a class
 
-
-
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
  
@@ -64,6 +62,8 @@ get_template_params(self, function_writer=None):
 
  </div>
 </div>
+
+
 
 
 

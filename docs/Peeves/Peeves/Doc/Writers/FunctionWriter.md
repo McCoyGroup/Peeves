@@ -5,8 +5,6 @@
 
 Writer to dump functions to file
 
-
-
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
  
@@ -44,6 +42,8 @@ get_package_and_url(self):
 
  </div>
 </div>
+
+
 
 
 

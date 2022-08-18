@@ -7,8 +7,6 @@ Writes general objects to file.
 Basically a fallback to support singletons and things
 of that nature.
 
-
-
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
  
@@ -52,6 +50,8 @@ get_template_params(self):
 
  </div>
 </div>
+
+
 
 
 

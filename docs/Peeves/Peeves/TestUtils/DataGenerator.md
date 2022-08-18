@@ -5,8 +5,6 @@
 
 Provides methods to generate relevant data for testing methods
 
-
-
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
  
@@ -84,6 +82,8 @@ zmats(m=10, ncoords=15, use_rad=False):
 
  </div>
 </div>
+
+
 
 
 

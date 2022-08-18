@@ -8,8 +8,6 @@ and a Markdown index file.
 
 Takes a set of objects & writers and walks through the objects, generating files on the way
 
-
-
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
  
@@ -113,6 +111,8 @@ s
 
  </div>
 </div>
+
+
 
 
 

@@ -5,8 +5,6 @@
 
 A writer targeted to a module object. Just needs to write the Module metadata.
 
-
-
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
  
@@ -48,6 +46,8 @@ get_members(mod):
 
  </div>
 </div>
+
+
 
 
 
