@@ -11,7 +11,10 @@ doc_config = {
         "title": "Peeves",
         "path": "Peeves",
         "url": "https://mccoygroup.github.io/Peeves/",
+        'url_base':"Peeves",
         "gh_username": "McCoyGroup",
+        "gh_repo": "Peeves",
+        "gh_branch": "master",
         "footer": "Brought to you by the McCoy Group"
     },
     "packages": [
