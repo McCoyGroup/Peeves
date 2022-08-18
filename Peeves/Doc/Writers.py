@@ -169,7 +169,7 @@ class DocWriter(metaclass=abc.ABCMeta):
 
         self.spec = {} if spec is None else spec
         self.extra_fields = dict(self.spec, **self.extra_fields)
-        if self._parent is not None:
+        if isinstance(self._parent, DocWriter):
             self.extra_fields = dict(self._parent.extra_fields, **extra_fields)
         for k in self.extra_fields.keys() & set(self.protected_fields):
             del self.extra_fields[k]
