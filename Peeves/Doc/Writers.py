@@ -2,6 +2,7 @@
 Implements a set of writer classes that document python objects
 """
 import abc, os, sys, types, inspect, re, importlib, types
+import uuid
 from collections import deque, defaultdict
 from .ExamplesParser import TestExamplesFormatter, ExamplesParser
 
@@ -67,6 +68,32 @@ class MarkdownFormatter:
             for row in link_grid if len(row) > 0
         ))
 
+    collapse_template="""
+<div class="collapsible-section">
+ <div class="collapsible-section collapsible-section-header" markdown="1">
+ {header_fmt} <a class="collapse-link" data-toggle="collapse" href="#{name}" markdown="1">{header}</a> {opener}</a>
+ </div>
+ <div class="collapsible-section collapsible-section-body collapse {show}" id="{name}" markdown="1">
+ {content}
+ </div>
+</div>
+"""
+    collapse_opener = '<a class="float-right" data-toggle="collapse" href="#{name}"><i class="fa fa-chevron-down"></i>'
+    def format_collapse_section(self, header, content, name=None, open=True, include_opener=True):
+        header_fmt = ""
+        while header.startswith("#"):
+            header_fmt += "#"
+            header = header[1:]
+        if name is None:
+            name = re.sub("\W", "", header) + "-" + str(uuid.uuid4())[:6]
+        return self.collapse_template.format(
+            header_fmt=header_fmt,
+            header=header,
+            content=content,
+            show="show" if open else "",
+            opener=self.collapse_opener.format(name=name) if include_opener else ""
+        )
+
 class DocWriter(metaclass=abc.ABCMeta):
     """
     A general writer class that writes a file based off a template and filling in object template specs
@@ -88,8 +115,8 @@ class DocWriter(metaclass=abc.ABCMeta):
     _template_cache = {}
     details_header = "## Details"
     preformat_field_handlers = {
-        'examples': lambda ex,self=None:self.examples_header+"\n"+ex if (ex is not None and len(ex) > 0) else "",
-        'details': lambda ex,self=None:self.details_header+"\n"+ex if (ex is not None and len(ex) > 0) else "",
+        'examples': lambda ex,self=None:self.collapse_wrap_if_repo(self.examples_header, ex, include_opener=False) if (ex is not None and len(ex) > 0) else "",
+        'details': lambda ex,self=None:self.collapse_wrap_if_repo(self.details_header, ex, open=False) if (ex is not None and len(ex) > 0) else "",
     }
     protected_fields = {'id'}
     def __init__(self,
@@ -201,6 +228,11 @@ class DocWriter(metaclass=abc.ABCMeta):
             raise NotImplementedError("currently no support for ignoring undocumented objects")
         self.formatter = MarkdownFormatter() if formatter is None else formatter
 
+    def collapse_wrap_if_repo(self, header, content, name=None, open=True, include_opener=True):
+        if 'gh_repo' in self.extra_fields:
+            return self.formatter.format_collapse_section(header, content, name=name, open=open, include_opener=include_opener)
+        else:
+            return header + "\n" + content
     @property
     def name(self):
         """
