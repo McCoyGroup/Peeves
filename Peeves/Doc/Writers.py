@@ -91,6 +91,7 @@ class DocWriter(metaclass=abc.ABCMeta):
         'examples': lambda ex,self=None:self.examples_header+"\n" if (ex is not None and len(ex) > 0) else "",
         'details': lambda ex,self=None:self.details_header+"\n" if (ex is not None and len(ex) > 0) else "",
     }
+    protected_fields = {'id'}
     def __init__(self,
                  obj,
                  out_file,
@@ -150,6 +151,9 @@ class DocWriter(metaclass=abc.ABCMeta):
         self._parent = parent
         self._pobj = None
         self._chobj = None
+        if extra_fields is None:
+            extra_fields = {}
+        self.extra_fields = extra_fields
 
         self.tree = tree
 
@@ -163,11 +167,8 @@ class DocWriter(metaclass=abc.ABCMeta):
 
         self.spec = {} if spec is None else spec
         self.extra_fields = dict(self.extra_fields, **self.spec)
-        for k in ['id']:#, 'tests_root', 'examples_root']:
-            try:
-                del self.extra_fields[k]
-            except KeyError:
-                pass
+        for k in self.extra_fields.keys() & set(self.protected_fields):
+            del self.extra_fields[k]
 
         self.target = out_file
         if root is None:
@@ -188,10 +189,6 @@ class DocWriter(metaclass=abc.ABCMeta):
         self._tests = None
         self.include_line_numbers = include_line_numbers
         self.parent_tests = parent_tests
-
-        if extra_fields is None:
-            extra_fields = {}
-        self.extra_fields = extra_fields
 
         self.include_link_bars = include_link_bars
         if preformat_field_handlers is not None:
