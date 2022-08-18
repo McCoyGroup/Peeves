@@ -245,7 +245,7 @@ class DocWalker:
                             **kwargs
                             )
 
-    def write_object(self, o, parent=None):
+    def write_object(self, o, parent=None, **kwargs):
         """
         Writes a single object to file.
         Provides type dispatching to a writer, basically.
@@ -279,7 +279,7 @@ class DocWalker:
                               ignore_paths=self.ignore_paths,
                               template_directory=self.template_directory,
                               examples_directory=self.examples_directory,
-                              **self.extra_fields
+                              **dict(self.extra_fields, **kwargs)
                               )
 
         oid = writer.identifier
@@ -291,7 +291,10 @@ class DocWalker:
                 self.tree[oid] = spec
 
                 for child in writer.children:
-                    self.write_object(child, parent=writer)
+                    self.write_object(child,
+                                      parent=writer,
+                                      **dict(writer.extra_fields, **kwargs)
+                                      )
             return res
 
     def write_docs(self):
