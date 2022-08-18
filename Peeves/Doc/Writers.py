@@ -117,7 +117,8 @@ class DocWriter(metaclass=abc.ABCMeta):
                  extra_fields=None,
                  preformat_field_handlers=None,
                  ignore_missing=False,
-                 strip_undocumented=False
+                 strip_undocumented=False,
+                 **ext
                  ):
         """
         :param obj: object to write
@@ -153,7 +154,7 @@ class DocWriter(metaclass=abc.ABCMeta):
         self._chobj = None
         if extra_fields is None:
             extra_fields = {}
-        self.extra_fields = extra_fields
+        self.extra_fields = dict(ext, **extra_fields)
 
         self.tree = tree
 
