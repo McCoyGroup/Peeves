@@ -146,6 +146,9 @@ class DocWriter(metaclass=abc.ABCMeta):
         :param formatter: object that can format the stuff that Markdown supports
         :type formatter:
         """
+
+        print(obj, ext, spec, extra_fields)
+
         self.obj = obj
         self._id = None
         self._name = name
@@ -167,7 +170,7 @@ class DocWriter(metaclass=abc.ABCMeta):
         self.ignore_paths = ignore_paths if ignore_paths is not None else set()
 
         self.spec = {} if spec is None else spec
-        self.extra_fields = dict(self.extra_fields, **self.spec)
+        self.extra_fields = dict(self.spec, **self.extra_fields)
         for k in self.extra_fields.keys() & set(self.protected_fields):
             del self.extra_fields[k]
 

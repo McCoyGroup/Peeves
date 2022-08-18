@@ -146,7 +146,6 @@ class DocWalker:
                  verbose=True,
                  template_directory=None,
                  examples_directory=None,
-                 strip_undocumented=False,
                  **extra_fields
                  ):
         """
@@ -162,8 +161,6 @@ class DocWalker:
         :type ignore_paths: None | Iterable[str]
         """
 
-        if extra_fields is None:
-            extra_fields = {}
         self.extra_fields = extra_fields
 
         self.template_directory = template_directory
@@ -203,7 +200,6 @@ class DocWalker:
 
         self.description = description
         self.verbose = verbose
-        self.strip_undocumented = strip_undocumented
 
     @property
     def _initial_writers(self):
@@ -283,7 +279,7 @@ class DocWalker:
                               ignore_paths=self.ignore_paths,
                               template_directory=self.template_directory,
                               examples_directory=self.examples_directory,
-                              extra_fields=self.extra_fields
+                              **self.extra_fields
                               )
 
         oid = writer.identifier

@@ -28,7 +28,6 @@ class DocBuilder:
                  templates_directory=None,
                  examples_directory=None,
                  tests_directory=None,
-                 strip_undocumented=False,
                  readme=None
                  ):
         """
@@ -57,7 +56,6 @@ class DocBuilder:
         self.examples_dir=examples_directory
         self.tests_directory=tests_directory
         self.config_file=self.default_config_file if config_file is None else config_file
-        self.strip_undocumented=strip_undocumented
 
         if isinstance(readme, str):
             if os.path.isfile(readme):
@@ -142,10 +140,9 @@ class DocBuilder:
             self.packages,
             out=self.target,
             description=self.readme,
-            extra_fields=self.config,
             template_directory=self.template_dir,
             examples_directory=self.examples_dir,
-            strip_undocumented=self.strip_undocumented
+            **self.config
         )
 
     def build(self):
