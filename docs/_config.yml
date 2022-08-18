@@ -7,6 +7,12 @@ footer_text: >-
 sitemap_depth: 2
 icon: assets/favicon.png
 
+links:
+  - url: https://github.com/McCoyGroup/Peeves
+    title: GitHub
+  - url: https://github.com/McCoyGroup/Peeves/issues/new?title=Feedback
+    title: Feedback
+
 # Build settings
 markdown: kramdown
 remote_theme: McCoyGroup/finx
@@ -40,3 +46,16 @@ defaults:
 
 relative_links:
   enabled: true
+
+
+# Exclude from processing
+exclude:
+  - examples
+  - templates
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

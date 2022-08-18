@@ -1,9 +1,10 @@
-# <a id="Peeves.Doc">Peeves.Doc</a>
+# <a id="Peeves.Doc">Peeves.Doc</a> 
+<div class="docs-source-link" markdown="1">
+[[source](https://github.com/McCoyGroup/Peeves/tree/master/Peeves/Doc)]
+</div>
     
 Simple Documentation framework that takes all of the python docstrings and unwraps them into proper docs while supporting
 example and template files
-
-### Members:
 
 <div class="container alert alert-secondary bg-light">
   <div class="row">
@@ -54,11 +55,24 @@ example and template files
 
 
 
-### Tests
+
+
+
+<div class="collapsible-section">
+ <div class="collapsible-section collapsible-section-header" markdown="1">
+### <a class="collapse-link" data-toggle="collapse" href="#tests">Tests</a> <a class="float-right" data-toggle="collapse" href="#tests"><i class="fa fa-chevron-down"></i></a>
+ </div>
+<div class="collapsible-section collapsible-section-body collapse show" id="tests" markdown="1">
+
 - [PeevesDoc](#PeevesDoc)
 - [ParseExamples](#ParseExamples)
 
-#### Setup
+<div class="collapsible-section">
+ <div class="collapsible-section collapsible-section-header" markdown="1">
+#### <a class="collapse-link" data-toggle="collapse" href="#test-setup">Setup</a> <a class="float-right" data-toggle="collapse" href="#test-setup"><i class="fa fa-chevron-down"></i></a>
+ </div>
+ <div class="collapsible-section collapsible-section-body collapse" id="test-setup" markdown="1">
+
 Before we can run our examples we should get a bit of setup out of the way.
 Since these examples were harvested from the unit tests not all pieces
 will be necessary for all situations.
@@ -76,6 +90,10 @@ class DocsTests(TestCase):
     Sample documentation generator tests
     """
 ```
+
+ </div>
+</div>
+
 #### <a name="PeevesDoc">PeevesDoc</a>
 ```python
     def test_PeevesDoc(self):
@@ -117,3 +135,14 @@ class DocsTests(TestCase):
         tests = TestExamplesFormatter.from_file(os.path.abspath(__file__))
         print(tests.format())
 ```
+
+ </div>
+</div>
+
+___
+
+[Edit Examples](https://github.com/McCoyGroup/Peeves/edit/master/ci/examples/Peeves/Doc.md) or 
+[Create New Examples](https://github.com/McCoyGroup/Peeves/new/master/?filename=ci/examples/Peeves/Doc.md) <br/>
+[Edit Template](https://github.com/McCoyGroup/Peeves/edit/master/ci/docs/Peeves/Doc.md) or 
+[Create New Template](https://github.com/McCoyGroup/Peeves/new/master/?filename=ci/docs/templates/Peeves/Doc.md) <br/>
+[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/__init__.py?message=Update%20Docs)
