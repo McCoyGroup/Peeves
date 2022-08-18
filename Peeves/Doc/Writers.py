@@ -807,43 +807,49 @@ class DocWriter(metaclass=abc.ABCMeta):
         params = deque()
         param_map = {}
         extra_fields = {}
-        i = len(splits)-1
-        for i in range(len(splits)-1, -1, -1):
-            line = splits[i].strip()
+
+        active_tag = None
+        description = []
+        for line in splits:
+            line = line.strip()
             if line.startswith(":"):
                 if line.startswith(":param"):
                     bits = line.split(":", 2)[1:]
                     name = bits[0][5:].strip()
+                    active_tag = name
                     if name not in param_map:
                         params.appendleft(name)
-                        param_map[name] = {"name":name, "type":"Any", "description":"No description..."}
+                        param_map[name] = {"name":name, "type":"Any", "description":[]}
                     desc = bits[1].strip() if len(bits) == 2 else ""
                     if len(desc) > 0:
-                        param_map[name]["description"] = desc
+                        param_map[name]["description"].append(desc)
                 elif line.startswith(":type"):
                     bits = line.split(":", 2)[1:]
                     name = bits[0][4:].strip()
+                    active_tag = name
                     if name not in param_map:
                         params.appendleft(name)
-                        param_map[name] = {"name":name, "type":"Any", "description":"No description..."}
+                        param_map[name] = {"name":name, "type":"Any", "description":[]}
                     t = bits[1].strip() if len(bits) == 2 else ""
                     if len(t) > 0:
                         param_map[name]["type"] = t
                 elif line.startswith(":return"):
                     bits = line.split(":", 2)[1:]
                     name = ":returns"
+                    active_tag = name
                     if name not in param_map:
                         params.appendleft(name)
-                        param_map[name] = {"name":name, "type":"_", "description":"No description..."}
+                        param_map[name] = {"name":name, "type":"_", "description":[]}
                     t = bits[1].strip() if len(bits) == 2 else ""
                     if len(t) > 0:
                         param_map[name]["description"] = t
                 elif line.startswith(":rtype"):
                     bits = line.split(":", 2)[1:]
                     name = ":returns"
+                    active_tag = name
                     if name not in param_map:
                         params.appendleft(name)
-                        param_map[name] = {"name":name, "type":"_", "description":"No description..."}
+                        param_map[name] = {"name":name, "type":"_", "description":[]}
                     t = bits[1].strip() if len(bits) == 2 else ""
                     if len(t) > 0:
                         param_map[name]["type"] = t
@@ -852,20 +858,30 @@ class DocWriter(metaclass=abc.ABCMeta):
                     if len(split) > 2 and split.endswith(":"):
                         bits = line.split(":", 2)[1:]
                         name = bits[0]
+                        active_tag = name
                         t = bits[1].strip() if len(bits) == 2 else ""
                         if len(t) > 0:
-                            extra_fields[name] = t
+                            extra_fields[name] = [t]
             else:
-                i = i+1
-                break
+                if active_tag is None:
+                    description.append(line)
+                else:
+                    if active_tag in param_map:
+                        param_map[active_tag]['description'].append(line)
+                    else:
+                        extra_fields[active_tag].append(line)
+        for v in param_map.items():
+            v['description'] = "\n".join(v['description'])
+        for k,v in extra_fields.items():
+            extra_fields[k] = "\n".join(v)
 
         param = []
         for p in params:
-            param.append(self.param_template.format(**param_map[p]).strip())
+            param.append(
+                self.param_template.format(**param_map[p]).strip()
+            )
 
-        desc = splits[:i]
-
-        return "\n".join(param), "\n".join(desc), extra_fields
+        return "\n".join(param), "\n".join(description), extra_fields
 
 class ModuleWriter(DocWriter):
     """A writer targeted to a module object. Just needs to write the Module metadata."""
