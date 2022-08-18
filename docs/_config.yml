@@ -13,6 +13,9 @@ links:
   - url: https://github.com/McCoyGroup/Peeves/issues/new?title=Feedback
     title: Feedback
 
+breadcrumbs:
+  - min_depth: 2
+
 # Build settings
 markdown: kramdown
 remote_theme: McCoyGroup/finx
