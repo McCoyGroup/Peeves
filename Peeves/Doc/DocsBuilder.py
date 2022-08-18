@@ -152,6 +152,10 @@ class DocBuilder:
         :return:
         :rtype:
         """
+        print("writing docs to {} [root={}]".format(
+            self.target,
+            self.root
+        ))
         print("using templates from {}".format(self.template_dir))
         print("using examples from {}".format(self.examples_dir))
         self.create_layout()
