@@ -1,12 +1,20 @@
 ## <a id="Peeves.Peeves.Doc.Writers.DocWriter">DocWriter</a>
 A general writer class that writes a file based off a template and filling in object template specs
 
-## Details
-`DocWriter` objects are intended to do two things
+
+<div class="collapsible-section">
+ <div class="collapsible-section collapsible-section-header" markdown="1">
+ ## <a class="collapse-link" data-toggle="collapse" href="#Details-2c512f" markdown="1"> Details</a> <a class="float-right" data-toggle="collapse" href="#Details-2c512f"><i class="fa fa-chevron-down"></i></a>
+ </div>
+ <div class="collapsible-section collapsible-section-body collapse " id="Details-2c512f" markdown="1">
+ `DocWriter` objects are intended to do two things
 1) they manage the parsing logic to extract documentable parameters from objects
 2) they manage the process of loading the appropriate template and inserting the parameters
 This double-duty nature is likely to change in a future version of the package, being delegated to two
 subobjects that the writer then uses
+ </div>
+</div>
+
 
 ### Properties and Methods
 ```python
@@ -53,6 +61,11 @@ __init__(self, obj, out_file, tree=None, name=None, parent=None, spec=None, temp
     >file to write to
 - `obj`: `Any`
     >object to write
+
+<a id="Peeves.Peeves.Doc.Writers.DocWriter.collapse_wrap_if_repo" class="docs-object-method">&nbsp;</a>
+```python
+collapse_wrap_if_repo(self, header, content, name=None, open=True, include_opener=True): 
+```
 
 <a id="Peeves.Peeves.Doc.Writers.DocWriter.name" class="docs-object-method">&nbsp;</a>
 ```python
