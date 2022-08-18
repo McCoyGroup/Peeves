@@ -802,7 +802,7 @@ class DocWriter(metaclass=abc.ABCMeta):
         """
 
         # parses a docstring based on reStructured text type specs but Markdown description
-        splits = doc.strip().splitlines()
+        splits = inspect.cleandoc(doc.strip()).splitlines()
 
         params = deque()
         param_map = {}
@@ -811,7 +811,6 @@ class DocWriter(metaclass=abc.ABCMeta):
         active_tag = None
         description = []
         for line in splits:
-            line = line.strip()
             if line.startswith(":"):
                 if line.startswith(":param"):
                     bits = line.split(":", 2)[1:]
