@@ -2,9 +2,7 @@ from Peeves.Doc import *
 import os, sys
 
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-target = os.path.join(root, "docs")
-if not os.path.exists(target):
-    os.mkdir(target)
+target = os.path.join(root, "ci", "docs")
 sys.path.insert(0, root)
 doc_config = {
     "config": {
