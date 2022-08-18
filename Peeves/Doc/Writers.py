@@ -120,6 +120,7 @@ class DocWriter(metaclass=abc.ABCMeta):
         'details': lambda ex,self=None:self.collapse_wrap_if_repo(self.details_header, ex, open=False) if (ex is not None and len(ex) > 0) else "",
     }
     protected_fields = {'id'}
+    default_fields = {'details':""}
     def __init__(self,
                  obj,
                  out_file,
@@ -183,7 +184,7 @@ class DocWriter(metaclass=abc.ABCMeta):
         self._chobj = None
         if extra_fields is None:
             extra_fields = {}
-        self.extra_fields = dict(ext, **extra_fields)
+        self.extra_fields = dict(dict(self.default_fields, **ext), **extra_fields)
 
         self.tree = tree
 
