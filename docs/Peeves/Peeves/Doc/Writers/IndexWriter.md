@@ -1,6 +1,6 @@
 ## <a id="Peeves.Peeves.Doc.Writers.IndexWriter">IndexWriter</a> 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1204)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1204?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1206)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1206?message=Update%20Docs)]
 </div>
 
 Writes an index file with all of the
@@ -25,7 +25,7 @@ template_name: str
 __init__(self, *args, description=None, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1212)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1212?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1214)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1214?message=Update%20Docs)]
 </div>
 
 <a id="Peeves.Peeves.Doc.Writers.IndexWriter.get_identifier" class="docs-object-method">&nbsp;</a> 
@@ -33,7 +33,7 @@ __init__(self, *args, description=None, **kwargs):
 get_identifier(cls, o): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1216)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1216?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1218)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1218?message=Update%20Docs)]
 </div>
 
 <a id="Peeves.Peeves.Doc.Writers.IndexWriter.get_file_paths" class="docs-object-method">&nbsp;</a> 
@@ -41,7 +41,7 @@ get_identifier(cls, o):
 get_file_paths(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1219)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1219?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1221)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1221?message=Update%20Docs)]
 </div>
 
 <a id="Peeves.Peeves.Doc.Writers.IndexWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
@@ -49,7 +49,7 @@ get_file_paths(self):
 get_template_params(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1224)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1224?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1226)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1226?message=Update%20Docs)]
 </div>
 
  </div>
@@ -64,4 +64,4 @@ ___
 [Create New Examples](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Peeves/Doc/Writers/IndexWriter.md) <br/>
 [Edit Template](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Peeves/Doc/Writers/IndexWriter.md) or 
 [Create New Template](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Peeves/Doc/Writers/IndexWriter.md) <br/>
-[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1204?message=Update%20Docs)
+[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1206?message=Update%20Docs)

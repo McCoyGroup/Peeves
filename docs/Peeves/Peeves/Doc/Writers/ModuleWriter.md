@@ -1,6 +1,6 @@
 ## <a id="Peeves.Peeves.Doc.Writers.ModuleWriter">ModuleWriter</a> 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L919)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L919?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L921)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L921?message=Update%20Docs)]
 </div>
 
 A writer targeted to a module object. Just needs to write the Module metadata.
@@ -23,7 +23,7 @@ template_name: str
 __init__(self, obj, out_file, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L923)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L923?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L925)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L925?message=Update%20Docs)]
 </div>
 
 <a id="Peeves.Peeves.Doc.Writers.ModuleWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
@@ -31,7 +31,7 @@ __init__(self, obj, out_file, **kwargs):
 get_template_params(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L928)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L928?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L930)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L930?message=Update%20Docs)]
 </div>
 
 Provides module specific parameters
@@ -43,7 +43,7 @@ Provides module specific parameters
 get_members(mod): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L975)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L975?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L977)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L977?message=Update%20Docs)]
 </div>
 
  </div>
@@ -58,4 +58,4 @@ ___
 [Create New Examples](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Peeves/Doc/Writers/ModuleWriter.md) <br/>
 [Edit Template](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Peeves/Doc/Writers/ModuleWriter.md) or 
 [Create New Template](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Peeves/Doc/Writers/ModuleWriter.md) <br/>
-[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L919?message=Update%20Docs)
+[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L921?message=Update%20Docs)

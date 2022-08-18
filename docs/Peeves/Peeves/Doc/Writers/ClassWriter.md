@@ -1,6 +1,6 @@
 ## <a id="Peeves.Peeves.Doc.Writers.ClassWriter">ClassWriter</a> 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L979)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L979?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L981)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L981?message=Update%20Docs)]
 </div>
 
 A writer targeted to a class
@@ -23,7 +23,7 @@ template_name: str
 load_methods(self, function_writer=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L983)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L983?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L985)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L985?message=Update%20Docs)]
 </div>
 
 Loads the methods supported by the class
@@ -37,7 +37,7 @@ Loads the methods supported by the class
 get_package_and_url(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1026)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1026?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1028)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1028?message=Update%20Docs)]
 </div>
 
 <a id="Peeves.Peeves.Doc.Writers.ClassWriter.format_prop" class="docs-object-method">&nbsp;</a> 
@@ -45,7 +45,7 @@ get_package_and_url(self):
 format_prop(self, k, o): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1035)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1035?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1037)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1037?message=Update%20Docs)]
 </div>
 
 <a id="Peeves.Peeves.Doc.Writers.ClassWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
@@ -53,7 +53,7 @@ format_prop(self, k, o):
 get_template_params(self, function_writer=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1038)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1038?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1040)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1040?message=Update%20Docs)]
 </div>
 
 
@@ -74,4 +74,4 @@ ___
 [Create New Examples](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Peeves/Doc/Writers/ClassWriter.md) <br/>
 [Edit Template](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Peeves/Doc/Writers/ClassWriter.md) or 
 [Create New Template](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Peeves/Doc/Writers/ClassWriter.md) <br/>
-[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L979?message=Update%20Docs)
+[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L981?message=Update%20Docs)

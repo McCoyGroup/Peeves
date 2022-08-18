@@ -1,6 +1,6 @@
 ## <a id="Peeves.Peeves.Doc.Writers.ObjectWriter">ObjectWriter</a> 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1152)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1152?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1154)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1154?message=Update%20Docs)]
 </div>
 
 Writes general objects to file.
@@ -34,7 +34,7 @@ identifier(self):
 check_should_write(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1171)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1171?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1173)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1173?message=Update%20Docs)]
 </div>
 
 Determines whether the object really actually should be
@@ -47,7 +47,7 @@ documented (quite permissive)
 get_template_params(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1184)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1184?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/Writers.py#L1186)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1186?message=Update%20Docs)]
 </div>
 
  </div>
@@ -62,4 +62,4 @@ ___
 [Create New Examples](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Peeves/Doc/Writers/ObjectWriter.md) <br/>
 [Edit Template](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Peeves/Doc/Writers/ObjectWriter.md) or 
 [Create New Template](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Peeves/Doc/Writers/ObjectWriter.md) <br/>
-[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1152?message=Update%20Docs)
+[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/Writers.py#L1154?message=Update%20Docs)
