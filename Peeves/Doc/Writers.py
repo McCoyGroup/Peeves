@@ -864,13 +864,13 @@ class DocWriter(metaclass=abc.ABCMeta):
                             extra_fields[name] = [t]
             else:
                 if active_tag is None:
-                    description.append(line)
+                    description.append(line.strip())
                 else:
                     if active_tag in param_map:
                         param_map[active_tag]['description'].append(line)
                     else:
                         extra_fields[active_tag].append(line)
-        for v in param_map.items():
+        for v in param_map.values():
             v['description'] = "\n".join(v['description'])
         for k,v in extra_fields.items():
             extra_fields[k] = "\n".join(v)
