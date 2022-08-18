@@ -16,37 +16,53 @@ default_docs_ext: str
 __init__(self, objects, tree=None, out=None, docs_ext=None, writers=None, ignore_paths=None, description=None, verbose=True, template_directory=None, examples_directory=None, **extra_fields): 
 ```
 
-- `objects`: `Iterable[Any]`
-    >the objects to write out
-- `out`: `None | str`
-    >the directory in which to write the files (`None` means `sys.stdout`)
-- ``: `DispatchTable`
-    >writers
 - `ignore_paths`: `None | Iterable[str]`
     >a set of paths not to write (passed to the objects)
+- ``: `DispatchTable`
+    >writers
+- `out`: `None | str`
+    >the directory in which to write the files (`None` means `sys.stdout`)
+the directory in which to write the files (`None` means `sys.stdout`)
+- `objects`: `Iterable[Any]`
+    >the objects to write out
 
 <a id="Peeves.Peeves.Doc.DocWalker.DocWalker.resolve_spec" class="docs-object-method">&nbsp;</a>
 ```python
 resolve_spec(self, spec, *args, template_directory=None, examples_directory=None, extra_fields=None, **kwargs): 
 ```
 Resolves an object spec.
+- `:returns`: `_`
+    >
 - `spec`: `DocSpec`
     >object spec
-- `:returns`: `_`
-    >No description...
 
 <a id="Peeves.Peeves.Doc.DocWalker.DocWalker.write_object" class="docs-object-method">&nbsp;</a>
 ```python
 write_object(self, o, parent=None, **kwargs): 
 ```
 Writes a single object to file.
-        Provides type dispatching to a writer, basically.
-- `o`: `Any`
-    >the object we want to write
+Provides type dispatching to a writer, basically.
+- `:returns`: `None | str`
+    >t
+h
+e
+ 
+w
+r
+i
+t
+t
+e
+n
+ 
+f
+i
+l
+e
 - `parent`: `DocWriter`
     >the writer that was called right before this
-- `:returns`: `None | str`
-    >the written file
+- `o`: `Any`
+    >the object we want to write
 
 <a id="Peeves.Peeves.Doc.DocWalker.DocWalker.write_docs" class="docs-object-method">&nbsp;</a>
 ```python
@@ -54,7 +70,19 @@ write_docs(self):
 ```
 Walks through the objects supplied and writes them & their children to file
 - `:returns`: `list[str]`
-    >written files
+    >w
+r
+i
+t
+t
+e
+n
+ 
+f
+i
+l
+e
+s
 
 
 

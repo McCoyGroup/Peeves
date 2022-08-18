@@ -24,7 +24,7 @@ format(self):
 ```
 Formats an examples file
 - `:returns`: `_`
-    >No description...
+    >
 
 <a id="Peeves.Peeves.Doc.ExamplesParser.TestExamplesFormatter.format_jump_links" class="docs-object-method">&nbsp;</a>
 ```python

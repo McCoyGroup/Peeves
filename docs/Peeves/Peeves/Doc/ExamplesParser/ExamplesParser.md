@@ -19,10 +19,10 @@ find_setup(self, tree_iter):
 parse_tests(self, tree_iter): 
 ```
 Parses out the
-- `tree_iter`: `Any`
-    >No description...
 - `:returns`: `_`
-    >No description...
+    >
+- `tree_iter`: `Any`
+    >
 
 <a id="Peeves.Peeves.Doc.ExamplesParser.ExamplesParser.walk_tree" class="docs-object-method">&nbsp;</a>
 ```python

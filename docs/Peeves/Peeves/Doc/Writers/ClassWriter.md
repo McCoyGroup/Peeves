@@ -12,10 +12,10 @@ template_name: str
 load_methods(self, function_writer=None): 
 ```
 Loads the methods supported by the class
-- `function_writer`: `Any`
-    >No description...
 - `:returns`: `_`
-    >No description...
+    >
+- `function_writer`: `Any`
+    >
 
 <a id="Peeves.Peeves.Doc.Writers.ClassWriter.get_package_and_url" class="docs-object-method">&nbsp;</a>
 ```python
@@ -32,10 +32,10 @@ format_prop(self, k, o):
 get_template_params(self, function_writer=None): 
 ```
 
-- `function_writer`: `Any`
-    >No description...
 - `:returns`: `_`
-    >No description...
+    >
+- `function_writer`: `Any`
+    >
 
 
 

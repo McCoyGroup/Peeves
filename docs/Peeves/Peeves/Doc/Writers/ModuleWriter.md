@@ -18,7 +18,7 @@ get_template_params(self):
 ```
 Provides module specific parameters
 - `:returns`: `_`
-    >No description...
+    >
 
 <a id="Peeves.Peeves.Doc.Writers.ModuleWriter.get_members" class="docs-object-method">&nbsp;</a>
 ```python

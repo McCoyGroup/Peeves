@@ -20,9 +20,9 @@ identifier(self):
 check_should_write(self): 
 ```
 Determines whether the object really actually should be
-        documented (quite permissive)
+documented (quite permissive)
 - `:returns`: `_`
-    >No description...
+    >
 
 <a id="Peeves.Peeves.Doc.Writers.ObjectWriter.get_template_params" class="docs-object-method">&nbsp;</a>
 ```python
