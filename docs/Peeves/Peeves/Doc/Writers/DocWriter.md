@@ -4,12 +4,12 @@ A general writer class that writes a file based off a template and filling in ob
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
- ## <a class="collapse-link" data-toggle="collapse" href="#Details-2c512f" markdown="1"> Details</a> <a class="float-right" data-toggle="collapse" href="#Details-2c512f"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Details-249dfc" markdown="1"> Details</a> <a class="float-right" data-toggle="collapse" href="#Details-249dfc"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse " id="Details-2c512f" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse " id="Details-249dfc" markdown="1">
  `DocWriter` objects are intended to do two things
-1) they manage the parsing logic to extract documentable parameters from objects
-2) they manage the process of loading the appropriate template and inserting the parameters
+ 1. they manage the parsing logic to extract documentable parameters from objects
+ 2. they manage the process of loading the appropriate template and inserting the parameters
 This double-duty nature is likely to change in a future version of the package, being delegated to two
 subobjects that the writer then uses
  </div>
