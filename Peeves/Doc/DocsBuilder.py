@@ -17,6 +17,7 @@ class DocBuilder:
 
     defaults_root = os.path.dirname(__file__)
     default_templates_extension = 'templates'
+    default_repo_templates_extension = 'repo_templates'
     default_config_file="_config.yml"
 
     def __init__(self,
@@ -46,8 +47,9 @@ class DocBuilder:
         self.config = config
         self.target = target
         self.root = root
+        default = self.default_repo_templates_extension if 'gh_repo' in config else self.default_templates_extension
         self.template_dir = (
-            os.path.join(self.defaults_root, self.default_templates_extension) if templates_directory is None else (
+            os.path.join(self.defaults_root, default) if templates_directory is None else (
                 templates_directory
                 if os.path.isdir(templates_directory) else
                 os.path.join(self.defaults_root, templates_directory)
