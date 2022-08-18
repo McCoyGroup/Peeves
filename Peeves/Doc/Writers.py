@@ -90,6 +90,7 @@ class MarkdownFormatter:
             header_fmt=header_fmt,
             header=header,
             content=content,
+            name=name,
             show="show" if open else "",
             opener=self.collapse_opener.format(name=name) if include_opener else ""
         )
