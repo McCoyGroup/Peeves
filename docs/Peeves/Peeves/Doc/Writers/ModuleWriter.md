@@ -1,6 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.Writers.ModuleWriter">ModuleWriter</a>
 A writer targeted to a module object. Just needs to write the Module metadata.
 
+
+
 ### Properties and Methods
 ```python
 template_name: str

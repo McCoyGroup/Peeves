@@ -4,6 +4,8 @@ and a Markdown index file.
 
 Takes a set of objects & writers and walks through the objects, generating files on the way
 
+
+
 ### Properties and Methods
 ```python
 default_writers: OrderedDict
@@ -11,7 +13,7 @@ default_docs_ext: str
 ```
 <a id="Peeves.Peeves.Doc.DocWalker.DocWalker.__init__" class="docs-object-method">&nbsp;</a>
 ```python
-__init__(self, objects, tree=None, out=None, docs_ext=None, writers=None, ignore_paths=None, description=None, verbose=True, extra_fields=None, template_directory=None, examples_directory=None, strip_undocumented=False): 
+__init__(self, objects, tree=None, out=None, docs_ext=None, writers=None, ignore_paths=None, description=None, verbose=True, template_directory=None, examples_directory=None, **extra_fields): 
 ```
 
 - `objects`: `Iterable[Any]`
@@ -35,7 +37,7 @@ Resolves an object spec.
 
 <a id="Peeves.Peeves.Doc.DocWalker.DocWalker.write_object" class="docs-object-method">&nbsp;</a>
 ```python
-write_object(self, o, parent=None): 
+write_object(self, o, parent=None, **kwargs): 
 ```
 Writes a single object to file.
         Provides type dispatching to a writer, basically.

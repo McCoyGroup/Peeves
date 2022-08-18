@@ -1,6 +1,14 @@
 ## <a id="Peeves.Peeves.Doc.Writers.DocWriter">DocWriter</a>
 A general writer class that writes a file based off a template and filling in object template specs
 
+:details: `DocWriter` objects are intended to do two things
+1) they manage the parsing logic to extract documentable parameters from objects
+2) they manage the process of loading the appropriate template and inserting the parameters
+This double-duty nature is likely to change in a future version of the package, being delegated to two
+subobjects that the writer then uses
+
+
+
 ### Properties and Methods
 ```python
 template: str
@@ -10,13 +18,16 @@ default_template_base: str
 examples_header: str
 default_examples_root: str
 default_tests_root: str
+details_header: str
+preformat_field_handlers: dict
+protected_fields: set
 outStream: type
 blacklist_packages: set
 param_template: str
 ```
 <a id="Peeves.Peeves.Doc.Writers.DocWriter.__init__" class="docs-object-method">&nbsp;</a>
 ```python
-__init__(self, obj, out_file, tree=None, name=None, parent=None, spec=None, template_directory=None, examples_directory=None, parent_tests=None, template=None, root=None, ignore_paths=None, examples=None, tests=None, formatter=None, include_line_numbers=True, include_link_bars=True, extra_fields=None): 
+__init__(self, obj, out_file, tree=None, name=None, parent=None, spec=None, template_directory=None, examples_directory=None, parent_tests=None, template=None, root=None, ignore_paths=None, examples=None, tests=None, formatter=None, include_line_numbers=True, include_link_bars=True, extra_fields=None, preformat_field_handlers=None, ignore_missing=False, strip_undocumented=False, **ext): 
 ```
 
 - `obj`: `Any`

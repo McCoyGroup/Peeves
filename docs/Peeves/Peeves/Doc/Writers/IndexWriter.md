@@ -3,6 +3,8 @@ Writes an index file with all of the
 written documentation files.
 Needs some work to provide more useful info by default.
 
+
+
 ### Properties and Methods
 ```python
 template_name: str

@@ -1,6 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.Writers.ClassWriter">ClassWriter</a>
 A writer targeted to a class
 
+
+
 ### Properties and Methods
 ```python
 template_name: str

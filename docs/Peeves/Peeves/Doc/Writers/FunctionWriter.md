@@ -1,6 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.Writers.FunctionWriter">FunctionWriter</a>
 Writer to dump functions to file
 
+
+
 ### Properties and Methods
 ```python
 template_name: str

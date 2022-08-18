@@ -3,6 +3,8 @@ Writes general objects to file.
 Basically a fallback to support singletons and things
 of that nature.
 
+
+
 ### Properties and Methods
 ```python
 template_name: str
