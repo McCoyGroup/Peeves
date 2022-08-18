@@ -88,8 +88,8 @@ class DocWriter(metaclass=abc.ABCMeta):
     _template_cache = {}
     details_header = "## Details"
     preformat_field_handlers = {
-        'examples': lambda ex,self=None:self.examples_header+"\n" if (ex is not None and len(ex) > 0) else "",
-        'details': lambda ex,self=None:self.details_header+"\n" if (ex is not None and len(ex) > 0) else "",
+        'examples': lambda ex,self=None:self.examples_header+"\n"+ex if (ex is not None and len(ex) > 0) else "",
+        'details': lambda ex,self=None:self.details_header+"\n"+ex if (ex is not None and len(ex) > 0) else "",
     }
     protected_fields = {'id'}
     def __init__(self,
