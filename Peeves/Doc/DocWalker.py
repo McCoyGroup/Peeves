@@ -144,10 +144,10 @@ class DocWalker:
                  ignore_paths=None,
                  description=None,
                  verbose=True,
-                 extra_fields=None,
                  template_directory=None,
                  examples_directory=None,
-                 strip_undocumented=False
+                 strip_undocumented=False,
+                 **extra_fields
                  ):
         """
         :param objects: the objects to write out
