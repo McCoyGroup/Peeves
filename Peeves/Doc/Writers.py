@@ -147,8 +147,6 @@ class DocWriter(metaclass=abc.ABCMeta):
         :type formatter:
         """
 
-        print(obj, ext, spec, extra_fields)
-
         self.obj = obj
         self._id = None
         self._name = name
@@ -171,6 +169,8 @@ class DocWriter(metaclass=abc.ABCMeta):
 
         self.spec = {} if spec is None else spec
         self.extra_fields = dict(self.spec, **self.extra_fields)
+        if self._parent is not None:
+            self.extra_fields = dict(self._parent.extra_fields, **extra_fields)
         for k in self.extra_fields.keys() & set(self.protected_fields):
             del self.extra_fields[k]
 
