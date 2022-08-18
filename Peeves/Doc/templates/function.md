@@ -1,12 +1,11 @@
 # <a id="{id}">{name}</a>
 
-{description}
 
 ```python
 {name}{signature}: 
 ```
-{parameters}
+{description}{parameters} 
 
-{examples}
+{details}
 
-{tests}
+{examples}{tests}
