@@ -1036,7 +1036,7 @@ class FunctionWriter(DocWriter):
         mem_obj_pat = re.compile(" object at \w+>")
         signature = re.sub(mem_obj_pat, " instance>", signature)
         name = self.get_name()
-        param, descr = self.parse_doc(f.__doc__ if f.__doc__ is not None else '')
+        param, descr, fields = self.parse_doc(f.__doc__ if f.__doc__ is not None else '')
         descr = descr.strip()
         param = param.strip()
         if len(param) > 0:
@@ -1044,7 +1044,7 @@ class FunctionWriter(DocWriter):
         ex = self.load_examples()
         tests = self.get_test_markdown()
         lineno = self.get_lineno()
-        return {
+        return dict({
             'id': ident,
             'name' : name,
             'lineno' : lineno,
@@ -1053,7 +1053,7 @@ class FunctionWriter(DocWriter):
             'description' : descr,
             'examples' : ex if ex is not None else "",
             'tests': tests
-        }
+        }, **fields)
 
     def get_package_and_url(self):
         pkg, rest = self.identifier.split(".", 1)
