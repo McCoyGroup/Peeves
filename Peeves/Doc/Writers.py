@@ -71,14 +71,14 @@ class MarkdownFormatter:
     collapse_template="""
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-{header_fmt} <a class="collapse-link" data-toggle="collapse" href="#{name}" markdown="1">{header}</a> {opener}</a>
+{header_fmt} <a class="collapse-link" data-toggle="collapse" href="#{name}" markdown="1">{header}</a> {opener}
  </div>
  <div class="collapsible-section collapsible-section-body collapse {show}" id="{name}" markdown="1">
  {content}
  </div>
 </div>
 """
-    collapse_opener = '<a class="float-right" data-toggle="collapse" href="#{name}"><i class="fa fa-chevron-down"></i>'
+    collapse_opener = '<a class="float-right" data-toggle="collapse" href="#{name}"><i class="fa fa-chevron-down"></i></a>'
     def format_collapse_section(self, header, content, name=None, open=True, include_opener=True):
         header_fmt = ""
         while header.startswith("#"):
