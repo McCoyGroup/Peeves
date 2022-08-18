@@ -45,9 +45,9 @@ if [[ "$build_docs" == "true" ]]; then
   if [[ "$branch" == "master" ]]; then
     # build docs and push
     PYTHONPATH=/home python3 Peeves/ci/build_docs.py
-    cp -r Peeves/ci/docs Peeves/
-    rm -rf Peeves/ci/docs/Peeves
-    rm Peeves/ci/docs/_config.yml
+#    cp -r Peeves/ci/docs Peeves/
+#    rm -rf Peeves/ci/docs/Peeves
+#    rm Peeves/ci/docs/_config.yml
     cd Peeves
     git add -A
     git diff-index --quiet HEAD || git commit -m "Built out docs"
