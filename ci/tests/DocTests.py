@@ -41,9 +41,12 @@ class DocsTests(TestCase):
         }
         DocBuilder(**doc_config).build()
 
-    @debugTest
+    @validationTest
     def test_ParseExamples(self):
         parser = ExamplesParser.from_file(os.path.abspath(__file__))
         self.assertTrue(hasattr(parser.functions, 'items'))
         tests = TestExamplesFormatter.from_file(os.path.abspath(__file__))
         print(tests.format())
+
+    @debugTest
+    def test_FormatSpec(self):

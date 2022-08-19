@@ -1,8 +1,8 @@
 """
 Implements a set of writer classes that document python objects
 """
-import abc, os, sys, types, inspect, re, importlib, types
-import uuid
+import abc, os, sys, inspect, re, importlib, types
+import string, uuid, enum
 from collections import deque, defaultdict
 from .ExamplesParser import TestExamplesFormatter, ExamplesParser
 
@@ -95,6 +95,26 @@ class MarkdownFormatter:
             opener=self.collapse_opener.format(name=name) if include_opener else ""
         )
 
+class CustomFormatSpecDirective:
+    Link = "link"
+    Loop = "loop"
+    Item = "item"
+    Card = "card"
+
+
+class DocsTemplateFormatter(string.Formatter):
+    """
+    Provides a formatter for fields that allows for
+    the inclusion of standard Bootstrap HTML elements
+    alongside the classic formatting
+    """
+    def __init__(self, writer):
+        self.writer = writer
+    def parse_spec(self, format_spec: str):
+        ...
+    def format_field(self, value: Any, format_spec: str) -> str:
+        ...
+
 class DocWriter(metaclass=abc.ABCMeta):
     """
     A general writer class that writes a file based off a template and filling in object template specs
@@ -118,9 +138,10 @@ class DocWriter(metaclass=abc.ABCMeta):
     preformat_field_handlers = {
         'examples': lambda ex,self=None:self.collapse_wrap_if_repo(self.examples_header, ex, include_opener=False) if (ex is not None and len(ex) > 0) else "",
         'details': lambda ex,self=None:self.collapse_wrap_if_repo(self.details_header, ex, open=False) if (ex is not None and len(ex) > 0) else "",
+        'related': lambda objs,self=None:self.format_related_blob(objs)
     }
     protected_fields = {'id'}
-    default_fields = {'details':""}
+    default_fields = {'details':"", "related":[]}
     def __init__(self,
                  obj,
                  out_file,
@@ -230,11 +251,6 @@ class DocWriter(metaclass=abc.ABCMeta):
             raise NotImplementedError("currently no support for ignoring undocumented objects")
         self.formatter = MarkdownFormatter() if formatter is None else formatter
 
-    def collapse_wrap_if_repo(self, header, content, name=None, open=True, include_opener=True):
-        if 'gh_repo' in self.extra_fields:
-            return self.formatter.format_collapse_section(header, content, name=name, open=open, include_opener=include_opener)
-        else:
-            return header + "\n" + content
     @property
     def name(self):
         """
@@ -917,6 +933,23 @@ class DocWriter(metaclass=abc.ABCMeta):
             )
 
         return "\n".join(param), "\n".join(description), extra_fields
+
+    def collapse_wrap_if_repo(self, header, content, name=None, open=True, include_opener=True):
+        if 'gh_repo' in self.extra_fields:
+            return self.formatter.format_collapse_section(header, content, name=name, open=open, include_opener=include_opener)
+        else:
+            return header + "\n" + content
+
+    def resolve_object_url(self, o):
+        obj = self.resolve_object(o)
+        path = DocWriter.get_identifier(obj).split('.')
+        return self.formatter.format_link(path[-1], "/".join(path)+".md")
+    def format_related_blob(self, related):
+        links = [self.resolve_object_url(o) for o in related]
+        joiner = '<a>#9642;</a>'
+        header = "### See Also: "
+        return header + joiner.join(links)
+
 
 class ModuleWriter(DocWriter):
     """A writer targeted to a module object. Just needs to write the Module metadata."""
