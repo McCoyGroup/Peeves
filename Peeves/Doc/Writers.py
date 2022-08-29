@@ -3,19 +3,21 @@ Implements a set of writer classes that document python objects
 """
 import abc, os, sys, inspect, re, importlib, types
 from collections import deque, defaultdict
+from .TemplateEngine import ModuleTemplateHandler, ClassTemplateHandler
 from .ExamplesParser import TestExamplesFormatter, ExamplesParser
 
 __all__ = [
-    "DocWriter",
     "ModuleWriter",
     "ClassWriter",
     "FunctionWriter",
+    "MethodWriter",
     "ObjectWriter",
     "IndexWriter"
 ]
 
 
-class DocWriter(metaclass=abc.ABCMeta):
+
+class DocWriter(TemplateH):
     """
     A general writer class that writes a file based off a template and filling in object template specs
 
@@ -151,37 +153,6 @@ class DocWriter(metaclass=abc.ABCMeta):
             raise NotImplementedError("currently no support for ignoring undocumented objects")
         self.formatter = MarkdownFormatter() if formatter is None else formatter
 
-    class outStream:
-        def __init__(self, file, mode = 'w+', **kw):
-            self.file = file
-            self.file_handle = None
-            self.mode = mode
-            self.kw = kw
-        def __enter__(self):
-            if self.file_handle is None:
-                if isinstance(self.file, str):
-                    try:
-                        os.makedirs(os.path.dirname(self.file))
-                    except OSError:
-                        pass
-                    self.file_handle = open(self.file, self.mode, **self.kw)
-                else:
-                    self.file_handle = self.file
-            return self.file_handle
-        def __exit__(self, exc_type, exc_val, exc_tb):
-            if isinstance(self.file, str):
-                self.file_handle.close()
-            self.file_handle = None
-        def write(self, s):
-            with self as out:
-                out.write(s)
-            return self.file
-    @property
-    def out(self):
-        return self.outStream(self.target)
-    def write_string(self, txt):
-        return self.out.write(txt)
-
     def _clean_doc(self, doc):
         """
         Originally did a bunch of work. Now just an alias for `inspect.cleandoc`
@@ -193,30 +164,6 @@ class DocWriter(metaclass=abc.ABCMeta):
         """
         return inspect.cleandoc(doc)
 
-    def get_package_and_url(self):
-        """
-        Returns package name and corresponding URL for the object
-        being documented
-
-        :return:
-        :rtype:
-        """
-        pkg_split = self.identifier.split(".", 1)
-        if len(pkg_split) == 1:
-            pkg = pkg_split[0]
-            rest = ""
-        elif len(pkg_split) == 0:
-            pkg = ""
-            rest = "Not.A.Real.Package"
-        else:
-            pkg, rest = pkg_split
-        if len(rest) == 0:
-            file_url = "__init__.py"
-        else:
-            file_url = rest.replace(".", "/") + "/__init__.py"
-        if 'url_base' in self.extra_fields:
-            file_url = self.extra_fields['url_base'] + "/" + file_url
-        return pkg, file_url
     @property
     def package_path(self):
         return self.get_package_and_url()
@@ -547,7 +494,6 @@ class DocWriter(metaclass=abc.ABCMeta):
         joiner = '<a>#9642;</a>'
         header = "### See Also: "
         return header + joiner.join(links)
-
 
 class ModuleWriter(DocWriter):
     """A writer targeted to a module object. Just needs to write the Module metadata."""

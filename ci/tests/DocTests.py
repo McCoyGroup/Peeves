@@ -10,7 +10,7 @@ class DocsTests(TestCase):
     Sample documentation generator tests
     """
 
-    @validationTest
+    @debugTest
     def test_PeevesDoc(self):
         """
         Builds sample documentation for the Peeves package
@@ -19,26 +19,33 @@ class DocsTests(TestCase):
         :rtype:
         """
 
-        import os
+        import os, tempfile
 
         root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-        target = os.path.expanduser("~/Desktop/docs")
+        # with tempfile.TemporaryDirectory() as td:
+        td = '/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/tmpo3b4ztrq/'
+        target = os.path.join(td, "docs")
         doc_config = {
             "config": {
-                "theme": "McCoyGroup/finx",
                 "title": "Peeves",
-                "path": "",
-                "url": "https://mccoygrp.github.io/Peeves/"
+                "path": "Peeves",
+                "url": "https://mccoygroup.github.io/Peeves/",
+                'url_base': "Peeves",
+                "gh_username": "McCoyGroup",
+                "gh_repo": "Peeves",
+                "gh_branch": "master",
+                "footer": "Brought to you by the McCoy Group"
             },
             "packages": [
                 {
                     "id": "Peeves",
-                    'tests_root': os.path.join(root, "ci", "tests")
+                    'tests_root': os.path.join(root, "ci", "tests"),
+                    'details': ""
                 }
             ],
             "root": root,
             "target": target,
-            'readme': os.path.join(root, "README.md")
+            "readme": os.path.join(root, "README.md")
         }
         DocBuilder(**doc_config).build()
 
@@ -49,7 +56,7 @@ class DocsTests(TestCase):
         tests = TestExamplesFormatter.from_file(os.path.abspath(__file__))
         print(tests.format())
 
-    @debugTest
+    @validationTest
     def test_FormatSpec(self):
 
         fmt = inspect.cleandoc("""

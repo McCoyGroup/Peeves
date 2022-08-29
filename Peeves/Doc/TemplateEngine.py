@@ -1,18 +1,43 @@
-import sys, os, abc, enum, types, string
+import sys, os, abc, enum, types, string, inspect
 import ast, functools, re, fnmatch, collections
+import typing
 from typing import *
 
 from .ObjectWalker import *
 
 __all__ = [
     "TemplateFormatter",
+    "FormatDirective",
     "TemplateFormatDirective",
-
+    "TemplateOps",
+    "TemplateEngine",
+    "ResourceLocator",
+    "TemplateResourceExtractor",
+    "TemplateWalker",
+    "TemplateHandler",
+    "ModuleTemplateHandler",
+    "ClassTemplateHandler",
+    "FunctionTemplateHandler",
+    "MethodTemplateHandler",
+    "ObjectTemplateHandler",
+    "IndexTemplateHandler"
 ]
 
 class TemplateOps:
     @staticmethod
-    def loop(template: str, *args, slots=None, joiner="", formatter=None):
+    def loop(caller: typing.Callable, *args, joiner="", formatter=None, **kwargs):
+        if len(kwargs) == 0:
+            res = [caller(*a) for a in zip(*args)]
+        else:
+            res = [
+                caller(*a, **{k:v for k,v in zip(kwargs.keys(), kv)})
+                for a,kv in zip(zip(*args), zip(kwargs.values()))
+            ]
+        if joiner is not None:
+            res = joiner.join(res)
+        return res
+    @staticmethod
+    def loop_template(template:str, *args, slots=None, joiner="", formatter=None):
         if slots is not None:
             return joiner.join(
                 template.format_map({s: v for s, v in zip(slots, a)}) for a in zip(*args)
@@ -23,6 +48,8 @@ class TemplateOps:
             )
     @staticmethod
     def join(*args, joiner=" ", formatter=None):
+        if len(args) == 1 and not isinstance(args[0], str):
+            args = args[0]
         return joiner.join(args)
     @classmethod
     def load(cls, template, formatter=None):
@@ -33,7 +60,7 @@ class TemplateOps:
             raise ValueError("`{}` can't be `None`".format('formatter'))
         return formatter.format(template, *args, **kwargs)
     @classmethod
-    def nonemptty(cls, data, formatter=None):
+    def nonempty(cls, data, formatter=None):
         return data is not None and len(data) > 0
     @classmethod
     def wrap(cls, fn):
@@ -41,23 +68,14 @@ class TemplateOps:
         def f(*args, formatter=None, **kwargs):
             return fn(*args, **kwargs)
         return f
+    @staticmethod
+    def cleandoc(txt, formatter=None):
+        return inspect.cleandoc(txt)
 
-class TemplateFormatDirective(enum.Enum):
-    Loop = "loop", TemplateOps.loop
-    Join = "join", TemplateOps.join
-    Load = "load", TemplateOps.load
-    Apply = "apply", TemplateOps.apply
-    NonEmpty = "nonempty", TemplateOps.nonempty
-
-    Str = "str", TemplateOps.wrap(str)
-    Int = "int", TemplateOps.wrap(int)
-    Float = "float", TemplateOps.wrap(float)
-    Round = "round", TemplateOps.wrap(round)
-    Len = "len", TemplateOps.wrap(len)
-    Dict = "dict", TemplateOps.wrap(dict)
-    List = "list", TemplateOps.wrap(list)
-    Tuple = "tuple", TemplateOps.wrap(tuple)
-    Set = "set", TemplateOps.wrap(set)
+class FormatDirective(enum.Enum):
+    """
+    Base class for directives -- shouldn't be an enum really...
+    """
     def __init__(self, name, callback=None):
         self.key = name
         if isinstance(callback, str):
@@ -79,6 +97,32 @@ class TemplateFormatDirective(enum.Enum):
             cls._keymap_dict = {c.key:c for c in cls}
             k = cls._keymap_dict
         return k[name]
+    @classmethod
+    def extend(cls, *others):
+        vals = {
+            o.name:o.value
+            for c in (cls,) + others
+            for o in c
+        }
+        return FormatDirective(cls.__name__, vals)
+
+class TemplateFormatDirective(FormatDirective):
+    Loop = "loop", TemplateOps.loop
+    Join = "join", TemplateOps.join
+    Load = "load", TemplateOps.load
+    Apply = "apply", TemplateOps.apply
+    NonEmpty = "nonempty", TemplateOps.nonempty
+    CleanDoc = "cleandoc", TemplateOps.cleandoc
+
+    Str = "str", TemplateOps.wrap(str)
+    Int = "int", TemplateOps.wrap(int)
+    Float = "float", TemplateOps.wrap(float)
+    Round = "round", TemplateOps.wrap(round)
+    Len = "len", TemplateOps.wrap(len)
+    Dict = "dict", TemplateOps.wrap(dict)
+    List = "list", TemplateOps.wrap(list)
+    Tuple = "tuple", TemplateOps.wrap(tuple)
+    Set = "set", TemplateOps.wrap(set)
 
 class TemplateFormatterError(ValueError):
     ...
@@ -302,6 +346,8 @@ class ResourcePathLocator:
             else:
                 s = s.union(dirs)
         return s
+    def directories(self):
+        return [self.resource_path(d, "") for d in self.path]
 class SubresourcePathLocator(ResourcePathLocator):
     def __init__(self, roots, extension):
         self.ext = extension
@@ -310,14 +356,20 @@ class SubresourcePathLocator(ResourcePathLocator):
         return os.path.join(d, self.ext, f)
 class ResourceLocator:
     def __init__(self,
-                 locators:Iterable[Union[ResourcePathLocator,Iterable[str],Tuple[Iterable[str], str]]]
+                 locators:Iterable[Union[ResourcePathLocator,Iterable[str], Tuple[Iterable[str], Union[str, Iterable[str]]]]]
                  ):
-        self.locators = [
-            s if isinstance(s, ResourcePathLocator)
-            else ResourcePathLocator(s) if isinstance(s[0], str)
-            else SubresourcePathLocator(*s)
-            for s in locators
-        ]
+
+        self.locators = []
+        for s in locators:
+            if isinstance(s, ResourcePathLocator):
+                s = [s]
+            elif isinstance(s[0], str):
+                s = [ResourcePathLocator(s)]
+            elif isinstance(s[1], str):
+                s = [SubresourcePathLocator(*s)]
+            else:
+                s = [SubresourcePathLocator(s[0], e) for e in s[1]]
+            self.locators.extend(s)
     def locate(self, identifier):
         for l in self.locators:
             res = l.locate(identifier)
@@ -329,10 +381,17 @@ class ResourceLocator:
             if isinstance(filter_pattern, str):
                 try:
                     filter_pattern = re.compile(filter_pattern)
-                except ValueError:
+                except (re.error, ValueError):
                     filter_pattern = re.compile(fnmatch.translate(filter_pattern))
             paths = {p for p in paths if filter_pattern.match(p)}
         return paths
+    def directories(self):
+        return {r for l in self.locators for r in l.directories()}
+    def __repr__(self):
+        return "{}({})".format(
+            type(self).__name__,
+            self.directories()
+        )
 
 class TemplateEngine:
     """
@@ -341,10 +400,12 @@ class TemplateEngine:
     any writing of files
     """
 
+    formatter_class = TemplateFormatter
     def __init__(self,
                  locator:ResourceLocator,
                  template_pattern="*.*",
                  ignore_missing=False,
+                 formatter_class=None,
                  ignore_paths=()
                  ):
         self.locator = locator
@@ -352,7 +413,9 @@ class TemplateEngine:
             k:self.locator.locate(k)
             for k in self.locator.paths(filter_pattern=template_pattern)
         }
-        self.formatter = TemplateFormatter(self.templates)
+        if formatter_class is None:
+            formatter_class = self.formatter_class
+        self.formatter = formatter_class(self.templates)
         self.ignore_missing = ignore_missing
         self.ignore_paths = ignore_paths
 
@@ -409,23 +472,30 @@ class TemplateHandler(ObjectHandler):
     extension = ".md"
     def __init__(self,
                  obj,
-                 out_file,
-                 engine:TemplateEngine,
+                 *,
+                 out=None,
+                 engine:TemplateEngine=None,
                  root=None,
                  **extra_fields
                  ):
         super().__init__(obj, **extra_fields)
-        if out_file is None:
-            out_file = sys.stdout
-        elif isinstance(out_file, str) and os.path.isdir(out_file):
+        if out is None:
+            out = sys.stdout
+        elif isinstance(out, str) and os.path.isdir(out):
             if root is None:
-                root = out_file
-            out_file = os.path.join(root, *self.identifier.split("."))+self.extension
-        self.target = out_file
+                root = out
+            out = os.path.join(root, *self.identifier.split(".")) + self.extension
+        self.target = out
         if root is None:
             root = os.path.dirname(self.target)
         self.root = root
         self.engine = engine
+
+        test_path = os.path.join(*self.identifier.split(".")) + ".md"
+        if self.engine.locator.locate(test_path) is not None:
+            self.template = test_path
+        if self.template is None:
+            raise ValueError("{}: template can't be None".format(type(self).__name__))
 
     def template_params(self, **kwargs):
         base_parms = self.extra_fields.copy()
@@ -478,7 +548,6 @@ class TemplateHandler(ObjectHandler):
                     out_split = list(reversed(out_split))
                     root_depth = len(root_split)
                     out_url = "/".join(out_split[root_depth:])
-                    # print(os.path.split(out_file), root_depth)
                 else:
                     out_url = "/".join(os.path.split(out_file)[-len(os.path.split(file_url))])
                 params['file'] = out_file
@@ -510,6 +579,53 @@ class TemplateHandler(ObjectHandler):
         """
         return self.identifier.split(".", 1)[0] not in self.blacklist_packages
 
+class TemplateResourceExtractor(ResourceLocator):
+    def path_extension(self, handler:TemplateHandler):
+        """
+        Provides the default examples path for the object
+        :return:
+        :rtype:
+        """
+        splits = handler.identifier.split(".")
+        return os.path.join(*splits) + ".md"
+    resource_keys = []
+    resource_attrs = []
+    def get_resource(self, handler:TemplateHandler, keys=None, attrs=None):
+        if keys is None:
+            keys = self.resource_keys
+        if attrs is None:
+            attrs = self.resource_attrs
+        for k in keys:
+            res = handler[k]
+            if res is not None:
+                res_file = self.locate(res)
+                if res_file is not None:
+                    res = res
+                break
+        else:
+            for a in attrs:
+                res = getattr(handler.obj, a, None)
+                if res is not None:
+                    res_file = self.locate(res)
+                    if res_file is not None:
+                        res = res
+                    break
+            else:
+                res = self.locate(self.path_extension(handler))
+        return res
+    def load(self, handler:TemplateHandler):
+        """
+        Loads examples for the stored object if provided
+        :return:
+        :rtype:
+        """
+
+        resource = self.get_resource(handler)
+        if os.path.isfile(resource):
+            with open(resource) as f:
+                resource = f.read()
+        return resource
+
 class ModuleTemplateHandler(TemplateHandler):
     template = 'module.md'
 class ClassTemplateHandler(TemplateHandler):
@@ -540,12 +656,15 @@ class TemplateWalker(ObjectWalker):
         return collections.OrderedDict((
             ((str, types.ModuleType), self.module_handler),
             ((type,), self.class_handler),
-            ((types.FunctionType,), self.function_handler)
+            ((types.FunctionType,), self.function_handler),
+            (None, self.object_handler)
         ))
 
-    def get_handler(self, *args, tree=None, **kwargs):
+    def get_handler(self, obj, *, out=None, engine=None, tree=None, **kwargs):
         return super().get_handler(
-            *(args + (self.out_dir, self.engine)),
+            obj,
+            out=self.out_dir,
+            engine=self.engine,
             tree=tree,
             **kwargs
         )
@@ -569,8 +688,8 @@ class TemplateWalker(ObjectWalker):
         files = [self.visit(o) for o in objects]
         files = [f for f in files if f is not None]
         w = self.index_handler(files,
-                               out_file,
-                               self.engine,
+                               out=out_file,
+                               engine=self.engine,
                                root=self.out_dir,
                                extra_fields=self.extra_fields
                                )

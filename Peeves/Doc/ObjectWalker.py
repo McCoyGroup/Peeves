@@ -58,6 +58,8 @@ class MethodDispatch(collections.OrderedDict):
                 return any(hasattr(obj, kk) for kk in k)
             elif isinstance(k, tuple):
                 return any(kk(obj) for kk in k)
+            elif k is None:
+                return True
             else:
                 return k(obj)
     def method_dispatch(self, obj, *args, **kwargs):
@@ -110,14 +112,18 @@ class MethodDispatch(collections.OrderedDict):
         super().__setitem__(key, value)
 
 class ObjectHandler(metaclass=abc.ABCMeta):
+    protected_fields = set()
+    default_fields = {}
     def __init__(self,
                  obj,
+                 *,
                  spec=None,
                  tree=None,
                  name=None,
                  parent=None,
-                 walker=None,
-                 **extra_fields
+                 walker:'ObjectWalker'=None,
+                 extra_fields=None,
+                 **kwargs
                  ):
 
         self.walker = walker
@@ -127,10 +133,30 @@ class ObjectHandler(metaclass=abc.ABCMeta):
         self._parent = parent
         self._pobj = None
         self._chobj = None
-        self.spec = spec
+        self.spec = {} if spec is None else spec
         self.tree = tree
 
+        if extra_fields is None:
+            extra_fields = kwargs
+        else:
+            extra_fields = dict(kwargs, **extra_fields)
+
         self.extra_fields = extra_fields
+        for k in self.default_fields.keys() - self.extra_fields.keys():
+            self.extra_fields[k] = self.default_fields[k]
+        for k in self.extra_fields.keys() & set(self.protected_fields):
+            del self.extra_fields[k]
+
+
+    def __getitem__(self, item):
+        return self.resolve_key(item)
+    def resolve_key(self, key, default=None):
+        if key in self.spec:
+            return self.spec.get(key, default)
+        elif key in self.extra_fields:
+            return self.extra_fields.get(key, default)
+        else:
+            return default
 
     @property
     def name(self):
@@ -188,7 +214,6 @@ class ObjectHandler(metaclass=abc.ABCMeta):
 
     @classmethod
     def get_identifier(cls, o):
-
         try:
             pkg = o.__module__
         except AttributeError:
@@ -362,10 +387,11 @@ class ObjectWalker:
         if handlers is None:
             handlers = {}
         if not isinstance(handlers, MethodDispatch):
+            fallback_handler = ObjectHandler if None not in self.default_handlers else self.default_handlers[None]
             if hasattr(handlers, 'items'):
-                handlers = MethodDispatch(handlers.items(), default=ObjectHandler)
+                handlers = MethodDispatch(handlers.items(), default=fallback_handler)
             else:
-                handlers = MethodDispatch(handlers, default=ObjectHandler)
+                handlers = MethodDispatch(handlers, default=fallback_handler)
         for k, v in self._initial_handlers.items():
             if k not in handlers:
                 handlers[k] = v
@@ -390,10 +416,13 @@ class ObjectWalker:
         writers[self.spec] = self.resolve_spec
         return writers
 
-    def get_handler(self, *args, tree=None, **kwargs):
-        return self.handlers(*args,
-                                **dict(self.extra_fields, tree=self.tree, **kwargs)
-                                )
+    def get_handler(self, obj, *, tree=None, walker=None, cls=None, **kwargs):
+        if cls is not None:
+            return cls(obj, **dict(self.extra_fields, walker=self, tree=self.tree, **kwargs))
+        else:
+            return self.handlers(obj,
+                                 **dict(self.extra_fields, walker=self, tree=self.tree, **kwargs)
+                                 )
     @staticmethod
     def resolve_object(o):
         """
@@ -437,7 +466,7 @@ class ObjectWalker:
 
         return o
 
-    def resolve_spec(self, spec, *args, **kwargs):
+    def resolve_spec(self, spec, **kwargs):
         """
         Resolves an object spec.
 
@@ -450,11 +479,7 @@ class ObjectWalker:
         # for the moment we only reolve using the `id` parameter
         oid = spec['id']
         o = self.resolve_object(oid)
-        return self.get_handler(o,
-                                *args,
-                                spec=spec,
-                                **kwargs
-                                )
+        return self.get_handler(o, spec=spec, **kwargs)
 
 
     def visit(self, o, parent=None, **kwargs):
@@ -481,11 +506,7 @@ class ObjectWalker:
         else:
             pid = None
 
-        handler = self.get_handler(o,
-                                   parent=pid,
-                                   **kwargs
-                                   )
-
+        handler = self.get_handler(o, parent=pid, **kwargs)
         oid = handler.identifier
         if oid not in self.tree:
             res = handler.handle()

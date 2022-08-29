@@ -1,9 +1,8 @@
 
 import re, uuid
 from .TemplateEngine import *
-from .TemplateEngine import TemplateOps
 
-class MarkdownFormatter:
+class MarkdownOps:
     @classmethod
     def format_item(self, item, item_level = 0):
         return "{}- {}".format('  ' * (item_level + 1), item)
@@ -109,16 +108,19 @@ class MarkdownFormatter:
         )
         return self.format_grid(links, boxed=boxed)
 
-class MarkdownFormatDirective(TemplateFormatDirective):
-    Link = "link", TemplateOps.wrap(MarkdownFormatter.format_link)
-    ObjLink = "objlink", TemplateOps.wrap(MarkdownFormatter.format_obj_link)
-    Item = "item", TemplateOps.wrap(MarkdownFormatter.format_item)
-    Code = "code", TemplateOps.wrap(MarkdownFormatter.format_code_block)
-    Quote = "quote", TemplateOps.wrap(MarkdownFormatter.format_quote_block)
+class MarkdownFormatDirective(FormatDirective):
+    Link = "link", TemplateOps.wrap(MarkdownOps.format_link)
+    ObjLink = "objlink", TemplateOps.wrap(MarkdownOps.format_obj_link)
+    Item = "item", TemplateOps.wrap(MarkdownOps.format_item)
+    Code = "code", TemplateOps.wrap(MarkdownOps.format_code_block)
+    Quote = "quote", TemplateOps.wrap(MarkdownOps.format_quote_block)
     # Card = "card", TemplateOps.wrap(MarkdownFormatter.format_card)
     # Alert = "alert", TemplateOps.wrap(MarkdownFormatter.format_alert)
-    Collapse = "collapse", TemplateOps.wrap(MarkdownFormatter.format_collapse_section)
-    Grid = "grid", TemplateOps.wrap(MarkdownFormatter.format_grid)
-    Split = "split", TemplateOps.wrap(MarkdownFormatter.split)
-    ObjLinkGrid = "objlink_grid", TemplateOps.wrap(MarkdownFormatter.format_obj_link_grid)
+    Collapse = "collapse", TemplateOps.wrap(MarkdownOps.format_collapse_section)
+    Grid = "grid", TemplateOps.wrap(MarkdownOps.format_grid)
+    Split = "split", TemplateOps.wrap(MarkdownOps.split)
+    ObjLinkGrid = "objlink_grid", TemplateOps.wrap(MarkdownOps.format_obj_link_grid)
+MarkdownFormatDirective = TemplateFormatDirective.extend(MarkdownFormatDirective)
 
+class MarkdownTemplateFormatter(TemplateFormatter):
+    directives = MarkdownFormatDirective
