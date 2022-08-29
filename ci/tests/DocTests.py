@@ -1,3 +1,4 @@
+import inspect
 
 from Peeves.TestUtils import *
 from unittest import TestCase
@@ -41,9 +42,28 @@ class DocsTests(TestCase):
         }
         DocBuilder(**doc_config).build()
 
-    @debugTest
+    @validationTest
     def test_ParseExamples(self):
         parser = ExamplesParser.from_file(os.path.abspath(__file__))
         self.assertTrue(hasattr(parser.functions, 'items'))
         tests = TestExamplesFormatter.from_file(os.path.abspath(__file__))
         print(tests.format())
+
+    @debugTest
+    def test_FormatSpec(self):
+
+        fmt = inspect.cleandoc("""
+        ### My Data
+        
+        {$:b=loop(add_temp, l1, l2, slots=['l1', 'l2'])}
+        {$:len(b) ** 2}
+        
+        
+        """)
+
+
+        print("",
+              TemplateFormatter().format(fmt, param=2, l1=[1, 2, 3], l2=[4, 5, 6], add_temp='{l1} + {l2}', p1=1, p2=0),
+              sep="\n"
+        )
+

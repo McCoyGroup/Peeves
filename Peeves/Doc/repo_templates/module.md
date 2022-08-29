@@ -5,12 +5,16 @@
     
 {description}
 
-{members}
+{objlink_grid$:members}
 
 {long_description}
 
-{examples}
+{$:
+    "---" 
+    if nonempty(tests) or nonempty(examples) 
+    else ""}
 
+{$:{collapse$:"---\\n ## Examples",examples} if nonempty(tests) else """}
 {tests}
 
 ___

@@ -16,3 +16,5 @@ from .Writers import *; from .Writers import __all__ as exposed
 __all__ += exposed
 from .ExamplesParser import *; from .ExamplesParser import __all__ as exposed
 __all__ += exposed
+from .TemplateEngine import *; from .TemplateEngine import __all__ as exposed
+__all__ += exposed

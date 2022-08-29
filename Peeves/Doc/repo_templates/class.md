@@ -5,9 +5,12 @@
 
 {description}{parameters}
 
+<!--- Mini-API that will produce Bootstrap elements --->
+{collapse$:{{props}}{{methods}}, name="methods"))}
+
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
- 
+
 ### <a class="collapse-link" data-toggle="collapse" href="#methods">Methods and Properties</a> <a class="float-right" data-toggle="collapse" href="#methods"><i class="fa fa-chevron-down"></i></a>
 
  </div>

@@ -2,7 +2,6 @@
 Implements a set of writer classes that document python objects
 """
 import abc, os, sys, inspect, re, importlib, types
-import string, uuid, enum
 from collections import deque, defaultdict
 from .ExamplesParser import TestExamplesFormatter, ExamplesParser
 
@@ -15,105 +14,6 @@ __all__ = [
     "IndexWriter"
 ]
 
-class MarkdownFormatter:
-
-    def format_item(self, item, item_level = 0):
-        return "{}- {}".format('  ' * (item_level + 1), item)
-    def format_link(self, alt, link):
-        return '[{}]({})'.format(alt, link)
-    def format_obj_link(self, spec):
-        return self.format_link(spec.split('.')[-1], spec.replace('.', '/') + ".md")
-    def format_inline_code(self, arg):
-        """
-
-        :param arg:
-        :type arg: str
-        :return:
-        :rtype:
-        """
-        nticks = arg.count("`")
-        fence = "`"*(nticks+1)
-        return fence + arg + fence
-    def format_code_block(self, arg):
-        """
-
-        :param arg:
-        :type arg: str
-        :return:
-        :rtype:
-        """
-        nticks = arg.count("`")
-        fence = "`"*(nticks+3)
-        return fence + "python\n" + arg + "\n" + fence
-
-    def format_quote_block(self, arg):
-        """
-
-        :param arg:
-        :type arg: str
-        :return:
-        :rtype:
-        """
-
-        return ">" + arg.replace("\n", "\n>")
-
-    link_bar_template='<div class="container alert alert-secondary bg-light">\n{links}\n</div>'
-    link_row_template='  <div class="row">\n{cols}\n</div>'
-    link_item_template='   <div class="col" markdown="1">\n{item}   \n</div>'
-    def format_grid_box(self, link_grid):
-        return self.link_bar_template.format(links="\n".join(
-            self.link_row_template.format(
-                cols="\n".join(self.link_item_template.format(item=item) for item in row)
-            )
-            for row in link_grid if len(row) > 0
-        ))
-
-    collapse_template="""
-<div class="collapsible-section">
- <div class="collapsible-section collapsible-section-header" markdown="1">
-{header_fmt} <a class="collapse-link" data-toggle="collapse" href="#{name}" markdown="1">{header}</a> {opener}
- </div>
- <div class="collapsible-section collapsible-section-body collapse {show}" id="{name}" markdown="1">
- {content}
- </div>
-</div>
-"""
-    collapse_opener = '<a class="float-right" data-toggle="collapse" href="#{name}"><i class="fa fa-chevron-down"></i></a>'
-    def format_collapse_section(self, header, content, name=None, open=True, include_opener=True):
-        header_fmt = ""
-        while header.startswith("#"):
-            header_fmt += "#"
-            header = header[1:]
-        if name is None:
-            name = re.sub("\W", "", header) + "-" + str(uuid.uuid4())[:6]
-        return self.collapse_template.format(
-            header_fmt=header_fmt,
-            header=header,
-            content=content,
-            name=name,
-            show="show" if open else "",
-            opener=self.collapse_opener.format(name=name) if include_opener else ""
-        )
-
-class CustomFormatSpecDirective:
-    Link = "link"
-    Loop = "loop"
-    Item = "item"
-    Card = "card"
-
-
-class DocsTemplateFormatter(string.Formatter):
-    """
-    Provides a formatter for fields that allows for
-    the inclusion of standard Bootstrap HTML elements
-    alongside the classic formatting
-    """
-    def __init__(self, writer):
-        self.writer = writer
-    def parse_spec(self, format_spec: str):
-        ...
-    def format_field(self, value: Any, format_spec: str) -> str:
-        ...
 
 class DocWriter(metaclass=abc.ABCMeta):
     """
@@ -251,33 +151,6 @@ class DocWriter(metaclass=abc.ABCMeta):
             raise NotImplementedError("currently no support for ignoring undocumented objects")
         self.formatter = MarkdownFormatter() if formatter is None else formatter
 
-    @property
-    def name(self):
-        """
-        Returns the name (not full identifier) of the object
-        being documented
-
-        :return:
-        :rtype:
-        """
-        return self.get_name()
-    def get_name(self):
-        """
-        Returns the name the object will have in its documentation page
-
-        :return:
-        :rtype:
-        """
-        if self._name is not None:
-            name = self._name
-        else:
-            try:
-                name = self.obj.__name__
-            except AttributeError:
-                name = "<{} Instance>".format(type(self.obj).__name__)
-
-        return name
-
     class outStream:
         def __init__(self, file, mode = 'w+', **kw):
             self.file = file
@@ -309,23 +182,6 @@ class DocWriter(metaclass=abc.ABCMeta):
     def write_string(self, txt):
         return self.out.write(txt)
 
-    def template_params(self, **kwargs):
-        base_parms = self.extra_fields.copy()
-        base_parms.update(self.get_template_params(**kwargs))
-        if hasattr(self.obj, "__doc_fields__"):
-            base_parms.update(self.obj.__doc_fields__)
-        return base_parms
-
-    @abc.abstractmethod
-    def get_template_params(self, **kwargs):
-        """
-        Returns the parameters that should be inserted into the template
-
-        :return:
-        :rtype:
-        """
-        raise NotImplementedError("abstract base class")
-
     def _clean_doc(self, doc):
         """
         Originally did a bunch of work. Now just an alias for `inspect.cleandoc`
@@ -336,85 +192,6 @@ class DocWriter(metaclass=abc.ABCMeta):
         :rtype: str
         """
         return inspect.cleandoc(doc)
-
-    def format(self, template=None):
-        """
-        Formats the documentation Markdown from the supplied template
-
-        :param template:
-        :type template:
-        :return:
-        :rtype:
-        """
-        if template is None:
-            template = self.template
-        params = self.template_params()
-        out_file = self.target
-        if isinstance(out_file, str):
-            pkg, file_url = self.package_path
-            params['package_name'] = pkg
-            params['file_url'] = file_url
-            params['package_url'] = os.path.dirname(file_url)
-
-            if self.root is not None:
-                root_split = []
-                root = self.root
-                while root and (root != "/" and root != os.path.pathsep):
-                    root, base = os.path.split(root)
-                    root_split.append(base)
-                out_split = []
-                out = out_file
-                while out and (out != "/" and out != os.path.pathsep):
-                    out, base = os.path.split(out)
-                    out_split.append(base)
-                out_split = list(reversed(out_split))
-                root_depth = len(root_split)
-                out_url = "/".join(out_split[root_depth:])
-                # print(os.path.split(out_file), root_depth)
-            else:
-                out_url = "/".join(os.path.split(out_file)[-len(os.path.split(file_url))])
-            params['file'] = out_file
-            params['url'] = out_url
-
-        for k in self.preformat_field_handlers.keys() & params.keys():
-            params[k] = self.preformat_field_handlers[k](params[k], self=self)
-        try:
-            form_text = template.format_map(params if not self.ignore_missing else defaultdict(str, params))
-        except KeyError as e:
-            raise ValueError("{} ({}): template needs key {}".format(
-                type(self).__name__,
-                self.obj,
-                e.args[0]
-            ))
-        except IndexError as e:
-            raise ValueError("{} ({}): template index {} out of range...".format(
-                type(self).__name__,
-                self.obj,
-                e.args[0]
-            ))
-        return form_text
-
-    blacklist_packages = {"builtins", 'numpy', 'scipy', 'matplotlib'}
-    def check_should_write(self):
-        """
-        Determines whether the object really actually should be
-        documented (quite permissive)
-        :return:
-        :rtype:
-        """
-        return self.identifier.split(".", 1)[0] not in self.blacklist_packages
-    def write(self, template=None):
-        """
-        Writes the actual docs file
-
-        :param template:
-        :type template:
-        :return:
-        :rtype:
-        """
-        if self.check_should_write():
-            if self.target not in self.ignore_paths:
-                return self.write_string(self.format(template=template))
 
     def get_package_and_url(self):
         """
@@ -457,30 +234,7 @@ class DocWriter(metaclass=abc.ABCMeta):
         """
         with open(file) as f:
             return f.read()
-    @classmethod
-    def get_identifier(cls, o):
 
-        try:
-            pkg = o.__module__
-        except AttributeError:
-            pkg = ""
-
-        try:
-            n = o.__qualname__
-        except AttributeError:
-            try:
-                n = o.__name__
-            except AttributeError:
-                n = type(o).__name__
-
-        qn = pkg + ('.' if pkg != "" else "") + n
-
-        return qn
-    @property
-    def identifier(self):
-        if self._id is None:
-            self._id = self.get_identifier(self.obj)
-        return self._id
     def get_lineno(self):
         try:
             lineno = 1+inspect.findsource(self.obj)[1] if self.include_line_numbers else ""
@@ -683,163 +437,7 @@ class DocWriter(metaclass=abc.ABCMeta):
         # print(self.name, len(formatted))
         return formatted
 
-    @property
-    def parent(self):
-        """
-        Returns the parent object for docs purposes
 
-        :return:
-        :rtype:
-        """
-        if self._pobj is None:
-            self._pobj = self.resolve_parent()
-        return self._pobj
-
-    def resolve_parent(self, check_tree=True):
-        """
-        Resolves the "parent" of obj.
-        By default, just the module in which it is contained.
-        Allows for easy skipping of pieces of the object tree,
-        though, since a parent can be directly added to the set of
-        written object which is distinct from the module it would
-        usually resolve to.
-        Also can be subclassed to provide more fine grained behavior.
-
-        :param obj:
-        :type obj:
-        :return:
-        :rtype:
-        """
-
-        if check_tree:
-            oid = self.identifier
-            if self.tree is not None and oid in self.tree:
-                return self.tree[oid]['parent']
-
-        if self._parent is not None:
-            if isinstance(self._parent, str):
-                return self.resolve_object(self._parent)
-            else:
-                return self._parent
-        elif 'parent' in self.spec:
-            parent = self.spec['parent']
-            if isinstance(parent, str):
-                return self.resolve_object(parent)
-            else:
-                return parent
-
-        if isinstance(self.obj, types.ModuleType):
-            # not totally sure this will work...
-            modspec = self.obj.__name__.rsplit(".", 1)[0]
-        else:
-            modspec = self.obj.__module__
-
-        if modspec == "":
-            return None
-
-        return self.resolve_object(modspec)
-
-    @property
-    def children(self):
-        """
-        Returns the child objects for docs purposes
-
-        :return:
-        :rtype:
-        """
-        if self._chobj is None:
-            self._chobj = self.resolve_children()
-        return self._chobj
-
-    def resolve_children(self, check_tree=True):
-        """
-        Resolves the "children" of obj.
-        First tries to use any info supplied by the docs tree
-        or a passed object spec, then that failing looks for an
-        `__all__` attribute
-
-        :param obj:
-        :type obj:
-        :return:
-        :rtype:
-        """
-
-        childs=None
-        if check_tree:
-            oid = self.identifier
-            if self.tree is not None and oid in self.tree:
-                childs = self.tree[oid]['children']
-        if childs is None:
-            if 'children' in self.spec:
-                childs = self.spec['children']
-            elif hasattr(self.obj, '__all__'):
-                childs = self.obj.__all__
-            else:
-                childs=[]
-
-        oid = self.identifier
-        return [self.resolve_object(oid+"."+x) if isinstance(x, str) else x for x in childs]
-
-    @staticmethod
-    def resolve_object(o):
-        """
-        Resolves to an arbitrary object by name
-
-        :param o:
-        :type o:
-        :return:
-        :rtype:
-        """
-
-        if o in sys.modules:
-            # first we try to do a direct look up
-            o = sys.modules[o]
-        elif o.rsplit(".", 1)[0] in sys.modules:
-            # if direct lookup failed, but the parent module has been loaded
-            # try direct lookup on that
-            try:
-                mod, attr = o.rsplit(".", 1)
-                o = getattr(sys.modules[mod], attr)
-            except AttributeError:
-                o = importlib.import_module(o)
-        else:
-            # otherwise fall back on standard import machinery
-            try:
-                o = importlib.import_module(o)
-            except ModuleNotFoundError:  # tried to load a member but couldn't...
-                # we try to resolve this by doing an iterated getattr
-                p_split = o.split(".")
-                mod_spec = ".".join(p_split[:-1])
-                if mod_spec == "":
-                    raise ValueError("can't resolve '{}'".format(o))
-                try:
-                    mood = importlib.import_module(mod_spec)
-                    from functools import reduce
-                    v = reduce(lambda m, a: getattr(m, a), p_split[1:], mood)
-                except ModuleNotFoundError:
-                    pass
-                else:
-                    o = v
-
-        return o
-
-    @property
-    def doc_spec(self):
-        """
-        Provides info that gets added to the `written` dict and which allows
-        for a doc tree to be built out.
-
-        :return:
-        :rtype:
-        """
-
-        base_spec = {
-            'id': self.identifier,
-            'parent': self.parent,
-            'children': self.children
-        }
-        base_spec.update(self.spec)
-        return base_spec
 
     param_template = """  - `{name}`: `{type}`\n    >{description}"""
     def parse_doc(self, doc):
@@ -976,22 +574,22 @@ class ModuleWriter(DocWriter):
         # flattend them
         idents = [ i for i in idents if ident in i ]
         # split by qualified names
-        idents = [".".join(a.split(".")[ident_depth-1:]) for a in idents]
-        # format links
-        links = [ self.formatter.format_obj_link(l) for l in idents ]
-        if self.include_link_bars:
-            num_cols = 3
-            splits = []
-            sub = []
-            for x in links:
-                sub.append(x)
-                if len(sub) == num_cols:
-                    splits.append(sub)
-                    sub = []
-            splits.append(sub + [""] * (3 - len(sub)))
-            mems = self.formatter.format_grid_box(splits)
-        else:
-            mems = "\n".join([ self.formatter.format_item(l) for l in links ])
+        # idents = [".".join(a.split(".")[ident_depth-1:]) for a in idents]
+        # # format links
+        # links = [ self.formatter.format_obj_link(l) for l in idents ]
+        # if self.include_link_bars:
+        #     num_cols = 3
+        #     splits = []
+        #     sub = []
+        #     for x in links:
+        #         sub.append(x)
+        #         if len(sub) == num_cols:
+        #             splits.append(sub)
+        #             sub = []
+        #     splits.append(sub + [""] * (3 - len(sub)))
+        #     mems = self.formatter.format_grid_box(splits)
+        # else:
+        #     mems = "\n".join([ self.formatter.format_item(l) for l in links ])
         descr = mod.__doc__ if mod.__doc__ is not None else ''
         long_descr = mod.__long_doc__ if hasattr(mod, '__long_doc__') and mod.__long_doc__ is not None else ''
 
@@ -1002,7 +600,7 @@ class ModuleWriter(DocWriter):
             'description' : descr.strip(),
             'long_description' : long_descr.strip(),
             'name': name,
-            'members' : mems,
+            'members' : idents,
             'examples' : ex,
             'tests': tests
         }

@@ -4,105 +4,13 @@ The actual object Markdown is written by the things in the `Writers` module.
 """
 
 import os, types, collections
+from .TemplateEngine import TemplateWalker
+from .ObjectWalker import ObjectSpec
 from .Writers import *
 
 __all__ = [ "DocWalker" ]
 
-class DocTree(dict):
-    """
-    Simple tree that stores the structure of the documentation
-    """
-
-class MethodDispatch(collections.OrderedDict):
-    """
-    Provides simple utility to dispatch methods based on types
-    """
-
-    def __init__(self, *args, default=None, **kwargs):
-        self.default = default
-        super().__init__(*args, **kwargs)
-    class DispatchTests:
-        def __init__(self, *tests):
-            self.tests = tests
-        def __hash__(self):
-            return self.tests.__hash__()
-        def __call__(self, obj):
-            return all(self.test(t, obj) for t in self.tests)
-        @classmethod
-        def test(cls, k, obj):
-            """
-            Does the actual dispatch testing
-
-            :param k:
-            :type k:
-            :param obj:
-            :type obj:
-            :return:
-            :rtype:
-            """
-            if (
-                    isinstance(k, type) or
-                    isinstance(k, tuple) and all(isinstance(kk, type) for kk in k)
-            ):
-                return isinstance(obj, k)
-            elif isinstance(k, str):
-                return hasattr(obj, k)
-            elif isinstance(k, tuple) and all(isinstance(kk, str) for kk in k):
-                return any(hasattr(obj, kk) for kk in k)
-            elif isinstance(k, tuple):
-                return any(kk(obj) for kk in k)
-            else:
-                return k(obj)
-    def method_dispatch(self, obj, *args, **kwargs):
-        """
-        A general-ish purpose type or duck-type method dispatcher.
-
-        :param obj:
-        :type obj:
-        :param table:
-        :type table:
-        :return:
-        :rtype:
-        """
-
-        for k, v in self.items():
-            if isinstance(k, self.DispatchTests):
-                matches = k(obj)
-            else:
-                matches = self.DispatchTests.test(k, obj)
-            if matches:
-                return v(obj, *args, **kwargs)
-
-        if self.default is None:
-            raise TypeError("object {} can't dispatch from table {}".format(
-                obj, self
-            ))
-        else:
-            return self.default(obj, *args, **kwargs)
-    def __call__(self, obj, *args, **kwargs):
-        return self.method_dispatch(obj, *args, **kwargs)
-    def __setitem__(self, key, value):
-        """
-        :param key:
-        :type key:
-        :param value:
-        :type value:
-        :return:
-        :rtype:
-        """
-        #TODO: make dispatch keys automatically feed into
-        if isinstance(key, tuple):
-            # make sure we're not just doing alternatives
-            if not (
-                    all(isinstance(k, str) for k in key) or
-                    all(isinstance(k, type) for k in key) or
-                    all(callable(k) for k in key)
-            ):
-                # then we do, basically, an 'and' operand
-                key = self.DispatchTests(*key)
-        super().__setitem__(key, value)
-
-class DocSpec(dict):
+class DocSpec(ObjectSpec):
     """
     A specification for an object to document.
     Supports the fields given by `spec_fields`.
@@ -121,7 +29,7 @@ class DocSpec(dict):
             super().__repr__()
         )
 
-class DocWalker:
+class DocWalker(TemplateWalker):
     """
     A class that walks a module structure, generating .md files for every class inside it as well as for global functions,
     and a Markdown index file.
@@ -129,7 +37,7 @@ class DocWalker:
     Takes a set of objects & writers and walks through the objects, generating files on the way
     """
 
-    default_writers = collections.OrderedDict((
+    default_handlers = collections.OrderedDict((
         ((str, types.ModuleType), ModuleWriter),
         ((type,), ClassWriter),
         ((types.FunctionType,), FunctionWriter)
@@ -137,7 +45,6 @@ class DocWalker:
     default_docs_ext='Documentation'
     def __init__(self,
                  objects,
-                 tree=None,
                  out=None,
                  docs_ext=None,
                  writers=None,
@@ -161,30 +68,11 @@ class DocWalker:
         :type ignore_paths: None | Iterable[str]
         """
 
-        self.extra_fields = extra_fields
+        self.objects = objects
+        super().__init__(handlers=writers, **extra_fields)
 
         self.template_directory = template_directory
         self.examples_directory = examples_directory
-
-        self.objects = objects
-
-        # obtain default writer set
-        if writers is None:
-            writers = {}
-        if not isinstance(writers, MethodDispatch):
-            if hasattr(writers, 'items'):
-                writers = MethodDispatch(writers.items(), default=ObjectWriter)
-            else:
-                writers = MethodDispatch(writers, default=ObjectWriter)
-        for k, v in self._initial_writers.items():
-            if k not in writers:
-                writers[k] = v
-        self.writers = writers
-
-        # obtain default tree
-        if tree is None:
-            tree = DocTree()
-        self.tree = tree
 
         self.ignore_paths = ignore_paths
 
