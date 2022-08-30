@@ -1,8 +1,8 @@
 ## <a id="Peeves.Doc.DocWalker.ObjectWriter">ObjectWriter</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker.py#L466)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker.py#L466?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker.py#L469)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker.py#L469?message=Update%20Docs)]
 </div>
 
 Writes general objects to file.
@@ -30,8 +30,8 @@ squash_repeat_packages: bool
 identifier(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/identifier.py#L475)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/identifier.py#L475?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/identifier.py#L478)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/identifier.py#L478?message=Update%20Docs)]
 </div>
 
 
@@ -40,8 +40,8 @@ identifier(self):
 check_should_write(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/ObjectWriter.py#L485)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/ObjectWriter.py#L485?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/ObjectWriter.py#L488)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/ObjectWriter.py#L488?message=Update%20Docs)]
 </div>
 Determines whether the object really actually should be
 documented (quite permissive)
@@ -54,8 +54,8 @@ documented (quite permissive)
 get_template_params(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/ObjectWriter.py#L498)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/ObjectWriter.py#L498?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/ObjectWriter.py#L501)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/ObjectWriter.py#L501?message=Update%20Docs)]
 </div>
 
 
@@ -64,8 +64,8 @@ get_template_params(self):
 get_package_and_url(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/ObjectWriter.py#L519)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/ObjectWriter.py#L519?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/ObjectWriter.py#L522)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/ObjectWriter.py#L522?message=Update%20Docs)]
 </div>
  </div>
 </div>
@@ -86,4 +86,4 @@ get_package_and_url(self):
 [Create New Examples](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Doc/DocWalker/ObjectWriter.md) <br/>
 [Edit Template](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Doc/DocWalker/ObjectWriter.md) or 
 [Create New Template](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Doc/DocWalker/ObjectWriter.md) <br/>
-[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker.py#L466?message=Update%20Docs)
+[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker.py#L469?message=Update%20Docs)
