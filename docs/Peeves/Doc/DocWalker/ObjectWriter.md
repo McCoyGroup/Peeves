@@ -21,6 +21,7 @@ of that nature.
  <div class="collapsible-section collapsible-section-body collapse show" id="methods" markdown="1">
  ```python
 template: str
+squash_repeat_packages: bool
 ```
 <a id="str.identifier" class="docs-object-method">&nbsp;</a> 
 ```python
@@ -32,12 +33,12 @@ identifier(self):
 </div>
 
 
-<a id="Peeves.Peeves.Doc.DocWalker.ObjectWriter.check_should_write" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.ObjectWriter.check_should_write" class="docs-object-method">&nbsp;</a> 
 ```python
 check_should_write(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/check_should_write/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/check_should_write/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/ObjectWriter/check_should_write/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/ObjectWriter/check_should_write/__init__.py#L?message=Update%20Docs)]
 </div>
 Determines whether the object really actually should be
 documented (quite permissive)
@@ -45,12 +46,12 @@ documented (quite permissive)
     >
 
 
-<a id="Peeves.Peeves.Doc.DocWalker.ObjectWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.ObjectWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
 ```python
 get_template_params(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/get_template_params/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/get_template_params/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/ObjectWriter/get_template_params/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/ObjectWriter/get_template_params/__init__.py#L?message=Update%20Docs)]
 </div>
  </div>
 </div>

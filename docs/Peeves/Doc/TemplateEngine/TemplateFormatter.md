@@ -24,12 +24,12 @@ max_recusion: int
 directives: TemplateFormatDirective
 frozendict: frozendict
 ```
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateFormatter.__init__" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateFormatter.__init__" class="docs-object-method">&nbsp;</a> 
 ```python
 __init__(self, templates): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/__init__/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateFormatter/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateFormatter/__init__/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
@@ -73,84 +73,84 @@ callback_map(self):
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateFormatter.apply_eval_tree" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateFormatter.apply_eval_tree" class="docs-object-method">&nbsp;</a> 
 ```python
 apply_eval_tree(self, _, spec) -> str: 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_eval_tree/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_eval_tree/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_eval_tree/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_eval_tree/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateFormatter.apply_directive_tree" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateFormatter.apply_directive_tree" class="docs-object-method">&nbsp;</a> 
 ```python
 apply_directive_tree(self, _, spec) -> str: 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_directive_tree/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_directive_tree/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_directive_tree/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_directive_tree/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateFormatter.apply_assignment" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateFormatter.apply_assignment" class="docs-object-method">&nbsp;</a> 
 ```python
 apply_assignment(self, key, spec) -> str: 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_assignment/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_assignment/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_assignment/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_assignment/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateFormatter.apply_raw" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateFormatter.apply_raw" class="docs-object-method">&nbsp;</a> 
 ```python
 apply_raw(self, key, spec) -> str: 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_raw/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_raw/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_raw/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_raw/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateFormatter.apply_comment" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateFormatter.apply_comment" class="docs-object-method">&nbsp;</a> 
 ```python
 apply_comment(self, key, spec) -> str: 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_comment/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_comment/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_comment/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_comment/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateFormatter.apply_directive" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateFormatter.apply_directive" class="docs-object-method">&nbsp;</a> 
 ```python
 apply_directive(self, key, spec) -> str: 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_directive/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_directive/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_directive/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateFormatter/apply_directive/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateFormatter.format_field" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateFormatter.format_field" class="docs-object-method">&nbsp;</a> 
 ```python
 format_field(self, value: Any, format_spec: str) -> str: 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/format_field/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/format_field/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateFormatter/format_field/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateFormatter/format_field/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateFormatter.load_template" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateFormatter.load_template" class="docs-object-method">&nbsp;</a> 
 ```python
 load_template(self, template): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/load_template/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/load_template/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateFormatter/load_template/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateFormatter/load_template/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateFormatter.vformat" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateFormatter.vformat" class="docs-object-method">&nbsp;</a> 
 ```python
 vformat(self, format_string: str, args: Sequence[Any], kwargs: Mapping[str, Any]): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/vformat/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter/vformat/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateFormatter/vformat/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateFormatter/vformat/__init__.py#L?message=Update%20Docs)]
 </div>
  </div>
 </div>

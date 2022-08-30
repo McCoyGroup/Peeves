@@ -20,22 +20,23 @@ Writes class methods to file
  <div class="collapsible-section collapsible-section-body collapse show" id="methods" markdown="1">
  ```python
 template: str
+squash_repeat_packages: bool
 ```
-<a id="Peeves.Peeves.Doc.DocWalker.MethodWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.MethodWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
 ```python
 get_template_params(self, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/MethodWriter/get_template_params/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/MethodWriter/get_template_params/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/MethodWriter/get_template_params/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/MethodWriter/get_template_params/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.DocWalker.MethodWriter.get_signature" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.MethodWriter.get_signature" class="docs-object-method">&nbsp;</a> 
 ```python
 get_signature(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/MethodWriter/get_signature/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/MethodWriter/get_signature/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/MethodWriter/get_signature/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/MethodWriter/get_signature/__init__.py#L?message=Update%20Docs)]
 </div>
 
 

@@ -21,33 +21,33 @@
 resource_keys: list
 resource_attrs: list
 ```
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateResourceExtractor.path_extension" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateResourceExtractor.path_extension" class="docs-object-method">&nbsp;</a> 
 ```python
 path_extension(self, handler: Peeves.Peeves.Doc.TemplateEngine.TemplateHandler): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/path_extension/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/path_extension/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/path_extension/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/path_extension/__init__.py#L?message=Update%20Docs)]
 </div>
 Provides the default examples path for the object
   - `:returns`: `_`
     >
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateResourceExtractor.get_resource" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateResourceExtractor.get_resource" class="docs-object-method">&nbsp;</a> 
 ```python
 get_resource(self, handler: Peeves.Peeves.Doc.TemplateEngine.TemplateHandler, keys=None, attrs=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/get_resource/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/get_resource/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/get_resource/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/get_resource/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateResourceExtractor.load" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateResourceExtractor.load" class="docs-object-method">&nbsp;</a> 
 ```python
 load(self, handler: Peeves.Peeves.Doc.TemplateEngine.TemplateHandler): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/load/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/load/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/load/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/load/__init__.py#L?message=Update%20Docs)]
 </div>
 Loads examples for the stored object if provided
   - `:returns`: `_`

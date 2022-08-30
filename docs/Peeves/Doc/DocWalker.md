@@ -29,12 +29,12 @@ object_handler: ObjectWriter
 index_handler: IndexWriter
 spec: DocSpec
 ```
-<a id="Peeves.Peeves.Doc.DocWalker.DocWalker.__init__" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.__init__" class="docs-object-method">&nbsp;</a> 
 ```python
 __init__(self, out=None, engine=None, verbose=True, template_locator=None, examples_directory=None, tests_directory=None, **extra_fields): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/__init__/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/__init__/__init__.py#L?message=Update%20Docs)]
 </div>
 
   - `objects`: `Iterable[Any]`
@@ -48,48 +48,48 @@ the directory in which to write the files (`None` means `sys.stdout`)
     > a set of paths not to write (passed to the objects)
 
 
-<a id="Peeves.Peeves.Doc.DocWalker.DocWalker.get_engine" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.get_engine" class="docs-object-method">&nbsp;</a> 
 ```python
 get_engine(self, locator): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_engine/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_engine/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/get_engine/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/get_engine/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.DocWalker.DocWalker.get_examples_loader" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.get_examples_loader" class="docs-object-method">&nbsp;</a> 
 ```python
 get_examples_loader(self, examples_directory): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_examples_loader/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_examples_loader/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/get_examples_loader/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/get_examples_loader/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.DocWalker.DocWalker.get_tests_loader" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.get_tests_loader" class="docs-object-method">&nbsp;</a> 
 ```python
 get_tests_loader(self, tests_directory): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_tests_loader/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_tests_loader/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/get_tests_loader/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/get_tests_loader/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.DocWalker.DocWalker.get_handler" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.get_handler" class="docs-object-method">&nbsp;</a> 
 ```python
 get_handler(self, *args, examples_loader=None, tests_loader=None, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_handler/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_handler/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/get_handler/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/get_handler/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.DocWalker.DocWalker.visit_root" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.visit_root" class="docs-object-method">&nbsp;</a> 
 ```python
 visit_root(self, o, tests_directory=None, examples_directory=None, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/visit_root/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/visit_root/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/visit_root/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/visit_root/__init__.py#L?message=Update%20Docs)]
 </div>
  </div>
 </div>

@@ -19,34 +19,35 @@ A writer targeted to a module object. Just needs to write the Module metadata.
  <div class="collapsible-section collapsible-section-body collapse show" id="methods" markdown="1">
  ```python
 template: str
+squash_repeat_packages: bool
 ```
-<a id="Peeves.Peeves.Doc.DocWalker.ModuleWriter.__init__" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.ModuleWriter.__init__" class="docs-object-method">&nbsp;</a> 
 ```python
 __init__(self, obj, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/__init__/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/ModuleWriter/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/ModuleWriter/__init__/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.DocWalker.ModuleWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.ModuleWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
 ```python
 get_template_params(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/get_template_params/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/get_template_params/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/ModuleWriter/get_template_params/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/ModuleWriter/get_template_params/__init__.py#L?message=Update%20Docs)]
 </div>
 Provides module specific parameters
   - `:returns`: `_`
     >
 
 
-<a id="Peeves.Peeves.Doc.DocWalker.ModuleWriter.get_members" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.ModuleWriter.get_members" class="docs-object-method">&nbsp;</a> 
 ```python
 get_members(mod): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/get_members/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/get_members/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/ModuleWriter/get_members/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/ModuleWriter/get_members/__init__.py#L?message=Update%20Docs)]
 </div>
  </div>
 </div>

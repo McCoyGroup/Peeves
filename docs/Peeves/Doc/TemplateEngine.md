@@ -22,48 +22,48 @@ Provides an engine for generating content using a
 formatter_class: TemplateFormatter
 outStream: outStream
 ```
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateEngine.__init__" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.__init__" class="docs-object-method">&nbsp;</a> 
 ```python
 __init__(self, locator: Peeves.Peeves.Doc.TemplateEngine.ResourceLocator, template_pattern='*.*', ignore_missing=False, formatter_class=None, ignore_paths=()): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/__init__/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/__init__/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateEngine.format_map" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.format_map" class="docs-object-method">&nbsp;</a> 
 ```python
 format_map(self, template, parameters): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/format_map/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/format_map/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/format_map/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/format_map/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateEngine.format" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.format" class="docs-object-method">&nbsp;</a> 
 ```python
 format(self, template, **parameters): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/format/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/format/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/format/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/format/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateEngine.write_string" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.write_string" class="docs-object-method">&nbsp;</a> 
 ```python
 write_string(self, target, txt): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/write_string/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/write_string/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/write_string/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/write_string/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateEngine.apply" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.apply" class="docs-object-method">&nbsp;</a> 
 ```python
 apply(self, template, target, **template_params): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/apply/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/apply/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/apply/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/apply/__init__.py#L?message=Update%20Docs)]
 </div>
  </div>
 </div>

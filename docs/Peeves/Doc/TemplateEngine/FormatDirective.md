@@ -20,21 +20,21 @@ Base class for directives -- shouldn't be an enum really...
  ```python
 
 ```
-<a id="Peeves.Peeves.Doc.TemplateEngine.FormatDirective.__init__" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.FormatDirective.__init__" class="docs-object-method">&nbsp;</a> 
 ```python
 __init__(self, name, callback=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/FormatDirective/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/FormatDirective/__init__/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/FormatDirective/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/FormatDirective/__init__/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.FormatDirective.extend" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.FormatDirective.extend" class="docs-object-method">&nbsp;</a> 
 ```python
 extend(*others): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/FormatDirective/extend/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/FormatDirective/extend/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/FormatDirective/extend/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/FormatDirective/extend/__init__.py#L?message=Update%20Docs)]
 </div>
 
 

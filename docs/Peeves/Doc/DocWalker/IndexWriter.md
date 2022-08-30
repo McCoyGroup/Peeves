@@ -22,39 +22,39 @@ Needs some work to provide more useful info by default.
  ```python
 template: str
 ```
-<a id="Peeves.Peeves.Doc.DocWalker.IndexWriter.__init__" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.IndexWriter.__init__" class="docs-object-method">&nbsp;</a> 
 ```python
 __init__(self, *args, description=None, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/__init__/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/IndexWriter/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/IndexWriter/__init__/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.DocWalker.IndexWriter.get_identifier" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.IndexWriter.get_identifier" class="docs-object-method">&nbsp;</a> 
 ```python
 get_identifier(cls, o): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/get_identifier/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/get_identifier/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/IndexWriter/get_identifier/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/IndexWriter/get_identifier/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.DocWalker.IndexWriter.get_file_paths" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.IndexWriter.get_file_paths" class="docs-object-method">&nbsp;</a> 
 ```python
 get_file_paths(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/get_file_paths/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/get_file_paths/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/IndexWriter/get_file_paths/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/IndexWriter/get_file_paths/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.DocWalker.IndexWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocWalker.IndexWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
 ```python
 get_template_params(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/get_template_params/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/get_template_params/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/IndexWriter/get_template_params/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/IndexWriter/get_template_params/__init__.py#L?message=Update%20Docs)]
 </div>
  </div>
 </div>

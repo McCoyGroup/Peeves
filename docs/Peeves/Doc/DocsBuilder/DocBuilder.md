@@ -27,12 +27,12 @@ default_template_extension: str
 default_repo_extension: str
 config_defaults: dict
 ```
-<a id="Peeves.Peeves.Doc.DocsBuilder.DocBuilder.__init__" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocsBuilder.DocBuilder.__init__" class="docs-object-method">&nbsp;</a> 
 ```python
 __init__(self, packages=None, config=None, target=None, root=None, config_file=None, templates_directory=None, examples_directory=None, tests_directory=None, readme=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocsBuilder/DocBuilder/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocsBuilder/DocBuilder/__init__/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocsBuilder/DocBuilder/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocsBuilder/DocBuilder/__init__/__init__.py#L?message=Update%20Docs)]
 </div>
 
   - `packages`: `Iterable[str|dict]`
@@ -46,33 +46,33 @@ __init__(self, packages=None, config=None, target=None, root=None, config_file=N
 root directory
 
 
-<a id="Peeves.Peeves.Doc.DocsBuilder.DocBuilder.get_template_locator" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocsBuilder.DocBuilder.get_template_locator" class="docs-object-method">&nbsp;</a> 
 ```python
 get_template_locator(self, template_directory, use_repo_templates=False): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocsBuilder/DocBuilder/get_template_locator/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocsBuilder/DocBuilder/get_template_locator/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocsBuilder/DocBuilder/get_template_locator/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocsBuilder/DocBuilder/get_template_locator/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.DocsBuilder.DocBuilder.load_config" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocsBuilder.DocBuilder.load_config" class="docs-object-method">&nbsp;</a> 
 ```python
 load_config(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocsBuilder/DocBuilder/load_config/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocsBuilder/DocBuilder/load_config/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocsBuilder/DocBuilder/load_config/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocsBuilder/DocBuilder/load_config/__init__.py#L?message=Update%20Docs)]
 </div>
 Loads the config file to be used and fills in template parameters
   - `:returns`: `_`
     >
 
 
-<a id="Peeves.Peeves.Doc.DocsBuilder.DocBuilder.create_layout" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocsBuilder.DocBuilder.create_layout" class="docs-object-method">&nbsp;</a> 
 ```python
 create_layout(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocsBuilder/DocBuilder/create_layout/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocsBuilder/DocBuilder/create_layout/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocsBuilder/DocBuilder/create_layout/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocsBuilder/DocBuilder/create_layout/__init__.py#L?message=Update%20Docs)]
 </div>
 Creates the documentation layout that will be expanded upon by
 a `DocWalker`
@@ -80,12 +80,12 @@ a `DocWalker`
     >
 
 
-<a id="Peeves.Peeves.Doc.DocsBuilder.DocBuilder.load_walker" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocsBuilder.DocBuilder.load_walker" class="docs-object-method">&nbsp;</a> 
 ```python
 load_walker(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocsBuilder/DocBuilder/load_walker/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocsBuilder/DocBuilder/load_walker/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocsBuilder/DocBuilder/load_walker/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocsBuilder/DocBuilder/load_walker/__init__.py#L?message=Update%20Docs)]
 </div>
 Loads the `DocWalker` used to write docs.
 A hook that can be overriden to sub in different walkers.
@@ -93,12 +93,12 @@ A hook that can be overriden to sub in different walkers.
     >
 
 
-<a id="Peeves.Peeves.Doc.DocsBuilder.DocBuilder.build" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.DocsBuilder.DocBuilder.build" class="docs-object-method">&nbsp;</a> 
 ```python
 build(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocsBuilder/DocBuilder/build/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocsBuilder/DocBuilder/build/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocsBuilder/DocBuilder/build/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocsBuilder/DocBuilder/build/__init__.py#L?message=Update%20Docs)]
 </div>
 Writes documentation layout to `self.target`
   - `:returns`: `_`
@@ -125,16 +125,16 @@ Writes documentation layout to `self.target`
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Tests-83107d" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-83107d"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Tests-e4acbf" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-e4acbf"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Tests-83107d" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Tests-e4acbf" markdown="1">
  - [PeevesDoc](#PeevesDoc)
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-### <a class="collapse-link" data-toggle="collapse" href="#Setup-b59266" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-b59266"><i class="fa fa-chevron-down"></i></a>
+### <a class="collapse-link" data-toggle="collapse" href="#Setup-0a85d0" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-0a85d0"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Setup-b59266" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Setup-0a85d0" markdown="1">
  
 Before we can run our examples we should get a bit of setup out of the way.
 Since these examples were harvested from the unit tests not all pieces

@@ -25,12 +25,12 @@ method_handler: MethodTemplateHandler
 object_handler: ObjectTemplateHandler
 index_handler: IndexTemplateHandler
 ```
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateWalker.__init__" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateWalker.__init__" class="docs-object-method">&nbsp;</a> 
 ```python
 __init__(self, engine: Peeves.Peeves.Doc.TemplateEngine.TemplateEngine, out=None, **extra_fields): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker/__init__/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateWalker/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateWalker/__init__/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
@@ -44,30 +44,30 @@ default_handlers(self):
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateWalker.get_handler" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateWalker.get_handler" class="docs-object-method">&nbsp;</a> 
 ```python
 get_handler(self, obj, *, out=None, engine=None, tree=None, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker/get_handler/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker/get_handler/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateWalker/get_handler/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateWalker/get_handler/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateWalker.visit_root" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateWalker.visit_root" class="docs-object-method">&nbsp;</a> 
 ```python
 visit_root(self, o, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker/visit_root/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker/visit_root/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateWalker/visit_root/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateWalker/visit_root/__init__.py#L?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateWalker.write" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Doc.TemplateEngine.TemplateWalker.write" class="docs-object-method">&nbsp;</a> 
 ```python
 write(self, objects, index='index.md'): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker/write/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker/write/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateWalker/write/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateWalker/write/__init__.py#L?message=Update%20Docs)]
 </div>
 Walks through the objects supplied and applies the appropriate templates
   - `:returns`: `str`
