@@ -1,4 +1,8 @@
-"""Peeves is a minor extension to the unittest framework that makes my life better"""
+"""
+Peeves began life as a minor extension to the `unittest` framework.
+These days it's primarily used as a documentation generator, through its `Doc` subpackage.
+The documentation for Peeves itself is generated with `Peeves.Doc`
+"""
 
 from .TestUtils import *
 from .Timer import *
