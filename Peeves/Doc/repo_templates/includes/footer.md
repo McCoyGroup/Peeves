@@ -1,4 +1,4 @@
-{$: "## Details\n" + details if nonempty(details) else ""}
+{$: collapse("## Details", details, open=False) if nonempty(details) else ""}
 
 {$: "## Examples" if nonempty(examples) or nonempty(tests) else ""}
 {$: examples if nonempty(examples) else ""}
