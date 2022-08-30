@@ -4,6 +4,9 @@
 </div>
 The set of fast tests in the test suite
 
+<div markdown="1" class="alert alert-danger">These tests are the most commonly run ones in the suite. 
+In a bad turn of events, the validation tests are rarely run these days.</div>
+
 
 
 
@@ -20,4 +23,3 @@ The set of fast tests in the test suite
 [Edit Template](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/TestUtils/DebugTests.md) or 
 [Create New Template](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/TestUtils/DebugTests.md) <br/>
 [Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/TestUtils/DebugTests/__init__.py#L?message=Update%20Docs)
-

@@ -148,59 +148,8 @@ filter_by_name(self, name):
 
 
 
-## Examples
 
 
-
-
-
-
-
-
-
-
-
-
-
-<div class="collapsible-section">
- <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Tests-35e599" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-35e599"><i class="fa fa-chevron-down"></i></a>
- </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Tests-35e599" markdown="1">
- - [ParseExamples](#ParseExamples)
-
-<div class="collapsible-section">
- <div class="collapsible-section collapsible-section-header" markdown="1">
-### <a class="collapse-link" data-toggle="collapse" href="#Setup-7f3384" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-7f3384"><i class="fa fa-chevron-down"></i></a>
- </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Setup-7f3384" markdown="1">
- 
-Before we can run our examples we should get a bit of setup out of the way.
-Since these examples were harvested from the unit tests not all pieces
-will be necessary for all situations.
-
-All tests are wrapped in a test class
-```python
-class DocsTests(TestCase):
-    """
-    Sample documentation generator tests
-    """
-```
-
- </div>
-</div>
-
-#### <a name="ParseExamples">ParseExamples</a>
-```python
-    def test_ParseExamples(self):
-        parser = ExamplesParser.from_file(os.path.abspath(__file__))
-        self.assertTrue(hasattr(parser.functions, 'items'))
-        tests = TestExamplesFormatter.from_file(os.path.abspath(__file__))
-        print(tests.format())
-```
-
- </div>
-</div>
 
 
 
