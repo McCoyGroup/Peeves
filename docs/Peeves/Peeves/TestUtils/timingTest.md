@@ -1,21 +1,27 @@
 # <a id="Peeves.Peeves.TestUtils.timingTest">timingTest</a>
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils.py#L272)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L?message=Update%20Docs)]
 </div>
 
 ```python
 timingTest(fn): 
 ```
- 
 
 
 
 
 
-___
+
+
+
+
+
+
+
+---
 
 [Edit Examples](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Peeves/Peeves/TestUtils/timingTest.md) or 
 [Create New Examples](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Peeves/TestUtils/timingTest.md) <br/>
 [Edit Template](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Peeves/TestUtils/timingTest.md) or 
 [Create New Template](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Peeves/TestUtils/timingTest.md) <br/>
-[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L272?message=Update%20Docs)
+[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L?message=Update%20Docs)
