@@ -121,7 +121,9 @@ Writes documentation layout to `self.target`
 
 
 
-**See Also:** [`DocWalker`](../DocWalker/DocWalker.md)<span>&nbsp;&#9642;&nbsp;</span>[`ModuleWriter`](../DocWalker/ModuleWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`ClassWriter`](../DocWalker/ClassWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`FunctionWriter`](../DocWalker/FunctionWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`MethodWriter`](../DocWalker/MethodWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`ObjectWriter`](../DocWalker/ObjectWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`IndexWriter`](../DocWalker/IndexWriter.md)
+<div markdown="1" class="alert alert-info">
+**See Also:** [`DocWalker`](../DocWalker/DocWalker.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`ModuleWriter`](../DocWalker/ModuleWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`ClassWriter`](../DocWalker/ClassWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`FunctionWriter`](../DocWalker/FunctionWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`MethodWriter`](../DocWalker/MethodWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`ObjectWriter`](../DocWalker/ObjectWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`IndexWriter`](../DocWalker/IndexWriter.md)
+</div>
 
 ---
 

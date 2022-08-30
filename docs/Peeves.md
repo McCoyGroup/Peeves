@@ -4,7 +4,9 @@
 [edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/__init__.py#L1?message=Update%20Docs)]
 </div>
     
-Peeves is a minor extension to the unittest framework that makes my life better
+Peeves began life as a minor extension to the `unittest` framework.
+These days it's primarily used as a documentation generator, through its `Doc` subpackage.
+The documentation for Peeves itself is generated with `Peeves.Doc`
 
 <div class="container alert alert-secondary bg-light">
   <div class="row">

@@ -105,9 +105,9 @@ visit_root(self, o, tests_directory=None, examples_directory=None, **kwargs):
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Details-94c665" markdown="1"> Details</a> <a class="float-right" data-toggle="collapse" href="#Details-94c665"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Details-25a382" markdown="1"> Details</a> <a class="float-right" data-toggle="collapse" href="#Details-25a382"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse " id="Details-94c665" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse " id="Details-25a382" markdown="1">
  A `DocWalker` object is a light subclass of a `TemplateWalker`, but specialized for documentation & with specialized handlers
  </div>
 </div>
@@ -118,7 +118,9 @@ visit_root(self, o, tests_directory=None, examples_directory=None, **kwargs):
 
 
 
-**See Also:** [`DocBuilder`](../DocsBuilder/DocBuilder.md)<span>&nbsp;&#9642;&nbsp;</span>[`ModuleWriter`](ModuleWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`ClassWriter`](ClassWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`FunctionWriter`](FunctionWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`MethodWriter`](MethodWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`ObjectWriter`](ObjectWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`IndexWriter`](IndexWriter.md)
+<div markdown="1" class="alert alert-info">
+**See Also:** [`DocBuilder`](../DocsBuilder/DocBuilder.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`ModuleWriter`](ModuleWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`ClassWriter`](ClassWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`FunctionWriter`](FunctionWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`MethodWriter`](MethodWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`ObjectWriter`](ObjectWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`IndexWriter`](IndexWriter.md)
+</div>
 
 ---
 
