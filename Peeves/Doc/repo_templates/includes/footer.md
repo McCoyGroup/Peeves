@@ -5,7 +5,7 @@
 {$: include('includes/tests.md') if nonempty(tests) else ""}
 
 {%: related_links=[(canonical_name(r.strip()), canonical_link(r.strip())) for r in related.split(",") if len(r.strip()) > 0]}
-{$: "See Also: " + loop_template("[{{`0[0]`}}]({{0[1]}})", related_links, joiner="<span>#9642;</span>") if len(related_links) > 0 else ""}
+{$: "See Also: " + loop_template("[`{{0[0]}}`]({{0[1]}})", related_links, joiner="<span>#9642;</span>") if len(related_links) > 0 else ""}
 
 ---
 

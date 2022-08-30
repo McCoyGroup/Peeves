@@ -1,6 +1,8 @@
 """
 Simple Documentation framework that takes all of the python docstrings and unwraps them into proper docs while supporting
-example and template files
+example and template files.
+
+
 """
 
 __all__ = []

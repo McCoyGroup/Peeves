@@ -85,6 +85,9 @@ class TemplateOps:
         if '\n' in txt:
             txt = '"""'+txt+'"""'
         return txt
+    @staticmethod
+    def optional(key, default="", formatter=None):
+        return formatter.format_parameters.get(key, default)
 
 class FormatDirective(enum.Enum):
     """
@@ -129,6 +132,7 @@ class TemplateFormatDirective(FormatDirective):
     Apply = "apply", TemplateOps.apply
     NonEmpty = "nonempty", TemplateOps.nonempty
     CleanDoc = "cleandoc", TemplateOps.cleandoc
+    Optional = "optional", TemplateOps.optional
 
     Str = "str", TemplateOps.wrap_str
     Int = "int", TemplateOps.wrap(int)

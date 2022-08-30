@@ -48,7 +48,7 @@ class TestsExtractor(TemplateResourceExtractor):
     def load(self, handler:TemplateHandler):
         res = super().load(handler)
         if res is not None:
-            res = TestExamplesFormatter(ExamplesParser(res)).get_template_parameters()
+            res = ExamplesParser(res)
         return res
 
 class TestExamplesFormatter:
@@ -211,7 +211,15 @@ class DocTemplateHandler(TemplateHandler):
 
         return self.examples_loader.load(self) if self.examples_loader is not None else None
     def load_tests(self):
-        return self.tests_loader.load(self) if self.tests_loader is not None else None
+        tests = self.tests_loader.load(self) if self.tests_loader is not None else None
+        if tests is None:
+            parent_tests = self.resolve_key('parent_tests')
+            if parent_tests is not None:
+                tests = parent_tests.filter_by_name(self.name.split(".")[-1])
+        if tests is not None:
+            self.extra_fields['parent_tests'] = tests
+            tests = TestExamplesFormatter(tests).get_template_parameters()
+        return tests
 class ModuleWriter(DocTemplateHandler):
     """A writer targeted to a module object. Just needs to write the Module metadata."""
     template = 'module.md'
@@ -235,14 +243,14 @@ class ModuleWriter(DocTemplateHandler):
         # flattend them
         idents = [i for i in idents if ident in i]
         descr = mod.__doc__ if mod.__doc__ is not None else ''
-        long_descr = mod.__long_doc__ if hasattr(mod, '__long_doc__') and mod.__long_doc__ is not None else ''
+        # long_descr = mod.__long_doc__ if hasattr(mod, '__long_doc__') and mod.__long_doc__ is not None else ''
 
         ex = self.load_examples()
         tests = self.load_tests()
         return {
             'id': ident,
             'description': descr.strip(),
-            'long_description': long_descr.strip(),
+            # 'long_description': long_descr.strip(),
             'name': name,
             'members': idents,
             'examples': ex,
@@ -471,7 +479,8 @@ class ObjectWriter(DocTemplateHandler):
             'lineno': lineno,
             'name': self.get_name(),
             'description': descr.strip(),
-            'examples': ex if ex is not None else ""
+            'examples': ex if ex is not None else "",
+            'tests': None
         }
 
 class IndexWriter(IndexTemplateHandler):
@@ -586,11 +595,11 @@ class DocWalker(TemplateWalker):
             examples_directory = o.get('examples_directory', None)
         old_el = self.examples_loader
         if examples_directory is not None:
-            self.examples_directory = self.get_examples_loader(examples_directory)
+            self.examples_loader = self.get_examples_loader(examples_directory)
         try:
             return super().visit_root(o, **kwargs)
         finally:
             self.tests_loader = old_tl
-            self.examples_directory = old_el
+            self.examples_loader = old_el
 
 
