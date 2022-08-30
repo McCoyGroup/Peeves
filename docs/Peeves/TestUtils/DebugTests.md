@@ -4,8 +4,10 @@
 </div>
 The set of fast tests in the test suite
 
-<div markdown="1" class="alert alert-danger">These tests are the most commonly run ones in the suite. 
-In a bad turn of events, the validation tests are rarely run these days.</div>
+<div markdown="1" class="alert alert-danger">
+These tests are the most commonly run ones in the suite. 
+In a bad turn of events, the validation tests are rarely run these days.
+</div>
 
 
 
