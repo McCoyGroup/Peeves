@@ -264,12 +264,12 @@ class ModuleWriter(DocTemplateHandler):
         idents = [i for i in idents if ident in i]
         # split by qualified names
         idents = [".".join(a.split(".")[ident_depth-1:]) for a in idents]
-        descr = mod.__doc__ if mod.__doc__ is not None else ''
+        descr, _, fields = self.parse_doc(mod.__doc__ if mod.__doc__ is not None else '')
         # long_descr = mod.__long_doc__ if hasattr(mod, '__long_doc__') and mod.__long_doc__ is not None else ''
 
         ex = self.load_examples()
         tests = self.load_tests()
-        return {
+        return dict({
             'id': ident,
             'description': descr.strip(),
             # 'long_description': long_descr.strip(),
@@ -278,7 +278,7 @@ class ModuleWriter(DocTemplateHandler):
             'examples': ex,
             'tests': tests,
             'lineno' : self.get_lineno()
-        }
+        }, **fields)
 
     @classmethod
     def get_members(cls, mod):
@@ -501,23 +501,26 @@ class ObjectWriter(DocTemplateHandler):
     def get_template_params(self):
 
         try:
-            descr = self.obj.__doc__
+            doc = self.obj.__doc__
         except AttributeError:
             descr = "instance of " + type(self.obj).__name__
+            fields = {}
+        else:
+            descr, _, fields = self.parse_doc(doc if doc is not None else '')
 
         if descr is None:
             descr = ''
 
         ex = self.load_examples()
         lineno = self.get_lineno()
-        return {
+        return dict({
             'id': self.identifier,
             'lineno': lineno,
             'name': self.get_name(),
             'description': descr.strip(),
             'examples': ex if ex is not None else "",
             'tests': None
-        }
+        }, **fields)
 
     def get_package_and_url(self):
         rest = self.identifier.split(".", 1)
@@ -535,13 +538,12 @@ class ObjectWriter(DocTemplateHandler):
         # lineno = inspect.findsource(self.obj)[1]
         return pkg, file_url  # + "#L" + str(lineno) # for GitHub links
 
-class IndexWriter(IndexTemplateHandler):
+class IndexWriter(DocTemplateHandler):
     """
     Writes an index file with all of the
     written documentation files.
     Needs some work to provide more useful info by default.
     """
-
     template = 'index.md'
 
     def __init__(self, *args, description=None, **kwargs):
@@ -562,10 +564,11 @@ class IndexWriter(IndexTemplateHandler):
     #     )
 
     def get_template_params(self):
-        return {
+        descr, _, fields = self.parse_doc(self.description if self.description is not None else '')
+        return dict({
             'index_files': [[os.path.splitext(os.path.basename(f))[0], f] for f in self.get_file_paths()],
-            'description': self.description
-        }
+            'description': descr
+        }, **fields)
 
 class DocWalker(TemplateWalker):
     """
