@@ -22,32 +22,32 @@ class DocsTests(TestCase):
         import os, tempfile
 
         root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-        # with tempfile.TemporaryDirectory() as td:
-        td = '/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/tmpo3b4ztrq/'
-        target = os.path.join(td, "docs")
-        doc_config = {
-            "config": {
-                "title": "Peeves",
-                "path": "Peeves",
-                "url": "https://mccoygroup.github.io/Peeves/",
-                'url_base': "Peeves",
-                "gh_username": "McCoyGroup",
-                "gh_repo": "Peeves",
-                "gh_branch": "master",
-                "footer": "Brought to you by the McCoy Group"
-            },
-            "packages": [
-                {
-                    "id": "Peeves",
-                    'examples_directory': os.path.join(root, "ci", "examples"),
-                    'tests_directory': os.path.join(root, "ci", "tests")
-                }
-            ],
-            "root": root,
-            "target": target,
-            "readme": os.path.join(root, "README.md")
-        }
-        DocBuilder(**doc_config).build()
+        with tempfile.TemporaryDirectory() as td:
+        # td = '/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/tmpo3b4ztrq/'
+            target = os.path.join(td, "docs")
+            doc_config = {
+                "config": {
+                    "title": "Peeves",
+                    "path": "Peeves",
+                    "url": "https://mccoygroup.github.io/Peeves/",
+                    'url_base': "Peeves",
+                    "gh_username": "McCoyGroup",
+                    "gh_repo": "Peeves",
+                    "gh_branch": "master",
+                    "footer": "Brought to you by the McCoy Group"
+                },
+                "packages": [
+                    {
+                        "id": "Peeves",
+                        'examples_directory': os.path.join(root, "ci", "examples"),
+                        'tests_directory': os.path.join(root, "ci", "tests")
+                    }
+                ],
+                "root": root,
+                "target": target,
+                "readme": os.path.join(root, "README.md")
+            }
+            DocBuilder(**doc_config).build()
 
     @validationTest
     def test_ParseExamples(self):
