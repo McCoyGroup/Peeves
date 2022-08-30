@@ -17,7 +17,6 @@
     for m in methods
 ]}
 
-{#:Mini-API that will produce Bootstrap elements}
 {collapse$:
     "### Methods and Properties", 
     prop_list + "\n" + join(method_list, joiner="\n\n\n"),

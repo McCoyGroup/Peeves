@@ -5,6 +5,6 @@
 
 {objlink_grid$:members}
 
-{long_description}
+{optional$:'long_description'}
 
 {include$:'includes/footer.md'}

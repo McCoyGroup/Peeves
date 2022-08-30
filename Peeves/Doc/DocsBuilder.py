@@ -14,6 +14,10 @@ class DocBuilder:
     to build documentation, but which also has support for more
     involved use cases, like setting up a `_config.yml` or other
     documentation template things.
+
+
+    :related: .DocWalker.DocWalker, .DocWalker.ModuleWriter, .DocWalker.ClassWriter,
+              .DocWalker.FunctionWriter, .DocWalker.MethodWriter, .DocWalker.ObjectWriter, .DocWalker.IndexWriter
     """
 
     defaults_root = os.path.dirname(__file__)
