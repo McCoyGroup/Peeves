@@ -17,13 +17,14 @@ doc_config = {
     },
     "packages": [
         {
-            "id": "Peeves",
-            'tests_directory': os.path.join(root, "ci", "tests"),
-            'examples_directory': os.path.join(root, "ci", "examples")
+            "id": "Peeves"
         }
     ],
     "root": root,
     "target": target,
-    "readme": os.path.join(root, "README.md")
+    "readme": os.path.join(root, "README.md"),
+    'examples_directory': os.path.join(root, "ci", "examples"),
+    'tests_directory': os.path.join(root, "ci", "tests"),
+    'templates_directory': os.path.join(root, "ci", "templates")
 }
 Doc.DocBuilder(**doc_config).build()
