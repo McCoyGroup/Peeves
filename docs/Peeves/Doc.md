@@ -128,18 +128,18 @@ example and template files.
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Tests-5f5e46" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-5f5e46"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Tests-d8efe0" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-d8efe0"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Tests-5f5e46" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Tests-d8efe0" markdown="1">
  - [PeevesDoc](#PeevesDoc)
 - [ParseExamples](#ParseExamples)
 - [FormatSpec](#FormatSpec)
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-### <a class="collapse-link" data-toggle="collapse" href="#Setup-11b1d2" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-11b1d2"><i class="fa fa-chevron-down"></i></a>
+### <a class="collapse-link" data-toggle="collapse" href="#Setup-293057" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-293057"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Setup-11b1d2" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Setup-293057" markdown="1">
  
 Before we can run our examples we should get a bit of setup out of the way.
 Since these examples were harvested from the unit tests not all pieces
