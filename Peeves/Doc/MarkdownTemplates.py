@@ -158,6 +158,7 @@ class MarkdownFormatDirective(FormatDirective):
     CanonicalLink = "canonical_link", MarkdownOps.canonical_link
     HTML = "html", MarkdownOps.html
     Bootstrap = "bootstrap", MarkdownOps.bootstrap
+    Alert = "alert", MarkdownOps.alert
 MarkdownFormatDirective = TemplateFormatDirective.extend(MarkdownFormatDirective)
 
 class MarkdownTemplateFormatter(TemplateFormatter):
