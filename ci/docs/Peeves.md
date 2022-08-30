@@ -1,6 +1,6 @@
 # <a id="Peeves">Peeves</a> 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/tree/master/Peeves)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/__init__.py#L?message=Update%20Docs)]
 </div>
     
 Peeves is a minor extension to the unittest framework that makes my life better
@@ -8,62 +8,62 @@ Peeves is a minor extension to the unittest framework that makes my life better
 <div class="container alert alert-secondary bg-light">
   <div class="row">
    <div class="col" markdown="1">
-[TestRunner](Peeves/Peeves/TestUtils/TestRunner.md)   
+[TestRunner](Peeves/TestUtils/TestRunner.md)   
 </div>
    <div class="col" markdown="1">
-[DebugTests](Peeves/Peeves/TestUtils/DebugTests.md)   
+[DebugTests](Peeves/TestUtils/DebugTests.md)   
 </div>
    <div class="col" markdown="1">
-[ValidationTests](Peeves/Peeves/TestUtils/ValidationTests.md)   
+[ValidationTests](Peeves/TestUtils/ValidationTests.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[TimingTests](Peeves/Peeves/TestUtils/TimingTests.md)   
+[TimingTests](Peeves/TestUtils/TimingTests.md)   
 </div>
    <div class="col" markdown="1">
-[LoadTests](Peeves/Peeves/TestUtils/LoadTests.md)   
+[LoadTests](Peeves/TestUtils/LoadTests.md)   
 </div>
    <div class="col" markdown="1">
-[TestManager](Peeves/Peeves/TestUtils/TestManager.md)   
+[TestManager](Peeves/TestUtils/TestManager.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[DataGenerator](Peeves/Peeves/TestUtils/DataGenerator.md)   
+[DataGenerator](Peeves/TestUtils/DataGenerator.md)   
 </div>
    <div class="col" markdown="1">
-[load_tests](Peeves/Peeves/TestUtils/ManagedTestLoader/load_tests.md)   
+[load_tests](Peeves/TestUtils/ManagedTestLoader/load_tests.md)   
 </div>
    <div class="col" markdown="1">
-[validationTest](Peeves/Peeves/TestUtils/validationTest.md)   
+[validationTest](Peeves/TestUtils/validationTest.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[debugTest](Peeves/Peeves/TestUtils/debugTest.md)   
+[debugTest](Peeves/TestUtils/debugTest.md)   
 </div>
    <div class="col" markdown="1">
-[dataGenTest](Peeves/Peeves/TestUtils/dataGenTest.md)   
+[dataGenTest](Peeves/TestUtils/dataGenTest.md)   
 </div>
    <div class="col" markdown="1">
-[timeitTest](Peeves/Peeves/TestUtils/timeitTest.md)   
+[timeitTest](Peeves/TestUtils/timeitTest.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[timingTest](Peeves/Peeves/TestUtils/timingTest.md)   
+[timingTest](Peeves/TestUtils/timingTest.md)   
 </div>
    <div class="col" markdown="1">
-[inactiveTest](Peeves/Peeves/TestUtils/inactiveTest.md)   
+[inactiveTest](Peeves/TestUtils/inactiveTest.md)   
 </div>
    <div class="col" markdown="1">
-[Timer](Peeves/Peeves/Timer/Timer.md)   
+[Timer](Peeves/Timer.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[BlockProfiler](Peeves/Peeves/Profiler/BlockProfiler.md)   
+[BlockProfiler](Peeves/Profiler/BlockProfiler.md)   
 </div>
    <div class="col" markdown="1">
 [Doc](Peeves/Doc.md)   
@@ -80,10 +80,15 @@ Peeves is a minor extension to the unittest framework that makes my life better
 
 
 
-___
 
-[Edit Examples](https://github.com/McCoyGroup/Peeves/edit/master/ci/examples/Peeves.md) or 
-[Create New Examples](https://github.com/McCoyGroup/Peeves/new/master/?filename=ci/examples/Peeves.md) <br/>
-[Edit Template](https://github.com/McCoyGroup/Peeves/edit/master/ci/docs/Peeves.md) or 
-[Create New Template](https://github.com/McCoyGroup/Peeves/new/master/?filename=ci/docs/templates/Peeves.md) <br/>
-[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/__init__.py?message=Update%20Docs)
+
+
+
+
+---
+
+[Edit Examples](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Peeves.md) or 
+[Create New Examples](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves.md) <br/>
+[Edit Template](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves.md) or 
+[Create New Template](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves.md) <br/>
+[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/__init__.py#L?message=Update%20Docs)

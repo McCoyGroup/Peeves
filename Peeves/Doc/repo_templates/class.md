@@ -1,32 +1,26 @@
 ## <a id="{id}">{name}</a> 
-<div class="docs-source-link" markdown="1">
-[[source](https://github.com/{gh_username}/{gh_repo}/blob/{gh_branch}/{file_url}#L{lineno})/[edit](https://github.com/{gh_username}/{gh_repo}/edit/{gh_branch}/{file_url}#L{lineno}?message=Update%20Docs)]
-</div>
 
-{description}{parameters}
+{include$:'includes/source_links.md'}
 
-<div class="collapsible-section">
- <div class="collapsible-section collapsible-section-header" markdown="1">
- 
-### <a class="collapse-link" data-toggle="collapse" href="#methods">Methods and Properties</a> <a class="float-right" data-toggle="collapse" href="#methods"><i class="fa fa-chevron-down"></i></a>
+{description}
+{include$:'includes/parameters.md'}
 
- </div>
- <div class="collapsible-section collapsible-section-body collapse" id="methods" markdown="1">
+{%:prop_list=code(loop_template(
+    "{{0[0]}}: {{0[1]}}",
+    [[p[0], p[1].__name__ if isinstance(p[1], type) else type(p[1]).__name__] for p in props],
+    joiner="""
+"""
+))}
 
-{props}{methods}
+{%:method_list=[
+    m.handle(write=False).strip()
+    for m in methods
+]}
 
- </div>
-</div>
+{collapse$:
+    "### Methods and Properties", 
+    prop_list + "\n" + join(method_list, joiner="\n\n\n"),
+    name="methods"
+}
 
-{details}
-
-{examples}
-{tests}
-
-___
-
-[Edit Examples](https://github.com/{gh_username}/{gh_repo}/edit/gh-pages/ci/examples/{url}) or 
-[Create New Examples](https://github.com/{gh_username}/{gh_repo}/new/gh-pages/?filename=ci/examples/{url}) <br/>
-[Edit Template](https://github.com/{gh_username}/{gh_repo}/edit/gh-pages/ci/docs/{url}) or 
-[Create New Template](https://github.com/{gh_username}/{gh_repo}/new/gh-pages/?filename=ci/docs/templates/{url}) <br/>
-[Edit Docstrings](https://github.com/{gh_username}/{gh_repo}/edit/{gh_branch}/{file_url}#L{lineno}?message=Update%20Docs)
+{include$:'includes/footer.md'}

@@ -1,7 +1,7 @@
-from Peeves.Doc import *
 import os, sys
-
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+from Peeves import *
 target = os.path.join(root, "ci", "docs")
 sys.path.insert(0, root)
 doc_config = {
@@ -18,12 +18,12 @@ doc_config = {
     "packages": [
         {
             "id": "Peeves",
-            'tests_root': os.path.join(root, "ci", "tests"),
-            'details': ""
+            'tests_directory': os.path.join(root, "ci", "tests"),
+            'examples_directory': os.path.join(root, "ci", "examples")
         }
     ],
     "root": root,
     "target": target,
     "readme": os.path.join(root, "README.md")
 }
-DocBuilder(**doc_config).build()
+Doc.DocBuilder(**doc_config).build()

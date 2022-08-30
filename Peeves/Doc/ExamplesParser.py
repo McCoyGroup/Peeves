@@ -2,8 +2,7 @@
 import ast, collections, inspect
 
 __all__ = [
-    "ExamplesParser",
-    "TestExamplesFormatter"
+    "ExamplesParser"
 ]
 
 class ExamplesParser:
@@ -202,85 +201,3 @@ class ExamplesParser:
         else:
             c._functions = new_fns
             return c
-
-
-class TestExamplesFormatter:
-    def __init__(self, parser, template=None, example_template=None):
-        if isinstance(parser, str):
-            parser = ExamplesParser(parser)
-        self.parser = parser
-        self.template = inspect.cleandoc(self.default_template) if template is None else template
-        self.example_template = inspect.cleandoc(self.default_example_template) if example_template is None else example_template
-    @classmethod
-    def from_file(cls, tests_file):
-        with open(tests_file) as f:
-            return cls(f.read())
-
-    default_template = """
-    ### Tests
-    {links}
-    
-    #### Setup
-    Before we can run our examples we should get a bit of setup out of the way.
-    Since these examples were harvested from the unit tests not all pieces
-    will be necessary for all situations.
-    ```python
-    {setup}
-    ```
-    
-    All tests are wrapped in a test class
-    ```python
-    {class_setup}
-    ```
-    {tests}
-    """
-    def format(self):
-        """
-        Formats an examples file
-
-        :return:
-        :rtype:
-        """
-        imports = self.parser.setup
-        setup = "\n".join(self.parser.format_node(node) for node in imports)
-
-        cls = self.parser.class_spec
-        class_setup = "\n".join(
-            [
-                "class {}({}):".format(
-                    cls[0].name,
-                    ",".join(x.id for x in cls[0].bases)
-                ),
-                *(self.parser.format_node(node) for node in cls[1])
-            ]
-        )
-
-        links = self.format_jump_links(self.parser.functions)
-        tests = self.format_examples()
-
-        return self.template.format(
-            links=links,
-            setup=setup,
-            class_setup=class_setup,
-            tests=tests
-        )
-
-    def format_jump_links(self, functions):
-        return "\n".join(
-            "- [{k}](#{k})".format(k=k) for k in functions.keys()
-        )
-
-    default_example_template = """
-        #### <a name="{name}">{name}</a>
-        ```python
-        {body}
-        ```
-        """
-    def format_examples(self):
-        return "\n".join(
-            self.example_template.format(
-                name=k,
-                body=self.parser.format_node(v)
-            )
-            for k,v in self.parser.functions.items()
-        )
