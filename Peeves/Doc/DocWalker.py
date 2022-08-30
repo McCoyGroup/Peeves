@@ -522,7 +522,7 @@ class IndexWriter(IndexTemplateHandler):
 
     def get_template_params(self):
         return {
-            'index_files': [[os.path.basename(f), f] for f in self.get_file_paths()],
+            'index_files': [[os.path.splitext(os.path.basename(f))[0], f] for f in self.get_file_paths()],
             'description': self.description
         }
 
@@ -534,7 +534,7 @@ class DocWalker(TemplateWalker):
     Takes a set of objects & writers and walks through the objects, generating files on the way.
 
     :details: A `DocWalker` object is a light subclass of a `TemplateWalker`, but specialized for documentation & with specialized handlers
-    :related: .DocBuilder.DocBuilder, ModuleWriter, ClassWriter, FunctionWriter, MethodWriter, ObjectWriter, IndexWriter
+    :related: .DocsBuilder.DocBuilder, ModuleWriter, ClassWriter, FunctionWriter, MethodWriter, ObjectWriter, IndexWriter
     """
 
     module_handler = ModuleWriter

@@ -1,7 +1,7 @@
 
 
 {assign%:test_links={loop_template$:
-    """"- [{{k}}](#{{k}})""",
+    """- [{{k}}](#{{k}})""",
     k=tests['names'],
     joiner='\n'
 }}
