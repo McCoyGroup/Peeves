@@ -686,9 +686,10 @@ class TemplateHandler(ObjectHandler):
         if cls.squash_repeat_packages:
             base_id = base_id.split(".")
             new_id = [base_id[0]]
-            for k in base_id[1:]:
+            for i,k in enumerate(base_id[1:]):
                 if new_id[-1] != k:
-                    new_id.append(k)
+                    new_id.extend(base_id[1+k:])
+                    break
             base_id = ".".join(new_id)
         return base_id
     def get_package_and_url(self):

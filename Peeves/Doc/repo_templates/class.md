@@ -18,9 +18,10 @@
 ]}
 
 {collapse$:
-    "### Methods and Properties", 
+    "## Methods and Properties", 
     prop_list + "\n" + join(method_list, joiner="\n\n\n"),
-    name="methods"
+    name="methods",
+    open=False
 }
 
 {include$:'includes/footer.md'}
