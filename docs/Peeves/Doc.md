@@ -12,7 +12,7 @@ example and template files.
 [DocBuilder](Doc/DocsBuilder/DocBuilder.md)   
 </div>
    <div class="col" markdown="1">
-[DocWalker](Doc/DocWalker.md)   
+[DocWalker](Doc/DocWalker/DocWalker.md)   
 </div>
    <div class="col" markdown="1">
 [ModuleWriter](Doc/DocWalker/ModuleWriter.md)   
@@ -37,7 +37,7 @@ example and template files.
 [IndexWriter](Doc/DocWalker/IndexWriter.md)   
 </div>
    <div class="col" markdown="1">
-[ExamplesParser](Doc/ExamplesParser.md)   
+[ExamplesParser](Doc/ExamplesParser/ExamplesParser.md)   
 </div>
 </div>
   <div class="row">
@@ -56,7 +56,7 @@ example and template files.
 [TemplateOps](Doc/TemplateEngine/TemplateOps.md)   
 </div>
    <div class="col" markdown="1">
-[TemplateEngine](Doc/TemplateEngine.md)   
+[TemplateEngine](Doc/TemplateEngine/TemplateEngine.md)   
 </div>
    <div class="col" markdown="1">
 [ResourceLocator](Doc/TemplateEngine/ResourceLocator.md)   
@@ -128,18 +128,18 @@ example and template files.
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Tests-d00f81" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-d00f81"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Tests-be6d30" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-be6d30"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Tests-d00f81" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Tests-be6d30" markdown="1">
  - [PeevesDoc](#PeevesDoc)
 - [ParseExamples](#ParseExamples)
 - [FormatSpec](#FormatSpec)
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-### <a class="collapse-link" data-toggle="collapse" href="#Setup-8f6386" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-8f6386"><i class="fa fa-chevron-down"></i></a>
+### <a class="collapse-link" data-toggle="collapse" href="#Setup-016cc6" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-016cc6"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Setup-8f6386" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Setup-016cc6" markdown="1">
  
 Before we can run our examples we should get a bit of setup out of the way.
 Since these examples were harvested from the unit tests not all pieces

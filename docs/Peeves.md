@@ -58,7 +58,7 @@ Peeves is a minor extension to the unittest framework that makes my life better
 [inactiveTest](Peeves/TestUtils/inactiveTest.md)   
 </div>
    <div class="col" markdown="1">
-[Timer](Peeves/Timer.md)   
+[Timer](Peeves/Timer/Timer.md)   
 </div>
 </div>
   <div class="row">

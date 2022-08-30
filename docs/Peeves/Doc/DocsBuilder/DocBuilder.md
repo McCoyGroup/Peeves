@@ -17,9 +17,9 @@ documentation template things.
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-### <a class="collapse-link" data-toggle="collapse" href="#methods" markdown="1"> Methods and Properties</a> <a class="float-right" data-toggle="collapse" href="#methods"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#methods" markdown="1"> Methods and Properties</a> <a class="float-right" data-toggle="collapse" href="#methods"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="methods" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse " id="methods" markdown="1">
  ```python
 defaults_root: str
 default_config_file: str
@@ -125,16 +125,16 @@ Writes documentation layout to `self.target`
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Tests-775e37" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-775e37"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Tests-51ccf5" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-51ccf5"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Tests-775e37" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Tests-51ccf5" markdown="1">
  - [PeevesDoc](#PeevesDoc)
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-### <a class="collapse-link" data-toggle="collapse" href="#Setup-f745fa" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-f745fa"><i class="fa fa-chevron-down"></i></a>
+### <a class="collapse-link" data-toggle="collapse" href="#Setup-9bb747" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-9bb747"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Setup-f745fa" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Setup-9bb747" markdown="1">
  
 Before we can run our examples we should get a bit of setup out of the way.
 Since these examples were harvested from the unit tests not all pieces
