@@ -64,8 +64,8 @@ get_template_params(self):
 get_package_and_url(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/ObjectWriter.py#L522)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/ObjectWriter.py#L522?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/ObjectWriter.py#L525)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/ObjectWriter.py#L525?message=Update%20Docs)]
 </div>
  </div>
 </div>

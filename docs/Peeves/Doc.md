@@ -14,14 +14,6 @@ that builds off of python's built-in AST module and syntax.
 Examples are also possible to provide for individual objects/modules and can also be harvested automatically from
 unit tests if provided.
 
-:long_description:
-The templates provided are for modules, classes, methods, functions, and generic objects.
-The mini-language used extends standard python string formatting syntax but allows for the
-evaluation of a whitelisted set of commands within templates.
-A full HTML/Bootstrap generator is included to allow for total customization of the generated
-Markdown.
-See `TemplateOps`, `TemplateFormatDirective`, `MarkdownOps`, and `MarkdownFormatDirective` for more info.
-
 <div class="container alert alert-secondary bg-light">
   <div class="row">
    <div class="col" markdown="1">
@@ -124,7 +116,12 @@ See `TemplateOps`, `TemplateFormatDirective`, `MarkdownOps`, and `MarkdownFormat
 </div>
 </div>
 
-
+The templates provided are for modules, classes, methods, functions, and generic objects.
+The mini-language used extends standard python string formatting syntax but allows for the
+evaluation of a whitelisted set of commands within templates.
+A full HTML/Bootstrap generator is included to allow for total customization of the generated
+Markdown.
+See `TemplateOps`, `TemplateFormatDirective`, `MarkdownOps`, and `MarkdownFormatDirective` for more info.
 
 
 

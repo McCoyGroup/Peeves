@@ -4,7 +4,7 @@
 [edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/TestUtils.py#L25?message=Update%20Docs)]
 </div>
 The main interface for managing what tests we might want to run.
-    Instance of `TestManagerClass`
+Instance of `TestManagerClass`
 
 
 
