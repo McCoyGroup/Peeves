@@ -11,5 +11,6 @@ from .Timer import __all__ as exposed
 __all__ += exposed
 from .Profiler import __all__ as exposed
 __all__ += exposed
+import Peeves.Doc as Doc
 exposed = [ "Doc" ]
 __all__ += exposed

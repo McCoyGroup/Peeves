@@ -3,7 +3,7 @@
 {assign%:test_links={loop_template$:
     """"- [{{k}}](#{{k}})""",
     k=tests['names'],
-    joiner='\\n'
+    joiner='\n'
 }}
 
 {%:setup=apply('''
@@ -18,7 +18,7 @@ All tests are wrapped in a test class
 ''',
     class_setup=tests['class_setup']
 )}
-{%:test_setup=collapse('Setup', setup)}
+{%:test_setup=collapse('### Setup', setup)}
 {%:example_template="""#### <a name="{{name}}">{{name}}</a>
 ```python
 {{body}}
