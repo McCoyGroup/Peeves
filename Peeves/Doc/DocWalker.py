@@ -130,7 +130,10 @@ class DocTemplateHandler(TemplateHandler):
                 obj = obj.fget
             elif not isinstance(obj, (type, types.ModuleType, types.FunctionType, types.MethodDescriptorType, types.MethodType)):
                 obj = type(obj)
-            lineno = 1 + inspect.findsource(obj)[1] if self.include_line_numbers else ""
+            try:
+                lineno = 1 + inspect.findsource(obj)[1] if self.include_line_numbers else ""
+            except:
+                lineno = ""
         else:
             lineno = ""
         # except:
