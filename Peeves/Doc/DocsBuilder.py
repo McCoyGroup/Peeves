@@ -2,6 +2,7 @@
 import os, shutil
 
 from .DocWalker import DocWalker
+from .TemplateEngine import ResourceLocator
 
 __all__ = [
     "DocBuilder"
@@ -16,8 +17,6 @@ class DocBuilder:
     """
 
     defaults_root = os.path.dirname(__file__)
-    default_templates_extension = 'templates'
-    default_repo_templates_extension = 'repo_templates'
     default_config_file="_config.yml"
 
     def __init__(self,
@@ -47,14 +46,7 @@ class DocBuilder:
         self.config = config
         self.target = target
         self.root = root
-        default = self.default_repo_templates_extension if 'gh_repo' in config else self.default_templates_extension
-        self.template_dir = (
-            os.path.join(self.defaults_root, default) if templates_directory is None else (
-                templates_directory
-                if os.path.isdir(templates_directory) else
-                os.path.join(self.defaults_root, templates_directory)
-            )
-        )
+        self.template_dir=self.get_template_locator(templates_directory, use_repo_templates='gh_repo' in self.config)
         self.examples_dir=examples_directory
         self.tests_directory=tests_directory
         self.config_file=self.default_config_file if config_file is None else config_file
@@ -64,6 +56,19 @@ class DocBuilder:
                 with open(readme) as r:
                     readme = r.read()
         self.readme=readme
+
+    default_template_extension = 'templates'
+    default_repo_extension = 'repo_templates'
+    def get_template_locator(self, template_directory, use_repo_templates=False):
+        if not isinstance(template_directory, ResourceLocator):
+            template_extension = [self.default_template_extension]
+            if use_repo_templates:
+                template_extension = [self.default_repo_extension] + template_extension
+            tdirs = [os.path.dirname(os.path.abspath(__file__))]
+            if template_directory is not None:
+                tdirs = tdirs + [template_directory]
+            template_directory = ResourceLocator([(tdirs, template_extension)])
+        return template_directory
 
     config_defaults = {
         "theme":"McCoyGroup/finx",
@@ -82,9 +87,9 @@ class DocBuilder:
             cfg.update(**self.config)
         self.config = cfg
 
-        test_cfg = os.path.join(self.template_dir, self.config_file)
+        test_cfg = self.template_dir.locate(self.config_file)
         cfg_file = self.config_file if os.path.isfile(self.config_file) else (
-            test_cfg if os.path.isfile(test_cfg) else os.path.join(self.template_dir, '_config.yml')
+            test_cfg if os.path.isfile(test_cfg) else self.template_dir.locate('_config.yml')
         )
 
         if os.path.isfile(cfg_file):
@@ -117,10 +122,8 @@ class DocBuilder:
 
         for fname in ['404.html', 'Contributing.md', 'Gemfile']:
             conf_file = os.path.join(self.target, fname)  # hard coded for now, can change later
-            base_file = os.path.join(self.template_dir, fname)
-            if not os.path.isfile(base_file):
-                base_file = os.path.join(os.path.join(self.defaults_root, self.default_templates_extension), fname)
-            if not os.path.isfile(conf_file):
+            base_file = self.template_dir.locate(fname)
+            if not os.path.isfile(conf_file) and os.path.isfile(fname):
                 print('writing {} file to {}'.format(fname, fname))
                 try:
                     os.makedirs(os.path.dirname(conf_file))
@@ -139,10 +142,9 @@ class DocBuilder:
         :rtype:
         """
         return DocWalker(
-            self.packages,
             out=self.target,
             description=self.readme,
-            template_directory=self.template_dir,
+            template_locator=self.template_dir,
             examples_directory=self.examples_dir,
             **self.config
         )
@@ -158,4 +160,4 @@ class DocBuilder:
         print("using examples from {}".format(self.examples_dir))
         self.create_layout()
         walker = self.load_walker()
-        return walker.write_docs()
+        return walker.write(self.packages)
