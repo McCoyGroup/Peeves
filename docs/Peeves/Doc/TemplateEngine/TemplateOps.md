@@ -17,9 +17,7 @@
 ## <a class="collapse-link" data-toggle="collapse" href="#methods" markdown="1"> Methods and Properties</a> <a class="float-right" data-toggle="collapse" href="#methods"><i class="fa fa-chevron-down"></i></a>
  </div>
  <div class="collapsible-section collapsible-section-body collapse " id="methods" markdown="1">
- ```python
-
-```
+ 
 <a id="Peeves.Doc.TemplateEngine.TemplateOps.loop" class="docs-object-method">&nbsp;</a> 
 ```python
 loop(caller: Callable, *args, joiner='', formatter=None, **kwargs): 

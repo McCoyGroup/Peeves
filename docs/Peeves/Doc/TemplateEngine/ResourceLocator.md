@@ -17,9 +17,7 @@
 ## <a class="collapse-link" data-toggle="collapse" href="#methods" markdown="1"> Methods and Properties</a> <a class="float-right" data-toggle="collapse" href="#methods"><i class="fa fa-chevron-down"></i></a>
  </div>
  <div class="collapsible-section collapsible-section-body collapse " id="methods" markdown="1">
- ```python
-
-```
+ 
 <a id="Peeves.Doc.TemplateEngine.ResourceLocator.__init__" class="docs-object-method">&nbsp;</a> 
 ```python
 __init__(self, locators: Iterable[Union[Peeves.Peeves.Doc.TemplateEngine.ResourcePathLocator, Iterable[str], Tuple[Iterable[str], Union[str, Iterable[str]]]]]): 

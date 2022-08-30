@@ -17,9 +17,7 @@ Provides a parser for unit tests to turn them into examples
 ## <a class="collapse-link" data-toggle="collapse" href="#methods" markdown="1"> Methods and Properties</a> <a class="float-right" data-toggle="collapse" href="#methods"><i class="fa fa-chevron-down"></i></a>
  </div>
  <div class="collapsible-section collapsible-section-body collapse " id="methods" markdown="1">
- ```python
-
-```
+ 
 <a id="Peeves.Doc.ExamplesParser.ExamplesParser.__init__" class="docs-object-method">&nbsp;</a> 
 ```python
 __init__(self, unit_tests): 
@@ -166,16 +164,16 @@ filter_by_name(self, name):
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Tests-206e18" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-206e18"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Tests-30ff02" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-30ff02"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Tests-206e18" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Tests-30ff02" markdown="1">
  - [ParseExamples](#ParseExamples)
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-### <a class="collapse-link" data-toggle="collapse" href="#Setup-170421" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-170421"><i class="fa fa-chevron-down"></i></a>
+### <a class="collapse-link" data-toggle="collapse" href="#Setup-1cdf39" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-1cdf39"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Setup-170421" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Setup-1cdf39" markdown="1">
  
 Before we can run our examples we should get a bit of setup out of the way.
 Since these examples were harvested from the unit tests not all pieces
