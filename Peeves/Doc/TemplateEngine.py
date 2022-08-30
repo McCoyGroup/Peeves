@@ -558,8 +558,7 @@ class ResourceLocator:
 class TemplateEngine:
     """
     Provides an engine for generating content using a
-    `TemplateFormatter` and `ResourceLocator`, but does not handle
-    any writing of files
+    `TemplateFormatter` and `ResourceLocator`
     """
 
     formatter_class = TemplateFormatter

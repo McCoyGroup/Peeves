@@ -321,14 +321,14 @@ class ClassWriter(DocTemplateHandler):
 
         return props, methods
 
-    def get_package_and_url(self):
-        pkg, rest = self.identifier.split(".", 1)
-        rest, bleh = rest.rsplit(".", 1)
-        file_url = rest.replace(".", "/") + ".py"
-        if 'url_base' in self.extra_fields:
-            file_url = self.extra_fields['url_base'] + "/" + file_url
-        # lineno = inspect.findsource(self.obj)[1]
-        return pkg, file_url  # + "#L" + str(lineno) # for GitHub links
+    # def get_package_and_url(self):
+    #     pkg, rest = self.identifier.split(".", 1)
+    #     rest, bleh = rest.rsplit(".", 1)
+    #     file_url = rest.replace(".", "/") + ".py"
+    #     if 'url_base' in self.extra_fields:
+    #         file_url = self.extra_fields['url_base'] + "/" + file_url
+    #     # lineno = inspect.findsource(self.obj)[1]
+    #     return pkg, file_url  # + "#L" + str(lineno) # for GitHub links
 
     def format_prop(self, k, o):
         return '{}: {}'.format(k, type(o).__name__)
