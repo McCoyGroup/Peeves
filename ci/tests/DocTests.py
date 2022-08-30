@@ -39,8 +39,7 @@ class DocsTests(TestCase):
             "packages": [
                 {
                     "id": "Peeves",
-                    'tests_root': os.path.join(root, "ci", "tests"),
-                    'details': ""
+                    'tests_directory': os.path.join(root, "ci", "tests")
                 }
             ],
             "root": root,

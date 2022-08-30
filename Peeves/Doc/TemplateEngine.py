@@ -1,6 +1,6 @@
-import sys, os, abc, enum, types, string, inspect
+import sys, os, pathlib, abc, enum, types, string, inspect
 import ast, functools, re, fnmatch, collections
-import typing
+import typing, itertools, builtins
 from typing import *
 
 from .ObjectWalker import *
@@ -28,24 +28,28 @@ class TemplateOps:
     def loop(caller: typing.Callable, *args, joiner="", formatter=None, **kwargs):
         if len(kwargs) == 0:
             res = [caller(*a) for a in zip(*args)]
+        elif len(args) == 0:
+            res = [
+                caller(**{k:v for k,v in zip(kwargs.keys(), kv)})
+                for kv in zip(*kwargs.values())
+            ]
         else:
             res = [
                 caller(*a, **{k:v for k,v in zip(kwargs.keys(), kv)})
-                for a,kv in zip(zip(*args), zip(kwargs.values()))
+                for a,kv in zip(zip(*args), zip(*kwargs.values()))
             ]
         if joiner is not None:
             res = joiner.join(res)
         return res
-    @staticmethod
-    def loop_template(template:str, *args, slots=None, joiner="", formatter=None):
-        if slots is not None:
-            return joiner.join(
-                template.format_map({s: v for s, v in zip(slots, a)}) for a in zip(*args)
-            )
-        else:
-            return joiner.join(
-                template.format(*a) for a in zip(*args)
-            )
+    @classmethod
+    def loop_template(cls, template:str, *args, joiner="", formatter=None, **kwargs):
+        return cls.loop(
+            template.format,
+            *args,
+            joiner=joiner,
+            formatter=formatter,
+            **kwargs
+        )
     @staticmethod
     def join(*args, joiner=" ", formatter=None):
         if len(args) == 1 and not isinstance(args[0], str):
@@ -54,6 +58,9 @@ class TemplateOps:
     @classmethod
     def load(cls, template, formatter=None):
         return formatter.load_template(template)
+    @classmethod
+    def include(cls, template, formatter=None):
+        return formatter.vformat(formatter.load_template(template), (), formatter.format_parameters)
     @classmethod
     def apply(cls, template, *args, formatter=None, **kwargs):
         if formatter is None:
@@ -71,6 +78,13 @@ class TemplateOps:
     @staticmethod
     def cleandoc(txt, formatter=None):
         return inspect.cleandoc(txt)
+    @staticmethod
+    def wrap_str(obj, formatter=None):
+        txt = str(obj)
+        txt = txt.replace('"', '\\"').replace("'", "\\'")
+        if '\n' in txt:
+            txt = '"""'+txt+'"""'
+        return txt
 
 class FormatDirective(enum.Enum):
     """
@@ -108,13 +122,15 @@ class FormatDirective(enum.Enum):
 
 class TemplateFormatDirective(FormatDirective):
     Loop = "loop", TemplateOps.loop
+    LoopTemplate = "loop_template", TemplateOps.loop_template
     Join = "join", TemplateOps.join
     Load = "load", TemplateOps.load
+    Include = "include", TemplateOps.include
     Apply = "apply", TemplateOps.apply
     NonEmpty = "nonempty", TemplateOps.nonempty
     CleanDoc = "cleandoc", TemplateOps.cleandoc
 
-    Str = "str", TemplateOps.wrap(str)
+    Str = "str", TemplateOps.wrap_str
     Int = "int", TemplateOps.wrap(int)
     Float = "float", TemplateOps.wrap(float)
     Round = "round", TemplateOps.wrap(round)
@@ -127,12 +143,32 @@ class TemplateFormatDirective(FormatDirective):
 class TemplateFormatterError(ValueError):
     ...
 class TemplateASTEvaluator:
-    def __init__(self, formatter, directives, format_parameters):
+    def __init__(self, formatter, directives, format_parameters:dict):
         self.formatter = formatter
         self.directives = directives
         self.format_parameters = format_parameters
-    def evaluate_node(self, node:ast.AST):
-        if isinstance(node, ast.Module):
+    def handle_comprehension(self, g, expr, callback):
+        target = g.target.id
+        restore = False
+        if target in self.format_parameters:
+            restore = True
+            old = self.format_parameters[target]
+        try:
+            itt = self.evaluate_node(g.iter)
+            for v in itt:
+                self.format_parameters[target] = v
+                if all(self.evaluate_node(e) for e in g.ifs):
+                    callback(self.evaluate_node(expr))
+        finally:
+            if restore:
+                self.format_parameters[target] = old
+            else:
+                if target in self.format_parameters:
+                    del self.format_parameters[target]
+    def evaluate_node(self, node:typing.Union[ast.AST,ast.expr,tuple]):
+        if isinstance(node, tuple):
+            return tuple(self.evaluate_node(n) for n in node)
+        elif isinstance(node, ast.Module):
             bits = []
             for e in node.body:
                 res = self.evaluate_node(e)
@@ -141,7 +177,18 @@ class TemplateASTEvaluator:
                 bits.append(str(res))
             return "".join(bits)
         elif isinstance(node, ast.Name) and isinstance(node.ctx, ast.Load):
-            return self.format_parameters[node.id]
+            name = node.id
+            try:
+                val = self.format_parameters[name]
+            except KeyError:
+                need_raise = False
+                try:
+                    val = getattr(builtins, name)
+                except AttributeError:
+                    need_raise = True
+                if need_raise:
+                    raise
+            return val
         elif isinstance(node, ast.Attribute) and isinstance(node.ctx, ast.Load):
             return getattr(self.evaluate_node(node.value), node.attr)
         elif isinstance(node, ast.Assign):
@@ -158,12 +205,43 @@ class TemplateASTEvaluator:
             return node.n
         elif isinstance(node, ast.List):
             return [self.evaluate_node(e) for e in node.elts]
+        elif isinstance(node, ast.ListComp):
+            l = []
+            for g in node.generators:
+                if isinstance(g, ast.comprehension):
+                    self.handle_comprehension(
+                        g,
+                        node.elt,
+                        l.append
+                    )
+            return l
         elif isinstance(node, ast.Tuple):
             return tuple(self.evaluate_node(e) for e in node.elts)
         elif isinstance(node, ast.Set):
             return {self.evaluate_node(e) for e in node.elts}
+        elif isinstance(node, ast.SetComp):
+            l = set
+            for g in node.generators:
+                if isinstance(g, ast.comprehension):
+                    self.handle_comprehension(
+                        g,
+                        node.elt,
+                        l.add
+                    )
+            return l
         elif isinstance(node, ast.Dict):
             return {self.evaluate_node(k):self.evaluate_node(v) for k,v in zip(node.keys, node.values)}
+        elif isinstance(node, ast.DictComp):
+            l = {}
+            add = lambda kv:l.__setitem__(*kv)
+            for g in node.generators:
+                if isinstance(g, ast.comprehension):
+                    self.handle_comprehension(
+                        g,
+                        (node.key, node.value),
+                        add
+                    )
+            return l
         elif isinstance(node, ast.BinOp):
             left = self.evaluate_node(node.left)
             right = self.evaluate_node(node.right)
@@ -189,6 +267,13 @@ class TemplateASTEvaluator:
                 return left & right
             elif isinstance(node.op, ast.Pow):
                 return left ** right
+            else:
+                raise TemplateFormatterError("unsupported operation {}".format(ast.dump(node.op)))
+        elif isinstance(node, ast.BoolOp):
+            if isinstance(node.op, ast.Or):
+                return self.evaluate_node(node.values[0]) or self.evaluate_node(node.values[1])
+            elif isinstance(node.op, ast.And):
+                return self.evaluate_node(node.values[0]) and self.evaluate_node(node.values[1])
             else:
                 raise TemplateFormatterError("unsupported operation {}".format(ast.dump(node.op)))
         elif isinstance(node, ast.Compare):
@@ -222,24 +307,36 @@ class TemplateASTEvaluator:
                 return self.evaluate_node(node.body)
             else:
                 return self.evaluate_node(node.orelse)
-
-
-            # IfExp(
-            #     test=Compare(left=Constant(value=1, kind=None), ops=[Gt()], comparators=[Constant(value=2, kind=None)]),
-            #     body=Name(id='add_temp', ctx=Load()), orelse=Constant(value='', kind=None))
-            # unsupported
-
+        elif isinstance(node, ast.Subscript):
+            return self.evaluate_node(node.value).__getitem__(self.evaluate_node(node.slice))
+        elif isinstance(node, ast.Index):
+            return self.evaluate_node(node.value)
         elif isinstance(node, ast.Call):
             if isinstance(node.func, ast.Attribute): # subattr of some object...I guess we can call it?
                 directive = self.evaluate_node(node.func)
             directive = None
             if isinstance(node.func, ast.Name):
                 name = node.func.id
-                directive = self.directives._load(name)
+                if name == 'raw':
+                    return TemplateOps.wrap_str(node.args[0])
+                elif name == 'assign':
+                    self.format_parameters[self.evaluate_node(node.args[0])] = self.evaluate_node(node.args[1])
+                    return ""
+                try:
+                    directive = self.directives._load(name)
+                except KeyError:
+                    need_raise = name in {'open'}
+                    if not need_raise:
+                        try:
+                            directive = getattr(builtins, name)
+                        except AttributeError:
+                            need_raise = True
+                    if need_raise:
+                        raise
+                else:
+                    directive = lambda *a, _d=directive, **k: _d._call(*a, formatter=self.formatter, **k)
             if directive is None:
                 directive = self.evaluate_node(node.func)
-            else:
-                directive = lambda *a,_d=directive,**k:_d._call(*a, formatter=self.formatter, **k)
             args = [self.evaluate_node(a) for a in node.args]
             kwargs = {k.arg: self.evaluate_node(k.value) for k in node.keywords}
             return directive(*args, **kwargs)
@@ -251,34 +348,57 @@ class TemplateFormatter(string.Formatter):
     the inclusion of standard Bootstrap HTML elements
     alongside the classic formatting
     """
+    max_recusion=6
     directives = TemplateFormatDirective
     class frozendict(dict):
         def __setitem__(self, key, value):
             raise TypeError("`frozendict` is immutable")
     def __init__(self, templates):
         self.__templates = self.frozendict(templates)
-        self.format_parameters = None
+        self._fmt_stack = []
+    @property
+    def format_parameters(self):
+        return self._fmt_stack[-1] if len(self._fmt_stack) > 0 else None
     @property
     def templates(self):
         return self.__templates
     @property
+    def special_callbacks(self):
+        return {"%":self.apply_eval_tree, "$":self.apply_directive_tree, "#":self.apply_comment, 'raw$':self.apply_raw, 'assign%':self.apply_assignment}
+    @property
     def callback_map(self):
         return dict(
-            {"$":self.apply_directive_tree},
+            self.special_callbacks,
             **{d.key+"$":self.apply_directive for d in self.directives}
         )
-    def apply_directive_tree(self, _, spec) -> str:
-        tree = ast.parse("("+spec+")")
+
+    def apply_eval_tree(self, _, spec) -> str:
+        tree = ast.parse(inspect.cleandoc(spec))
         ev = TemplateASTEvaluator(self, self.directives, self.format_parameters).evaluate_node(tree)
         if ev is None:
             ev = ""
         return ev
+    def apply_directive_tree(self, _, spec) -> str:
+        return self.apply_eval_tree(_, "("+spec+")")
+    def apply_assignment(self, key, spec) -> str:
+        key, val = spec.split("=", 1)
+        self.format_parameters[key] = val
+        return ""
+    def apply_raw(self, key, spec) -> str:
+        return spec
+    def apply_comment(self, key, spec) -> str:
+        return ""
     def apply_directive(self, key, spec) -> str:
         return self.apply_directive_tree(
             key,
             "{}({})".format(key.strip("$"), spec)
         )
     def format_field(self, value: Any, format_spec: str) -> str:
+        if self.format_parameters is None:
+            raise NotImplementedError("{}.{} called outside of `vformat`".format(
+                type(self).__name__,
+                'format_field'
+            ))
         callback = (
             self.callback_map.get(value, None)
             if isinstance(value, str)
@@ -287,12 +407,17 @@ class TemplateFormatter(string.Formatter):
         if callback is None:
             return super().format_field(value, format_spec)
         else:
-            return callback(value, format_spec)
+            try:
+                return callback(value, format_spec)
+            except:
+                raise ValueError("error in applying directive {} to {}".format(value,format_spec))
 
     _template_cache = {}
     def load_template(self, template):
         if template not in self.__templates:
-            raise ValueError("can only load templates that ")
+            raise ValueError("can't load templates on the fly ({} not in {})".format(
+                template, self.__templates
+            ))
         template = self.templates[template]
         if os.path.exists(template):
             if template not in self._template_cache:
@@ -314,18 +439,40 @@ class TemplateFormatter(string.Formatter):
 
     def vformat(self, format_string: str, args: Sequence[Any], kwargs: Mapping[str, Any]):
         try:
-            self.format_parameters = kwargs.copy()
-            if "$" not in kwargs:
-                kwargs["$"] = "$"
+            self._fmt_stack.append(kwargs.copy())
+            for k in self.special_callbacks:
+                kwargs[k] = k
             for d in self.directives:
                 if d.key+"$" not in kwargs:
                     kwargs[d.key+"$"] = d.key+"$"
-            return super().vformat(format_string, args, kwargs)
+            used_args = set()
+            result, _ = self._vformat(format_string, args, kwargs, used_args, self.max_recusion)
+            self.check_unused_args(used_args, args, kwargs)
+            return result
         finally:
-            self.format_parameters = None
+            self._fmt_stack.pop()
 
+class OrderedSet(dict):
+    def __init__(self, *iterable):
+        if len(iterable) > 0:
+            iterable = iterable[0]
+        super().__init__({k:None for k in iterable})
+    def union(self, other:'OrderedSet'):
+        return type(self)(itertools.chain(self.keys(), other.keys()))
+    def __repr__(self):
+        return "{}({})".format(type(self).__name__, list(self.keys()))
+    def __iter__(self):
+        return iter(self.keys())
+    def add(self, k):
+        self[k] = None
+    def update(self, ks):
+        super().update({k:None for k in ks})
+    def __delitem__(self, k):
+        del self[k]
 class ResourcePathLocator:
     def __init__(self, path:Iterable[str]):
+        if isinstance(path, str):
+            path = [path]
         self.path = list(path)
     def locate(self, identifier):
         if os.path.exists(identifier):
@@ -337,28 +484,42 @@ class ResourcePathLocator:
                     return f
     def resource_path(self, d, f):
         return os.path.join(d, f)
-    def paths(self):
-        s = None
+    def paths(self, max_depth=7):
+        s = OrderedSet()
         for d in self.path:
-            dirs = os.listdir(self.resource_path(d, ""))
-            if s is None:
-                s = set(dirs)
-            else:
-                s = s.union(dirs)
+            base = self.resource_path(d, "")
+            base_depth = len(pathlib.Path(base).parts)
+            for root, dirs, files in os.walk(base, topdown=True):
+                br = pathlib.Path(root).parts[base_depth:]
+                if len(br) > max_depth:
+                    break
+                s.update(os.path.join(*br, f) for f in files)
         return s
     def directories(self):
         return [self.resource_path(d, "") for d in self.path]
+    def __repr__(self):
+        return "{}({})".format(
+            type(self).__name__,
+            self.path
+        )
 class SubresourcePathLocator(ResourcePathLocator):
     def __init__(self, roots, extension):
         self.ext = extension
         super().__init__(roots)
     def resource_path(self, d, f):
         return os.path.join(d, self.ext, f)
+    def __repr__(self):
+        return "{}({}, {})".format(
+            type(self).__name__,
+            self.path,
+            self.ext
+        )
 class ResourceLocator:
     def __init__(self,
                  locators:Iterable[Union[ResourcePathLocator,Iterable[str], Tuple[Iterable[str], Union[str, Iterable[str]]]]]
                  ):
-
+        if isinstance(locators, str):
+            locators = [locators]
         self.locators = []
         for s in locators:
             if isinstance(s, ResourcePathLocator):
@@ -383,10 +544,10 @@ class ResourceLocator:
                     filter_pattern = re.compile(filter_pattern)
                 except (re.error, ValueError):
                     filter_pattern = re.compile(fnmatch.translate(filter_pattern))
-            paths = {p for p in paths if filter_pattern.match(p)}
+            paths = OrderedSet(p for p in paths if filter_pattern.match(p))
         return paths
     def directories(self):
-        return {r for l in self.locators for r in l.directories()}
+        return OrderedSet(r for l in self.locators for r in l.directories())
     def __repr__(self):
         return "{}({})".format(
             type(self).__name__,
@@ -461,11 +622,16 @@ class TemplateEngine:
     def write_string(self, target, txt):
         return self.outStream(target).write(txt)
     def apply(self, template, target, **template_params):
-        if target not in self.ignore_paths:
-            return self.write_string(
-                target,
-                self.format_map(template, template_params)
-            )
+        try:
+            if target is None:
+                return self.format_map(template, template_params)
+            elif target not in self.ignore_paths:
+                return self.write_string(target, self.format_map(template, template_params))
+        except:
+            raise ValueError("{}: error in filling template {}".format(
+                type(self).__name__,
+                template
+            ))
 
 class TemplateHandler(ObjectHandler):
     template = None
@@ -511,7 +677,7 @@ class TemplateHandler(ObjectHandler):
         """
         raise NotImplementedError("abstract base class")
 
-    def handle(self, template=None, target=None):
+    def handle(self, template=None, target=None, write=True):
         """
         Formats the documentation Markdown from the supplied template
 
@@ -554,7 +720,7 @@ class TemplateHandler(ObjectHandler):
                 params['url'] = out_url
 
             try:
-                out = self.engine.apply(template, out_file, **params)
+                out = self.engine.apply(template, out_file if write else None, **params)
             except KeyError as e:
                 raise ValueError("{} ({}): template needs key {}".format(
                     type(self).__name__,
@@ -569,7 +735,7 @@ class TemplateHandler(ObjectHandler):
                 ))
             return out
 
-    blacklist_packages = {"builtins", 'numpy', 'scipy', 'matplotlib'} #TODO: more sophisticated blacklisting
+    blacklist_packages = {'numpy', 'scipy', 'matplotlib'} #TODO: more sophisticated blacklisting
     def check_should_write(self):
         """
         Determines whether the object really actually should be
@@ -577,7 +743,14 @@ class TemplateHandler(ObjectHandler):
         :return:
         :rtype:
         """
-        return self.identifier.split(".", 1)[0] not in self.blacklist_packages
+        base = self.identifier.split(".", 1)[0]
+        try:
+            loc = sys.modules[base].__file__
+        except KeyError:
+            stdlib = False
+        else:
+            stdlib = loc.startswith(sys.prefix) and 'site-packages' not in loc
+        return not stdlib and base not in self.blacklist_packages
 
 class TemplateResourceExtractor(ResourceLocator):
     def path_extension(self, handler:TemplateHandler):
@@ -611,7 +784,16 @@ class TemplateResourceExtractor(ResourceLocator):
                         res = res
                     break
             else:
-                res = self.locate(self.path_extension(handler))
+                ext = self.path_extension(handler)
+                if isinstance(ext, str):
+                    res = self.locate(ext)
+                else:
+                    for e in ext:
+                        res = self.locate(e)
+                        if res is not None:
+                            break
+                    else:
+                        res = None
         return res
     def load(self, handler:TemplateHandler):
         """
@@ -621,7 +803,7 @@ class TemplateResourceExtractor(ResourceLocator):
         """
 
         resource = self.get_resource(handler)
-        if os.path.isfile(resource):
+        if resource is not None and os.path.isfile(resource):
             with open(resource) as f:
                 resource = f.read()
         return resource
@@ -669,6 +851,9 @@ class TemplateWalker(ObjectWalker):
             **kwargs
         )
 
+    def visit_root(self, o, **kwargs): # here for overloading
+        return self.visit(o, **kwargs)
+
     def write(self, objects, index='index.md'):
         """
         Walks through the objects supplied and applies the appropriate templates
@@ -685,7 +870,7 @@ class TemplateWalker(ObjectWalker):
         else:
             out_file = None
 
-        files = [self.visit(o) for o in objects]
+        files = [self.visit_root(o) for o in objects]
         files = [f for f in files if f is not None]
         w = self.index_handler(files,
                                out=out_file,

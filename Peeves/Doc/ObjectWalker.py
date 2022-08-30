@@ -481,7 +481,6 @@ class ObjectWalker:
         o = self.resolve_object(oid)
         return self.get_handler(o, spec=spec, **kwargs)
 
-
     def visit(self, o, parent=None, **kwargs):
         """
         Visits a single object in the tree
@@ -506,7 +505,10 @@ class ObjectWalker:
         else:
             pid = None
 
-        handler = self.get_handler(o, parent=pid, **kwargs)
+        if isinstance(o, self.spec):
+            handler = self.resolve_spec(o, parent=pid, **kwargs)
+        else:
+            handler = self.get_handler(o, parent=pid, **kwargs)
         oid = handler.identifier
         if oid not in self.tree:
             res = handler.handle()

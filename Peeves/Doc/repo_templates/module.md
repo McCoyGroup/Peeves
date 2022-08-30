@@ -1,7 +1,5 @@
 # <a id="{id}">{name}</a> 
-<div class="docs-source-link" markdown="1">
-[[source](https://github.com/{gh_username}/{gh_repo}/tree/{gh_branch}/{package_url})]
-</div>
+{include$:'includes/source_links.md'}
     
 {description}
 
@@ -9,18 +7,4 @@
 
 {long_description}
 
-{$:
-    "---" 
-    if nonempty(tests) or nonempty(examples) 
-    else ""}
-
-{$:{collapse$:"---\\n ## Examples",examples} if nonempty(tests) else """}
-{tests}
-
-___
-
-[Edit Examples](https://github.com/{gh_username}/{gh_repo}/edit/{gh_branch}/ci/examples/{url}) or 
-[Create New Examples](https://github.com/{gh_username}/{gh_repo}/new/{gh_branch}/?filename=ci/examples/{url}) <br/>
-[Edit Template](https://github.com/{gh_username}/{gh_repo}/edit/{gh_branch}/ci/docs/{url}) or 
-[Create New Template](https://github.com/{gh_username}/{gh_repo}/new/{gh_branch}/?filename=ci/docs/templates/{url}) <br/>
-[Edit Docstrings](https://github.com/{gh_username}/{gh_repo}/edit/{gh_branch}/{file_url}?message=Update%20Docs)
+{include$:'includes/footer.md'}

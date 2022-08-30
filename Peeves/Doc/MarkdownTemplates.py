@@ -85,6 +85,7 @@ class MarkdownOps:
 </div>
 """
     collapse_opener = '<a class="float-right" data-toggle="collapse" href="#{name}"><i class="fa fa-chevron-down"></i></a>'
+    @classmethod
     def format_collapse_section(self, header, content, name=None, open=True, include_opener=True):
         header_fmt = ""
         while header.startswith("#"):
@@ -101,12 +102,30 @@ class MarkdownOps:
             opener=self.collapse_opener.format(name=name) if include_opener else ""
         )
 
+    @classmethod
     def format_obj_link_grid(self, mems, ncols=3, boxed=True):
         links = self.split(
             [self.format_obj_link(l) for l in mems],
             ncols=ncols
         )
         return self.format_grid(links, boxed=boxed)
+
+    @classmethod
+    def canonical_name(self, identifier, formatter=None):
+        return identifier.split(".")[-1]
+
+    @classmethod
+    def canonical_link(self, identifier, formatter=None):
+        ups = 0
+        while identifier[0] == ".":
+            ups += 1
+            identifier = identifier[1:]
+        if ups > 0:
+            pad = "../"*ups
+        else:
+            pad = ""
+        identifier = "/".join(identifier.split("."))
+        return pad + identifier + ".md"
 
 class MarkdownFormatDirective(FormatDirective):
     Link = "link", TemplateOps.wrap(MarkdownOps.format_link)
@@ -120,6 +139,8 @@ class MarkdownFormatDirective(FormatDirective):
     Grid = "grid", TemplateOps.wrap(MarkdownOps.format_grid)
     Split = "split", TemplateOps.wrap(MarkdownOps.split)
     ObjLinkGrid = "objlink_grid", TemplateOps.wrap(MarkdownOps.format_obj_link_grid)
+    CanonicalName = "canonical_name", MarkdownOps.canonical_name
+    CanonicalLink = "canonical_link", MarkdownOps.canonical_link
 MarkdownFormatDirective = TemplateFormatDirective.extend(MarkdownFormatDirective)
 
 class MarkdownTemplateFormatter(TemplateFormatter):

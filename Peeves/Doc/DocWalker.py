@@ -37,6 +37,14 @@ class ExamplesExtractor(TemplateResourceExtractor):
 class TestsExtractor(TemplateResourceExtractor):
     resource_keys = ['tests']
     resource_attrs = ['__tests__']
+    def path_extension(self, handler:TemplateHandler):
+        """
+        Provides the default examples path for the object
+        :return:
+        :rtype:
+        """
+        splits = handler.identifier.split(".")
+        return [os.path.join(*splits) + "Tests.py", splits[-1] + "Tests.py"]
     def load(self, handler:TemplateHandler):
         res = super().load(handler)
         if res is not None:
@@ -87,7 +95,7 @@ class DocTemplateOps(MarkdownOps):
 
 class DocTemplateHandler(TemplateHandler):
     protected_fields = {'id'}
-    default_fields = {'details': "", "related": []}
+    default_fields = {'details': "", "related": ""}
     def __init__(self,
                  obj,
                  *,
@@ -238,7 +246,8 @@ class ModuleWriter(DocTemplateHandler):
             'name': name,
             'members': idents,
             'examples': ex,
-            'tests': tests
+            'tests': tests,
+            'lineno' : self.get_lineno()
         }
 
     @classmethod
@@ -285,7 +294,7 @@ class ClassWriter(DocTemplateHandler):
                             out_file=None,
                             extra_fields=extra_fields,
                             parent=self.identifier
-                        ).format().strip()
+                        )
                     )
             else:
                 if not k.startswith("_"):
@@ -320,7 +329,7 @@ class ClassWriter(DocTemplateHandler):
         name = cls.__name__
         ident = self.identifier
         props, methods = self.load_methods(function_writer=function_writer)
-        param, descr, fields = self.parse_doc(cls.__doc__ if cls.__doc__ is not None else '')
+        descr, param, fields = self.parse_doc(cls.__doc__ if cls.__doc__ is not None else '')
         lineno = self.get_lineno()
 
         return dict({
@@ -352,10 +361,7 @@ class FunctionWriter(DocTemplateHandler):
         mem_obj_pat = re.compile(" object at \w+>")
         signature = re.sub(mem_obj_pat, " instance>", signature)
         name = self.get_name()
-        param, descr, fields = self.parse_doc(f.__doc__ if f.__doc__ is not None else '')
-        param = param.strip()
-        if len(param) > 0:
-            param = "\n" + param
+        descr, param, fields = self.parse_doc(f.__doc__ if f.__doc__ is not None else '')
         ex = self.load_examples()
         tests = self.load_tests()
         lineno = self.get_lineno()
@@ -433,7 +439,6 @@ class ObjectWriter(DocTemplateHandler):
             qualname = self.get_identifier(type(self.obj)) + "." + self.get_name()
         qn = qualname.split(".")
         qualname = ".".join(qn[:-2] + qn[-1:])  # want to drop the class name
-        # print(qualname)
         return qualname
 
     def check_should_write(self):
@@ -503,10 +508,13 @@ class IndexWriter(IndexTemplateHandler):
 
 class DocWalker(TemplateWalker):
     """
-    A class that walks a module structure, generating .md files for every class inside it as well as for global functions,
+    A class that walks a module structure, generating `.md` files for every class inside it as well as for global functions,
     and a Markdown index file.
 
-    Takes a set of objects & writers and walks through the objects, generating files on the way
+    Takes a set of objects & writers and walks through the objects, generating files on the way.
+
+    :details: A `DocWalker` object is a light subclass of a `TemplateWalker`, but specialized for documentation & with specialized handlers
+    :related: .DocBuilder.DocBuilder, ModuleWriter, ClassWriter, FunctionWriter, MethodWriter, ObjectWriter, IndexWriter
     """
 
     module_handler = ModuleWriter
@@ -567,5 +575,22 @@ class DocWalker(TemplateWalker):
             tests_loader=self.tests_loader if tests_loader is None else tests_loader,
             **kwargs
         )
+
+    def visit_root(self, o, tests_directory=None, examples_directory=None, **kwargs):
+        if tests_directory is None and isinstance(o, dict):
+            tests_directory = o.get('tests_directory', None)
+        old_tl = self.tests_loader
+        if tests_directory is not None:
+            self.tests_loader = self.get_tests_loader(tests_directory)
+        if examples_directory is None and isinstance(o, dict):
+            examples_directory = o.get('examples_directory', None)
+        old_el = self.examples_loader
+        if examples_directory is not None:
+            self.examples_directory = self.get_examples_loader(examples_directory)
+        try:
+            return super().visit_root(o, **kwargs)
+        finally:
+            self.tests_loader = old_tl
+            self.examples_directory = old_el
 
 
