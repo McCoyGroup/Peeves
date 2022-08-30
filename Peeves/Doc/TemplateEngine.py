@@ -643,9 +643,11 @@ class TemplateHandler(ObjectHandler):
                  out=None,
                  engine:TemplateEngine=None,
                  root=None,
+                 squash_repeat_packages=True,
                  **extra_fields
                  ):
         super().__init__(obj, **extra_fields)
+        self.squash_repeat_packages = squash_repeat_packages
         if out is None:
             out = sys.stdout
         elif isinstance(out, str) and os.path.isdir(out):
@@ -678,6 +680,30 @@ class TemplateHandler(ObjectHandler):
         """
         raise NotImplementedError("abstract base class")
 
+    @property
+    def identifier(self):
+        if self._id is None:
+            base_id = self.get_identifier(self.obj)
+            if self.squash_repeat_packages:
+                base_id = base_id.split(".")
+                new_id = [base_id[0]]
+                for k in base_id[1:]:
+                    if new_id[-1] != k:
+                        new_id.append(k)
+                base_id = ".".join(new_id)
+            self._id = base_id
+        return self._id
+    def get_package_and_url(self):
+        """
+        Returns package name and corresponding URL for the object
+        being documented
+        :return:
+        :rtype:
+        """
+        pkg, file_url = super().get_package_and_url()
+        if 'url_base' in self.extra_fields:
+            file_url = self.extra_fields['url_base'] + "/" + file_url
+        return pkg, file_url
     def handle(self, template=None, target=None, write=True):
         """
         Formats the documentation Markdown from the supplied template
@@ -719,7 +745,6 @@ class TemplateHandler(ObjectHandler):
                     out_url = "/".join(os.path.split(out_file)[-len(os.path.split(file_url))])
                 params['file'] = out_file
                 params['url'] = out_url
-
             try:
                 out = self.engine.apply(template, out_file if write else None, **params)
             except KeyError as e:
