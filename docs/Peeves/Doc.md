@@ -9,68 +9,90 @@ example and template files.
 <div class="container alert alert-secondary bg-light">
   <div class="row">
    <div class="col" markdown="1">
-[DocBuilder](Peeves/Peeves/Doc/DocsBuilder/DocBuilder.md)   
+[DocBuilder](Peeves/Doc/DocsBuilder/DocBuilder.md)   
 </div>
    <div class="col" markdown="1">
-[DocWalker](Peeves/Peeves/Doc/DocWalker/DocWalker.md)   
+[DocWalker](Peeves/Doc/DocWalker/DocWalker.md)   
 </div>
    <div class="col" markdown="1">
-[ExamplesParser](Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.md)   
+[ModuleWriter](Peeves/Doc/DocWalker/ModuleWriter.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[TemplateFormatter](Peeves/Peeves/Doc/TemplateEngine/TemplateFormatter.md)   
+[ClassWriter](Peeves/Doc/DocWalker/ClassWriter.md)   
 </div>
    <div class="col" markdown="1">
-[FormatDirective](Peeves/Peeves/Doc/TemplateEngine/FormatDirective.md)   
+[FunctionWriter](Peeves/Doc/DocWalker/FunctionWriter.md)   
 </div>
    <div class="col" markdown="1">
-[TemplateFormatDirective](Peeves/Peeves/Doc/TemplateEngine/TemplateFormatDirective.md)   
+[MethodWriter](Peeves/Doc/DocWalker/MethodWriter.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[TemplateOps](Peeves/Peeves/Doc/TemplateEngine/TemplateOps.md)   
+[ObjectWriter](Peeves/Doc/DocWalker/ObjectWriter.md)   
 </div>
    <div class="col" markdown="1">
-[TemplateEngine](Peeves/Peeves/Doc/TemplateEngine/TemplateEngine.md)   
+[IndexWriter](Peeves/Doc/DocWalker/IndexWriter.md)   
 </div>
    <div class="col" markdown="1">
-[ResourceLocator](Peeves/Peeves/Doc/TemplateEngine/ResourceLocator.md)   
+[ExamplesParser](Peeves/Doc/ExamplesParser/ExamplesParser.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[TemplateResourceExtractor](Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.md)   
+[TemplateFormatter](Peeves/Doc/TemplateEngine/TemplateFormatter.md)   
 </div>
    <div class="col" markdown="1">
-[TemplateWalker](Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.md)   
+[FormatDirective](Peeves/Doc/TemplateEngine/FormatDirective.md)   
 </div>
    <div class="col" markdown="1">
-[TemplateHandler](Peeves/Peeves/Doc/TemplateEngine/TemplateHandler.md)   
+[TemplateFormatDirective](Peeves/Doc/TemplateEngine/TemplateFormatDirective.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[ModuleTemplateHandler](Peeves/Peeves/Doc/TemplateEngine/ModuleTemplateHandler.md)   
+[TemplateOps](Peeves/Doc/TemplateEngine/TemplateOps.md)   
 </div>
    <div class="col" markdown="1">
-[ClassTemplateHandler](Peeves/Peeves/Doc/TemplateEngine/ClassTemplateHandler.md)   
+[TemplateEngine](Peeves/Doc/TemplateEngine/TemplateEngine.md)   
 </div>
    <div class="col" markdown="1">
-[FunctionTemplateHandler](Peeves/Peeves/Doc/TemplateEngine/FunctionTemplateHandler.md)   
+[ResourceLocator](Peeves/Doc/TemplateEngine/ResourceLocator.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[MethodTemplateHandler](Peeves/Peeves/Doc/TemplateEngine/MethodTemplateHandler.md)   
+[TemplateResourceExtractor](Peeves/Doc/TemplateEngine/TemplateResourceExtractor.md)   
 </div>
    <div class="col" markdown="1">
-[ObjectTemplateHandler](Peeves/Peeves/Doc/TemplateEngine/ObjectTemplateHandler.md)   
+[TemplateWalker](Peeves/Doc/TemplateEngine/TemplateWalker.md)   
 </div>
    <div class="col" markdown="1">
-[IndexTemplateHandler](Peeves/Peeves/Doc/TemplateEngine/IndexTemplateHandler.md)   
+[TemplateHandler](Peeves/Doc/TemplateEngine/TemplateHandler.md)   
+</div>
+</div>
+  <div class="row">
+   <div class="col" markdown="1">
+[ModuleTemplateHandler](Peeves/Doc/TemplateEngine/ModuleTemplateHandler.md)   
+</div>
+   <div class="col" markdown="1">
+[ClassTemplateHandler](Peeves/Doc/TemplateEngine/ClassTemplateHandler.md)   
+</div>
+   <div class="col" markdown="1">
+[FunctionTemplateHandler](Peeves/Doc/TemplateEngine/FunctionTemplateHandler.md)   
+</div>
+</div>
+  <div class="row">
+   <div class="col" markdown="1">
+[MethodTemplateHandler](Peeves/Doc/TemplateEngine/MethodTemplateHandler.md)   
+</div>
+   <div class="col" markdown="1">
+[ObjectTemplateHandler](Peeves/Doc/TemplateEngine/ObjectTemplateHandler.md)   
+</div>
+   <div class="col" markdown="1">
+[IndexTemplateHandler](Peeves/Doc/TemplateEngine/IndexTemplateHandler.md)   
 </div>
 </div>
   <div class="row">
@@ -106,16 +128,18 @@ Test example...
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Tests-642a26" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-642a26"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Tests-06a0db" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-06a0db"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Tests-642a26" markdown="1">
- "- [PeevesDoc](#PeevesDoc)\n"- [ParseExamples](#ParseExamples)\n"- [FormatSpec](#FormatSpec)
+ <div class="collapsible-section collapsible-section-body collapse show" id="Tests-06a0db" markdown="1">
+ "- [PeevesDoc](#PeevesDoc)
+"- [ParseExamples](#ParseExamples)
+"- [FormatSpec](#FormatSpec)
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
- <a class="collapse-link" data-toggle="collapse" href="#Setup-619737" markdown="1">Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-619737"><i class="fa fa-chevron-down"></i></a>
+### <a class="collapse-link" data-toggle="collapse" href="#Setup-c9f43e" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-c9f43e"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Setup-619737" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Setup-c9f43e" markdown="1">
  
 Before we can run our examples we should get a bit of setup out of the way.
 Since these examples were harvested from the unit tests not all pieces
