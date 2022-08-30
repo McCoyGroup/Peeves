@@ -18,8 +18,8 @@ doc_config = {
     "packages": [
         {
             "id": "Peeves",
-            'tests_root': os.path.join(root, "ci", "tests"),
-            'details': ""
+            'tests_directory': os.path.join(root, "ci", "tests"),
+            'examples_directory': os.path.join(root, "ci", "examples")
         }
     ],
     "root": root,
