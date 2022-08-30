@@ -138,6 +138,9 @@ class MarkdownOps:
         if markdown:
             styles["markdown"] = "1"
         return getattr(Bootstrap, tag)("\n"+content+"\n", **styles).tostring()
+    @classmethod
+    def alert(cls, content, variant='warning', markdown=True, formatter=None, **styles):
+        return cls.bootstrap('Alert', content, variant=variant, markdown=markdown, **styles)
 
 class MarkdownFormatDirective(FormatDirective):
     Link = "link", TemplateOps.wrap(MarkdownOps.format_link)
