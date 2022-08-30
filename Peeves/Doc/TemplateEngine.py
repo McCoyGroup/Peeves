@@ -688,7 +688,7 @@ class TemplateHandler(ObjectHandler):
             new_id = [base_id[0]]
             for i,k in enumerate(base_id[1:]):
                 if new_id[-1] != k:
-                    new_id.extend(base_id[1+k:])
+                    new_id.extend(base_id[1+i:])
                     break
             base_id = ".".join(new_id)
         return base_id
