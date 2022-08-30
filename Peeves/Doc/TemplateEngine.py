@@ -636,6 +636,7 @@ class TemplateEngine:
 class TemplateHandler(ObjectHandler):
     template = None
     extension = ".md"
+    squash_repeat_packages=True
     def __init__(self,
                  obj,
                  *,
@@ -646,7 +647,7 @@ class TemplateHandler(ObjectHandler):
                  **extra_fields
                  ):
         super().__init__(obj, **extra_fields)
-        self.squash_repeat_packages = squash_repeat_packages
+        type(self).squash_repeat_packages = squash_repeat_packages
         if out is None:
             out = sys.stdout
         elif isinstance(out, str) and os.path.isdir(out):
@@ -679,19 +680,17 @@ class TemplateHandler(ObjectHandler):
         """
         raise NotImplementedError("abstract base class")
 
-    @property
-    def identifier(self):
-        if self._id is None:
-            base_id = self.get_identifier(self.obj)
-            if self.squash_repeat_packages:
-                base_id = base_id.split(".")
-                new_id = [base_id[0]]
-                for k in base_id[1:]:
-                    if new_id[-1] != k:
-                        new_id.append(k)
-                base_id = ".".join(new_id)
-            self._id = base_id
-        return self._id
+    @classmethod
+    def get_identifier(cls, o):
+        base_id = super().get_identifier(o)
+        if cls.squash_repeat_packages:
+            base_id = base_id.split(".")
+            new_id = [base_id[0]]
+            for k in base_id[1:]:
+                if new_id[-1] != k:
+                    new_id.append(k)
+            base_id = ".".join(new_id)
+        return base_id
     def get_package_and_url(self):
         """
         Returns package name and corresponding URL for the object
