@@ -735,13 +735,16 @@ class TemplateHandler(ObjectHandler):
                     e.args[0]
                 ))
             except Exception as e:
-                raise ValueError("{} ({}): error in filling template {} ({})".format(
+                raise ValueError("{} ({}): {}".format(
                     type(self).__name__,
                     self.obj,
                     self.template,
                     e
                 ))
             return out
+        else:
+            if not write:
+                return ""
 
     blacklist_packages = {'numpy', 'scipy', 'matplotlib'} #TODO: more sophisticated blacklisting
     def check_should_write(self):
