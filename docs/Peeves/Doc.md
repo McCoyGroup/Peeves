@@ -128,18 +128,18 @@ Test example...
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Tests-06a0db" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-06a0db"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Tests-530802" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-530802"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Tests-06a0db" markdown="1">
- "- [PeevesDoc](#PeevesDoc)
-"- [ParseExamples](#ParseExamples)
-"- [FormatSpec](#FormatSpec)
+ <div class="collapsible-section collapsible-section-body collapse show" id="Tests-530802" markdown="1">
+ - [PeevesDoc](#PeevesDoc)
+- [ParseExamples](#ParseExamples)
+- [FormatSpec](#FormatSpec)
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-### <a class="collapse-link" data-toggle="collapse" href="#Setup-c9f43e" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-c9f43e"><i class="fa fa-chevron-down"></i></a>
+### <a class="collapse-link" data-toggle="collapse" href="#Setup-568196" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-568196"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Setup-c9f43e" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Setup-568196" markdown="1">
  
 Before we can run our examples we should get a bit of setup out of the way.
 Since these examples were harvested from the unit tests not all pieces
@@ -169,32 +169,32 @@ class DocsTests(TestCase):
         import os, tempfile
 
         root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-        with tempfile.TemporaryDirectory() as td:
-        # td = '/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/tmpo3b4ztrq/'
-            target = os.path.join(td, "docs")
-            doc_config = {
-                "config": {
-                    "title": "Peeves",
-                    "path": "Peeves",
-                    "url": "https://mccoygroup.github.io/Peeves/",
-                    'url_base': "Peeves",
-                    "gh_username": "McCoyGroup",
-                    "gh_repo": "Peeves",
-                    "gh_branch": "master",
-                    "footer": "Brought to you by the McCoy Group"
-                },
-                "packages": [
-                    {
-                        "id": "Peeves",
-                        'examples_directory': os.path.join(root, "ci", "examples"),
-                        'tests_directory': os.path.join(root, "ci", "tests")
-                    }
-                ],
-                "root": root,
-                "target": target,
-                "readme": os.path.join(root, "README.md")
-            }
-            DocBuilder(**doc_config).build()
+        # with tempfile.TemporaryDirectory() as td:
+        td = '/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/tmpo3b4ztrq/'
+        target = os.path.join(td, "docs")
+        doc_config = {
+            "config": {
+                "title": "Peeves",
+                "path": "Peeves",
+                "url": "https://mccoygroup.github.io/Peeves/",
+                'url_base': "Peeves",
+                "gh_username": "McCoyGroup",
+                "gh_repo": "Peeves",
+                "gh_branch": "master",
+                "footer": "Brought to you by the McCoy Group"
+            },
+            "packages": [
+                {
+                    "id": "Peeves",
+                    'examples_directory': os.path.join(root, "ci", "examples"),
+                    'tests_directory': os.path.join(root, "ci", "tests")
+                }
+            ],
+            "root": root,
+            "target": target,
+            "readme": os.path.join(root, "README.md")
+        }
+        DocBuilder(**doc_config).build()
 ```
 
 #### <a name="ParseExamples">ParseExamples</a>

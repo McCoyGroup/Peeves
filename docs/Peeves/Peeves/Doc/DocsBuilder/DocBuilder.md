@@ -125,16 +125,16 @@ Writes documentation layout to `self.target`
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Tests-4884d0" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-4884d0"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Tests-04b19c" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-04b19c"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Tests-4884d0" markdown="1">
- "- [PeevesDoc](#PeevesDoc)
+ <div class="collapsible-section collapsible-section-body collapse show" id="Tests-04b19c" markdown="1">
+ - [PeevesDoc](#PeevesDoc)
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-### <a class="collapse-link" data-toggle="collapse" href="#Setup-01cd9c" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-01cd9c"><i class="fa fa-chevron-down"></i></a>
+### <a class="collapse-link" data-toggle="collapse" href="#Setup-c91fc5" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-c91fc5"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Setup-01cd9c" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Setup-c91fc5" markdown="1">
  
 Before we can run our examples we should get a bit of setup out of the way.
 Since these examples were harvested from the unit tests not all pieces
@@ -164,32 +164,32 @@ class DocsTests(TestCase):
         import os, tempfile
 
         root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-        with tempfile.TemporaryDirectory() as td:
-        # td = '/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/tmpo3b4ztrq/'
-            target = os.path.join(td, "docs")
-            doc_config = {
-                "config": {
-                    "title": "Peeves",
-                    "path": "Peeves",
-                    "url": "https://mccoygroup.github.io/Peeves/",
-                    'url_base': "Peeves",
-                    "gh_username": "McCoyGroup",
-                    "gh_repo": "Peeves",
-                    "gh_branch": "master",
-                    "footer": "Brought to you by the McCoy Group"
-                },
-                "packages": [
-                    {
-                        "id": "Peeves",
-                        'examples_directory': os.path.join(root, "ci", "examples"),
-                        'tests_directory': os.path.join(root, "ci", "tests")
-                    }
-                ],
-                "root": root,
-                "target": target,
-                "readme": os.path.join(root, "README.md")
-            }
-            DocBuilder(**doc_config).build()
+        # with tempfile.TemporaryDirectory() as td:
+        td = '/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/tmpo3b4ztrq/'
+        target = os.path.join(td, "docs")
+        doc_config = {
+            "config": {
+                "title": "Peeves",
+                "path": "Peeves",
+                "url": "https://mccoygroup.github.io/Peeves/",
+                'url_base': "Peeves",
+                "gh_username": "McCoyGroup",
+                "gh_repo": "Peeves",
+                "gh_branch": "master",
+                "footer": "Brought to you by the McCoy Group"
+            },
+            "packages": [
+                {
+                    "id": "Peeves",
+                    'examples_directory': os.path.join(root, "ci", "examples"),
+                    'tests_directory': os.path.join(root, "ci", "tests")
+                }
+            ],
+            "root": root,
+            "target": target,
+            "readme": os.path.join(root, "README.md")
+        }
+        DocBuilder(**doc_config).build()
 ```
 
  </div>
@@ -197,7 +197,7 @@ class DocsTests(TestCase):
 
 
 
-See Also: [`DocWalker`](../DocWalker/DocWalker.md)<span>&#9642;</span>[`ModuleWriter`](../DocWalker/ModuleWriter.md)<span>&#9642;</span>[`ClassWriter`](../DocWalker/ClassWriter.md)<span>&#9642;</span>[`FunctionWriter`](../DocWalker/FunctionWriter.md)<span>&#9642;</span>[`MethodWriter`](../DocWalker/MethodWriter.md)<span>&#9642;</span>[`ObjectWriter`](../DocWalker/ObjectWriter.md)<span>&#9642;</span>[`IndexWriter`](../DocWalker/IndexWriter.md)
+**See Also:** [`DocWalker`](../DocWalker/DocWalker.md)<span>&nbsp;&#9642;&nbsp;</span>[`ModuleWriter`](../DocWalker/ModuleWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`ClassWriter`](../DocWalker/ClassWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`FunctionWriter`](../DocWalker/FunctionWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`MethodWriter`](../DocWalker/MethodWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`ObjectWriter`](../DocWalker/ObjectWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`IndexWriter`](../DocWalker/IndexWriter.md)
 
 ---
 
