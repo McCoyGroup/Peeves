@@ -132,12 +132,12 @@ class MarkdownOps:
     def html(cls, tag, content, markdown=True, formatter=None, **styles):
         if markdown:
             styles["markdown"] = "1"
-        return getattr(HTML, tag)(content, **styles).tostring()
+        return getattr(HTML, tag)("\n"+content+"\n", **styles).tostring()
     @classmethod
     def bootstrap(cls, tag, content, markdown=True, formatter=None, **styles):
         if markdown:
             styles["markdown"] = "1"
-        return getattr(Bootstrap, tag)(content, **styles).tostring()
+        return getattr(Bootstrap, tag)("\n"+content+"\n", **styles).tostring()
 
 class MarkdownFormatDirective(FormatDirective):
     Link = "link", TemplateOps.wrap(MarkdownOps.format_link)
