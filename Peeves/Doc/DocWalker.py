@@ -112,7 +112,7 @@ class DocTemplateHandler(TemplateHandler):
                  root=None,
                  examples_loader:ExamplesExtractor=None,
                  tests_loader:TestsExtractor=None,
-                 include_line_numbers=False,
+                 include_line_numbers=True,
                  walker:'TemplateWalker'=None,
                  **extra_fields
                  ):
@@ -123,10 +123,18 @@ class DocTemplateHandler(TemplateHandler):
         super().__init__(obj, out=out, engine=engine, root=root, walker=walker, **extra_fields)
 
     def get_lineno(self):
-        try:
-            lineno = 1 + inspect.findsource(self.obj)[1] if self.include_line_numbers else ""
-        except:
+        # try:
+        if self.include_line_numbers:
+            obj = self.obj
+            if isinstance(obj, (classmethod, staticmethod, property, types.MethodDescriptorType)):
+                obj = obj.fget
+            elif not isinstance(obj, (type, types.ModuleType, types.FunctionType, types.MethodDescriptorType, types.MethodType)):
+                obj = type(obj)
+            lineno = 1 + inspect.findsource(obj)[1] if self.include_line_numbers else ""
+        else:
             lineno = ""
+        # except:
+        #     lineno = ""
         return lineno
 
     def parse_doc(self, doc):
@@ -321,14 +329,21 @@ class ClassWriter(DocTemplateHandler):
 
         return props, methods
 
-    # def get_package_and_url(self):
-    #     pkg, rest = self.identifier.split(".", 1)
-    #     rest, bleh = rest.rsplit(".", 1)
-    #     file_url = rest.replace(".", "/") + ".py"
-    #     if 'url_base' in self.extra_fields:
-    #         file_url = self.extra_fields['url_base'] + "/" + file_url
-    #     # lineno = inspect.findsource(self.obj)[1]
-    #     return pkg, file_url  # + "#L" + str(lineno) # for GitHub links
+    def get_package_and_url(self):
+        rest = self.identifier.split(".", 1)
+        if len(rest) == 2:
+            pkg, rest = rest
+        else:
+            pkg = ""
+            rest = rest[0]
+        rub = rest.rsplit(".", 1)
+        if len(rub) == 2:
+            rest, bleh = rub
+        file_url = rest.replace(".", "/") + ".py"
+        if 'url_base' in self.extra_fields:
+            file_url = self.extra_fields['url_base'] + "/" + file_url
+        # lineno = inspect.findsource(self.obj)[1]
+        return pkg, file_url  # + "#L" + str(lineno) # for GitHub links
 
     def format_prop(self, k, o):
         return '{}: {}'.format(k, type(o).__name__)
@@ -395,14 +410,21 @@ class FunctionWriter(DocTemplateHandler):
             'tests': tests
         }, **fields)
 
-    # def get_package_and_url(self):
-    #     pkg, rest = self.identifier.split(".", 1)
-    #     rest, bleh = rest.rsplit(".", 1)
-    #     file_url = rest.replace(".", "/") + ".py"
-    #     if 'url_base' in self.extra_fields:
-    #         file_url = self.extra_fields['url_base'] + "/" + file_url
-    #     # lineno = inspect.findsource(self.obj)[1]
-    #     return pkg, file_url  # + "#L" + str(lineno) # for GitHub links
+    def get_package_and_url(self):
+        rest = self.identifier.split(".", 1)
+        if len(rest) == 2:
+            pkg, rest = rest
+        else:
+            pkg = ""
+            rest = rest[0]
+        rub = rest.rsplit(".", 1)
+        if len(rub) == 2:
+            rest, bleh = rub
+        file_url = rest.replace(".", "/") + ".py"
+        if 'url_base' in self.extra_fields:
+            file_url = self.extra_fields['url_base'] + "/" + file_url
+        # lineno = inspect.findsource(self.obj)[1]
+        return pkg, file_url  # + "#L" + str(lineno) # for GitHub links
 
 class MethodWriter(FunctionWriter):
     """
@@ -493,6 +515,22 @@ class ObjectWriter(DocTemplateHandler):
             'examples': ex if ex is not None else "",
             'tests': None
         }
+
+    def get_package_and_url(self):
+        rest = self.identifier.split(".", 1)
+        if len(rest) == 2:
+            pkg, rest = rest
+        else:
+            pkg = ""
+            rest = rest[0]
+        rub = rest.rsplit(".", 1)
+        if len(rub) == 2:
+            rest, bleh = rub
+        file_url = rest.replace(".", "/") + ".py"
+        if 'url_base' in self.extra_fields:
+            file_url = self.extra_fields['url_base'] + "/" + file_url
+        # lineno = inspect.findsource(self.obj)[1]
+        return pkg, file_url  # + "#L" + str(lineno) # for GitHub links
 
 class IndexWriter(IndexTemplateHandler):
     """
