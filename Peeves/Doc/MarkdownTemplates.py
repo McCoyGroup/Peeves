@@ -11,7 +11,7 @@ class MarkdownOps:
         return '[{}]({})'.format(alt, link)
     @classmethod
     def format_obj_link(self, spec):
-        return self.format_link(spec.split('.')[-1], spec.replace('.', '/') + ".md")
+        return self.format_link(self.canonical_name(spec), self.canonical_link(spec))
     @classmethod
     def format_inline_code(self, arg):
         """

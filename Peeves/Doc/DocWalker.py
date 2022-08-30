@@ -9,7 +9,15 @@ from .ObjectWalker import ObjectSpec
 from .ExamplesParser import ExamplesParser
 from .MarkdownTemplates import MarkdownTemplateFormatter, MarkdownOps
 
-__all__ = [ "DocWalker" ]
+__all__ = [
+    "DocWalker",
+    "ModuleWriter",
+    "ClassWriter",
+    "FunctionWriter",
+    "MethodWriter",
+    "ObjectWriter",
+    "IndexWriter"
+]
 
 class DocSpec(ObjectSpec):
     """
@@ -238,10 +246,13 @@ class ModuleWriter(DocTemplateHandler):
         mod = self.obj  # type: types.ModuleType
         name = mod.__name__
         ident = self.identifier
+        ident_depth = len(ident.split("."))
         # get identifiers
         idents = [self.get_identifier(getattr(mod, a)) for a in self.get_members(mod)]
         # flattend them
         idents = [i for i in idents if ident in i]
+        # split by qualified names
+        idents = [".".join(a.split(".")[ident_depth-1:]) for a in idents]
         descr = mod.__doc__ if mod.__doc__ is not None else ''
         # long_descr = mod.__long_doc__ if hasattr(mod, '__long_doc__') and mod.__long_doc__ is not None else ''
 
@@ -511,7 +522,7 @@ class IndexWriter(IndexTemplateHandler):
 
     def get_template_params(self):
         return {
-            'index_files': self.get_file_paths(),
+            'index_files': [[os.path.basename(f), f] for f in self.get_file_paths()],
             'description': self.description
         }
 
