@@ -70,8 +70,13 @@ class DocBuilder:
                 template_extension = [self.default_repo_extension] + template_extension
             tdirs = [os.path.dirname(os.path.abspath(__file__))]
             if template_directory is not None:
-                tdirs = tdirs + [template_directory]
-            template_directory = ResourceLocator([(tdirs, template_extension)])
+                if isinstance(template_directory, str):
+                    template_directory = [template_directory]
+                template_directory = list(template_directory)
+                tdirs = list(template_directory) + tdirs
+                template_directory = ResourceLocator([template_directory, (tdirs, template_extension)])
+            else:
+                template_directory = ResourceLocator([(tdirs, template_extension)])
         return template_directory
 
     config_defaults = {
