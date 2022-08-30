@@ -10,7 +10,7 @@
     [[p[0], p[1].__name__ if isinstance(p[1], type) else type(p[1]).__name__] for p in props],
     joiner="""
 """
-))}
+)) if len(props) > 0 else ""}
 
 {%:method_list=[
     m.handle(write=False).strip()
