@@ -7,7 +7,7 @@
 
 {%:prop_list=code(loop_template(
     "{{0[0]}}: {{0[1]}}",
-    [[p[0], p[1].__name__ if isinstance(p[1], type) else type(p[1])] for p in props],
+    [[p[0], p[1].__name__ if isinstance(p[1], type) else type(p[1]).__name__] for p in props],
     joiner="""
 """
 ))}
