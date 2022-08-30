@@ -1,7 +1,8 @@
 ## <a id="Peeves.Doc.TemplateEngine.TemplateHandler">TemplateHandler</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine.py#L636)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine.py#L636?message=Update%20Docs)]
 </div>
 
 
@@ -28,7 +29,8 @@ blacklist_packages: set
 __init__(self, obj, *, out=None, engine: Peeves.Peeves.Doc.TemplateEngine.TemplateEngine = None, root=None, squash_repeat_packages=True, **extra_fields): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler/__init__/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler/__init__/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler.py#L640)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler.py#L640?message=Update%20Docs)]
 </div>
 
 
@@ -37,7 +39,8 @@ __init__(self, obj, *, out=None, engine: Peeves.Peeves.Doc.TemplateEngine.Templa
 template_params(self, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler/template_params/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler/template_params/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler.py#L669)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler.py#L669?message=Update%20Docs)]
 </div>
 
 
@@ -46,7 +49,8 @@ template_params(self, **kwargs):
 get_template_params(self, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler/get_template_params/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler/get_template_params/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler.py#L673)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler.py#L673?message=Update%20Docs)]
 </div>
 Returns the parameters that should be inserted into the template
   - `:returns`: `dict`
@@ -58,7 +62,8 @@ Returns the parameters that should be inserted into the template
 get_identifier(o): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler/get_identifier/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler/get_identifier/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler.py#L683)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler.py#L683?message=Update%20Docs)]
 </div>
 
 
@@ -67,7 +72,8 @@ get_identifier(o):
 get_package_and_url(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler/get_package_and_url/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler/get_package_and_url/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler.py#L695)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler.py#L695?message=Update%20Docs)]
 </div>
 Returns package name and corresponding URL for the object
 being documented
@@ -80,7 +86,8 @@ being documented
 handle(self, template=None, target=None, write=True): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler/handle/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler/handle/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler.py#L706)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler.py#L706?message=Update%20Docs)]
 </div>
 Formats the documentation Markdown from the supplied template
   - `template`: `Any`
@@ -94,7 +101,8 @@ Formats the documentation Markdown from the supplied template
 check_should_write(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler/check_should_write/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler/check_should_write/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateHandler.py#L774)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler.py#L774?message=Update%20Docs)]
 </div>
 Determines whether the object really actually should be
 documented (quite permissive)
@@ -119,4 +127,4 @@ documented (quite permissive)
 [Create New Examples](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Doc/TemplateEngine/TemplateHandler.md) <br/>
 [Edit Template](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Doc/TemplateEngine/TemplateHandler.md) or 
 [Create New Template](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Doc/TemplateEngine/TemplateHandler.md) <br/>
-[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateHandler/__init__.py#L?message=Update%20Docs)
+[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine.py#L636?message=Update%20Docs)

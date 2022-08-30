@@ -1,7 +1,8 @@
 ## <a id="Peeves.Doc.DocWalker.MethodWriter">MethodWriter</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/MethodWriter/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/MethodWriter/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker.py#L429)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker.py#L429?message=Update%20Docs)]
 </div>
 
 Writes class methods to file
@@ -27,7 +28,8 @@ squash_repeat_packages: bool
 get_template_params(self, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/MethodWriter/get_template_params/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/MethodWriter/get_template_params/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/MethodWriter.py#L437)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/MethodWriter.py#L437?message=Update%20Docs)]
 </div>
 
 
@@ -36,7 +38,8 @@ get_template_params(self, **kwargs):
 get_signature(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/MethodWriter/get_signature/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/MethodWriter/get_signature/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/MethodWriter.py#L452)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/MethodWriter.py#L452?message=Update%20Docs)]
 </div>
 
 
@@ -46,7 +49,8 @@ get_signature(self):
 identifier(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/identifier/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/identifier/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/identifier.py#L459)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/identifier.py#L459?message=Update%20Docs)]
 </div>
  </div>
 </div>
@@ -67,4 +71,4 @@ identifier(self):
 [Create New Examples](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Doc/DocWalker/MethodWriter.md) <br/>
 [Edit Template](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Doc/DocWalker/MethodWriter.md) or 
 [Create New Template](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Doc/DocWalker/MethodWriter.md) <br/>
-[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/MethodWriter/__init__.py#L?message=Update%20Docs)
+[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker.py#L429?message=Update%20Docs)
