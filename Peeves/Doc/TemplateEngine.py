@@ -411,10 +411,7 @@ class TemplateFormatter(string.Formatter):
         if callback is None:
             return super().format_field(value, format_spec)
         else:
-            try:
-                return callback(value, format_spec)
-            except:
-                raise ValueError("error in applying directive {} to {}".format(value,format_spec))
+            return callback(value, format_spec)
 
     _template_cache = {}
     def load_template(self, template):
@@ -736,6 +733,13 @@ class TemplateHandler(ObjectHandler):
                     type(self).__name__,
                     self.obj,
                     e.args[0]
+                ))
+            except Exception as e:
+                raise ValueError("{} ({}): error in filling template {} ({})".format(
+                    type(self).__name__,
+                    self.obj,
+                    self.template,
+                    e
                 ))
             return out
 
