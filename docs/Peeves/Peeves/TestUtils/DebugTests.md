@@ -1,6 +1,6 @@
 ### <a id="Peeves.Peeves.TestUtils.DebugTests">DebugTests</a> 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/TestUtils/DebugTests/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/TestUtils/DebugTests/__init__.py#L?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DebugTests/__init__.py#L)/[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DebugTests/__init__.py#L?message=Update%20Docs)]
 </div>
 The set of fast tests in the test suite
 
@@ -19,5 +19,5 @@ The set of fast tests in the test suite
 [Create New Examples](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Peeves/TestUtils/DebugTests.md) <br/>
 [Edit Template](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Peeves/TestUtils/DebugTests.md) or 
 [Create New Template](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Peeves/TestUtils/DebugTests.md) <br/>
-[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/TestUtils/DebugTests/__init__.py#L?message=Update%20Docs)
+[Edit Docstrings](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DebugTests/__init__.py#L?message=Update%20Docs)
 
