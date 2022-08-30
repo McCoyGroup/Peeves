@@ -2,7 +2,11 @@
 {include$:'includes/source_links.md'}
 {description}
 
-These tests are the most commonly run ones in the suite.
-In a bad turn of events, the validation tests are rarely run these days.
+{bootstrap$:
+    'Alert',
+    """These tests are the most commonly run ones in the suite. 
+In a bad turn of events, the validation tests are rarely run these days.""",
+    variant='danger'
+}
 
 {include$:'includes/footer.md'}

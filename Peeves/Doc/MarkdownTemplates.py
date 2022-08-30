@@ -1,6 +1,7 @@
 
 import re, uuid
 from .TemplateEngine import *
+from .HTML import *
 
 class MarkdownOps:
     @classmethod
@@ -127,6 +128,17 @@ class MarkdownOps:
         identifier = "/".join(identifier.split("."))
         return pad + identifier + ".md"
 
+    @classmethod
+    def html(cls, tag, content, markdown=True, formatter=None, **styles):
+        if markdown:
+            styles["markdown"] = "1"
+        return getattr(HTML, tag)(content, **styles).tostring()
+    @classmethod
+    def bootstrap(cls, tag, content, markdown=True, formatter=None, **styles):
+        if markdown:
+            styles["markdown"] = "1"
+        return getattr(Bootstrap, tag)(content, **styles).tostring()
+
 class MarkdownFormatDirective(FormatDirective):
     Link = "link", TemplateOps.wrap(MarkdownOps.format_link)
     ObjLink = "objlink", TemplateOps.wrap(MarkdownOps.format_obj_link)
@@ -141,6 +153,8 @@ class MarkdownFormatDirective(FormatDirective):
     ObjLinkGrid = "objlink_grid", TemplateOps.wrap(MarkdownOps.format_obj_link_grid)
     CanonicalName = "canonical_name", MarkdownOps.canonical_name
     CanonicalLink = "canonical_link", MarkdownOps.canonical_link
+    HTML = "html", MarkdownOps.html
+    Bootstrap = "bootstrap", MarkdownOps.bootstrap
 MarkdownFormatDirective = TemplateFormatDirective.extend(MarkdownFormatDirective)
 
 class MarkdownTemplateFormatter(TemplateFormatter):
