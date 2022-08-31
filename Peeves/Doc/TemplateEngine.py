@@ -647,14 +647,8 @@ class TemplateHandler(ObjectHandler):
                  **extra_fields
                  ):
         super().__init__(obj, **extra_fields)
-        type(self).squash_repeat_packages = squash_repeat_packages
-        if out is None:
-            out = sys.stdout
-        elif isinstance(out, str) and os.path.isdir(out):
-            if root is None:
-                root = out
-            out = os.path.join(root, *self.identifier.split(".")) + self.extension
-        self.target = out
+        self.squash_repeat_packages = squash_repeat_packages
+        self.target = self.get_output_file(out)
         if root is None:
             root = os.path.dirname(self.target)
         self.root = root
@@ -680,29 +674,75 @@ class TemplateHandler(ObjectHandler):
         """
         raise NotImplementedError("abstract base class")
 
-    @classmethod
-    def get_identifier(cls, o):
-        base_id = super().get_identifier(o)
-        if cls.squash_repeat_packages:
-            base_id = base_id.split(".")
-            new_id = [base_id[0]]
-            for i,k in enumerate(base_id[1:]):
-                if new_id[-1] != k:
-                    new_id.extend(base_id[1+i:])
-                    break
-            base_id = ".".join(new_id)
-        return base_id
-    def get_package_and_url(self):
+    @property
+    def package_path(self):
+        return self.get_package_and_url()
+    def get_package_and_url(self, include_url_base=True):
         """
         Returns package name and corresponding URL for the object
         being documented
         :return:
         :rtype:
         """
-        pkg, file_url = super().get_package_and_url()
-        if 'url_base' in self.extra_fields:
+        pkg_split = self.identifier.split(".", 1)
+
+        if len(pkg_split) == 1:
+            pkg = pkg_split[0]
+            rest = ""
+        elif len(pkg_split) == 0:
+            pkg = ""
+            rest = "Not.A.Real.Package"
+        else:
+            pkg, rest = pkg_split
+
+        # if self.squash_repeat_packages:
+        #     base_id = rest.split(".")
+        #     new_id = [base_id[0]]
+        #     for i,k in enumerate(base_id[1:]):
+        #         if new_id[-1] != k:
+        #             new_id.extend(base_id[1+i:])
+        #             break
+        #     rest = ".".join(new_id)
+
+        if len(rest) == 0:
+            file_url = "__init__.py"
+        else:
+            file_url = rest.replace(".", "/") + "/__init__.py"
+
+        if include_url_base and 'url_base' in self.extra_fields:
             file_url = self.extra_fields['url_base'] + "/" + file_url
         return pkg, file_url
+
+    def get_target_extension(self):
+        base_id = self.identifier.split(".")
+        if self.squash_repeat_packages:
+            new_id = [base_id[0]]
+            for i, k in enumerate(base_id[1:]):
+                if new_id[-1] != k:
+                    new_id.extend(base_id[1 + i:])
+                    break
+            base_id = new_id
+        return base_id
+    def get_output_file(self, out):
+        """
+        Returns package name and corresponding URL for the object
+        being documented
+        :return:
+        :rtype:
+        """
+        if out is None:
+            out = sys.stdout
+        elif isinstance(out, str) and os.path.isdir(out):
+            base_id = self.identifier.split(".")
+            if self.squash_repeat_packages:
+                new_id = [base_id[0]]
+                for i, k in enumerate(base_id[1:]):
+                    if new_id[-1] != k:
+                        new_id.extend(base_id[1 + i:])
+                        break
+                base_id = new_id
+            out = os.path.join(out, *base_id) + self.extension
+        return out
     def handle(self, template=None, target=None, write=True):
         """
         Formats the documentation Markdown from the supplied template
@@ -788,14 +828,14 @@ class TemplateHandler(ObjectHandler):
         return not stdlib and base not in self.blacklist_packages
 
 class TemplateResourceExtractor(ResourceLocator):
+    extension = '.md'
     def path_extension(self, handler:TemplateHandler):
         """
         Provides the default examples path for the object
         :return:
         :rtype:
         """
-        splits = handler.identifier.split(".")
-        return os.path.join(*splits) + ".md"
+        return os.path.join(*handler.get_target_extension()) + self.extension
     resource_keys = []
     resource_attrs = []
     def get_resource(self, handler:TemplateHandler, keys=None, attrs=None):

@@ -308,6 +308,8 @@ class TestManager:
             start_dir = self.start_dir
         if base_dir is None:
             base_dir = self.base_dir
+
+        sys.path.insert(0, base_dir)
         cur = ManagedTestLoader.manager
         try:
             ManagedTestLoader.manager = self

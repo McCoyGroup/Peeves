@@ -155,6 +155,7 @@ class DocBuilder:
             description=self.readme,
             template_locator=self.template_dir,
             examples_directory=self.examples_dir,
+            tests_directory=self.tests_directory,
             **self.config
         )
 

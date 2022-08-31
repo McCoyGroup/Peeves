@@ -186,32 +186,6 @@ class ObjectHandler(metaclass=abc.ABCMeta):
 
         return name
 
-    def get_package_and_url(self):
-        """
-        Returns package name and corresponding URL for the object
-        being handled
-
-        :return:
-        :rtype:
-        """
-        pkg_split = self.identifier.split(".", 1)
-        if len(pkg_split) == 1:
-            pkg = pkg_split[0]
-            rest = ""
-        elif len(pkg_split) == 0:
-            pkg = ""
-            rest = "Not.A.Real.Package"
-        else:
-            pkg, rest = pkg_split
-        if len(rest) == 0:
-            file_url = "__init__.py"
-        else:
-            file_url = rest.replace(".", "/") + "/__init__.py"
-        return pkg, file_url
-    @property
-    def package_path(self):
-        return self.get_package_and_url()
-
     @classmethod
     def get_identifier(cls, o):
         try:
@@ -450,20 +424,26 @@ class ObjectWalker:
             try:
                 o = importlib.import_module(o)
             except ModuleNotFoundError:  # tried to load a member but couldn't...
-                # we try to resolve this by doing an iterated getattr
+                # we try to resolve this first by importing as deep as we can and then
+                # requesting the final attribute pieces
                 p_split = o.split(".")
-                mod_spec = ".".join(p_split[:-1])
-                if mod_spec == "":
-                    raise ValueError("can't resolve '{}'".format(o))
-                try:
-                    mood = importlib.import_module(mod_spec)
-                    from functools import reduce
-                    v = reduce(lambda m, a: getattr(m, a), p_split[1:], mood)
-                except ModuleNotFoundError:
-                    pass
+                for i in range(1, len(p_split)):
+                    mod_spec = ".".join(p_split[:-i])
+                    try:
+                        mood = importlib.import_module(mod_spec)
+                    except ModuleNotFoundError:
+                        pass
+                    else:
+                        try:
+                            from functools import reduce
+                            v = reduce(lambda m, a: getattr(m, a), p_split[-i:], mood)
+                        except AttributeError:
+                            pass
+                        else:
+                            o = v
+                            break
                 else:
-                    o = v
-
+                    raise ValueError("couldn't resolve {}".format(o))
         return o
 
     def resolve_spec(self, spec, **kwargs):
