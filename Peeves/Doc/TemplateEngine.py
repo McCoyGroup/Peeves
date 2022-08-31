@@ -656,8 +656,10 @@ class TemplateHandler(ObjectHandler):
         super().__init__(obj, **extra_fields)
         self.squash_repeat_packages = squash_repeat_packages
         self.target = self.get_output_file(out)
-        if root is None:
-            root = os.path.dirname(self.target)
+        # if root is None:
+        #     root = os.path.dirname(self.target)
+        if root is None and os.path.isdir(out):
+            root = out
         self.root = root
         self.engine = engine
 
@@ -781,21 +783,15 @@ class TemplateHandler(ObjectHandler):
                 params['package_url'] = os.path.dirname(file_url)
 
                 if self.root is not None:
-                    root_split = []
                     root = self.root
-                    while root and (root != "/" and root != os.path.pathsep):
-                        root, base = os.path.split(root)
-                        root_split.append(base)
-                    out_split = []
-                    out = out_file
-                    while out and (out != "/" and out != os.path.pathsep):
-                        out, base = os.path.split(out)
-                        out_split.append(base)
-                    out_split = list(reversed(out_split))
+                    root_split = pathlib.Path(root).parts
+                    out_split = pathlib.Path(out_file).parts
                     root_depth = len(root_split)
                     out_url = "/".join(out_split[root_depth:])
                 else:
-                    out_url = "/".join(os.path.split(out_file)[-len(os.path.split(file_url))])
+                    file_split = pathlib.Path(file_url).parts
+                    out_split = pathlib.Path(out_file).parts
+                    out_url = "/".join(out_split[-len(file_split):])
                 params['file'] = out_file
                 params['url'] = out_url
             try:
