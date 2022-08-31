@@ -118,6 +118,15 @@ get_template_params(self, function_writer=None):
    <div class="col" markdown="1">
 **Documentation**   
 </div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
@@ -128,6 +137,15 @@ get_template_params(self, function_writer=None):
 </div>
    <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker.py#L287?message=Update%20Docs)   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
 </div>
 </div>
 </div>

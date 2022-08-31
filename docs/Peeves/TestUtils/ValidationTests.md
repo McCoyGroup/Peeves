@@ -49,6 +49,15 @@ The set of slow tests in the test suite
    <div class="col" markdown="1">
 **Documentation**   
 </div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
@@ -59,6 +68,15 @@ The set of slow tests in the test suite
 </div>
    <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/TestUtils.py#L251?message=Update%20Docs)   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
 </div>
 </div>
 </div>

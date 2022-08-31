@@ -104,6 +104,15 @@ Loads examples for the stored object if provided
    <div class="col" markdown="1">
 **Documentation**   
 </div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
@@ -114,6 +123,15 @@ Loads examples for the stored object if provided
 </div>
    <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine.py#L790?message=Update%20Docs)   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
 </div>
 </div>
 </div>

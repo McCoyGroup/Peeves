@@ -105,9 +105,9 @@ visit_root(self, o, tests_directory=None, examples_directory=None, **kwargs):
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Details-05512c" markdown="1"> Details</a> <a class="float-right" data-toggle="collapse" href="#Details-05512c"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Details-e5db8b" markdown="1"> Details</a> <a class="float-right" data-toggle="collapse" href="#Details-e5db8b"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse " id="Details-05512c" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse " id="Details-e5db8b" markdown="1">
  A `DocWalker` object is a light subclass of a `TemplateWalker`, but specialized for documentation & with specialized handlers
  </div>
 </div>
@@ -157,6 +157,15 @@ visit_root(self, o, tests_directory=None, examples_directory=None, **kwargs):
    <div class="col" markdown="1">
 **Documentation**   
 </div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
@@ -167,6 +176,15 @@ visit_root(self, o, tests_directory=None, examples_directory=None, **kwargs):
 </div>
    <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker.py#L574?message=Update%20Docs)   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
 </div>
 </div>
 </div>

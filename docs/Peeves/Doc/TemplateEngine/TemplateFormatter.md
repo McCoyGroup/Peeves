@@ -215,6 +215,15 @@ vformat(self, format_string: str, args: Sequence[Any], kwargs: Mapping[str, Any]
    <div class="col" markdown="1">
 **Documentation**   
 </div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
@@ -225,6 +234,15 @@ vformat(self, format_string: str, args: Sequence[Any], kwargs: Mapping[str, Any]
 </div>
    <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine.py#L349?message=Update%20Docs)   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
 </div>
 </div>
 </div>
