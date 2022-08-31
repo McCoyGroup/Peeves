@@ -123,6 +123,21 @@ class DocTemplateHandler(TemplateHandler):
         self.include_line_numbers = include_line_numbers
         super().__init__(obj, out=out, engine=engine, root=root, walker=walker, **extra_fields)
 
+    def get_package_and_url(self, include_url_base=True):
+        pkg, file_url=super().get_package_and_url(include_url_base=include_url_base)
+        try:
+            base_url, ext = file_url.rsplit("/", 1)
+        except ValueError:
+            pass
+        else:
+            if ext == '__init__.py':
+                try:
+                    base_url, ext = base_url.rsplit("/", 1)
+                except ValueError:
+                    pass
+            file_url = base_url + '.py'
+        return pkg, file_url
+
     def get_lineno(self):
         # try:
         if self.include_line_numbers:
@@ -247,6 +262,8 @@ class ModuleWriter(DocTemplateHandler):
             obj = importlib.import_module(obj)
         super().__init__(obj, **kwargs)
 
+    get_package_and_url = DocTemplateHandler.get_package_and_url
+
     def get_template_params(self):
         """
         Provides module specific parameters
@@ -332,21 +349,6 @@ class ClassWriter(DocTemplateHandler):
 
         return props, methods
 
-    def get_package_and_url(self, include_url_base=True):
-        pkg, file_url=super().get_package_and_url(include_url_base=include_url_base)
-        try:
-            base_url, ext = file_url.rsplit("/", 2)
-        except ValueError:
-            pass
-        else:
-            if ext == '__init__.py':
-                try:
-                    base_url, ext = base_url.rsplit("/", 2)
-                except ValueError:
-                    pass
-            file_url = base_url + '.py'
-        return pkg, file_url
-
     def format_prop(self, k, o):
         return '{}: {}'.format(k, type(o).__name__)
 
@@ -411,21 +413,6 @@ class FunctionWriter(DocTemplateHandler):
             'examples': ex if ex is not None else "",
             'tests': tests
         }, **fields)
-
-    def get_package_and_url(self, include_url_base=True):
-        pkg, file_url=super().get_package_and_url(include_url_base=include_url_base)
-        try:
-            base_url, ext = file_url.rsplit("/", 2)
-        except ValueError:
-            pass
-        else:
-            if ext == '__init__.py':
-                try:
-                    base_url, ext = base_url.rsplit("/", 2)
-                except ValueError:
-                    pass
-            file_url = base_url + '.py'
-        return pkg, file_url
 
 class MethodWriter(FunctionWriter):
     """
@@ -519,21 +506,6 @@ class ObjectWriter(DocTemplateHandler):
             'examples': ex if ex is not None else "",
             'tests': None
         }, **fields)
-
-    def get_package_and_url(self, include_url_base=True):
-        pkg, file_url=super().get_package_and_url(include_url_base=include_url_base)
-        try:
-            base_url, ext = file_url.rsplit("/", 2)
-        except ValueError:
-            pass
-        else:
-            if ext == '__init__.py':
-                try:
-                    base_url, ext = base_url.rsplit("/", 2)
-                except ValueError:
-                    pass
-            file_url = base_url + '.py'
-        return pkg, file_url
 
 class IndexWriter(DocTemplateHandler):
     """
