@@ -195,7 +195,7 @@ class ExamplesParser:
         except KeyError:
             new_fns = {}
         else:
-            new_fns = {k:c._functions[k] for k in keys}
+            new_fns = {k:c._functions[k] for k in keys if k in c._functions}
         if len(new_fns) == 0:
             return None
         else:
