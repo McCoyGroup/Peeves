@@ -20,7 +20,7 @@ documentation template things.
  <div class="collapsible-section collapsible-section-header" markdown="1">
 ## <a class="collapse-link" data-toggle="collapse" href="#methods" markdown="1"> Methods and Properties</a> <a class="float-right" data-toggle="collapse" href="#methods"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse " id="methods" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="methods" markdown="1">
  ```python
 defaults_root: str
 default_config_file: str
@@ -132,16 +132,16 @@ Writes documentation layout to `self.target`
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Tests-bf74bc" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-bf74bc"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Tests-42f7f9" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-42f7f9"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Tests-bf74bc" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Tests-42f7f9" markdown="1">
  - [PeevesDoc](#PeevesDoc)
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-### <a class="collapse-link" data-toggle="collapse" href="#Setup-bffa7a" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-bffa7a"><i class="fa fa-chevron-down"></i></a>
+### <a class="collapse-link" data-toggle="collapse" href="#Setup-f0f399" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-f0f399"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Setup-bffa7a" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Setup-f0f399" markdown="1">
  
 Before we can run our examples we should get a bit of setup out of the way.
 Since these examples were harvested from the unit tests not all pieces
@@ -206,9 +206,9 @@ class DocsTests(TestCase):
 
 
 
-<div markdown="1" class="alert alert-secondary">
-**See Also:** [`DocWalker`](../DocWalker/DocWalker.md)<span>&nbsp;&#9642;&nbsp;</span>[`ModuleWriter`](../DocWalker/ModuleWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`ClassWriter`](../DocWalker/ClassWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`FunctionWriter`](../DocWalker/FunctionWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`MethodWriter`](../DocWalker/MethodWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`ObjectWriter`](../DocWalker/ObjectWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`IndexWriter`](../DocWalker/IndexWriter.md)
-</div>
+
+## See Also
+[`DocWalker`](../DocWalker/DocWalker.md)<span>&nbsp;&#9642;&nbsp;</span>[`ModuleWriter`](../DocWalker/ModuleWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`ClassWriter`](../DocWalker/ClassWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`FunctionWriter`](../DocWalker/FunctionWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`MethodWriter`](../DocWalker/MethodWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`ObjectWriter`](../DocWalker/ObjectWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`IndexWriter`](../DocWalker/IndexWriter.md)
 
 ---
 

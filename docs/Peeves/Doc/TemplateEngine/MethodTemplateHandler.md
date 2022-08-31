@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.TemplateEngine.MethodTemplateHandler">MethodTemplateHandler</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/MethodTemplateHandler/__init__.py#L899)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/MethodTemplateHandler/__init__.py#L899?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/MethodTemplateHandler/__init__.py#L906)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/MethodTemplateHandler/__init__.py#L906?message=Update%20Docs)]
 </div>
 
 
@@ -17,13 +17,14 @@
  <div class="collapsible-section collapsible-section-header" markdown="1">
 ## <a class="collapse-link" data-toggle="collapse" href="#methods" markdown="1"> Methods and Properties</a> <a class="float-right" data-toggle="collapse" href="#methods"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse " id="methods" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="methods" markdown="1">
  ```python
 template: str
 ```
 
  </div>
 </div>
+
 
 
 
@@ -74,7 +75,7 @@ template: str
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/MethodTemplateHandler.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/MethodTemplateHandler.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/MethodTemplateHandler/__init__.py#L899?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/MethodTemplateHandler/__init__.py#L906?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.TemplateEngine.ResourceLocator">ResourceLocator</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/__init__.py#L518)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/__init__.py#L518?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/__init__.py#L525)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/__init__.py#L525?message=Update%20Docs)]
 </div>
 
 
@@ -17,15 +17,15 @@
  <div class="collapsible-section collapsible-section-header" markdown="1">
 ## <a class="collapse-link" data-toggle="collapse" href="#methods" markdown="1"> Methods and Properties</a> <a class="float-right" data-toggle="collapse" href="#methods"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse " id="methods" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="methods" markdown="1">
  
 <a id="Peeves.Peeves.Doc.TemplateEngine.ResourceLocator.__init__" class="docs-object-method">&nbsp;</a> 
 ```python
 __init__(self, locators: Iterable[Union[Peeves.Peeves.Doc.TemplateEngine.ResourcePathLocator, Iterable[str], Tuple[Iterable[str], Union[str, Iterable[str]]]]]): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/__init__/__init__.py#L519)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/__init__/__init__.py#L519?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/__init__/__init__.py#L526)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/__init__/__init__.py#L526?message=Update%20Docs)]
 </div>
 
 
@@ -34,8 +34,8 @@ __init__(self, locators: Iterable[Union[Peeves.Peeves.Doc.TemplateEngine.Resourc
 locate(self, identifier): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/locate/__init__.py#L535)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/locate/__init__.py#L535?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/locate/__init__.py#L542)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/locate/__init__.py#L542?message=Update%20Docs)]
 </div>
 
 
@@ -44,8 +44,8 @@ locate(self, identifier):
 paths(self, filter_pattern=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/paths/__init__.py#L540)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/paths/__init__.py#L540?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/paths/__init__.py#L547)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/paths/__init__.py#L547?message=Update%20Docs)]
 </div>
 
 
@@ -54,8 +54,8 @@ paths(self, filter_pattern=None):
 directories(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/directories/__init__.py#L550)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/directories/__init__.py#L550?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/directories/__init__.py#L557)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/directories/__init__.py#L557?message=Update%20Docs)]
 </div>
 
 
@@ -64,11 +64,12 @@ directories(self):
 __repr__(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/__repr__/__init__.py#L552)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/__repr__/__init__.py#L552?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/__repr__/__init__.py#L559)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/__repr__/__init__.py#L559?message=Update%20Docs)]
 </div>
  </div>
 </div>
+
 
 
 
@@ -119,7 +120,7 @@ __repr__(self):
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/ResourceLocator.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/ResourceLocator.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/__init__.py#L518?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/ResourceLocator/__init__.py#L525?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

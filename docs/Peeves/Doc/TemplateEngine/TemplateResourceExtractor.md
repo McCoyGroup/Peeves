@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.TemplateEngine.TemplateResourceExtractor">TemplateResourceExtractor</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/__init__.py#L837)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/__init__.py#L837?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/__init__.py#L844)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/__init__.py#L844?message=Update%20Docs)]
 </div>
 
 
@@ -17,7 +17,7 @@
  <div class="collapsible-section collapsible-section-header" markdown="1">
 ## <a class="collapse-link" data-toggle="collapse" href="#methods" markdown="1"> Methods and Properties</a> <a class="float-right" data-toggle="collapse" href="#methods"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse " id="methods" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="methods" markdown="1">
  ```python
 extension: str
 resource_keys: list
@@ -28,8 +28,8 @@ resource_attrs: list
 path_extension(self, handler: Peeves.Peeves.Doc.TemplateEngine.TemplateHandler): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/path_extension/__init__.py#L839)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/path_extension/__init__.py#L839?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/path_extension/__init__.py#L846)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/path_extension/__init__.py#L846?message=Update%20Docs)]
 </div>
 Provides the default examples path for the object
   - `:returns`: `_`
@@ -41,8 +41,8 @@ Provides the default examples path for the object
 get_resource(self, handler: Peeves.Peeves.Doc.TemplateEngine.TemplateHandler, keys=None, attrs=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/get_resource/__init__.py#L848)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/get_resource/__init__.py#L848?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/get_resource/__init__.py#L855)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/get_resource/__init__.py#L855?message=Update%20Docs)]
 </div>
 
 
@@ -51,14 +51,15 @@ get_resource(self, handler: Peeves.Peeves.Doc.TemplateEngine.TemplateHandler, ke
 load(self, handler: Peeves.Peeves.Doc.TemplateEngine.TemplateHandler): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/load/__init__.py#L880)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/load/__init__.py#L880?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/load/__init__.py#L887)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/load/__init__.py#L887?message=Update%20Docs)]
 </div>
 Loads examples for the stored object if provided
   - `:returns`: `_`
     >
  </div>
 </div>
+
 
 
 
@@ -109,7 +110,7 @@ Loads examples for the stored object if provided
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/TemplateResourceExtractor.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/TemplateResourceExtractor.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/__init__.py#L837?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor/__init__.py#L844?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    
