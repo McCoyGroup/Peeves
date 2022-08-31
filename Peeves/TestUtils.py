@@ -179,8 +179,9 @@ class TestManager:
         self._test_data = d
         if d is not None:
             self._test_data_use_default = False
-    def test_data(self, filename):
-        return os.path.join(self.test_data_dir, filename)
+    @classmethod
+    def test_data(cls, filename):
+        return os.path.join(cls().test_data_dir, filename)
 
     @classmethod
     def collect_run_args(cls):
@@ -220,6 +221,7 @@ class TestManager:
                             type=str, nargs='?', default="",
                             help='name of specific test to run')
         args = parser.parse_args()
+
         return dict(
             quiet_mode=True if args.quiet is None else args.quiet,
             debug_tests=True if args.debug is None else args.debug,
@@ -291,6 +293,7 @@ class TestManager:
              log_results=None, log_file=None, quiet=None,
              syserr_redirect=True
              ):
+        TestManager.test_data_dir = self.test_data_dir
         with self.get_log_file(log_results=log_results, log_file=log_file, syserr_redirect=syserr_redirect) as log_stream:
             quiet = self.quiet_mode if quiet is None else quiet
             v_level = 1 if quiet else 2
