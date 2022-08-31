@@ -8,68 +8,68 @@ Peeves began life as a minor extension to the `unittest` framework.
 These days it's primarily used as a documentation generator, through its `Doc` subpackage.
 The documentation for Peeves itself is generated with `Peeves.Doc`
 
-<div class="container alert alert-secondary bg-light">
+### Members<div class="container alert alert-secondary bg-light">
   <div class="row">
    <div class="col" markdown="1">
-[TestRunner](Peeves/TestUtils/TestRunner.md)   
+[TestRunner](Peeves/Peeves/TestUtils/TestRunner.md)   
 </div>
    <div class="col" markdown="1">
-[DebugTests](Peeves/TestUtils/DebugTests.md)   
+[DebugTests](Peeves/Peeves/TestUtils/DebugTests.md)   
 </div>
    <div class="col" markdown="1">
-[ValidationTests](Peeves/TestUtils/ValidationTests.md)   
-</div>
-</div>
-  <div class="row">
-   <div class="col" markdown="1">
-[TimingTests](Peeves/TestUtils/TimingTests.md)   
-</div>
-   <div class="col" markdown="1">
-[LoadTests](Peeves/TestUtils/LoadTests.md)   
-</div>
-   <div class="col" markdown="1">
-[TestManager](Peeves/TestUtils/TestManager.md)   
+[ValidationTests](Peeves/Peeves/TestUtils/ValidationTests.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[DataGenerator](Peeves/TestUtils/DataGenerator.md)   
+[TimingTests](Peeves/Peeves/TestUtils/TimingTests.md)   
 </div>
    <div class="col" markdown="1">
-[load_tests](Peeves/TestUtils/ManagedTestLoader/load_tests.md)   
+[TestManager](Peeves/Peeves/TestUtils/TestManager.md)   
 </div>
    <div class="col" markdown="1">
-[validationTest](Peeves/TestUtils/validationTest.md)   
+[DataGenerator](Peeves/Peeves/TestUtils/DataGenerator.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[debugTest](Peeves/TestUtils/debugTest.md)   
+[load_tests](Peeves/Peeves/TestUtils/ManagedTestLoader/load_tests.md)   
 </div>
    <div class="col" markdown="1">
-[dataGenTest](Peeves/TestUtils/dataGenTest.md)   
+[validationTest](Peeves/Peeves/TestUtils/validationTest.md)   
 </div>
    <div class="col" markdown="1">
-[timeitTest](Peeves/TestUtils/timeitTest.md)   
+[debugTest](Peeves/Peeves/TestUtils/debugTest.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[timingTest](Peeves/TestUtils/timingTest.md)   
+[dataGenTest](Peeves/Peeves/TestUtils/dataGenTest.md)   
 </div>
    <div class="col" markdown="1">
-[inactiveTest](Peeves/TestUtils/inactiveTest.md)   
+[timeitTest](Peeves/Peeves/TestUtils/timeitTest.md)   
 </div>
    <div class="col" markdown="1">
-[Timer](Peeves/Timer/Timer.md)   
+[timingTest](Peeves/Peeves/TestUtils/timingTest.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[BlockProfiler](Peeves/Profiler/BlockProfiler.md)   
+[inactiveTest](Peeves/Peeves/TestUtils/inactiveTest.md)   
 </div>
+   <div class="col" markdown="1">
+[Timer](Peeves/Peeves/Timer/Timer.md)   
+</div>
+   <div class="col" markdown="1">
+[BlockProfiler](Peeves/Peeves/Profiler/BlockProfiler.md)   
+</div>
+</div>
+  <div class="row">
    <div class="col" markdown="1">
 [Doc](Peeves/Doc.md)   
+</div>
+   <div class="col" markdown="1">
+   
 </div>
    <div class="col" markdown="1">
    
@@ -91,34 +91,17 @@ The documentation for Peeves itself is generated with `Peeves.Doc`
 ---
 
 
-<div markdown="1" class="text-secondary fs-3">
+<div markdown="1" class="text-secondary">
 <div class="container">
   <div class="row">
    <div class="col" markdown="1">
-[Give Feedback](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)   
+**Feedback**   
 </div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-</div>
-  <div class="row">
    <div class="col" markdown="1">
 **Examples**   
 </div>
    <div class="col" markdown="1">
-**Template**   
+**Templates**   
 </div>
    <div class="col" markdown="1">
 **Documentation**   
@@ -134,6 +117,9 @@ The documentation for Peeves itself is generated with `Peeves.Doc`
 </div>
 </div>
   <div class="row">
+   <div class="col" markdown="1">
+[Bug](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)/[Request](https://github.com/McCoyGroup/Peeves/issues/new?title=Example%20Request)   
+</div>
    <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Peeves.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves.md)   
 </div>

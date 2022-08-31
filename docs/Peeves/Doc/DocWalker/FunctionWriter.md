@@ -1,8 +1,8 @@
-## <a id="Peeves.Doc.DocWalker.FunctionWriter">FunctionWriter</a> 
+## <a id="Peeves.Peeves.Doc.DocWalker.FunctionWriter">FunctionWriter</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker.py#L384)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker.py#L384?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/__init__.py#L384)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/__init__.py#L384?message=Update%20Docs)]
 </div>
 
 Writer to dump functions to file
@@ -20,35 +20,34 @@ Writer to dump functions to file
  <div class="collapsible-section collapsible-section-body collapse " id="methods" markdown="1">
  ```python
 template: str
-squash_repeat_packages: bool
 ```
-<a id="Peeves.Doc.DocWalker.FunctionWriter.get_signature" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Peeves.Doc.DocWalker.FunctionWriter.get_signature" class="docs-object-method">&nbsp;</a> 
 ```python
 get_signature(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/FunctionWriter.py#L391)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/FunctionWriter.py#L391?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_signature/__init__.py#L391)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_signature/__init__.py#L391?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Doc.DocWalker.FunctionWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Peeves.Doc.DocWalker.FunctionWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
 ```python
 get_template_params(self, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/FunctionWriter.py#L394)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/FunctionWriter.py#L394?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_template_params/__init__.py#L394)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_template_params/__init__.py#L394?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Doc.DocWalker.FunctionWriter.get_package_and_url" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Peeves.Doc.DocWalker.FunctionWriter.get_package_and_url" class="docs-object-method">&nbsp;</a> 
 ```python
-get_package_and_url(self): 
+get_package_and_url(self, include_url_base=True): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/FunctionWriter.py#L416)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/FunctionWriter.py#L416?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_package_and_url/__init__.py#L416)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_package_and_url/__init__.py#L416?message=Update%20Docs)]
 </div>
  </div>
 </div>
@@ -66,34 +65,17 @@ get_package_and_url(self):
 ---
 
 
-<div markdown="1" class="text-secondary fs-3">
+<div markdown="1" class="text-secondary">
 <div class="container">
   <div class="row">
    <div class="col" markdown="1">
-[Give Feedback](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)   
+**Feedback**   
 </div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-</div>
-  <div class="row">
    <div class="col" markdown="1">
 **Examples**   
 </div>
    <div class="col" markdown="1">
-**Template**   
+**Templates**   
 </div>
    <div class="col" markdown="1">
 **Documentation**   
@@ -110,13 +92,16 @@ get_package_and_url(self):
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Peeves/Doc/DocWalker/FunctionWriter.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Doc/DocWalker/FunctionWriter.md)   
+[Bug](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)/[Request](https://github.com/McCoyGroup/Peeves/issues/new?title=Example%20Request)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Doc/DocWalker/FunctionWriter.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Doc/DocWalker/FunctionWriter.md)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/FunctionWriter.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/FunctionWriter.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker.py#L384?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/FunctionWriter.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/FunctionWriter.md)   
+</div>
+   <div class="col" markdown="1">
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/__init__.py#L384?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

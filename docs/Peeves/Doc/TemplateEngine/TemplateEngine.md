@@ -1,8 +1,8 @@
-## <a id="Peeves.Doc.TemplateEngine.TemplateEngine">TemplateEngine</a> 
+## <a id="Peeves.Peeves.Doc.TemplateEngine.TemplateEngine">TemplateEngine</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine.py#L558)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine.py#L558?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/__init__.py#L558)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/__init__.py#L558?message=Update%20Docs)]
 </div>
 
 Provides an engine for generating content using a
@@ -23,53 +23,53 @@ Provides an engine for generating content using a
 formatter_class: TemplateFormatter
 outStream: outStream
 ```
-<a id="Peeves.Doc.TemplateEngine.TemplateEngine.__init__" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateEngine.__init__" class="docs-object-method">&nbsp;</a> 
 ```python
 __init__(self, locator: Peeves.Peeves.Doc.TemplateEngine.ResourceLocator, template_pattern='*.*', ignore_missing=False, formatter_class=None, ignore_paths=()): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateEngine.py#L565)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateEngine.py#L565?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/__init__/__init__.py#L565)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/__init__/__init__.py#L565?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Doc.TemplateEngine.TemplateEngine.format_map" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateEngine.format_map" class="docs-object-method">&nbsp;</a> 
 ```python
 format_map(self, template, parameters): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateEngine.py#L583)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateEngine.py#L583?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/format_map/__init__.py#L583)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/format_map/__init__.py#L583?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Doc.TemplateEngine.TemplateEngine.format" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateEngine.format" class="docs-object-method">&nbsp;</a> 
 ```python
 format(self, template, **parameters): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateEngine.py#L591)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateEngine.py#L591?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/format/__init__.py#L591)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/format/__init__.py#L591?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Doc.TemplateEngine.TemplateEngine.write_string" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateEngine.write_string" class="docs-object-method">&nbsp;</a> 
 ```python
 write_string(self, target, txt): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateEngine.py#L622)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateEngine.py#L622?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/write_string/__init__.py#L622)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/write_string/__init__.py#L622?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Doc.TemplateEngine.TemplateEngine.apply" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateEngine.apply" class="docs-object-method">&nbsp;</a> 
 ```python
 apply(self, template, target, **template_params): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/TemplateEngine/TemplateEngine.py#L624)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine/TemplateEngine.py#L624?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/apply/__init__.py#L624)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/apply/__init__.py#L624?message=Update%20Docs)]
 </div>
  </div>
 </div>
@@ -87,34 +87,17 @@ apply(self, template, target, **template_params):
 ---
 
 
-<div markdown="1" class="text-secondary fs-3">
+<div markdown="1" class="text-secondary">
 <div class="container">
   <div class="row">
    <div class="col" markdown="1">
-[Give Feedback](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)   
+**Feedback**   
 </div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-</div>
-  <div class="row">
    <div class="col" markdown="1">
 **Examples**   
 </div>
    <div class="col" markdown="1">
-**Template**   
+**Templates**   
 </div>
    <div class="col" markdown="1">
 **Documentation**   
@@ -131,13 +114,16 @@ apply(self, template, target, **template_params):
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Peeves/Doc/TemplateEngine/TemplateEngine.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Doc/TemplateEngine/TemplateEngine.md)   
+[Bug](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)/[Request](https://github.com/McCoyGroup/Peeves/issues/new?title=Example%20Request)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Doc/TemplateEngine/TemplateEngine.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Doc/TemplateEngine/TemplateEngine.md)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/TemplateEngine.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/TemplateEngine.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/TemplateEngine.py#L558?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/TemplateEngine.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/TemplateEngine.md)   
+</div>
+   <div class="col" markdown="1">
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateEngine/__init__.py#L558?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

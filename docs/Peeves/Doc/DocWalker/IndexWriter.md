@@ -1,8 +1,8 @@
-## <a id="Peeves.Doc.DocWalker.IndexWriter">IndexWriter</a> 
+## <a id="Peeves.Peeves.Doc.DocWalker.IndexWriter">IndexWriter</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker.py#L541)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker.py#L541?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/__init__.py#L539)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/__init__.py#L539?message=Update%20Docs)]
 </div>
 
 Writes an index file with all of the
@@ -23,43 +23,43 @@ Needs some work to provide more useful info by default.
  ```python
 template: str
 ```
-<a id="Peeves.Doc.DocWalker.IndexWriter.__init__" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Peeves.Doc.DocWalker.IndexWriter.__init__" class="docs-object-method">&nbsp;</a> 
 ```python
 __init__(self, *args, description=None, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/IndexWriter.py#L549)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/IndexWriter.py#L549?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/__init__/__init__.py#L547)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/__init__/__init__.py#L547?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Doc.DocWalker.IndexWriter.get_identifier" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Peeves.Doc.DocWalker.IndexWriter.get_identifier" class="docs-object-method">&nbsp;</a> 
 ```python
 get_identifier(cls, o): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/IndexWriter.py#L553)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/IndexWriter.py#L553?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/get_identifier/__init__.py#L551)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/get_identifier/__init__.py#L551?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Doc.DocWalker.IndexWriter.get_file_paths" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Peeves.Doc.DocWalker.IndexWriter.get_file_paths" class="docs-object-method">&nbsp;</a> 
 ```python
 get_file_paths(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/IndexWriter.py#L556)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/IndexWriter.py#L556?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/get_file_paths/__init__.py#L554)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/get_file_paths/__init__.py#L554?message=Update%20Docs)]
 </div>
 
 
-<a id="Peeves.Doc.DocWalker.IndexWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Peeves.Doc.DocWalker.IndexWriter.get_template_params" class="docs-object-method">&nbsp;</a> 
 ```python
 get_template_params(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/DocWalker/IndexWriter.py#L566)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker/IndexWriter.py#L566?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/get_template_params/__init__.py#L564)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/get_template_params/__init__.py#L564?message=Update%20Docs)]
 </div>
  </div>
 </div>
@@ -77,34 +77,17 @@ get_template_params(self):
 ---
 
 
-<div markdown="1" class="text-secondary fs-3">
+<div markdown="1" class="text-secondary">
 <div class="container">
   <div class="row">
    <div class="col" markdown="1">
-[Give Feedback](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)   
+**Feedback**   
 </div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-   <div class="col" markdown="1">
-   
-</div>
-</div>
-  <div class="row">
    <div class="col" markdown="1">
 **Examples**   
 </div>
    <div class="col" markdown="1">
-**Template**   
+**Templates**   
 </div>
    <div class="col" markdown="1">
 **Documentation**   
@@ -121,13 +104,16 @@ get_template_params(self):
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Peeves/Doc/DocWalker/IndexWriter.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Doc/DocWalker/IndexWriter.md)   
+[Bug](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)/[Request](https://github.com/McCoyGroup/Peeves/issues/new?title=Example%20Request)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Doc/DocWalker/IndexWriter.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Doc/DocWalker/IndexWriter.md)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/IndexWriter.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/IndexWriter.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker.py#L541?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/IndexWriter.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/IndexWriter.md)   
+</div>
+   <div class="col" markdown="1">
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/IndexWriter/__init__.py#L539?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    
