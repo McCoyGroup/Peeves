@@ -1,7 +1,7 @@
 # <a id="Peeves.Peeves.TestUtils.timeitTest">timeitTest</a>
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils.py#L457)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L457?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils.py#L460)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L460?message=Update%20Docs)]
 </div>
 
 ```python
@@ -60,7 +60,7 @@ using `timeit`
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/TestUtils/timeitTest.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/TestUtils/timeitTest.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L457?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L460?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

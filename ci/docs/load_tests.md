@@ -1,7 +1,7 @@
 ### <a id="load_tests">load_tests</a> 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves.py#L522)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves.py#L522?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves.py#L525)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves.py#L525?message=Update%20Docs)]
 </div>
 
 
@@ -54,7 +54,7 @@
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/load_tests.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/load_tests.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves.py#L522?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves.py#L525?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

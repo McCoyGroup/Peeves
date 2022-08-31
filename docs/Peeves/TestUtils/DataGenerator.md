@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.TestUtils.DataGenerator">DataGenerator</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils.py#L342)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L342?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils.py#L345)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L345?message=Update%20Docs)]
 </div>
 
 Provides methods to generate relevant data for testing methods
@@ -26,8 +26,8 @@ seed: int
 coords(n=50): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L347)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L347?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L350)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L350?message=Update%20Docs)]
 </div>
 
 
@@ -36,8 +36,8 @@ coords(n=50):
 multicoords(n=10, m=50): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L352)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L352?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L355)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L355?message=Update%20Docs)]
 </div>
 
 
@@ -46,8 +46,8 @@ multicoords(n=10, m=50):
 mats(n=1): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L357)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L357?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L360)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L360?message=Update%20Docs)]
 </div>
 
 
@@ -56,8 +56,8 @@ mats(n=1):
 vecs(n=1): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L362)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L362?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L365)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L365?message=Update%20Docs)]
 </div>
 
 
@@ -66,8 +66,8 @@ vecs(n=1):
 angles(n=50, r=(0, 360), use_rad=False): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L368)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L368?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L371)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L371?message=Update%20Docs)]
 </div>
 
 
@@ -76,8 +76,8 @@ angles(n=50, r=(0, 360), use_rad=False):
 dists(n=50, minmax=(0.5, 1.5)): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L376)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L376?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L379)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L379?message=Update%20Docs)]
 </div>
 
 
@@ -86,8 +86,8 @@ dists(n=50, minmax=(0.5, 1.5)):
 zmat(ncoords=15, use_rad=False): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L381)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L381?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L384)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L384?message=Update%20Docs)]
 </div>
 
 
@@ -96,8 +96,8 @@ zmat(ncoords=15, use_rad=False):
 zmats(m=10, ncoords=15, use_rad=False): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L412)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L412?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/DataGenerator.py#L415)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/DataGenerator.py#L415?message=Update%20Docs)]
 </div>
  </div>
 </div>
@@ -152,7 +152,7 @@ zmats(m=10, ncoords=15, use_rad=False):
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/TestUtils/DataGenerator.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/TestUtils/DataGenerator.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L342?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L345?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

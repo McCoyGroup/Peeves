@@ -1,7 +1,7 @@
 # <a id="Peeves.Peeves.TestUtils.dataGenTest">dataGenTest</a>
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils.py#L488)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L488?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils.py#L491)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L491?message=Update%20Docs)]
 </div>
 
 ```python
@@ -59,7 +59,7 @@ A decorator that sets up a test to be added to the set of data generation tests
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/TestUtils/dataGenTest.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/TestUtils/dataGenTest.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L488?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L491?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    
