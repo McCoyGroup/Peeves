@@ -19,6 +19,7 @@ To use the documentation generator, follow the pattern laid out in the [document
 - [Peeves](Peeves.md)
 
 ## Examples
+
 Running tests with `TestManager`.
 We need to tell it where to start looking for tests.
 
