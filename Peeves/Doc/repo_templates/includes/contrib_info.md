@@ -1,73 +1,13 @@
 ### Help Us Out!
 
+The easiest way to help us out is to _give feedback_.
 Each page _should_ support examples, but unfortunately most do not, simply because writing that kind of thing by hand is time consuming.
-If you see a page without examples, help us out!
-Even though these pages are automatically generated, you can add examples to them by putting a file in the appropriate _examples_ slot and rebuilding the docs by simply making a commit.
-Similarly, if you see something that you think should be improved, you can either edit the docstrings in the source or let us know about the deficiency here [issues](https://github.com/{gh_username}/{gh_repo}/issues/new?title=Documentation%20Improvement%20Needed).
+If you see a page without examples and you want some, let us know!
+To do that, just open and [issue on GitHub]((https://github.com/{gh_username}/{gh_repo}/issues/new?title=Documentation%20Improvement%20Needed)).
+You can use the `Feedback` button at the bottom of each page to do so.
 
-##### Examples
-
-To contribute an example for a page at 
-
-```
-https://mccoygroup.github.io/{gh_repo}/Molecools/Molecule.html
-```
-
-you'll either add the appropriate file by going to 
-
-```
-https://github.com/{gh_username}/{gh_repo}/new/{gh_branch}?filename=ci/docs/examples/Molecools/Molecule.md
-```
-
-or edit the existing one by going to 
-
-```
-https://github.com/{gh_username}/{gh_repo}/edit/{gh_branch}/ci/docs/examples/Molecools/Molecule.md
-```
-
-##### Documentation
-
-For this, you'll need to navigate to the appropriate package. The breadcrumbs on the documentation pages can be very helpful for this. 
-Say you wanted to edit some docstring on the `Molecule` class.
-To do so you'd first note that in the breadcrumb we have
-
-```lang-none
-Psience / Molecools
-```
-
-So you'd go to [https://github.com/{gh_username}/{gh_repo}/Molecools](https://github.com/{gh_username}/{gh_repo}/Molecools) & then notice that there is a package called `Molecule.py`.
-Then, clicking on the package's edit link ( [{gh_username}/{gh_repo}/edit/{gh_branch}/Molecools/Molecule.py](https://github.com/{gh_username}/{gh_repo}/edit/{gh_branch}/Molecools/Molecule.py) ) you can navigate to where `Molecule` is defined and edit that.
-Alternately, if you know the line number in the source file, you can link directly to that line in the source and then people can use the GitHub UI.
-
-After editing, you'll need to rerun the site build via the [GitHub Action](https://github.com/{gh_username}/{gh_repo}/actions?query=workflow%3A%22McBuild+site%22) we set up.
-
-##### Templates
-
-The documentation build makes use of a template system to generate its Markdown pages.
-In particular, it uses the files [here](https://github.com/{gh_username}/{gh_repo}/tree/{gh_branch}/ci/docs/templates) to make this work, where the following hierarchy is used:
-* `index.md` is used for this main index page
-* `module.md` is used for modules
-* `class.md` is used for classes
-* `function.md` is used for stand-alone functions
-* `method.md` is used for object methods
-* `object.md` is used for objects with a `__name__` parameter
-
-You can also add custom templates for pages, if you feel they need more information than the auto-generator can provide.
-To do so, we'll add to the file path in the [templates](https://github.com/{gh_username}/{gh_repo}/tree/{gh_branch}/docs/templates) directory of the documentation.
-
-For the `McUtils.GaussianInterface` example from before, to edit the template we would have
-
-```
-https://github.com/McCoyGroup/References/edit/gh-pages/Documentation/templates/McUtils/GaussianInterface.md
-```
-
-and or to make the file we'd use 
-
-```
-https://github.com/McCoyGroup/References/new/gh-pages?filename=Documentation/templates/McUtils/GaussianInterface.md
-```
-
-once `Peeves` has a chance to rebuild the site, the new template will be used.
-
-It's generally good to build off of the old templates, though, so that we don't lose information.
-We've written a powerful templating system so you should be able to do pretty much anything you want to with small alterations.
+If you want to be a bit more proactive, feel free to provide examples and docstrings yourself! 
+There are links at the bottom of each page to edit the examples, templates, and docstrings for that page.
+Just create a new one if needed or edit the old one, commit your changes, and `Peeves` will rebuild the site
+which what you've added.
+It is a huge, huge help, so please take advantage of the opportunity if you're looking for ways to get involved.
