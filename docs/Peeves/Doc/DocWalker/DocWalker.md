@@ -105,9 +105,9 @@ visit_root(self, o, tests_directory=None, examples_directory=None, **kwargs):
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Details-8cf0f1" markdown="1"> Details</a> <a class="float-right" data-toggle="collapse" href="#Details-8cf0f1"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Details-05512c" markdown="1"> Details</a> <a class="float-right" data-toggle="collapse" href="#Details-05512c"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse " id="Details-8cf0f1" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse " id="Details-05512c" markdown="1">
  A `DocWalker` object is a light subclass of a `TemplateWalker`, but specialized for documentation & with specialized handlers
  </div>
 </div>
@@ -125,22 +125,37 @@ visit_root(self, o, tests_directory=None, examples_directory=None, **kwargs):
 ---
 
 
-<div markdown="1" class="text-muted">
+<div markdown="1" class="text-secondary fs-3">
 <div class="container">
   <div class="row">
    <div class="col" markdown="1">
-[Feedback](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)   
+[Give Feedback](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-Examples   
+**Examples**   
 </div>
    <div class="col" markdown="1">
-Template   
+**Template**   
 </div>
    <div class="col" markdown="1">
-Documentation   
+**Documentation**   
 </div>
 </div>
   <div class="row">

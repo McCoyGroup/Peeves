@@ -115,22 +115,37 @@ zmats(m=10, ncoords=15, use_rad=False):
 ---
 
 
-<div markdown="1" class="text-muted">
+<div markdown="1" class="text-secondary fs-3">
 <div class="container">
   <div class="row">
    <div class="col" markdown="1">
-[Feedback](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)   
+[Give Feedback](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
+</div>
+   <div class="col" markdown="1">
+   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-Examples   
+**Examples**   
 </div>
    <div class="col" markdown="1">
-Template   
+**Template**   
 </div>
    <div class="col" markdown="1">
-Documentation   
+**Documentation**   
 </div>
 </div>
   <div class="row">
