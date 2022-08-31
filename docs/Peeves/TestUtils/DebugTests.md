@@ -25,33 +25,33 @@ In a bad turn of events, the validation tests are rarely run these days.
 
 
 <div markdown="1" class="text-muted">
-&lt;div class="container"&gt;
-  &lt;div class="row"&gt;
-   &lt;div class="col" markdown="1"&gt;
+<div class="container">
+  <div class="row">
+   <div class="col" markdown="1">
 [Feedback](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)   
-&lt;/div&gt;
-&lt;/div&gt;
-  &lt;div class="row"&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+</div>
+  <div class="row">
+   <div class="col" markdown="1">
 Examples   
-&lt;/div&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+   <div class="col" markdown="1">
 Template   
-&lt;/div&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+   <div class="col" markdown="1">
 Documentation   
-&lt;/div&gt;
-&lt;/div&gt;
-  &lt;div class="row"&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+</div>
+  <div class="row">
+   <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Peeves/TestUtils/DebugTests.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/TestUtils/DebugTests.md)   
-&lt;/div&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+   <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/TestUtils/DebugTests.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/TestUtils/DebugTests.md)   
-&lt;/div&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+   <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/TestUtils.py#L246?message=Update%20Docs)   
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
 </div>

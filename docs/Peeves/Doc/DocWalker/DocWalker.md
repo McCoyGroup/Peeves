@@ -105,9 +105,9 @@ visit_root(self, o, tests_directory=None, examples_directory=None, **kwargs):
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Details-6bcc41" markdown="1"> Details</a> <a class="float-right" data-toggle="collapse" href="#Details-6bcc41"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Details-8cf0f1" markdown="1"> Details</a> <a class="float-right" data-toggle="collapse" href="#Details-8cf0f1"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse " id="Details-6bcc41" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse " id="Details-8cf0f1" markdown="1">
  A `DocWalker` object is a light subclass of a `TemplateWalker`, but specialized for documentation & with specialized handlers
  </div>
 </div>
@@ -119,40 +119,40 @@ visit_root(self, o, tests_directory=None, examples_directory=None, **kwargs):
 
 
 <div markdown="1" class="alert alert-info">
-**See Also:** [`DocBuilder`](../DocsBuilder/DocBuilder.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`ModuleWriter`](ModuleWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`ClassWriter`](ClassWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`FunctionWriter`](FunctionWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`MethodWriter`](MethodWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`ObjectWriter`](ObjectWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`IndexWriter`](IndexWriter.md)
+**See Also:** [`DocBuilder`](../DocsBuilder/DocBuilder.md)<span>&nbsp;&#9642;&nbsp;</span>[`ModuleWriter`](ModuleWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`ClassWriter`](ClassWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`FunctionWriter`](FunctionWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`MethodWriter`](MethodWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`ObjectWriter`](ObjectWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`IndexWriter`](IndexWriter.md)
 </div>
 
 ---
 
 
 <div markdown="1" class="text-muted">
-&lt;div class="container"&gt;
-  &lt;div class="row"&gt;
-   &lt;div class="col" markdown="1"&gt;
+<div class="container">
+  <div class="row">
+   <div class="col" markdown="1">
 [Feedback](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)   
-&lt;/div&gt;
-&lt;/div&gt;
-  &lt;div class="row"&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+</div>
+  <div class="row">
+   <div class="col" markdown="1">
 Examples   
-&lt;/div&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+   <div class="col" markdown="1">
 Template   
-&lt;/div&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+   <div class="col" markdown="1">
 Documentation   
-&lt;/div&gt;
-&lt;/div&gt;
-  &lt;div class="row"&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+</div>
+  <div class="row">
+   <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Peeves/Doc/DocWalker/DocWalker.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Doc/DocWalker/DocWalker.md)   
-&lt;/div&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+   <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Doc/DocWalker/DocWalker.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Doc/DocWalker/DocWalker.md)   
-&lt;/div&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+   <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocWalker.py#L574?message=Update%20Docs)   
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
 </div>

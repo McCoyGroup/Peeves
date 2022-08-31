@@ -122,40 +122,40 @@ Writes documentation layout to `self.target`
 
 
 <div markdown="1" class="alert alert-info">
-**See Also:** [`DocWalker`](../DocWalker/DocWalker.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`ModuleWriter`](../DocWalker/ModuleWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`ClassWriter`](../DocWalker/ClassWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`FunctionWriter`](../DocWalker/FunctionWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`MethodWriter`](../DocWalker/MethodWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`ObjectWriter`](../DocWalker/ObjectWriter.md)&lt;span&gt;&amp;nbsp;&amp;#9642;&amp;nbsp;&lt;/span&gt;[`IndexWriter`](../DocWalker/IndexWriter.md)
+**See Also:** [`DocWalker`](../DocWalker/DocWalker.md)<span>&nbsp;&#9642;&nbsp;</span>[`ModuleWriter`](../DocWalker/ModuleWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`ClassWriter`](../DocWalker/ClassWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`FunctionWriter`](../DocWalker/FunctionWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`MethodWriter`](../DocWalker/MethodWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`ObjectWriter`](../DocWalker/ObjectWriter.md)<span>&nbsp;&#9642;&nbsp;</span>[`IndexWriter`](../DocWalker/IndexWriter.md)
 </div>
 
 ---
 
 
 <div markdown="1" class="text-muted">
-&lt;div class="container"&gt;
-  &lt;div class="row"&gt;
-   &lt;div class="col" markdown="1"&gt;
+<div class="container">
+  <div class="row">
+   <div class="col" markdown="1">
 [Feedback](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)   
-&lt;/div&gt;
-&lt;/div&gt;
-  &lt;div class="row"&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+</div>
+  <div class="row">
+   <div class="col" markdown="1">
 Examples   
-&lt;/div&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+   <div class="col" markdown="1">
 Template   
-&lt;/div&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+   <div class="col" markdown="1">
 Documentation   
-&lt;/div&gt;
-&lt;/div&gt;
-  &lt;div class="row"&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+</div>
+  <div class="row">
+   <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Peeves/Doc/DocsBuilder/DocBuilder.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Doc/DocsBuilder/DocBuilder.md)   
-&lt;/div&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+   <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Doc/DocsBuilder/DocBuilder.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Doc/DocsBuilder/DocBuilder.md)   
-&lt;/div&gt;
-   &lt;div class="col" markdown="1"&gt;
+</div>
+   <div class="col" markdown="1">
 [Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/DocsBuilder.py#L11?message=Update%20Docs)   
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
 </div>
