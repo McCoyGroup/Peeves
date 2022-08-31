@@ -132,12 +132,12 @@ class MarkdownOps:
     def html(kls, tag, content, markdown=True, formatter=None, **styles):
         if markdown:
             styles["markdown"] = "1"
-        return getattr(HTML, tag)("\n"+content+"\n", **styles).tostring()
+        return getattr(HTML, tag)("\n{content}\n", **styles).tostring().format(content=content)
     @classmethod
     def bootstrap(kls, tag, content, markdown=True, formatter=None, **styles):
         if markdown:
             styles["markdown"] = "1"
-        return getattr(Bootstrap, tag)("\n"+content+"\n", **styles).tostring()
+        return getattr(Bootstrap, tag)("\n{content}\n", **styles).tostring().format(content=content)
     @classmethod
     def alert(kls, content, variant='warning', markdown=True, formatter=None, **styles):
         return kls.bootstrap('Alert', content, variant=variant, markdown=markdown, **styles)
