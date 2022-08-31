@@ -3,14 +3,13 @@ All of the utilities that are used in writing tests for Peeves
 """
 
 from .Timer import Timer
-import unittest, os, sys
+import unittest, os, sys, argparse
 
 __all__ = [
     "TestRunner",
     "DebugTests",
     "ValidationTests",
     "TimingTests",
-    "LoadTests",
     "TestManager",
     "DataGenerator",
     "load_tests",
@@ -22,9 +21,11 @@ __all__ = [
     "inactiveTest"
 ]
 
-class TestManagerClass:
-    """Just manages where things load from
+class TestManager:
     """
+    Manages the run of the tests
+    """
+
     log_file = "test_results.txt"
     log_results = False
     quiet_mode = False
@@ -33,14 +34,22 @@ class TestManagerClass:
     timing_tests = False
     data_gen_tests = False
     test_files = "All"
-    test_name = ""
+    test_name = None
     def __init__(self,
-                 test_root = None, test_dir = None, test_data = None,
-                 base_dir = None, start_dir = None,
-                 test_pkg = None, test_data_ext = "TestData"
+                 test_root=None, test_dir=None, test_data=None,
+                 base_dir=None, start_dir=None,
+                 test_pkg=None, test_data_ext="TestData",
+                 log_file=None,
+                 log_results=None,
+                 quiet_mode=None,
+                 debug_tests=None,
+                 validation_tests=None,
+                 timing_tests=None,
+                 data_gen_tests=None,
+                 test_files=None,
+                 test_name=None
                  ):
         """
-
         :param test_root: the root package
         :type test_root:
         :param test_dir: the directory to load tests from (usually test_root/test_pkg)
@@ -67,6 +76,25 @@ class TestManagerClass:
         self._test_pkg = test_pkg
         self._test_pkg_validated = False
         self.data_ext = test_data_ext
+
+        if log_file is not None:
+            self.log_file = log_file
+        if log_results is not None:
+            self.log_results = log_results
+        if quiet_mode is not None:
+            self.quiet_mode = quiet_mode
+        if debug_tests is not None:
+            self.debug_tests = debug_tests
+        if validation_tests is not None:
+            self.validation_tests = validation_tests
+        if timing_tests is not None:
+            self.timing_tests = timing_tests
+        if data_gen_tests is not None:
+            self.data_gen_tests = data_gen_tests
+        if test_files is not None:
+            self.test_files = test_files
+        if test_name is not None:
+            self.test_name = test_name
     @property
     def test_root(self):
         if self._test_root is None:
@@ -153,17 +181,159 @@ class TestManagerClass:
             self._test_data_use_default = False
     def test_data(self, filename):
         return os.path.join(self.test_data_dir, filename)
-    def run(self, exit=True, exit_code=None):
-        from .run_tests import test_status
+
+    @classmethod
+    def collect_run_args(cls):
+        parser = argparse.ArgumentParser(description='Process test configurations')
+
+        def parse_bool(s):
+            if s in {"False", '0'}:
+                return False
+            else:
+                return True
+
+        parser.add_argument('-q', dest='quiet', metavar='-q',
+                            type=bool, nargs='?', default=cls.quiet_mode,
+                            help='whether to run the tests in quiet mode')
+        parser.add_argument('-d', dest='debug', metavar='-d',
+                            type=parse_bool, nargs='?', default=cls.debug_tests,
+                            help='whether to run the debug tests')
+        parser.add_argument('-v', dest='validate', metavar='-v',
+                            type=parse_bool, nargs='?', default=cls.validation_tests,
+                            help='whether to run the validation tests')
+        parser.add_argument('-t', dest='timing', metavar='-t',
+                            type=parse_bool, nargs='?', default=cls.timing_tests,
+                            help='whether to run the timing tests')
+        parser.add_argument('-g', dest='data_gen', metavar='-g',
+                            type=parse_bool, nargs='?', default=cls.data_gen_tests,
+                            help='whether to run the data generating tests')
+        parser.add_argument('-l', dest='log', metavar='-l',
+                            type=parse_bool, nargs='?', default=cls.log_results,
+                            help='whether to log results')
+        parser.add_argument('-L', dest='logfile', metavar='-L',
+                            type=str, nargs='?', default=cls.log_file,
+                            help='whether to log results')
+        parser.add_argument('-f', dest='testfile', metavar='-f',
+                            type=str, nargs='?', default=cls.test_files,
+                            help='which tests to run')
+        parser.add_argument('-n', dest='testname', metavar='-n',
+                            type=str, nargs='?', default="",
+                            help='name of specific test to run')
+        args = parser.parse_args()
+        return dict(
+            quiet_mode=True if args.quiet is None else args.quiet,
+            debug_tests=True if args.debug is None else args.debug,
+            validation_tests=True if args.validate is None else args.validate,
+            timing_tests=True if args.timing is None else args.timing,
+            data_gen_tests=True if args.data_gen is None else args.data_gen,
+            log_results=True if args.log is None else args.log,
+            log_file=args.logfile,
+            test_name=None if args.testname.lower().strip() == "" else args.testname,
+            test_files='All' if args.testfile.lower() == "all" else args.testfile.split(",")
+        )
+
+    def get_log_file(self, log_results=None, log_file=None, syserr_redirect=True):
+        log_results = self.log_results if log_results is None else log_results
+        log_file = self.log_file if log_file is None else log_file
+        if os.path.abspath(log_file) != log_file:
+            log_file = os.path.join(self.test_dir, log_file)
+        log_stream = self._stderr_wrap(open(log_file, "w") if log_results else sys.stderr, syserr_redirect=syserr_redirect)
+        return log_stream
+    class _stderr_wrap:
+        def __init__(self, stream, syserr_redirect=True):
+            self.stream = stream
+            self.syserr_redirect = syserr_redirect
+            self.stderr1 = None
+            self.stdout1 = None
+        def __enter__(self):
+            self.stderr1 = sys.stderr
+            sys.stderr = self.stream
+            if self.syserr_redirect:
+                self.stdout1 = sys.stdout
+                sys.stdout = sys.stderr
+            if hasattr(self.stream, '__enter__'):
+                return self.stream.__enter__()
+            else:
+                return self.stream
+        def __exit__(self, exc_type, exc_val, exc_tb):
+            sys.stderr = self.stderr1
+            self.stderr1 = None
+            if self.syserr_redirect:
+                sys.stdout = self.stdout1
+                sys.stdout1 = None
+            if hasattr(self.stream, '__exit__'):
+                self.stream.__exit__(exc_type, exc_val, exc_tb)
+
+    def run_tests(self, tag, test_set, runner, log_stream):
+        print(
+            "\n" + "-" * 70 + "\n" + "-" * 70 + "\n" +
+            "Running {} Tests:\n".format(tag),
+            file=log_stream
+        )
+        return runner.run(test_set)
+
+    def get_test_types(self, debug=None, validate=None, timing=None, data_gen=None):
+        tests = {}
+        dt = DebugTests() # drain the stack even if unused
+        if debug or (debug is None and self.debug_tests):
+            tests["Debug"] = dt
+        vt = ValidationTests()
+        if validate or (validate is None and self.validation_tests):
+            tests["Validation"] = vt
+        tt = TimingTests()
+        if timing or (timing is None and self.timing_tests):
+            tests["Timing"] = tt
+        dgt = DataGenTests()
+        if data_gen or (data_gen is None and self.data_gen_tests):
+            tests["DataGen"] = dgt
+        return tests
+    def _run(self,
+             log_results=None, log_file=None, quiet=None,
+             syserr_redirect=True
+             ):
+        with self.get_log_file(log_results=log_results, log_file=log_file, syserr_redirect=syserr_redirect) as log_stream:
+            quiet = self.quiet_mode if quiet is None else quiet
+            v_level = 1 if quiet else 2
+            runner = TestRunner(stream=log_stream, verbosity=v_level)
+
+            results = [
+                self.run_tests(tag, tests, runner, log_stream)
+                for tag, tests in self.get_test_types().items()
+                ]
+        test_status = not all(res.wasSuccessful() for res in results)
+        return test_status
+
+    def load_tests(self, start_dir=None, base_dir=None):
+        if start_dir is None:
+            start_dir = self.start_dir
+        if base_dir is None:
+            base_dir = self.base_dir
+        cur = ManagedTestLoader.manager
+        try:
+            ManagedTestLoader.manager = self
+            unittest.defaultTestLoader.discover(
+                start_dir,
+                top_level_dir=base_dir
+            )
+        finally:
+            ManagedTestLoader.manager = cur
+    @classmethod
+    def run(cls,
+            exit=True, exit_code=None,
+            syserr_redirect=True,
+            cmd_line=False,
+            **kwargs
+            ):
+
+        if cmd_line:
+            kwargs = dict(cls.collect_run_args(), **kwargs)
+        manager = cls(**kwargs)
+        manager.load_tests()
+
+        test_status = manager._run(syserr_redirect=syserr_redirect)
         if exit:
             sys.exit(test_status if exit_code is None else exit_code) #should kill everything...?
         return test_status
-TestManager = TestManagerClass()
-TestManager.__name__ = "TestManager"
-TestManager.__doc__ = """
-    The main interface for managing what tests we might want to run.
-    Instance of `TestManagerClass`
-    """
 
 
 TestCase = unittest.TestCase #just in case I want to change this up later
@@ -243,38 +413,50 @@ class DataGenerator:
         np.random.seed(cls.seed)
         return np.array([DataGenerator.zmat(ncoords, use_rad) for i in range(m)])
 
-class DebugTestClass(unittest.TestSuite):
+class ManagedTestSuite(unittest.TestSuite):
+    """
+    A funky subclass of `TestSuite`
+    that drains a stack of tests on initialization so that
+    tests can be added to a global queue that is exhausted
+    when called
+    """
+    stack = None
+    def __init__(self):
+        super().__init__(self.stack)
+        type(self).stack = []
+    @classmethod
+    def queueTest(cls, test):
+        cls.stack.append(test)
+
+class DebugTests(ManagedTestSuite):
     """The set of fast tests in the test suite"""
-    pass
-DebugTests = DebugTestClass()
-DebugTests.__name__ = "DebugTests"
-class ValidationTestClass(unittest.TestSuite):
+    stack = []
+class ValidationTests(ManagedTestSuite):
     """The set of slow tests in the test suite"""
-    pass
-ValidationTests = ValidationTestClass()
-ValidationTests.__name__ = "ValidationTests"
-class TimingTestClass(unittest.TestSuite):
+    stack = []
+class TimingTests(ManagedTestSuite):
     """The set of timing tests in the test suite"""
-    pass
-TimingTests = TimingTestClass()
-TimingTests.__name__ = "TimingTests"
-class InactiveTestClass(unittest.TestSuite):
+    stack = []
+class InactiveTests(ManagedTestSuite):
     """The set of inactive tests in the test suite"""
-    pass
-InactiveTests = InactiveTestClass()
-InactiveTests.__name__ = "InactiveTests"
-class DataGenTestClass(unittest.TestSuite):
-    """The set of tests in the test suite that exist to generate data"""
-    pass
-DataGenTests = DataGenTestClass()
-DataGenTests.__name__ = "DataGenTests"
+    stack = []
+class DataGenTests(ManagedTestSuite):
+    """The set of tests in the test suite that exist to generate artefacts"""
+    stack = []
 
 def timingTest(fn):
+    """
+    A decorator that sets up a test to be added to the set of timing tests
+    """
     timer = Timer()(fn)
     def Timing(*args, **kwargs):
         return timer(*args, **kwargs)
     return Timing
 def timeitTest(**kwargs):
+    """
+    A decorator that sets up a test to be added to the set of timing tests
+    using `timeit`
+    """
     timer = Timer(**kwargs)
     def wrap(fn):
         inner_fn = timer(fn)
@@ -284,24 +466,36 @@ def timeitTest(**kwargs):
     return wrap
 
 def inactiveTest(fn):
+    """
+    A decorator that sets up a test to be added to the set of inactive tests
+    """
     def Inactive(*args, **kwargs):
         return fn(*args, **kwargs)
     Inactive.__og_name__ = fn.__name__
     return Inactive
 
 def debugTest(fn):
+    """
+    A decorator that sets up a test to be added to the set of debug tests
+    """
     def Debug(*args, **kwargs):
         return fn(*args, **kwargs)
     Debug.__og_name__ = fn.__name__
     return Debug
 
 def dataGenTest(fn):
+    """
+    A decorator that sets up a test to be added to the set of data generation tests
+    """
     def DataGen(*args, **kwargs):
         return fn(*args, **kwargs)
     DataGen.__og_name__ = fn.__name__
     return DataGen
 
 def validationTest(fn):
+    """
+    A decorator that sets up a test to be added to the set of validation tests
+    """
     def Validation(*args, **kwargs):
         return fn(*args, **kwargs)
     Validation.__og_name__ = fn.__name__
@@ -321,9 +515,8 @@ _test_loader_map = {
     "Inactive" : InactiveTests,
     "DataGen": DataGenTests
 }
-
 class ManagedTestLoader:
-    manager = TestManager
+    manager = None
     @classmethod
     def load_tests(cls, loader, tests, pattern):
         from itertools import chain
@@ -332,6 +525,7 @@ class ManagedTestLoader:
         names = cls.manager.test_name
         if isinstance(names, str):
             names = names.split(",")
+
         test_packages = None if pkgs == "All" else set(pkgs)
         if test_packages is None:
             tests = list(chain(*((t for t in suite) for suite in tests)))
@@ -355,22 +549,15 @@ class ManagedTestLoader:
             og = og.split("test_")[-1]
 
             if names is not None:
-                if og not in names:
-                    continue
-                for suite in _test_loader_map.values():
-                    suite.addTest(test)
+                if og in names:
+                    for suite in _test_loader_map.values():
+                        suite.queueTest(test)
             else:
                 if ttt not in _test_loader_map:
                     ttt = "Debug"
                 suite = _test_loader_map[ttt]
-                suite.addTest(test)
+                suite.queueTest(test)
         #
         # return _test_loader_map.values()
 
 load_tests = ManagedTestLoader.load_tests
-def LoadTests(start_dir, manager=TestManager):
-    ManagedTestLoader.manager = manager
-    unittest.defaultTestLoader.discover(
-        start_dir,
-        top_level_dir=manager.base_dir
-    )
