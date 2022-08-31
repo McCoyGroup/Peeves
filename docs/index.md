@@ -14,7 +14,7 @@ You can also look at what was done for the [`McUtils` project](https://github.co
 
 To use the documentation generator, follow the pattern laid out in the [documentation build script](https://github.com/McCoyGroup/Peeves/tree/master/ci/build_docs.py).
 
-#### API Reference:
+#### API Reference
 
 - [Peeves](Peeves.md)
 
