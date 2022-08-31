@@ -3,7 +3,7 @@
     
 {description}
 
-{objlink_grid$:members}
+{$:"### Members" + objlink_grid(members) if nonempty(members) else ""}
 
 {optional$:'long_description'}
 
