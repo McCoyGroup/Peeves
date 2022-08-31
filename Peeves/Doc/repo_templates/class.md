@@ -21,7 +21,7 @@
     "## Methods and Properties", 
     prop_list + "\n" + join(method_list, joiner="\n\n\n"),
     name="methods",
-    open=False
+    open=not nonempty(examples) or nonempty(tests)
 }
 
 {include$:'includes/footer.md'}

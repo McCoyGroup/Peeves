@@ -246,6 +246,13 @@ class TemplateASTEvaluator:
                         add
                     )
             return l
+
+        elif isinstance(node, ast.UnaryOp):
+            val = self.evaluate_node(node.operand)
+            if isinstance(node.op, ast.Not):
+                return not val
+            else:
+                raise TemplateFormatterError("unsupported operation {}".format(ast.dump(node.op)))
         elif isinstance(node, ast.BinOp):
             left = self.evaluate_node(node.left)
             right = self.evaluate_node(node.right)
