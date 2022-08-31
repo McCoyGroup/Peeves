@@ -1,5 +1,7 @@
-import inspect
+import inspect, os, sys
 
+root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, root_dir)
 from Peeves.TestUtils import *
 from unittest import TestCase
 from Peeves.Doc import *
@@ -31,7 +33,6 @@ class DocsTests(TestCase):
                 "title": "Peeves",
                 "path": "Peeves",
                 "url": "https://mccoygroup.github.io/Peeves/",
-                'url_base': "Peeves",
                 "gh_username": "McCoyGroup",
                 "gh_repo": "Peeves",
                 "gh_branch": "master",

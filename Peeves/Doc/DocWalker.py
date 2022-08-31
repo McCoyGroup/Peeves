@@ -123,21 +123,6 @@ class DocTemplateHandler(TemplateHandler):
         self.include_line_numbers = include_line_numbers
         super().__init__(obj, out=out, engine=engine, root=root, walker=walker, **extra_fields)
 
-    def get_package_and_url(self, include_url_base=True):
-        pkg, file_url=super().get_package_and_url(include_url_base=include_url_base)
-        try:
-            base_url, ext = file_url.rsplit("/", 1)
-        except ValueError:
-            pass
-        else:
-            if ext == '__init__.py':
-                try:
-                    base_url, ext = base_url.rsplit("/", 1)
-                except ValueError:
-                    pass
-            file_url = base_url + '.py'
-        return pkg, file_url
-
     def get_lineno(self):
         # try:
         if self.include_line_numbers:
@@ -254,6 +239,35 @@ class DocTemplateHandler(TemplateHandler):
             self.extra_fields['parent_tests'] = tests
             tests = TestExamplesFormatter(tests).get_template_parameters()
         return tests
+
+class DocObjectTemplateHandler(DocTemplateHandler):
+    def get_package_and_url(self, include_url_base=True):
+        pkg, file_url=super().get_package_and_url(include_url_base=include_url_base)
+        try:
+            base_url, ext = file_url.rsplit("/", 1)
+        except ValueError:
+            pass
+        else:
+            if ext == '__init__.py':
+                try:
+                    base_url, ext = base_url.rsplit("/", 1)
+                except ValueError:
+                    pass
+            file_url = base_url + '.py'
+        return pkg, file_url
+
+    def load_examples(self):
+        return self.examples_loader.load(self) if self.examples_loader is not None else None
+    def load_tests(self):
+        tests = self.tests_loader.load(self) if self.tests_loader is not None else None
+        if tests is None:
+            parent_tests = self.resolve_key('parent_tests')
+            if parent_tests is not None:
+                tests = parent_tests.filter_by_name(self.name.split(".")[-1])
+        if tests is not None:
+            self.extra_fields['parent_tests'] = tests
+            tests = TestExamplesFormatter(tests).get_template_parameters()
+        return tests
 class ModuleWriter(DocTemplateHandler):
     """A writer targeted to a module object. Just needs to write the Module metadata."""
     template = 'module.md'
@@ -261,8 +275,6 @@ class ModuleWriter(DocTemplateHandler):
         if isinstance(obj, str):
             obj = importlib.import_module(obj)
         super().__init__(obj, **kwargs)
-
-    get_package_and_url = DocTemplateHandler.get_package_and_url
 
     def get_template_params(self):
         """
@@ -301,7 +313,7 @@ class ModuleWriter(DocTemplateHandler):
     def get_members(cls, mod):
         return (mod.__all__ if hasattr(mod, '__all__') else [])
 
-class ClassWriter(DocTemplateHandler):
+class ClassWriter(DocObjectTemplateHandler):
     """A writer targeted to a class"""
 
     template = 'class.md'
@@ -382,7 +394,7 @@ class ClassWriter(DocTemplateHandler):
             'tests': tests
         }, **fields)
 
-class FunctionWriter(DocTemplateHandler):
+class FunctionWriter(DocObjectTemplateHandler):
     """
     Writer to dump functions to file
     """
@@ -451,7 +463,7 @@ class MethodWriter(FunctionWriter):
         else:
             return self.get_identifier(self.obj)
 
-class ObjectWriter(DocTemplateHandler):
+class ObjectWriter(DocObjectTemplateHandler):
     """
     Writes general objects to file.
     Basically a fallback to support singletons and things
