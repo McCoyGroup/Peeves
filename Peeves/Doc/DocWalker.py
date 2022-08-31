@@ -238,7 +238,6 @@ class DocTemplateHandler(TemplateHandler):
         if tests is not None:
             self.extra_fields['parent_tests'] = tests
             tests = TestExamplesFormatter(tests).get_template_parameters()
-            print(tests)
         return tests
 class ModuleWriter(DocTemplateHandler):
     """A writer targeted to a module object. Just needs to write the Module metadata."""
@@ -260,7 +259,7 @@ class ModuleWriter(DocTemplateHandler):
         ident = self.identifier
         ident_depth = len(ident.split("."))
         # get identifiers
-        idents = [self.get_identifier(getattr(mod, a)) for a in self.get_members(mod)]
+        idents = [".".join(self.get_target_extension(getattr(mod, a))) for a in self.get_members(mod)]
         # flattend them
         idents = [i for i in idents if ident in i]
         # split by qualified names

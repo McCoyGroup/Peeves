@@ -713,8 +713,15 @@ class TemplateHandler(ObjectHandler):
             file_url = self.extra_fields['url_base'] + "/" + file_url
         return pkg, file_url
 
-    def get_target_extension(self):
-        base_id = self.identifier.split(".")
+    @property
+    def target_identifier(self):
+        return ".".join(self.get_target_extension())
+    def get_target_extension(self, identifier=None):
+        if identifier is None:
+            identifier=self.identifier
+        elif not isinstance(identifier, str):
+            identifier = self.get_identifier(identifier)
+        base_id = identifier.split(".")
         if self.squash_repeat_packages:
             new_id = [base_id[0]]
             for i, k in enumerate(base_id[1:]):

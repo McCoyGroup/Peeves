@@ -1,5 +1,5 @@
 
-import re, uuid
+import re, uuid, pathlib
 from .TemplateEngine import *
 from .HTML import *
 
