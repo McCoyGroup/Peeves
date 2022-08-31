@@ -227,7 +227,6 @@ class DocTemplateHandler(TemplateHandler):
         return inspect.cleandoc("\n".join(description)).strip(), param_map, extra_fields
 
     def load_examples(self):
-
         return self.examples_loader.load(self) if self.examples_loader is not None else None
     def load_tests(self):
         tests = self.tests_loader.load(self) if self.tests_loader is not None else None

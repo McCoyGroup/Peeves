@@ -908,11 +908,12 @@ class TemplateWalker(ObjectWalker):
 
         files = [self.visit_root(o) for o in objects]
         files = [f for f in files if f is not None]
-        w = self.index_handler(files,
-                               out=out_file,
-                               engine=self.engine,
-                               root=self.out_dir,
-                               extra_fields=self.extra_fields,
-                               description=self.description
-                               )
+        w = self.get_handler(files,
+                             cls=self.index_handler,
+                             out=out_file,
+                             engine=self.engine,
+                             root=self.out_dir,
+                             extra_fields=self.extra_fields,
+                             description=self.description
+                             )
         return w.handle()
