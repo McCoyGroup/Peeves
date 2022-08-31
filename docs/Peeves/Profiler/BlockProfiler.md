@@ -1,7 +1,7 @@
 # <a id="Peeves.Peeves.Profiler.BlockProfiler">BlockProfiler</a>
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Profiler/BlockProfiler/__init__.py#L121)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Profiler/BlockProfiler/__init__.py#L121?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Profiler.py#L121)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Profiler.py#L121?message=Update%20Docs)]
 </div>
 
 ```python
@@ -53,13 +53,13 @@ Dispatcher to the various BlockProfiler subclasses
 [Bug](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)/[Request](https://github.com/McCoyGroup/Peeves/issues/new?title=Example%20Request)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/BlockProfiler.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/BlockProfiler.md)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Peeves/Profiler/BlockProfiler.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Profiler/BlockProfiler.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/BlockProfiler.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/BlockProfiler.md)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Profiler/BlockProfiler.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Profiler/BlockProfiler.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Profiler/BlockProfiler/__init__.py#L121?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Profiler.py#L121?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

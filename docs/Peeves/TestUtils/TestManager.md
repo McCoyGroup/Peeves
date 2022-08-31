@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.TestUtils.TestManager">TestManager</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/__init__.py#L24)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/__init__.py#L24?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils.py#L24)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L24?message=Update%20Docs)]
 </div>
 
 Manages the run of the tests
@@ -34,8 +34,8 @@ test_name: NoneType
 __init__(self, test_root=None, test_dir=None, test_data=None, base_dir=None, start_dir=None, test_pkg=None, test_data_ext='TestData', log_file=None, log_results=None, quiet_mode=None, debug_tests=None, validation_tests=None, timing_tests=None, data_gen_tests=None, test_files=None, test_name=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/__init__/__init__.py#L38)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/__init__/__init__.py#L38?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager.py#L38)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager.py#L38?message=Update%20Docs)]
 </div>
 
   - `test_root`: `Any`
@@ -60,8 +60,8 @@ __init__(self, test_root=None, test_dir=None, test_data=None, base_dir=None, sta
 test_root(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/test_root/__init__.py#L98)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/test_root/__init__.py#L98?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager.py#L98)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager.py#L98?message=Update%20Docs)]
 </div>
 
 
@@ -71,8 +71,8 @@ test_root(self):
 base_dir(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/base_dir/__init__.py#L117)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/base_dir/__init__.py#L117?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager.py#L117)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager.py#L117?message=Update%20Docs)]
 </div>
 
 
@@ -82,8 +82,8 @@ base_dir(self):
 start_dir(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/start_dir/__init__.py#L127)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/start_dir/__init__.py#L127?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager.py#L127)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager.py#L127?message=Update%20Docs)]
 </div>
 
 
@@ -93,8 +93,8 @@ start_dir(self):
 test_pkg(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/test_pkg/__init__.py#L137)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/test_pkg/__init__.py#L137?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager.py#L137)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager.py#L137?message=Update%20Docs)]
 </div>
 
 
@@ -104,8 +104,8 @@ test_pkg(self):
 test_dir(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/test_dir/__init__.py#L154)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/test_dir/__init__.py#L154?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager.py#L154)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager.py#L154?message=Update%20Docs)]
 </div>
 
 
@@ -115,8 +115,8 @@ test_dir(self):
 test_data_dir(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/test_data_dir/__init__.py#L172)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/test_data_dir/__init__.py#L172?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager.py#L172)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager.py#L172?message=Update%20Docs)]
 </div>
 
 
@@ -125,8 +125,8 @@ test_data_dir(self):
 test_data(self, filename): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/test_data/__init__.py#L182)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/test_data/__init__.py#L182?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager.py#L182)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager.py#L182?message=Update%20Docs)]
 </div>
 
 
@@ -135,8 +135,8 @@ test_data(self, filename):
 collect_run_args(): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/collect_run_args/__init__.py#L185)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/collect_run_args/__init__.py#L185?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager.py#L185)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager.py#L185?message=Update%20Docs)]
 </div>
 
 
@@ -145,8 +145,8 @@ collect_run_args():
 get_log_file(self, log_results=None, log_file=None, syserr_redirect=True): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/get_log_file/__init__.py#L235)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/get_log_file/__init__.py#L235?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager.py#L235)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager.py#L235?message=Update%20Docs)]
 </div>
 
 
@@ -155,8 +155,8 @@ get_log_file(self, log_results=None, log_file=None, syserr_redirect=True):
 run_tests(self, tag, test_set, runner, log_stream): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/run_tests/__init__.py#L267)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/run_tests/__init__.py#L267?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager.py#L267)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager.py#L267?message=Update%20Docs)]
 </div>
 
 
@@ -165,8 +165,8 @@ run_tests(self, tag, test_set, runner, log_stream):
 get_test_types(self, debug=None, validate=None, timing=None, data_gen=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/get_test_types/__init__.py#L275)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/get_test_types/__init__.py#L275?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager.py#L275)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager.py#L275?message=Update%20Docs)]
 </div>
 
 
@@ -175,8 +175,8 @@ get_test_types(self, debug=None, validate=None, timing=None, data_gen=None):
 load_tests(self, start_dir=None, base_dir=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/load_tests/__init__.py#L306)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/load_tests/__init__.py#L306?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager.py#L306)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager.py#L306?message=Update%20Docs)]
 </div>
 
 
@@ -185,8 +185,8 @@ load_tests(self, start_dir=None, base_dir=None):
 run(exit=True, exit_code=None, syserr_redirect=True, cmd_line=False, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager/run/__init__.py#L322)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/run/__init__.py#L322?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/TestUtils/TestManager.py#L322)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager.py#L322?message=Update%20Docs)]
 </div>
  </div>
 </div>
@@ -235,13 +235,13 @@ run(exit=True, exit_code=None, syserr_redirect=True, cmd_line=False, **kwargs):
 [Bug](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)/[Request](https://github.com/McCoyGroup/Peeves/issues/new?title=Example%20Request)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/TestManager.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/TestManager.md)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Peeves/TestUtils/TestManager.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/TestUtils/TestManager.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/TestManager.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/TestManager.md)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/TestUtils/TestManager.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/TestUtils/TestManager.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils/TestManager/__init__.py#L24?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/TestUtils.py#L24?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

@@ -1,7 +1,7 @@
 # <a id="Peeves">Peeves</a> 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/__init__.py#L1)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/__init__.py#L1?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves.py#L1)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves.py#L1?message=Update%20Docs)]
 </div>
     
 Peeves began life as a minor extension to the `unittest` framework.
@@ -129,7 +129,7 @@ The documentation for Peeves itself is generated with `Peeves.Doc`
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/__init__.py#L1?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves.py#L1?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

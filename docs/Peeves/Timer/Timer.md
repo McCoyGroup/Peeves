@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Timer.Timer">Timer</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer/__init__.py#L9)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer/__init__.py#L9?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer.py#L9)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer.py#L9?message=Update%20Docs)]
 </div>
 
 
@@ -26,8 +26,8 @@ tag_printing_times: dict
 __init__(self, tag=None, file=<_io.TextIOWrapper name='<stderr>' mode='w' encoding='utf-8'>, rounding=5, print_times=1, number=1, **kw): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer/__init__/__init__.py#L12)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer/__init__/__init__.py#L12?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer.py#L12)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer.py#L12?message=Update%20Docs)]
 </div>
 
 
@@ -36,8 +36,8 @@ __init__(self, tag=None, file=<_io.TextIOWrapper name='<stderr>' mode='w' encodi
 get_time_list(self, time_elapsed): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer/get_time_list/__init__.py#L22)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer/get_time_list/__init__.py#L22?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer.py#L22)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer.py#L22?message=Update%20Docs)]
 </div>
 
 
@@ -46,8 +46,8 @@ get_time_list(self, time_elapsed):
 start(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer/start/__init__.py#L32)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer/start/__init__.py#L32?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer.py#L32)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer.py#L32?message=Update%20Docs)]
 </div>
 
 
@@ -56,8 +56,8 @@ start(self):
 stop(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer/stop/__init__.py#L35)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer/stop/__init__.py#L35?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer.py#L35)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer.py#L35?message=Update%20Docs)]
 </div>
 
 
@@ -66,8 +66,8 @@ stop(self):
 log(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer/log/__init__.py#L40)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer/log/__init__.py#L40?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer.py#L40)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer.py#L40?message=Update%20Docs)]
 </div>
 
 
@@ -76,8 +76,8 @@ log(self):
 __enter__(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer/__enter__/__init__.py#L44)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer/__enter__/__init__.py#L44?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer.py#L44)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer.py#L44?message=Update%20Docs)]
 </div>
 
 
@@ -86,8 +86,8 @@ __enter__(self):
 __exit__(self, exc_type, exc_val, exc_tb): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer/__exit__/__init__.py#L47)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer/__exit__/__init__.py#L47?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer.py#L47)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer.py#L47?message=Update%20Docs)]
 </div>
 
 
@@ -96,8 +96,8 @@ __exit__(self, exc_type, exc_val, exc_tb):
 format_timing(self, time_elapsed, tag=None, steps=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer/format_timing/__init__.py#L51)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer/format_timing/__init__.py#L51?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer.py#L51)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer.py#L51?message=Update%20Docs)]
 </div>
 
 
@@ -106,8 +106,8 @@ format_timing(self, time_elapsed, tag=None, steps=None):
 print_timing(self, time_elapsed, tag=None, steps=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer/print_timing/__init__.py#L64)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer/print_timing/__init__.py#L64?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer.py#L64)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer.py#L64?message=Update%20Docs)]
 </div>
 
 
@@ -116,8 +116,8 @@ print_timing(self, time_elapsed, tag=None, steps=None):
 __call__(self, fn): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer/__call__/__init__.py#L73)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer/__call__/__init__.py#L73?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Timer/Timer.py#L73)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer.py#L73?message=Update%20Docs)]
 </div>
  </div>
 </div>
@@ -166,13 +166,13 @@ __call__(self, fn):
 [Bug](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)/[Request](https://github.com/McCoyGroup/Peeves/issues/new?title=Example%20Request)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Timer.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Timer.md)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Peeves/Timer/Timer.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Timer/Timer.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Timer.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Timer.md)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Timer/Timer.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Timer/Timer.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer/Timer/__init__.py#L9?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Timer.py#L9?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

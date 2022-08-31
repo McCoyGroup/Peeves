@@ -1,7 +1,7 @@
 # <a id="Peeves.Doc">Peeves.Doc</a> 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Doc/__init__.py#L1)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/__init__.py#L1?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves.py#L1)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves.py#L1?message=Update%20Docs)]
 </div>
     
 A simple documentation framework, similar to Sphinx.
@@ -143,18 +143,18 @@ See `TemplateOps`, `TemplateFormatDirective`, `MarkdownOps`, and `MarkdownFormat
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Tests-e81fd3" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-e81fd3"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Tests-a39954" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-a39954"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Tests-e81fd3" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Tests-a39954" markdown="1">
  - [PeevesDoc](#PeevesDoc)
 - [ParseExamples](#ParseExamples)
 - [FormatSpec](#FormatSpec)
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-### <a class="collapse-link" data-toggle="collapse" href="#Setup-07e0c4" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-07e0c4"><i class="fa fa-chevron-down"></i></a>
+### <a class="collapse-link" data-toggle="collapse" href="#Setup-7f05bd" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-7f05bd"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Setup-07e0c4" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Setup-7f05bd" markdown="1">
  
 Before we can run our examples we should get a bit of setup out of the way.
 Since these examples were harvested from the unit tests not all pieces
@@ -284,13 +284,13 @@ class DocsTests(TestCase):
 [Bug](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)/[Request](https://github.com/McCoyGroup/Peeves/issues/new?title=Example%20Request)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Doc.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Doc.md)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Peeves/Doc.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Doc.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Doc.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Doc.md)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Doc.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Doc.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Doc/__init__.py#L1?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves.py#L1?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

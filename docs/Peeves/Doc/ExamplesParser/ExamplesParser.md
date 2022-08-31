@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.ExamplesParser.ExamplesParser">ExamplesParser</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/__init__.py#L8)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/__init__.py#L8?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser.py#L8)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser.py#L8?message=Update%20Docs)]
 </div>
 
 Provides a parser for unit tests to turn them into examples
@@ -24,8 +24,8 @@ Provides a parser for unit tests to turn them into examples
 __init__(self, unit_tests): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/__init__/__init__.py#L13)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/__init__/__init__.py#L13?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L13)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L13?message=Update%20Docs)]
 </div>
 
 
@@ -34,8 +34,8 @@ __init__(self, unit_tests):
 find_setup(self, tree_iter): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/find_setup/__init__.py#L22)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/find_setup/__init__.py#L22?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L22)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L22?message=Update%20Docs)]
 </div>
 
 
@@ -44,8 +44,8 @@ find_setup(self, tree_iter):
 parse_tests(self, tree_iter): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/parse_tests/__init__.py#L34)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/parse_tests/__init__.py#L34?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L34)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L34?message=Update%20Docs)]
 </div>
 Parses out the
   - `tree_iter`: `Any`
@@ -59,8 +59,8 @@ Parses out the
 walk_tree(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/walk_tree/__init__.py#L62)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/walk_tree/__init__.py#L62?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L62)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L62?message=Update%20Docs)]
 </div>
 
 
@@ -69,8 +69,8 @@ walk_tree(self):
 format_node(self, node): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/format_node/__init__.py#L76)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/format_node/__init__.py#L76?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L76)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L76?message=Update%20Docs)]
 </div>
 
 
@@ -79,8 +79,8 @@ format_node(self, node):
 from_file(tests_file): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/from_file/__init__.py#L86)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/from_file/__init__.py#L86?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L86)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L86?message=Update%20Docs)]
 </div>
 
 
@@ -90,8 +90,8 @@ from_file(tests_file):
 class_spec(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/class_spec/__init__.py#L91)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/class_spec/__init__.py#L91?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L91)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L91?message=Update%20Docs)]
 </div>
 
 
@@ -101,8 +101,8 @@ class_spec(self):
 setup(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/setup/__init__.py#L96)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/setup/__init__.py#L96?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L96)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L96?message=Update%20Docs)]
 </div>
 
 
@@ -112,8 +112,8 @@ setup(self):
 functions(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/functions/__init__.py#L101)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/functions/__init__.py#L101?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L101)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L101?message=Update%20Docs)]
 </div>
 
 
@@ -123,8 +123,8 @@ functions(self):
 functions_map(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/functions_map/__init__.py#L106)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/functions_map/__init__.py#L106?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L106)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L106?message=Update%20Docs)]
 </div>
 
 
@@ -133,8 +133,8 @@ functions_map(self):
 load_function_map(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/load_function_map/__init__.py#L112)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/load_function_map/__init__.py#L112?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L112)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L112?message=Update%20Docs)]
 </div>
 
 
@@ -143,8 +143,8 @@ load_function_map(self):
 get_examples_functions(self, node): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/get_examples_functions/__init__.py#L179)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/get_examples_functions/__init__.py#L179?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L179)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L179?message=Update%20Docs)]
 </div>
 
 
@@ -153,8 +153,8 @@ get_examples_functions(self, node):
 filter_by_name(self, name): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/filter_by_name/__init__.py#L188)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/filter_by_name/__init__.py#L188?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L188)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser.py#L188?message=Update%20Docs)]
 </div>
  </div>
 </div>
@@ -178,16 +178,16 @@ filter_by_name(self, name):
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Tests-ebe20a" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-ebe20a"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Tests-4f8438" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-4f8438"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Tests-ebe20a" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Tests-4f8438" markdown="1">
  - [ParseExamples](#ParseExamples)
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-### <a class="collapse-link" data-toggle="collapse" href="#Setup-141b6e" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-141b6e"><i class="fa fa-chevron-down"></i></a>
+### <a class="collapse-link" data-toggle="collapse" href="#Setup-339883" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-339883"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Setup-141b6e" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Setup-339883" markdown="1">
  
 Before we can run our examples we should get a bit of setup out of the way.
 Since these examples were harvested from the unit tests not all pieces
@@ -254,13 +254,13 @@ class DocsTests(TestCase):
 [Bug](https://github.com/McCoyGroup/Peeves/issues/new?title=Documentation%20Improvement%20Needed)/[Request](https://github.com/McCoyGroup/Peeves/issues/new?title=Example%20Request)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/ExamplesParser.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/ExamplesParser.md)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/examples/Peeves/Doc/ExamplesParser/ExamplesParser.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/examples/Peeves/Doc/ExamplesParser/ExamplesParser.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/ExamplesParser.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/ExamplesParser.md)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Doc/ExamplesParser/ExamplesParser.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Doc/ExamplesParser/ExamplesParser.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser/ExamplesParser/__init__.py#L8?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/ExamplesParser.py#L8?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    
