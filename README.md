@@ -14,4 +14,6 @@ We're distributing this via GitHub, so just `git clone` it where you need to lik
 git clone https://github.com/McCoyGroup/Peeves.git <your_dir>
 ```
 
+You can also `pip` install if you like. The package name is `mccoygroup-peeves`.
+
 ---

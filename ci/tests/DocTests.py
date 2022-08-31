@@ -21,6 +21,7 @@ class DocsTests(TestCase):
 
         import os, tempfile
 
+
         root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
         # with tempfile.TemporaryDirectory() as td:
         td = '/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/tmpo3b4ztrq/'
@@ -43,7 +44,7 @@ class DocsTests(TestCase):
             ],
             "root": root,
             "target": target,
-            "readme": os.path.join(root, "README.md"),
+            "readme": os.path.join(root, "blurb.md"),
             'examples_directory': os.path.join(root, "ci", "examples"),
             'tests_directory': os.path.join(root, "ci", "tests"),
             'templates_directory': os.path.join(root, "ci", "templates")

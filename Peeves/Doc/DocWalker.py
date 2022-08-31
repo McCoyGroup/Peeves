@@ -567,7 +567,8 @@ class IndexWriter(DocTemplateHandler):
         descr, _, fields = self.parse_doc(self.description if self.description is not None else '')
         return dict({
             'index_files': [[os.path.splitext(os.path.basename(f))[0], f] for f in self.get_file_paths()],
-            'description': descr
+            'description': descr,
+            'examples': self.load_examples()
         }, **fields)
 
 class DocWalker(TemplateWalker):

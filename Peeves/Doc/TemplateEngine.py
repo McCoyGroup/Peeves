@@ -863,9 +863,10 @@ class TemplateWalker(ObjectWalker):
     method_handler = MethodTemplateHandler
     object_handler = ObjectTemplateHandler
     index_handler = IndexTemplateHandler
-    def __init__(self, engine:TemplateEngine, out=None, **extra_fields):
+    def __init__(self, engine:TemplateEngine, out=None, description=None, **extra_fields):
         self.engine = engine
         self.out_dir = out
+        self.description = description
         super().__init__(**extra_fields)
 
     @property
@@ -911,6 +912,7 @@ class TemplateWalker(ObjectWalker):
                                out=out_file,
                                engine=self.engine,
                                root=self.out_dir,
-                               extra_fields=self.extra_fields
+                               extra_fields=self.extra_fields,
+                               description=self.description
                                )
         return w.handle()

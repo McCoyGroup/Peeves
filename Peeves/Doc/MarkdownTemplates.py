@@ -129,18 +129,18 @@ class MarkdownOps:
         return pad + identifier + ".md"
 
     @classmethod
-    def html(cls, tag, content, markdown=True, formatter=None, **styles):
+    def html(kls, tag, content, markdown=True, formatter=None, **styles):
         if markdown:
             styles["markdown"] = "1"
         return getattr(HTML, tag)("\n"+content+"\n", **styles).tostring()
     @classmethod
-    def bootstrap(cls, tag, content, markdown=True, formatter=None, **styles):
+    def bootstrap(kls, tag, content, markdown=True, formatter=None, **styles):
         if markdown:
             styles["markdown"] = "1"
         return getattr(Bootstrap, tag)("\n"+content+"\n", **styles).tostring()
     @classmethod
-    def alert(cls, content, variant='warning', markdown=True, formatter=None, **styles):
-        return cls.bootstrap('Alert', content, variant=variant, markdown=markdown, **styles)
+    def alert(kls, content, variant='warning', markdown=True, formatter=None, **styles):
+        return kls.bootstrap('Alert', content, variant=variant, markdown=markdown, **styles)
 
 class MarkdownFormatDirective(FormatDirective):
     Link = "link", TemplateOps.wrap(MarkdownOps.format_link)
