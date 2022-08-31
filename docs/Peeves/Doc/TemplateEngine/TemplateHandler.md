@@ -82,13 +82,24 @@ being documented
     >
 
 
-<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateHandler.get_target_extension" class="docs-object-method">&nbsp;</a> 
+<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateHandler.target_identifier" class="docs-object-method">&nbsp;</a> 
 ```python
-get_target_extension(self): 
+@property
+target_identifier(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/get_target_extension/__init__.py#L716)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/get_target_extension/__init__.py#L716?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/target_identifier/__init__.py#L716)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/target_identifier/__init__.py#L716?message=Update%20Docs)]
+</div>
+
+
+<a id="Peeves.Peeves.Doc.TemplateEngine.TemplateHandler.get_target_extension" class="docs-object-method">&nbsp;</a> 
+```python
+get_target_extension(self, identifier=None): 
+```
+<div class="docs-source-link" markdown="1">
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/get_target_extension/__init__.py#L719)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/get_target_extension/__init__.py#L719?message=Update%20Docs)]
 </div>
 
 
@@ -97,8 +108,8 @@ get_target_extension(self):
 get_output_file(self, out): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/get_output_file/__init__.py#L726)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/get_output_file/__init__.py#L726?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/get_output_file/__init__.py#L733)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/get_output_file/__init__.py#L733?message=Update%20Docs)]
 </div>
 Returns package name and corresponding URL for the object
 being documented
@@ -111,8 +122,8 @@ being documented
 handle(self, template=None, target=None, write=True): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/handle/__init__.py#L746)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/handle/__init__.py#L746?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/handle/__init__.py#L753)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/handle/__init__.py#L753?message=Update%20Docs)]
 </div>
 Formats the documentation Markdown from the supplied template
   - `template`: `Any`
@@ -126,8 +137,8 @@ Formats the documentation Markdown from the supplied template
 check_should_write(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/check_should_write/__init__.py#L814)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/check_should_write/__init__.py#L814?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/check_should_write/__init__.py#L821)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateHandler/check_should_write/__init__.py#L821?message=Update%20Docs)]
 </div>
 Determines whether the object really actually should be
 documented (quite permissive)

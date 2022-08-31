@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.DocWalker.ClassWriter">ClassWriter</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/__init__.py#L288)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/__init__.py#L288?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/__init__.py#L287)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/__init__.py#L287?message=Update%20Docs)]
 </div>
 
 A writer targeted to a class
@@ -26,8 +26,8 @@ template: str
 load_methods(self, function_writer=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/load_methods/__init__.py#L292)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/load_methods/__init__.py#L292?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/load_methods/__init__.py#L291)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/load_methods/__init__.py#L291?message=Update%20Docs)]
 </div>
 Loads the methods supported by the class
   - `function_writer`: `Any`
@@ -41,8 +41,8 @@ Loads the methods supported by the class
 get_package_and_url(self, include_url_base=True): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/get_package_and_url/__init__.py#L336)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/get_package_and_url/__init__.py#L336?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/get_package_and_url/__init__.py#L335)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/get_package_and_url/__init__.py#L335?message=Update%20Docs)]
 </div>
 
 
@@ -51,8 +51,8 @@ get_package_and_url(self, include_url_base=True):
 format_prop(self, k, o): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/format_prop/__init__.py#L351)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/format_prop/__init__.py#L351?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/format_prop/__init__.py#L350)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/format_prop/__init__.py#L350?message=Update%20Docs)]
 </div>
 
 
@@ -61,8 +61,8 @@ format_prop(self, k, o):
 get_template_params(self, function_writer=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/get_template_params/__init__.py#L354)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/get_template_params/__init__.py#L354?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/get_template_params/__init__.py#L353)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/get_template_params/__init__.py#L353?message=Update%20Docs)]
 </div>
 
   - `function_writer`: `Any`
@@ -121,7 +121,7 @@ get_template_params(self, function_writer=None):
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/ClassWriter.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/ClassWriter.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/__init__.py#L288?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ClassWriter/__init__.py#L287?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

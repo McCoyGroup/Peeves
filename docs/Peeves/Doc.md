@@ -14,93 +14,94 @@ that builds off of python's built-in AST module and syntax.
 Examples are also possible to provide for individual objects/modules and can also be harvested automatically from
 unit tests if provided.
 
-### Members<div class="container alert alert-secondary bg-light">
+### Members
+<div class="container alert alert-secondary bg-light">
   <div class="row">
    <div class="col" markdown="1">
-[DocBuilder](Peeves/Doc/DocsBuilder/DocBuilder.md)   
+[DocBuilder](Doc/DocsBuilder/DocBuilder.md)   
 </div>
    <div class="col" markdown="1">
-[DocWalker](Peeves/Doc/DocWalker/DocWalker.md)   
+[DocWalker](Doc/DocWalker/DocWalker.md)   
 </div>
    <div class="col" markdown="1">
-[ModuleWriter](Peeves/Doc/DocWalker/ModuleWriter.md)   
-</div>
-</div>
-  <div class="row">
-   <div class="col" markdown="1">
-[ClassWriter](Peeves/Doc/DocWalker/ClassWriter.md)   
-</div>
-   <div class="col" markdown="1">
-[FunctionWriter](Peeves/Doc/DocWalker/FunctionWriter.md)   
-</div>
-   <div class="col" markdown="1">
-[MethodWriter](Peeves/Doc/DocWalker/MethodWriter.md)   
+[ModuleWriter](Doc/DocWalker/ModuleWriter.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[ObjectWriter](Peeves/Doc/DocWalker/ObjectWriter.md)   
+[ClassWriter](Doc/DocWalker/ClassWriter.md)   
 </div>
    <div class="col" markdown="1">
-[IndexWriter](Peeves/Doc/DocWalker/IndexWriter.md)   
+[FunctionWriter](Doc/DocWalker/FunctionWriter.md)   
 </div>
    <div class="col" markdown="1">
-[ExamplesParser](Peeves/Doc/ExamplesParser/ExamplesParser.md)   
+[MethodWriter](Doc/DocWalker/MethodWriter.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[TemplateFormatter](Peeves/Doc/TemplateEngine/TemplateFormatter.md)   
+[ObjectWriter](Doc/DocWalker/ObjectWriter.md)   
 </div>
    <div class="col" markdown="1">
-[FormatDirective](Peeves/Doc/TemplateEngine/FormatDirective.md)   
+[IndexWriter](Doc/DocWalker/IndexWriter.md)   
 </div>
    <div class="col" markdown="1">
-[TemplateFormatDirective](Peeves/Doc/TemplateEngine/TemplateFormatDirective.md)   
+[ExamplesParser](Doc/ExamplesParser/ExamplesParser.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[TemplateOps](Peeves/Doc/TemplateEngine/TemplateOps.md)   
+[TemplateFormatter](Doc/TemplateEngine/TemplateFormatter.md)   
 </div>
    <div class="col" markdown="1">
-[TemplateEngine](Peeves/Doc/TemplateEngine/TemplateEngine.md)   
+[FormatDirective](Doc/TemplateEngine/FormatDirective.md)   
 </div>
    <div class="col" markdown="1">
-[ResourceLocator](Peeves/Doc/TemplateEngine/ResourceLocator.md)   
+[TemplateFormatDirective](Doc/TemplateEngine/TemplateFormatDirective.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[TemplateResourceExtractor](Peeves/Doc/TemplateEngine/TemplateResourceExtractor.md)   
+[TemplateOps](Doc/TemplateEngine/TemplateOps.md)   
 </div>
    <div class="col" markdown="1">
-[TemplateWalker](Peeves/Doc/TemplateEngine/TemplateWalker.md)   
+[TemplateEngine](Doc/TemplateEngine/TemplateEngine.md)   
 </div>
    <div class="col" markdown="1">
-[TemplateHandler](Peeves/Doc/TemplateEngine/TemplateHandler.md)   
+[ResourceLocator](Doc/TemplateEngine/ResourceLocator.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[ModuleTemplateHandler](Peeves/Doc/TemplateEngine/ModuleTemplateHandler.md)   
+[TemplateResourceExtractor](Doc/TemplateEngine/TemplateResourceExtractor.md)   
 </div>
    <div class="col" markdown="1">
-[ClassTemplateHandler](Peeves/Doc/TemplateEngine/ClassTemplateHandler.md)   
+[TemplateWalker](Doc/TemplateEngine/TemplateWalker.md)   
 </div>
    <div class="col" markdown="1">
-[FunctionTemplateHandler](Peeves/Doc/TemplateEngine/FunctionTemplateHandler.md)   
+[TemplateHandler](Doc/TemplateEngine/TemplateHandler.md)   
 </div>
 </div>
   <div class="row">
    <div class="col" markdown="1">
-[MethodTemplateHandler](Peeves/Doc/TemplateEngine/MethodTemplateHandler.md)   
+[ModuleTemplateHandler](Doc/TemplateEngine/ModuleTemplateHandler.md)   
 </div>
    <div class="col" markdown="1">
-[ObjectTemplateHandler](Peeves/Doc/TemplateEngine/ObjectTemplateHandler.md)   
+[ClassTemplateHandler](Doc/TemplateEngine/ClassTemplateHandler.md)   
 </div>
    <div class="col" markdown="1">
-[IndexTemplateHandler](Peeves/Doc/TemplateEngine/IndexTemplateHandler.md)   
+[FunctionTemplateHandler](Doc/TemplateEngine/FunctionTemplateHandler.md)   
+</div>
+</div>
+  <div class="row">
+   <div class="col" markdown="1">
+[MethodTemplateHandler](Doc/TemplateEngine/MethodTemplateHandler.md)   
+</div>
+   <div class="col" markdown="1">
+[ObjectTemplateHandler](Doc/TemplateEngine/ObjectTemplateHandler.md)   
+</div>
+   <div class="col" markdown="1">
+[IndexTemplateHandler](Doc/TemplateEngine/IndexTemplateHandler.md)   
 </div>
 </div>
   <div class="row">
@@ -142,18 +143,18 @@ See `TemplateOps`, `TemplateFormatDirective`, `MarkdownOps`, and `MarkdownFormat
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Tests-a8a1c4" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-a8a1c4"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Tests-14d442" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-14d442"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Tests-a8a1c4" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Tests-14d442" markdown="1">
  - [PeevesDoc](#PeevesDoc)
 - [ParseExamples](#ParseExamples)
 - [FormatSpec](#FormatSpec)
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-### <a class="collapse-link" data-toggle="collapse" href="#Setup-06ca14" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-06ca14"><i class="fa fa-chevron-down"></i></a>
+### <a class="collapse-link" data-toggle="collapse" href="#Setup-5dd60d" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-5dd60d"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Setup-06ca14" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Setup-5dd60d" markdown="1">
  
 Before we can run our examples we should get a bit of setup out of the way.
 Since these examples were harvested from the unit tests not all pieces

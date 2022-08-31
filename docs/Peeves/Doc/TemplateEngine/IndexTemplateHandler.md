@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.TemplateEngine.IndexTemplateHandler">IndexTemplateHandler</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/IndexTemplateHandler/__init__.py#L896)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/IndexTemplateHandler/__init__.py#L896?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/IndexTemplateHandler/__init__.py#L903)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/IndexTemplateHandler/__init__.py#L903?message=Update%20Docs)]
 </div>
 
 
@@ -74,7 +74,7 @@ template: str
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/IndexTemplateHandler.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/IndexTemplateHandler.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/IndexTemplateHandler/__init__.py#L896?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/IndexTemplateHandler/__init__.py#L903?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

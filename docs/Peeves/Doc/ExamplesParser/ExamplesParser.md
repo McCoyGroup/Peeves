@@ -178,16 +178,16 @@ filter_by_name(self, name):
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Tests-51f5ab" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-51f5ab"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Tests-6aba44" markdown="1"> Tests</a> <a class="float-right" data-toggle="collapse" href="#Tests-6aba44"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Tests-51f5ab" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Tests-6aba44" markdown="1">
  - [ParseExamples](#ParseExamples)
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-### <a class="collapse-link" data-toggle="collapse" href="#Setup-c87f51" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-c87f51"><i class="fa fa-chevron-down"></i></a>
+### <a class="collapse-link" data-toggle="collapse" href="#Setup-f0618c" markdown="1"> Setup</a> <a class="float-right" data-toggle="collapse" href="#Setup-f0618c"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse show" id="Setup-c87f51" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse show" id="Setup-f0618c" markdown="1">
  
 Before we can run our examples we should get a bit of setup out of the way.
 Since these examples were harvested from the unit tests not all pieces

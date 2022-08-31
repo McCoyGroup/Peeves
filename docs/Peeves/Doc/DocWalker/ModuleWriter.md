@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.DocWalker.ModuleWriter">ModuleWriter</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/__init__.py#L243)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/__init__.py#L243?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/__init__.py#L242)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/__init__.py#L242?message=Update%20Docs)]
 </div>
 
 A writer targeted to a module object. Just needs to write the Module metadata.
@@ -26,8 +26,8 @@ template: str
 __init__(self, obj, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/__init__/__init__.py#L246)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/__init__/__init__.py#L246?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/__init__/__init__.py#L245)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/__init__/__init__.py#L245?message=Update%20Docs)]
 </div>
 
 
@@ -36,8 +36,8 @@ __init__(self, obj, **kwargs):
 get_template_params(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/get_template_params/__init__.py#L251)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/get_template_params/__init__.py#L251?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/get_template_params/__init__.py#L250)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/get_template_params/__init__.py#L250?message=Update%20Docs)]
 </div>
 Provides module specific parameters
   - `:returns`: `_`
@@ -49,8 +49,8 @@ Provides module specific parameters
 get_members(mod): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/get_members/__init__.py#L284)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/get_members/__init__.py#L284?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/get_members/__init__.py#L283)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/get_members/__init__.py#L283?message=Update%20Docs)]
 </div>
  </div>
 </div>
@@ -104,7 +104,7 @@ get_members(mod):
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/ModuleWriter.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/ModuleWriter.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/__init__.py#L243?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ModuleWriter/__init__.py#L242?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

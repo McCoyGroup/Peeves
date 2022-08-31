@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.DocWalker.FunctionWriter">FunctionWriter</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/__init__.py#L384)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/__init__.py#L384?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/__init__.py#L383)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/__init__.py#L383?message=Update%20Docs)]
 </div>
 
 Writer to dump functions to file
@@ -26,8 +26,8 @@ template: str
 get_signature(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_signature/__init__.py#L391)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_signature/__init__.py#L391?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_signature/__init__.py#L390)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_signature/__init__.py#L390?message=Update%20Docs)]
 </div>
 
 
@@ -36,8 +36,8 @@ get_signature(self):
 get_template_params(self, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_template_params/__init__.py#L394)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_template_params/__init__.py#L394?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_template_params/__init__.py#L393)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_template_params/__init__.py#L393?message=Update%20Docs)]
 </div>
 
 
@@ -46,8 +46,8 @@ get_template_params(self, **kwargs):
 get_package_and_url(self, include_url_base=True): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_package_and_url/__init__.py#L416)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_package_and_url/__init__.py#L416?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_package_and_url/__init__.py#L415)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/get_package_and_url/__init__.py#L415?message=Update%20Docs)]
 </div>
  </div>
 </div>
@@ -101,7 +101,7 @@ get_package_and_url(self, include_url_base=True):
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/FunctionWriter.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/FunctionWriter.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/__init__.py#L384?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/FunctionWriter/__init__.py#L383?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

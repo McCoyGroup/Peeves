@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.DocWalker.DocWalker">DocWalker</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/__init__.py#L572)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/__init__.py#L572?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/__init__.py#L571)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/__init__.py#L571?message=Update%20Docs)]
 </div>
 
 A class that walks a module structure, generating `.md` files for every class inside it as well as for global functions,
@@ -35,8 +35,8 @@ spec: DocSpec
 __init__(self, out=None, engine=None, verbose=True, template_locator=None, examples_directory=None, tests_directory=None, **extra_fields): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/__init__/__init__.py#L590)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/__init__/__init__.py#L590?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/__init__/__init__.py#L589)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/__init__/__init__.py#L589?message=Update%20Docs)]
 </div>
 
   - `objects`: `Iterable[Any]`
@@ -55,8 +55,8 @@ the directory in which to write the files (`None` means `sys.stdout`)
 get_engine(self, locator): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_engine/__init__.py#L620)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_engine/__init__.py#L620?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_engine/__init__.py#L619)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_engine/__init__.py#L619?message=Update%20Docs)]
 </div>
 
 
@@ -65,8 +65,8 @@ get_engine(self, locator):
 get_examples_loader(self, examples_directory): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_examples_loader/__init__.py#L624)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_examples_loader/__init__.py#L624?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_examples_loader/__init__.py#L623)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_examples_loader/__init__.py#L623?message=Update%20Docs)]
 </div>
 
 
@@ -75,8 +75,8 @@ get_examples_loader(self, examples_directory):
 get_tests_loader(self, tests_directory): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_tests_loader/__init__.py#L629)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_tests_loader/__init__.py#L629?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_tests_loader/__init__.py#L628)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_tests_loader/__init__.py#L628?message=Update%20Docs)]
 </div>
 
 
@@ -85,8 +85,8 @@ get_tests_loader(self, tests_directory):
 get_handler(self, *args, examples_loader=None, tests_loader=None, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_handler/__init__.py#L634)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_handler/__init__.py#L634?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_handler/__init__.py#L633)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/get_handler/__init__.py#L633?message=Update%20Docs)]
 </div>
 
 
@@ -95,8 +95,8 @@ get_handler(self, *args, examples_loader=None, tests_loader=None, **kwargs):
 visit_root(self, o, tests_directory=None, examples_directory=None, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/visit_root/__init__.py#L642)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/visit_root/__init__.py#L642?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/DocWalker/visit_root/__init__.py#L641)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/visit_root/__init__.py#L641?message=Update%20Docs)]
 </div>
  </div>
 </div>
@@ -105,9 +105,9 @@ visit_root(self, o, tests_directory=None, examples_directory=None, **kwargs):
 
 <div class="collapsible-section">
  <div class="collapsible-section collapsible-section-header" markdown="1">
-## <a class="collapse-link" data-toggle="collapse" href="#Details-45ab48" markdown="1"> Details</a> <a class="float-right" data-toggle="collapse" href="#Details-45ab48"><i class="fa fa-chevron-down"></i></a>
+## <a class="collapse-link" data-toggle="collapse" href="#Details-06b088" markdown="1"> Details</a> <a class="float-right" data-toggle="collapse" href="#Details-06b088"><i class="fa fa-chevron-down"></i></a>
  </div>
- <div class="collapsible-section collapsible-section-body collapse " id="Details-45ab48" markdown="1">
+ <div class="collapsible-section collapsible-section-body collapse " id="Details-06b088" markdown="1">
  A `DocWalker` object is a light subclass of a `TemplateWalker`, but specialized for documentation & with specialized handlers
  </div>
 </div>
@@ -161,7 +161,7 @@ visit_root(self, o, tests_directory=None, examples_directory=None, **kwargs):
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/DocWalker.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/DocWalker.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/__init__.py#L572?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/DocWalker/__init__.py#L571?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

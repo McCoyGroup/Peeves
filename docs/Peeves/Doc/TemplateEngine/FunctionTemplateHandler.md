@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.TemplateEngine.FunctionTemplateHandler">FunctionTemplateHandler</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/FunctionTemplateHandler/__init__.py#L890)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/FunctionTemplateHandler/__init__.py#L890?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/FunctionTemplateHandler/__init__.py#L897)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/FunctionTemplateHandler/__init__.py#L897?message=Update%20Docs)]
 </div>
 
 
@@ -74,7 +74,7 @@ template: str
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/FunctionTemplateHandler.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/FunctionTemplateHandler.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/FunctionTemplateHandler/__init__.py#L890?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/FunctionTemplateHandler/__init__.py#L897?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

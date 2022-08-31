@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.DocWalker.ObjectWriter">ObjectWriter</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/__init__.py#L468)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/__init__.py#L468?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/__init__.py#L467)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/__init__.py#L467?message=Update%20Docs)]
 </div>
 
 Writes general objects to file.
@@ -29,8 +29,8 @@ template: str
 identifier(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/identifier/__init__.py#L477)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/identifier/__init__.py#L477?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/identifier/__init__.py#L476)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/identifier/__init__.py#L476?message=Update%20Docs)]
 </div>
 
 
@@ -39,8 +39,8 @@ identifier(self):
 check_should_write(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/check_should_write/__init__.py#L487)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/check_should_write/__init__.py#L487?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/check_should_write/__init__.py#L486)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/check_should_write/__init__.py#L486?message=Update%20Docs)]
 </div>
 Determines whether the object really actually should be
 documented (quite permissive)
@@ -53,8 +53,8 @@ documented (quite permissive)
 get_template_params(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/get_template_params/__init__.py#L500)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/get_template_params/__init__.py#L500?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/get_template_params/__init__.py#L499)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/get_template_params/__init__.py#L499?message=Update%20Docs)]
 </div>
 
 
@@ -63,8 +63,8 @@ get_template_params(self):
 get_package_and_url(self, include_url_base=True): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/get_package_and_url/__init__.py#L524)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/get_package_and_url/__init__.py#L524?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/get_package_and_url/__init__.py#L523)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/get_package_and_url/__init__.py#L523?message=Update%20Docs)]
 </div>
  </div>
 </div>
@@ -118,7 +118,7 @@ get_package_and_url(self, include_url_base=True):
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/ObjectWriter.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/ObjectWriter.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/__init__.py#L468?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/DocWalker/ObjectWriter/__init__.py#L467?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    
