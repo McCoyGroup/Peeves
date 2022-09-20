@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.TemplateEngine.TemplateWalker">TemplateWalker</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine.py#L909)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine.py#L909?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine.py#L911)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine.py#L911?message=Update%20Docs)]
 </div>
 
 
@@ -31,8 +31,8 @@ index_handler: IndexTemplateHandler
 __init__(self, engine: Peeves.Peeves.Doc.TemplateEngine.TemplateEngine, out=None, description=None, **extra_fields): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L916)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L916?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L918)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L918?message=Update%20Docs)]
 </div>
 
 
@@ -42,8 +42,8 @@ __init__(self, engine: Peeves.Peeves.Doc.TemplateEngine.TemplateEngine, out=None
 default_handlers(self): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L922)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L922?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L924)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L924?message=Update%20Docs)]
 </div>
 
 
@@ -52,8 +52,8 @@ default_handlers(self):
 get_handler(self, obj, *, out=None, engine=None, tree=None, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L931)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L931?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L933)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L933?message=Update%20Docs)]
 </div>
 
 
@@ -62,8 +62,8 @@ get_handler(self, obj, *, out=None, engine=None, tree=None, **kwargs):
 visit_root(self, o, **kwargs): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L940)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L940?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L942)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L942?message=Update%20Docs)]
 </div>
 
 
@@ -72,8 +72,8 @@ visit_root(self, o, **kwargs):
 write(self, objects, index='index.md'): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L943)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L943?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L945)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateWalker.py#L945?message=Update%20Docs)]
 </div>
 Walks through the objects supplied and applies the appropriate templates
   - `:returns`: `str`
@@ -152,7 +152,7 @@ s
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Doc/TemplateEngine/TemplateWalker.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Doc/TemplateEngine/TemplateWalker.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine.py#L909?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine.py#L911?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

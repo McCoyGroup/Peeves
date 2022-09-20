@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.TemplateEngine.MethodTemplateHandler">MethodTemplateHandler</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine.py#L902)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine.py#L902?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine.py#L904)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine.py#L904?message=Update%20Docs)]
 </div>
 
 
@@ -75,7 +75,7 @@ template: str
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Doc/TemplateEngine/MethodTemplateHandler.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Doc/TemplateEngine/MethodTemplateHandler.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine.py#L902?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine.py#L904?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    

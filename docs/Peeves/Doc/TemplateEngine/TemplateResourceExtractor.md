@@ -1,8 +1,8 @@
 ## <a id="Peeves.Peeves.Doc.TemplateEngine.TemplateResourceExtractor">TemplateResourceExtractor</a> 
 
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine.py#L840)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine.py#L840?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine.py#L842)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine.py#L842?message=Update%20Docs)]
 </div>
 
 
@@ -28,8 +28,8 @@ resource_attrs: list
 path_extension(self, handler: Peeves.Peeves.Doc.TemplateEngine.TemplateHandler): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.py#L842)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.py#L842?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.py#L844)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.py#L844?message=Update%20Docs)]
 </div>
 Provides the default examples path for the object
   - `:returns`: `_`
@@ -41,8 +41,8 @@ Provides the default examples path for the object
 get_resource(self, handler: Peeves.Peeves.Doc.TemplateEngine.TemplateHandler, keys=None, attrs=None): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.py#L851)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.py#L851?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.py#L853)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.py#L853?message=Update%20Docs)]
 </div>
 
 
@@ -51,8 +51,8 @@ get_resource(self, handler: Peeves.Peeves.Doc.TemplateEngine.TemplateHandler, ke
 load(self, handler: Peeves.Peeves.Doc.TemplateEngine.TemplateHandler): 
 ```
 <div class="docs-source-link" markdown="1">
-[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.py#L883)/
-[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.py#L883?message=Update%20Docs)]
+[[source](https://github.com/McCoyGroup/Peeves/blob/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.py#L885)/
+[edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.py#L885?message=Update%20Docs)]
 </div>
 Loads examples for the stored object if provided
   - `:returns`: `_`
@@ -110,7 +110,7 @@ Loads examples for the stored object if provided
 [Edit](https://github.com/McCoyGroup/Peeves/edit/gh-pages/ci/docs/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.md)/[New](https://github.com/McCoyGroup/Peeves/new/gh-pages/?filename=ci/docs/templates/Peeves/Doc/TemplateEngine/TemplateResourceExtractor.md)   
 </div>
    <div class="col" markdown="1">
-[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine.py#L840?message=Update%20Docs)   
+[Edit](https://github.com/McCoyGroup/Peeves/edit/master/Peeves/Peeves/Doc/TemplateEngine.py#L842?message=Update%20Docs)   
 </div>
    <div class="col" markdown="1">
    
