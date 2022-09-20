@@ -829,12 +829,14 @@ class TemplateHandler(ObjectHandler):
         :rtype:
         """
         base = self.identifier.split(".", 1)[0]
-        try:
-            loc = sys.modules[base].__file__
-        except KeyError:
-            stdlib = False
-        else:
-            stdlib = loc.startswith(sys.prefix) and 'site-packages' not in loc
+        stdlib = base == 'builtins'
+        if not stdlib:
+            try:
+                loc = sys.modules[base].__file__
+            except KeyError:
+                stdlib = False
+            else:
+                stdlib = loc.startswith(sys.prefix) and 'site-packages' not in loc
         return not stdlib and base not in self.blacklist_packages
 
 class TemplateResourceExtractor(ResourceLocator):
