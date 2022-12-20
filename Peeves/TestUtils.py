@@ -3,7 +3,7 @@ All of the utilities that are used in writing tests for Peeves
 """
 
 from .Timer import Timer
-import unittest, os, sys, argparse
+import unittest, os, sys, argparse, contextlib
 
 __all__ = [
     "TestRunner",
@@ -322,6 +322,20 @@ class TestManager:
             )
         finally:
             ManagedTestLoader.manager = cur
+
+    current_stack = []
+    @classmethod
+    def current_manager(cls):
+        return cls.current_stack[-1]
+    @classmethod
+    @contextlib.contextmanager
+    def with_manager(cls, **kwargs):
+        manager = cls(**kwargs)
+        cls.current_stack.append(manager)
+        try:
+            yield manager
+        finally:
+            cls.current_stack.pop()
     @classmethod
     def run(cls,
             exit=True, exit_code=None,
@@ -332,10 +346,10 @@ class TestManager:
 
         if cmd_line:
             kwargs = dict(cls.collect_run_args(), **kwargs)
-        manager = cls(**kwargs)
-        manager.load_tests()
+        with cls.with_manager(**kwargs) as manager:
+            manager.load_tests()
+            test_status = manager._run(syserr_redirect=syserr_redirect)
 
-        test_status = manager._run(syserr_redirect=syserr_redirect)
         if exit:
             sys.exit(test_status if exit_code is None else exit_code) #should kill everything...?
         return test_status

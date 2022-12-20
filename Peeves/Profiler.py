@@ -1,6 +1,6 @@
 
 # import sys, os, numpy as np, itertools as ip
-import cProfile, pstats, io, abc
+import cProfile, pstats, io, abc, sys, os
 
 __all__ = [
     "BlockProfiler"

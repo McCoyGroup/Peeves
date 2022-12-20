@@ -17,6 +17,7 @@ class Timer:
         self.rounding = rounding
         self.checkpoints = deque()
         self.print_times = print_times
+        self.latest = None
         self.laps = []
 
     def get_time_list(self, time_elapsed):
@@ -45,8 +46,8 @@ class Timer:
         self.start()
         return self
     def __exit__(self, exc_type, exc_val, exc_tb):
-        time_elapsed = self.stop()
-        self.print_timing(time_elapsed)
+        self.latest = self.stop()
+        self.print_timing(self.latest)
 
     def format_timing(self, time_elapsed, tag = None, steps = None):
         run_time = self.get_time_list(time_elapsed)
