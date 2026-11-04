@@ -9,7 +9,7 @@ __all__ = ["Timer"]
 class Timer:
 
     tag_printing_times = {}
-    def __init__(self, tag = None, file = sys.stderr, rounding = 5, print_times = 1, number = 1, **kw):
+    def __init__(self, tag=None, file=sys.stderr, rounding=5, print_times=-1, number=1, **kw):
         self.kw = kw
         self.number = number
         self.file = file
@@ -67,7 +67,7 @@ class Timer:
             tag = self.tag
         if tag not in self.tag_printing_times:
             self.tag_printing_times[tag] = 0
-        if self.tag_printing_times[tag] < self.print_times:
+        if self.print_times < 0 or self.tag_printing_times[tag] < self.print_times:
             print(self.format_timing(time_elapsed, tag = tag, steps = steps), file = self.file)
             self.tag_printing_times[tag] += 1
 
@@ -76,7 +76,7 @@ class Timer:
         def timed_fn(*args, **kwargs):
             func = fn
             val = None
-            time_elapsed = timeit.timeit("val = func(*args, **kwargs)", globals = locals(), **self.kw)
+            time_elapsed = timeit.timeit("val = func(*args, **kwargs)", globals = locals(), number=self.number, **self.kw)
             self.print_timing(time_elapsed, tag = func.__name__)
             return val
         return timed_fn

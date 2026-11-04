@@ -1,6 +1,7 @@
 """
 All of the utilities that are used in writing tests for Peeves
 """
+import functools
 
 from .Timer import Timer
 import unittest, os, sys, argparse, contextlib
@@ -18,8 +19,13 @@ __all__ = [
     "dataGenTest",
     "timeitTest",
     "timingTest",
-    "inactiveTest"
+    "inactiveTest",
+    "check_types"
 ]
+
+def check_types(pkg):
+    import beartype
+    beartype.beartype_package(pkg)
 
 class TestManager:
     """
@@ -181,7 +187,8 @@ class TestManager:
             self._test_data_use_default = False
     @classmethod
     def test_data(cls, filename):
-        return os.path.join(cls().test_data_dir, filename)
+        manager = cls.current_manager() if cls.current_stack else cls()
+        return os.path.join(manager.test_data_dir, filename)
 
     @classmethod
     def collect_run_args(cls):
@@ -239,12 +246,22 @@ class TestManager:
         log_file = self.log_file if log_file is None else log_file
         if os.path.abspath(log_file) != log_file:
             log_file = os.path.join(self.test_dir, log_file)
-        log_stream = self._stderr_wrap(open(log_file, "w") if log_results else sys.stderr, syserr_redirect=syserr_redirect)
+        log_stream = self._stderr_wrap(
+            open(log_file, "w") if log_results else sys.stderr,
+            syserr_redirect=syserr_redirect, close_stream=bool(log_results)
+        )
         return log_stream
+    @classmethod
+    def get_wrapped_log_file(cls, log_file, syserr_redirect=True):
+        return cls._stderr_wrap(
+            open(log_file, "w") if isinstance(log_file, str) else (sys.stderr if log_file is None else log_file),
+            syserr_redirect=syserr_redirect, close_stream=isinstance(log_file, str)
+        )
     class _stderr_wrap:
-        def __init__(self, stream, syserr_redirect=True):
+        def __init__(self, stream, syserr_redirect=True, close_stream=False):
             self.stream = stream
             self.syserr_redirect = syserr_redirect
+            self.close_stream = close_stream
             self.stderr1 = None
             self.stdout1 = None
         def __enter__(self):
@@ -253,7 +270,7 @@ class TestManager:
             if self.syserr_redirect:
                 self.stdout1 = sys.stdout
                 sys.stdout = sys.stderr
-            if hasattr(self.stream, '__enter__'):
+            if self.close_stream and hasattr(self.stream, '__enter__'):
                 return self.stream.__enter__()
             else:
                 return self.stream
@@ -262,8 +279,8 @@ class TestManager:
             self.stderr1 = None
             if self.syserr_redirect:
                 sys.stdout = self.stdout1
-                sys.stdout1 = None
-            if hasattr(self.stream, '__exit__'):
+                self.stdout1 = None
+            if self.close_stream and hasattr(self.stream, '__exit__'):
                 self.stream.__exit__(exc_type, exc_val, exc_tb)
 
     def run_tests(self, tag, test_set, runner, log_stream):
@@ -293,7 +310,6 @@ class TestManager:
              log_results=None, log_file=None, quiet=None,
              syserr_redirect=True
              ):
-        TestManager.test_data_dir = self.test_data_dir
         with self.get_log_file(log_results=log_results, log_file=log_file, syserr_redirect=syserr_redirect) as log_stream:
             quiet = self.quiet_mode if quiet is None else quiet
             v_level = 1 if quiet else 2
@@ -316,10 +332,13 @@ class TestManager:
         cur = ManagedTestLoader.manager
         try:
             ManagedTestLoader.manager = self
-            unittest.defaultTestLoader.discover(
+            loader = unittest.TestLoader()
+            loader.discover(
                 start_dir,
                 top_level_dir=base_dir
             )
+            if loader.errors:
+                raise ImportError("Peeves test discovery failed:\n" + "\n".join(loader.errors))
         finally:
             ManagedTestLoader.manager = cur
 
@@ -463,54 +482,73 @@ class DataGenTests(ManagedTestSuite):
     """The set of tests in the test suite that exist to generate artefacts"""
     stack = []
 
+def test_wrapper(test_modifier):
+    """
+    A decorator generator for passing options
+    :param test_modifier:
+    :return:
+    """
+    @functools.wraps(test_modifier)
+    def wrapper(*fn, **opts):
+        if len(fn) == 0:
+            def subwrapper(subfn):
+                new_fn = test_modifier(subfn)
+                new_fn.__test_opts__ = opts
+                new_fn.__og_name__ = subfn.__name__
+                return new_fn
+            return subwrapper
+        elif len(fn) == 1:
+            new_fn = test_modifier(fn[0])
+            new_fn.__test_opts__ = opts
+            new_fn.__og_name__ = fn[0].__name__
+            return new_fn
+        else:
+            raise ValueError("wat")
+    return wrapper
+
+@test_wrapper
 def timingTest(fn):
     """
     A decorator that sets up a test to be added to the set of timing tests
     """
-    timer = Timer()(fn)
     def Timing(*args, **kwargs):
-        return timer(*args, **kwargs)
+        timer_opts = {
+            k: v for k, v in getattr(Timing, '__test_opts__', {}).items()
+            if k not in {'log_file', 'syserr_redirect'}
+        }
+        return Timer(**timer_opts)(fn)(*args, **kwargs)
     return Timing
-def timeitTest(**kwargs):
-    """
-    A decorator that sets up a test to be added to the set of timing tests
-    using `timeit`
-    """
-    timer = Timer(**kwargs)
-    def wrap(fn):
-        inner_fn = timer(fn)
-        def Timing(*args, **kwargs):
-            return inner_fn(*args, **kwargs)
-        return Timing
-    return wrap
 
+timeitTest = timingTest
+
+@test_wrapper
 def inactiveTest(fn):
     """
     A decorator that sets up a test to be added to the set of inactive tests
     """
     def Inactive(*args, **kwargs):
         return fn(*args, **kwargs)
-    Inactive.__og_name__ = fn.__name__
     return Inactive
 
+@test_wrapper
 def debugTest(fn):
     """
     A decorator that sets up a test to be added to the set of debug tests
     """
     def Debug(*args, **kwargs):
         return fn(*args, **kwargs)
-    Debug.__og_name__ = fn.__name__
     return Debug
 
+@test_wrapper
 def dataGenTest(fn):
     """
     A decorator that sets up a test to be added to the set of data generation tests
     """
     def DataGen(*args, **kwargs):
         return fn(*args, **kwargs)
-    DataGen.__og_name__ = fn.__name__
     return DataGen
 
+@test_wrapper
 def validationTest(fn):
     """
     A decorator that sets up a test to be added to the set of validation tests
@@ -520,12 +558,82 @@ def validationTest(fn):
     Validation.__og_name__ = fn.__name__
     return Validation
 
-def TestRunner(**kw):
-    if not "resultclass" in kw:
-        kw["resultclass"] = unittest.TextTestResult
-    if not "verbosity" in kw:
-        kw["verbosity"] = 2
-    return unittest.TextTestRunner(**kw)
+class TestRunner(unittest.TextTestRunner):
+    def __init__(self, resultclass=None, verbosity=None, **opts):
+        if resultclass is None:
+            resultclass = unittest.TextTestResult
+        if verbosity is None:
+            verbosity = 2
+        super().__init__(resultclass=resultclass, verbosity=verbosity, **opts)
+
+    def run_wrapped_test(self,
+                         test,
+                         result,
+                         log_file,
+                         **opts
+                         ):
+        old_stream = self.stream
+        print("Running", test, "redirecting output to", log_file)
+        try:
+            with TestManager.get_wrapped_log_file(log_file, **opts) as log_stream:
+                self.stream = log_stream
+                res = test.run(result)
+        finally:
+            self.stream = old_stream
+        return res
+
+    class RedirectingTest(unittest.TestCase):
+        # False subclass that just implements the relevant part of the interface
+        def __init__(self, test, runner, log_file, **opts):
+            self.test = test
+            self.runner = runner
+            self.log_file = log_file
+            self.opts = opts
+        def run(self, result=None):
+            self.runner.run_wrapped_test(
+                self.test,
+                result,
+                self.log_file,
+                **self.opts
+            )
+
+    def setupTestHooks(self, test):
+        if isinstance(test, unittest.TestSuite):
+            test._tests = [self.setupTestHooks(t) for t in test]
+            return test
+        test_fn = getattr(test, test._testMethodName)
+        try:
+            metaopts = test_fn.__test_opts__
+        except AttributeError:
+            metaopts = {}
+        log_file = metaopts.get('log_file', None)
+        redirect = metaopts.get('syserr_redirect', None)
+        opts = {'syserr_redirect': redirect}
+        opts = {k: v for k, v in opts.items() if v is not None}
+        if log_file is not None:
+            if isinstance(log_file, str):
+                log_file = os.path.expanduser(log_file)
+                if os.path.abspath(log_file) != log_file:
+                    manager = TestManager.current_manager() if TestManager.current_stack else TestManager()
+                    test_dir = manager.test_dir
+                    log_file = os.path.join(test_dir, log_file)
+            run = test.run
+            @functools.wraps(run)
+            def run_logged(result=None):
+                with TestManager.get_wrapped_log_file(log_file, **opts):
+                    return run(result)
+            test.run = run_logged
+            return test
+        else:
+            return test
+
+    def run(self, test_suite):
+        test_suite._tests = [
+            self.setupTestHooks(test)
+            for test in test_suite
+        ]
+        return super().run(test_suite)
+
 
 _test_loader_map = {
     "Debug" : DebugTests,
@@ -540,11 +648,15 @@ class ManagedTestLoader:
     def load_tests(cls, loader, tests, pattern):
         from itertools import chain
 
+        if cls.manager is None:
+            return tests
         pkgs = cls.manager.test_files
         names = cls.manager.test_name
         if isinstance(names, str):
             names = names.split(",")
 
+        if isinstance(pkgs, str) and pkgs != "All":
+            pkgs = pkgs.split(",")
         test_packages = None if pkgs == "All" else set(pkgs)
         if test_packages is None:
             tests = list(chain(*((t for t in suite) for suite in tests)))
@@ -552,11 +664,9 @@ class ManagedTestLoader:
             def _get_suite_name(suite):
                 for test in suite:
                     return type(test).__module__.split(".")[-1]
-            tests_named = {_get_suite_name(suite):suite for suite in tests}
-            tests = []
-            for k in tests_named:
-                if k in test_packages:
-                    tests.extend(tests_named[k])
+            tests = list(chain.from_iterable(
+                suite for suite in tests if _get_suite_name(suite) in test_packages
+            ))
 
         for test in tests:
             method = getattr(test, test._testMethodName)
@@ -576,7 +686,6 @@ class ManagedTestLoader:
                     ttt = "Debug"
                 suite = _test_loader_map[ttt]
                 suite.queueTest(test)
-        #
-        # return _test_loader_map.values()
+        return loader.suiteClass()
 
 load_tests = ManagedTestLoader.load_tests

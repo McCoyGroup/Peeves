@@ -380,7 +380,7 @@ class DocWriter(TemplateH):
         formatted = TestExamplesFormatter(tests,
                                           template=self.find_template('tests.md'),
                                           example_template=self.find_template('test_example.md'),
-                                          ).format() if tests is not None else ""
+                                          ).format_tex() if tests is not None else ""
         # print(self.name, len(formatted))
         return formatted
 

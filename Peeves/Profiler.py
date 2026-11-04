@@ -7,11 +7,12 @@ __all__ = [
 ]
 
 class AbstractBlockProfiler:
-    def __init__(self, name="Profiled Block", inactive=False, print_res=True, logger=None):
+    def __init__(self, name="Profiled Block", inactive=False, print_res=True, logger=None, print_options=None):
         self.name = name
         self.print_res = print_res
         self.inactive = inactive
         self.logger = logger
+        self.print_options = print_options
 
     @abc.abstractmethod
     def start_profiler(self):
@@ -29,10 +30,11 @@ class AbstractBlockProfiler:
             if self.print_res:
                 self.print_profile()
     @abc.abstractmethod
-    def format_profile(self):
+    def format_profile(self, **opts):
         raise NotImplementedError("abstract class")
     def print_profile(self):
-        msg = "In block {}:\n\n{}".format(self.name, self.format_profile())
+        pos = {} if self.print_options is None else self.print_options
+        msg = "In block {}:\n\n{}".format(self.name, self.format_profile(**pos))
         if isinstance(self.print_res, str) and self.print_res == 'raise':
             raise ValueError(msg)
         elif self.logger is None:
@@ -46,10 +48,10 @@ class AbstractBlockProfiler:
 
 class PyinstrumentBlockProfiler(AbstractBlockProfiler):
 
-    def __init__(self, name="Profiled Block", inactive=False, print_res=True, logger=None):
+    def __init__(self, name="Profiled Block", inactive=False, print_res=True, logger=None, print_options=None, **opts):
         from pyinstrument import Profiler
-        super().__init__(name=name, print_res=print_res, inactive=inactive, logger=logger)
-        self.profiler = Profiler()
+        super().__init__(name=name, print_res=print_res, inactive=inactive, logger=logger, print_options=print_options)
+        self.profiler = Profiler(**opts)
 
     def start_profiler(self):
         self.profiler.start()
@@ -57,8 +59,8 @@ class PyinstrumentBlockProfiler(AbstractBlockProfiler):
     def stop_profiler(self):
         self.profiler.stop()
 
-    def format_profile(self):
-        return self.profiler.output_text(unicode=True, color=True)
+    def format_profile(self, unicode=True, color=True, **print_options):
+        return self.profiler.output_text(unicode=unicode, color=color, **print_options)
 
 class CProfileBlockProfiler(AbstractBlockProfiler):
     """

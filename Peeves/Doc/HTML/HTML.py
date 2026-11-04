@@ -489,7 +489,7 @@ class HTML:
             if self._tree_cache is not None:
                 self._tree_cache = None
                 for p in tuple(self._parents):
-                    p._invalidate_cache()
+                    p.invalidate_cache()
                     self._parents.remove(p)
         def __getitem__(self, item):
             if isinstance(item, str):

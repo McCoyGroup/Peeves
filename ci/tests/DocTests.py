@@ -1,11 +1,7 @@
-import inspect, os, sys
-
-root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.insert(0, root_dir)
 from Peeves.TestUtils import *
 from unittest import TestCase
-from Peeves.Doc import *
-import os
+from McUtils.Docs import *
+import os, inspect, sys
 
 class DocsTests(TestCase):
     """
@@ -57,7 +53,7 @@ class DocsTests(TestCase):
         parser = ExamplesParser.from_file(os.path.abspath(__file__))
         self.assertTrue(hasattr(parser.functions, 'items'))
         tests = TestExamplesFormatter.from_file(os.path.abspath(__file__))
-        print(tests.format())
+        print(tests.format_tex())
 
     @validationTest
     def test_FormatSpec(self):
